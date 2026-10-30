@@ -175,6 +175,51 @@ _STATEMENT_FACETS = (
         ),
     ),
 )
+_STATEMENT_SUBJECT = (
+    r"(?:income|earnings|operations|cash[\s-]*flows?|profit\s*(?:and|&)\s*loss|p\s*&\s*l"
+    r"|balance\s+sheets?|financial\s+position)"
+)
+_COORDINATED_STATEMENT_SUBJECTS = (
+    _STATEMENT_SUBJECT + r"(?:\s*(?:,?\s+and|,?\s*&|,)\s*" + _STATEMENT_SUBJECT + r")+"
+)
+_SHARED_STATEMENT_PATTERNS = (
+    re.compile(r"\b(?P<subjects>" + _COORDINATED_STATEMENT_SUBJECTS + r")\s+statements?\b"),
+    re.compile(r"\bstatements?\s+(?:of\s+)?(?P<subjects>" + _COORDINATED_STATEMENT_SUBJECTS + r")\b"),
+)
+_STATEMENT_SUBJECT_TYPES = (
+    ("income", re.compile(r"\b(?:income|earnings|operations|profit\s*(?:and|&)\s*loss|p\s*&\s*l)\b")),
+    ("cash-flow", re.compile(r"\bcash[\s-]*flows?\b")),
+    ("balance-sheet", re.compile(r"\b(?:balance\s+sheets?|financial\s+position)\b")),
+)
+_FINANCIAL_ARITHMETIC = re.compile(
+    r"\b(?:ratio|proportion|fraction|percentage|percent|margin|plus|minus|less|subtract(?:ing|ed)?"
+    r"|divid(?:e|ed|ing)|sum|calculate|compute|return\s+on)\b|%"
+)
+_FINANCIAL_ACCOUNT_TYPES = (
+    (
+        "income",
+        re.compile(
+            r"\b(?:sales|(?:(?:net|total)\s+)?revenues?|(?:operating|net|gross|pre[\s-]?tax)\s+"
+            r"(?:income|profit|earnings)|earnings\s+per\s+share)\b"
+        ),
+    ),
+    (
+        "cash-flow",
+        re.compile(
+            r"\b(?:cash\s+(?:generated|provided|produced)(?:\s+(?:by|from))?\s+"
+            r"(?:operations|operating\s+activities)|operating\s+cash|cash[\s-]*flows?|depreciation"
+            r"|amorti[sz]ation|capex|capital\s+(?:expenditures?|spending)"
+            r"|purchases?\s+(?:of|for)\s+(?:property|premises|plant|equipment))\b"
+        ),
+    ),
+    (
+        "balance-sheet",
+        re.compile(
+            r"\b(?:(?:current|total|net)\s+(?:assets?|liabilities)|working\s+capital|(?:current|quick)\s+ratio"
+            r"|(?:shareholders?|stockholders?)['\u2019]?\s+equity|return\s+on\s+(?:assets|equity))\b"
+        ),
+    ),
+)
 
 
 def _stem(word: str) -> str:
@@ -338,20 +383,38 @@ def _statement_types(body: str) -> frozenset[str]:
     return frozenset(found)
 
 
-def _required_statement_pages(ranked: list[tuple[float, _Page]], question: str) -> tuple[_Page, ...]:
+def _statement_requirements(question: str) -> tuple[str, ...]:
     normalized_question = " ".join(question.casefold().split())
     requested = []
     for name, query_pattern, _heading_pattern in _STATEMENT_FACETS:
         match = query_pattern.search(normalized_question)
         if match is not None:
             requested.append((match.start(), name))
+    for pattern in _SHARED_STATEMENT_PATTERNS:
+        for clause in pattern.finditer(normalized_question):
+            for name, subject_pattern in _STATEMENT_SUBJECT_TYPES:
+                match = subject_pattern.search(clause["subjects"])
+                if match is not None:
+                    requested.append((clause.start("subjects") + match.start(), name))
+    if _FINANCIAL_ARITHMETIC.search(normalized_question):
+        inferred = []
+        for name, account_pattern in _FINANCIAL_ACCOUNT_TYPES:
+            match = account_pattern.search(normalized_question)
+            if match is not None:
+                inferred.append((match.start(), name))
+        if len({name for _position, name in inferred}) >= 2:
+            requested.extend(inferred)
+    return tuple(dict.fromkeys(name for _position, name in sorted(requested)))
+
+
+def _required_statement_pages(ranked: list[tuple[float, _Page]], question: str) -> tuple[_Page, ...]:
+    requested = _statement_requirements(question)
     if not requested:
         return ()
-    requested.sort()
     page_types = {page.source_id: _statement_types(page.body) for _score, page in ranked}
     groups = [
         tuple(page for _score, page in ranked if name in page_types[page.source_id])[:2]
-        for _position, name in requested
+        for name in requested
     ]
     selected = []
     seen = set()

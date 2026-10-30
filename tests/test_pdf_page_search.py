@@ -257,3 +257,59 @@ async def test_explicit_balance_sheet_title_is_covered(tmp_path: Path) -> None:
             memory, "Use Cedar Industries' balance sheet and statement of cash flows for FY2022.", limit=2
         )
         assert set(await _read_page_numbers(memory, citations, stored, pages)) == {1, 2}
+
+
+@pytest.mark.parametrize(
+    "question",
+    (
+        "Use Cedar Industries' income and cash-flow statements to find operating profit and cash generation.",
+        "What fraction of Cedar Industries' net sales is cash generated from operations after subtracting "
+        "purchases of property, plant and equipment?",
+        "For Cedar Industries, what percentage of operating income was cash provided by operating activities?",
+    ),
+)
+async def test_shared_statement_names_and_financial_ratios_cover_each_source(tmp_path: Path, question: str) -> None:
+    config, scope_id, stored, pages = await _persist_pages(
+        tmp_path,
+        _competing_statement_pages("Consolidated Statement of Income", "Consolidated Statement of Cash Flows"),
+    )
+    async with open_builtin_runtime(config) as runtime:
+        memory = runtime.memory.for_scope(scope_id)
+        citations = await search_pdf_pages(memory, question, limit=20)
+        assert {1, 2}.issubset(await _read_page_numbers(memory, citations, stored, pages))
+
+
+@pytest.mark.parametrize(
+    "question,disclosure",
+    (
+        (
+            "Why does revenue attributed to geographic regions differ from final consumer demand?",
+            "Revenue attributed to geographic regions differs from final consumer demand because customers "
+            "export the products to consumers in other regions.",
+        ),
+        (
+            "What percentage of Cedar Industries' revenue comes from Europe?",
+            "Europe represented 30 percent of Cedar Industries' revenue. Geographic regional disclosures.",
+        ),
+        (
+            "What percentage of Cedar Industries' revenue did the litigation settlement represent?",
+            "The litigation settlement represented 4 percent of Cedar Industries' revenue. "
+            "Legal proceedings disclosures.",
+        ),
+    ),
+)
+async def test_single_source_ratios_keep_specific_disclosures_ahead_of_statements(
+    tmp_path: Path, question: str, disclosure: str
+) -> None:
+    pages = _competing_statement_pages("Consolidated Statement of Income", "Consolidated Statement of Cash Flows")
+    operational_page = PDFPageInput(
+        document_id=pages[0].document_id,
+        document_sha256=pages[0].document_sha256,
+        page_number=len(pages) + 1,
+        text=disclosure,
+    )
+    config, scope_id, stored, pages = await _persist_pages(tmp_path, (*pages, operational_page))
+    async with open_builtin_runtime(config) as runtime:
+        memory = runtime.memory.for_scope(scope_id)
+        citations = await search_pdf_pages(memory, question, limit=1)
+        assert await _read_page_numbers(memory, citations, stored, pages) == (operational_page.page_number,)
