@@ -26,7 +26,15 @@ from typing import Literal
 from pydantic import BaseModel, Field, field_validator
 from pypdf import PdfReader
 from pypdf.filters import ZLIB_MAX_OUTPUT_LENGTH, decode_stream_data
-from pypdf.generic import ArrayObject, EncodedStreamObject, IndirectObject, NameObject, NullObject
+from pypdf.generic import (
+    ArrayObject,
+    DictionaryObject,
+    EncodedStreamObject,
+    IndirectObject,
+    NameObject,
+    NullObject,
+    StreamObject,
+)
 
 from powercontext.sources._pdf_search import search_pdf_pages
 from powercontext.sources.definitions import AdapterSourceDefinition
@@ -62,12 +70,66 @@ class PDFPageInput(BaseModel):
     _document_id = field_validator("document_id")(_validate_document_id)
 
 
-def _validate_decoded_flate_streams(reader: PdfReader) -> None:
+def _decode_page_content_streams(page: DictionaryObject) -> tuple[EncodedStreamObject, ...]:
+    # Text extraction skips fontless pages and can suppress Form decoding errors.
+    # Read their content independently before deciding whether the page is empty.
+    streams: list[EncodedStreamObject] = []
+    seen: set[int] = set()
+
+    def decode(value: object) -> None:
+        if isinstance(value, IndirectObject):
+            value = value.get_object()
+        if value is None or isinstance(value, NullObject):
+            return
+        if isinstance(value, ArrayObject):
+            for item in value:
+                decode(item)
+            return
+        if not isinstance(value, StreamObject):
+            raise ValueError("PDF page content must be a stream")  # noqa: TRY003
+        if id(value) in seen:
+            return
+        seen.add(id(value))
+        value.get_data()
+        if isinstance(value, EncodedStreamObject):
+            streams.append(value)
+        if value.get("/Subtype") == "/Form":
+            visit_resources(value)
+
+    def visit_resources(owner: DictionaryObject) -> None:
+        resources = owner.get("/Resources")
+        if isinstance(resources, IndirectObject):
+            resources = resources.get_object()
+        if not isinstance(resources, DictionaryObject):
+            return
+        objects = resources.get("/XObject")
+        if isinstance(objects, IndirectObject):
+            objects = objects.get_object()
+        if not isinstance(objects, DictionaryObject):
+            return
+        for value in objects.values():
+            if isinstance(value, IndirectObject):
+                value = value.get_object()
+            if isinstance(value, DictionaryObject) and value.get("/Subtype") == "/Form":
+                decode(value)
+
+    decode(page.get("/Contents"))
+    visit_resources(page)
+    return tuple(streams)
+
+
+def _validate_decoded_flate_streams(
+    reader: PdfReader, content_streams: tuple[EncodedStreamObject, ...]
+) -> None:
     # The pinned decoder can recover empty or partial data from a damaged stream,
     # even in strict mode. Validate streams actually decoded for page extraction.
-    for stream in tuple(reader.resolved_objects.values()):
+    seen: set[int] = set()
+    for stream in (*content_streams, *tuple(reader.resolved_objects.values())):
         if not isinstance(stream, EncodedStreamObject) or stream.decoded_self is None:
             continue
+        if id(stream) in seen:
+            continue
+        seen.add(id(stream))
         filters = stream.get("/Filter", ())
         if isinstance(filters, IndirectObject):
             filters = filters.get_object()
@@ -101,17 +163,20 @@ def parse_pdf_document(value: PDFDocumentInput) -> tuple[PDFPageInput, ...]:
         if reader.is_encrypted and not reader.decrypt(""):
             raise ValueError("PDF document requires a non-empty password")  # noqa: TRY003
         digest = hashlib.sha256(value.content).hexdigest()
-        pages = tuple(
-            PDFPageInput(
-                document_id=value.document_id,
-                document_sha256=digest,
-                page_number=number,
-                text=page.extract_text() or "",
+        pages: list[PDFPageInput] = []
+        content_streams: list[EncodedStreamObject] = []
+        for number, page in enumerate(reader.pages, start=1):
+            content_streams.extend(_decode_page_content_streams(page))
+            pages.append(
+                PDFPageInput(
+                    document_id=value.document_id,
+                    document_sha256=digest,
+                    page_number=number,
+                    text=page.extract_text() or "",
+                )
             )
-            for number, page in enumerate(reader.pages, start=1)
-        )
-        _validate_decoded_flate_streams(reader)
-        return pages
+        _validate_decoded_flate_streams(reader, tuple(content_streams))
+        return tuple(pages)
     except Exception as error:  # noqa: BLE001 - malformed PDF objects raise varied parser exceptions.
         raise ValueError("PDF document must be readable in full") from error  # noqa: TRY003
 

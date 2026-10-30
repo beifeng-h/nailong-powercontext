@@ -189,3 +189,71 @@ async def test_unnamed_company_keeps_reports_available(tmp_path: Path) -> None:
         memory = runtime.memory.for_scope(scope_id)
         citations = await search_pdf_pages(memory, "Which reports show operating income?", limit=30)
         assert set(await _retrieved_documents(memory, citations, stored)) == {"ACME_2023_10K", "BETA_2022_10K"}
+
+
+def _competing_statement_pages(income_heading: str, cash_flow_heading: str) -> tuple[PDFPageInput, ...]:
+    digest = hashlib.sha256(b"synthetic statement coverage report").hexdigest()
+    texts = (
+        f"{income_heading}\n2022 Revenue 480 Cost of sales 300 Operating profit 90 Net income 65.",
+        f"{cash_flow_heading}\n2022 Net cash provided by operating activities 140 "
+        "Depreciation and amortization 25 Purchases of property plant and equipment 40.",
+        *(
+            "Management discussion: EBITDA capex operating income depreciation amortization cash flow "
+            "income statement capital expenditure spending purchase property plant equipment."
+            for _ in range(21)
+        ),
+        *(
+            "Revenue sales cost gross profit net income earnings operating profit income 100. "
+            "Business overview and accounting notes."
+            for _ in range(30)
+        ),
+    )
+    return tuple(
+        PDFPageInput(
+            document_id="CEDAR_INDUSTRIES_2022_10K",
+            document_sha256=digest,
+            page_number=number,
+            text=text,
+        )
+        for number, text in enumerate(texts, start=1)
+    )
+
+
+@pytest.mark.parametrize(
+    "income_heading,cash_flow_heading",
+    (
+        ("Consolidated Statement of Income", "Consolidated Statement of Cash Flows"),
+        ("Consolidated\nStatements of\nIncome", "Condensed Consolidated Statements\nof Cash Flows (continued)"),
+        ("Consolidated Profit and Loss Statement", "Consolidated Cash-Flow Statement"),
+    ),
+)
+async def test_explicit_statements_survive_keyword_heavy_discussion_pages(
+    tmp_path: Path, income_heading: str, cash_flow_heading: str
+) -> None:
+    config, scope_id, stored, pages = await _persist_pages(
+        tmp_path, _competing_statement_pages(income_heading, cash_flow_heading)
+    )
+    question = (
+        "What is FY2022 EBITDA less capex for Cedar Industries? Use operating income plus depreciation "
+        "and amortization from the cash flow statement and the income statement."
+    )
+    async with open_builtin_runtime(config) as runtime:
+        memory = runtime.memory.for_scope(scope_id)
+        citations = await search_pdf_pages(memory, question, limit=20)
+        numbers = await _read_page_numbers(memory, citations, stored, pages)
+        assert len(citations) <= 20
+        assert {1, 2}.issubset(numbers)
+        limited = await search_pdf_pages(memory, question, limit=1)
+        assert len(limited) == 1
+        assert set(await _read_page_numbers(memory, limited, stored, pages)).issubset({1, 2})
+
+
+async def test_explicit_balance_sheet_title_is_covered(tmp_path: Path) -> None:
+    pages = _competing_statement_pages("Consolidated Balance Sheets", "Consolidated Statement of Cash Flows")
+    config, scope_id, stored, pages = await _persist_pages(tmp_path, pages)
+    async with open_builtin_runtime(config) as runtime:
+        memory = runtime.memory.for_scope(scope_id)
+        citations = await search_pdf_pages(
+            memory, "Use Cedar Industries' balance sheet and statement of cash flows for FY2022.", limit=2
+        )
+        assert set(await _read_page_numbers(memory, citations, stored, pages)) == {1, 2}

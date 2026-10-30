@@ -23,7 +23,14 @@ from base64 import a85encode
 
 import pytest
 from pypdf import PdfWriter
-from pypdf.generic import ArrayObject, DictionaryObject, EncodedStreamObject, NameObject
+from pypdf.generic import (
+    ArrayObject,
+    DecodedStreamObject,
+    DictionaryObject,
+    EncodedStreamObject,
+    NameObject,
+    NumberObject,
+)
 
 from powercontext.sources.pdf_pages import PDFDocumentInput, parse_pdf_document
 
@@ -57,13 +64,18 @@ def _document_bytes(writer: PdfWriter) -> bytes:
 
 
 @pytest.mark.parametrize("ascii85", [False, True], ids=["flate", "ascii85-flate"])
+@pytest.mark.parametrize("font_resources", [False, True], ids=["fontless", "font-resources"])
 @pytest.mark.parametrize(
     "data", [b"not-a-zlib-stream", zlib.compress(b"q Q")[:-2]], ids=["invalid-stream", "truncated-stream"]
 )
-def test_corrupt_later_page_fails_without_returning_earlier_pages(data: bytes, ascii85: bool) -> None:
+def test_corrupt_later_page_fails_without_returning_earlier_pages(
+    data: bytes, ascii85: bool, font_resources: bool
+) -> None:
     writer = PdfWriter()
     _add_compressed_page(writer, zlib.compress(b"BT /F1 12 Tf (Revenue 123) Tj ET"))
     _add_compressed_page(writer, data, ascii85=ascii85)
+    if not font_resources:
+        del writer.pages[-1]["/Resources"]
     with pytest.raises(ValueError):
         parse_pdf_document(PDFDocumentInput(document_id="corrupt-later-page", content=_document_bytes(writer)))
 
@@ -81,3 +93,53 @@ def test_blank_and_valid_compressed_empty_pages_keep_physical_order(encrypted: b
     pages = parse_pdf_document(PDFDocumentInput(document_id="complete-streams", content=content))
     assert [(page.page_number, page.text) for page in pages] == [(1, "Revenue 123"), (2, ""), (3, ""), (4, "")]
     assert all(page.document_sha256 == hashlib.sha256(content).hexdigest() for page in pages)
+
+
+@pytest.mark.parametrize("encrypted", [False, True], ids=["plain", "empty-password"])
+def test_valid_fontless_streams_and_blank_pages_are_readable(encrypted: bool) -> None:
+    writer = PdfWriter()
+    writer.add_blank_page(width=100, height=200)
+    for data in (b"q Q", b""):
+        _add_compressed_page(writer, zlib.compress(data), ascii85=True)
+        del writer.pages[-1]["/Resources"]
+    if encrypted:
+        writer.encrypt(user_password="", owner_password="owner")
+    content = _document_bytes(writer)
+    pages = parse_pdf_document(PDFDocumentInput(document_id="fontless", content=content))
+    assert [(page.page_number, page.text) for page in pages] == [(1, ""), (2, ""), (3, "")]
+    assert all(page.document_sha256 == hashlib.sha256(content).hexdigest() for page in pages)
+
+
+@pytest.mark.parametrize(
+    "data, valid",
+    [
+        (zlib.compress(b"BT /F1 12 Tf (Revenue 123) Tj ET"), True),
+        (b"not-a-zlib-stream", False),
+        (zlib.compress(b"q Q")[:-2], False),
+    ],
+    ids=["readable-form", "invalid-form", "truncated-form"],
+)
+def test_form_streams_are_validated_without_duplicating_text(data: bytes, valid: bool) -> None:
+    writer = PdfWriter()
+    _add_compressed_page(writer, zlib.compress(b"q Q"))
+    page = writer.pages[0]
+    resources = page["/Resources"]
+    form = EncodedStreamObject()
+    form._data = data
+    form[NameObject("/Filter")] = NameObject("/FlateDecode")
+    form[NameObject("/Type")] = NameObject("/XObject")
+    form[NameObject("/Subtype")] = NameObject("/Form")
+    form[NameObject("/BBox")] = ArrayObject([NumberObject(value) for value in (0, 0, 100, 200)])
+    form[NameObject("/Resources")] = DictionaryObject({NameObject("/Font"): resources["/Font"]})
+    resources[NameObject("/XObject")] = DictionaryObject({NameObject("/Fm1"): writer._add_object(form)})
+    stream = DecodedStreamObject()
+    stream.set_data(b"q /Fm1 Do Q")
+    page[NameObject("/Contents")] = writer._add_object(stream)
+    value = PDFDocumentInput(document_id="form-stream", content=_document_bytes(writer))
+    if not valid:
+        with pytest.raises(ValueError):
+            parse_pdf_document(value)
+    else:
+        pages = parse_pdf_document(value)
+        assert len(pages) == 1
+        assert pages[0].text.strip() == "Revenue 123"

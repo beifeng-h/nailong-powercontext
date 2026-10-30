@@ -140,6 +140,42 @@ _PHRASE_VOCABULARY = (
     ),
 )
 
+_STATEMENT_PREFIX = r"(?:(?:consolidated|condensed|combined|comparative|unaudited)\s+)*"
+_STATEMENT_SUFFIX = r"(?:\s*\((?:continued|unaudited)\))?"
+_STATEMENT_FACETS = (
+    (
+        "income",
+        re.compile(
+            r"\b(?:income\s+statements?|statements?\s+(?:of\s+)?(?:income|earnings|operations)"
+            r"|profit\s*(?:and|&)\s*loss(?:\s+statements?)?|p\s*&\s*l(?:\s+statements?)?)\b",
+        ),
+        re.compile(
+            _STATEMENT_PREFIX
+            + r"(?:statements?\s+(?:of\s+)?(?:income|earnings|operations)|income\s+statements?"
+            + r"|statements?\s+(?:of\s+)?profit\s+(?:and|&)\s+loss"
+            + r"|(?:profit\s*(?:and|&)\s*loss|p\s*&\s*l)(?:\s+statements?)?)"
+            + _STATEMENT_SUFFIX,
+        ),
+    ),
+    (
+        "cash-flow",
+        re.compile(r"\b(?:cash[\s-]*flows?\s+statements?|statements?\s+(?:of\s+)?cash[\s-]*flows?)\b"),
+        re.compile(
+            _STATEMENT_PREFIX
+            + r"(?:statements?\s+(?:of\s+)?cash[\s-]*flows?|cash[\s-]*flows?\s+statements?)"
+            + _STATEMENT_SUFFIX,
+        ),
+    ),
+    (
+        "balance-sheet",
+        re.compile(r"\b(?:balance\s+sheets?|statements?\s+(?:of\s+)?financial\s+position)\b"),
+        re.compile(
+            _STATEMENT_PREFIX + r"(?:balance\s+sheets?|statements?\s+(?:of\s+)?financial\s+position)"
+            + _STATEMENT_SUFFIX,
+        ),
+    ),
+)
+
 
 def _stem(word: str) -> str:
     if len(word) > 5 and word.endswith("ies"):
@@ -290,11 +326,52 @@ def _rank(
     return sorted(ranked, key=lambda item: (-item[0], item[1].document_id, item[1].source_id))
 
 
-def _select(ranked: list[tuple[float, _Page]], limit: int) -> tuple[MemoryCitation, ...]:
-    candidates = ranked[: max(80, limit * 4)]
-    selected: list[_Page] = []
-    if not candidates:
+def _statement_types(body: str) -> frozenset[str]:
+    lines = tuple(" ".join(line.casefold().split()) for line in body[:1600].splitlines()[:20] if line.strip())
+    found = set()
+    for index in range(len(lines)):
+        for width in range(1, 4):
+            heading = " ".join(lines[index:index + width])
+            for name, _query_pattern, heading_pattern in _STATEMENT_FACETS:
+                if heading_pattern.fullmatch(heading):
+                    found.add(name)
+    return frozenset(found)
+
+
+def _required_statement_pages(ranked: list[tuple[float, _Page]], question: str) -> tuple[_Page, ...]:
+    normalized_question = " ".join(question.casefold().split())
+    requested = []
+    for name, query_pattern, _heading_pattern in _STATEMENT_FACETS:
+        match = query_pattern.search(normalized_question)
+        if match is not None:
+            requested.append((match.start(), name))
+    if not requested:
         return ()
+    requested.sort()
+    page_types = {page.source_id: _statement_types(page.body) for _score, page in ranked}
+    groups = [
+        tuple(page for _score, page in ranked if name in page_types[page.source_id])[:2]
+        for _position, name in requested
+    ]
+    selected = []
+    seen = set()
+    # Reserve one candidate for each explicit source before taking a continuation.
+    for depth in range(2):
+        for group in groups:
+            if depth < len(group) and group[depth].source_id not in seen:
+                selected.append(group[depth])
+                seen.add(group[depth].source_id)
+    return tuple(selected)
+
+
+def _select(
+    ranked: list[tuple[float, _Page]], limit: int, *, required: tuple[_Page, ...] = ()
+) -> tuple[MemoryCitation, ...]:
+    selected = list(required[:limit])
+    selected_ids = {page.source_id for page in selected}
+    candidates = [item for item in ranked[: max(80, limit * 4)] if item[1].source_id not in selected_ids]
+    if not candidates:
+        return tuple(page.citation for page in selected)
     maximum = candidates[0][0]
     while candidates and len(selected) < limit:
         def value(item: tuple[float, _Page]) -> float:
@@ -358,7 +435,7 @@ async def search_pdf_pages(
         for score, page in ranked
     ]
     ranked.sort(key=lambda item: (-item[0], item[1].document_id, item[1].source_id))
-    return _select(ranked, limit)
+    return _select(ranked, limit, required=_required_statement_pages(ranked, question))
 
 
 __all__ = ["search_pdf_pages"]
