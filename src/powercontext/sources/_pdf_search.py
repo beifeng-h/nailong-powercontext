@@ -222,6 +222,24 @@ def _document_terms(pages: tuple[_Page, ...]) -> set[str]:
     return terms
 
 
+def _named_company_pages(pages: tuple[_Page, ...], question: str) -> tuple[_Page, ...]:
+    matched = set()
+    for document_id in {page.document_id for page in pages}:
+        company = re.split(r"(?<![a-z0-9])(?:19|20)\d{2}(?!\d)", document_id.casefold(), maxsplit=1)[0]
+        company = re.sub(r"(?:10[\W_]*[kq]|20[\W_]*f|40[\W_]*f)[\W_]*$", "", company)
+        words = re.findall(r"[a-z0-9]+", company)
+        while words and words[-1] in {"inc", "incorporated", "corp", "corporation", "co", "company", "ltd", "plc"}:
+            words.pop()
+        identity = "".join(words)
+        if not identity:
+            continue
+        pattern = r"(?<![a-z0-9])" + r"[\W_]*".join(map(re.escape, identity)) + r"(?![a-z0-9])"
+        if re.search(pattern, question.casefold()):
+            matched.add(document_id)
+    # A report's repeated financial vocabulary must not outweigh an explicit company identity.
+    return tuple(page for page in pages if page.document_id in matched) if matched else pages
+
+
 def _page_score(
     page: _Page,
     weights: dict[str, float],
@@ -249,6 +267,7 @@ def _page_score(
 def _rank(
     pages: tuple[_Page, ...], question: str, weights: dict[str, float], phrases: tuple[str, ...]
 ) -> list[tuple[float, _Page]]:
+    pages = _named_company_pages(pages, question)
     frequencies: Counter[str] = Counter()
     for page in pages:
         frequencies.update(page.counts.keys())
@@ -259,17 +278,11 @@ def _rank(
         return []
     average_length = sum(page.counts.total() for page in pages) / len(pages)
     question_years = set(_YEARS.findall(question))
-    normalized_question = "".join(_WORDS.findall(question.casefold()))
     ranked = []
     for page in pages:
         if not topical.intersection(page.counts):
             continue
         score = _page_score(page, weights, phrases, idf, document_terms, average_length)
-        company = "".join(
-            word for word in _WORDS.findall(page.document_id.casefold()) if not word.isdigit() and len(word) > 1
-        )
-        if len(company) > 2 and company in normalized_question:
-            score *= 1.15
         if question_years.intersection(_YEARS.findall(page.document_id)):
             score *= 1.05
         if score > 0:

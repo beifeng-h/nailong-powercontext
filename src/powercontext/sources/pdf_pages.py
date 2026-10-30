@@ -19,10 +19,14 @@ from __future__ import annotations
 import hashlib
 import io
 import json
+import zlib
+from copy import copy
 from typing import Literal
 
 from pydantic import BaseModel, Field, field_validator
 from pypdf import PdfReader
+from pypdf.filters import ZLIB_MAX_OUTPUT_LENGTH, decode_stream_data
+from pypdf.generic import ArrayObject, EncodedStreamObject, IndirectObject, NameObject, NullObject
 
 from powercontext.sources._pdf_search import search_pdf_pages
 from powercontext.sources.definitions import AdapterSourceDefinition
@@ -58,6 +62,37 @@ class PDFPageInput(BaseModel):
     _document_id = field_validator("document_id")(_validate_document_id)
 
 
+def _validate_decoded_flate_streams(reader: PdfReader) -> None:
+    # The pinned decoder can recover empty or partial data from a damaged stream,
+    # even in strict mode. Validate streams actually decoded for page extraction.
+    for stream in tuple(reader.resolved_objects.values()):
+        if not isinstance(stream, EncodedStreamObject) or stream.decoded_self is None:
+            continue
+        filters = stream.get("/Filter", ())
+        if isinstance(filters, IndirectObject):
+            filters = filters.get_object()
+        if not isinstance(filters, ArrayObject):
+            filters = (filters,)
+        parameters = stream.get("/DecodeParms", (NullObject(),) * len(filters))
+        if isinstance(parameters, IndirectObject):
+            parameters = parameters.get_object()
+        if not isinstance(parameters, (list, tuple)):
+            parameters = (parameters,)
+        for index, filter_name in enumerate(filters):
+            if filter_name not in ("/FlateDecode", "/Fl"):
+                continue
+            data = stream._data
+            if index:
+                prefix = copy(stream)
+                prefix[NameObject("/Filter")] = ArrayObject(filters[:index])
+                prefix[NameObject("/DecodeParms")] = ArrayObject(parameters[:index])
+                data = decode_stream_data(prefix)
+            decoder = zlib.decompressobj()
+            decoder.decompress(data, max_length=ZLIB_MAX_OUTPUT_LENGTH)
+            if not decoder.eof or decoder.unconsumed_tail:
+                raise ValueError("PDF contains an incomplete compressed stream")  # noqa: TRY003
+
+
 def parse_pdf_document(value: PDFDocumentInput) -> tuple[PDFPageInput, ...]:
     """Extract every physical page before returning an atomically valid document."""
 
@@ -66,7 +101,7 @@ def parse_pdf_document(value: PDFDocumentInput) -> tuple[PDFPageInput, ...]:
         if reader.is_encrypted and not reader.decrypt(""):
             raise ValueError("PDF document requires a non-empty password")  # noqa: TRY003
         digest = hashlib.sha256(value.content).hexdigest()
-        return tuple(
+        pages = tuple(
             PDFPageInput(
                 document_id=value.document_id,
                 document_sha256=digest,
@@ -75,6 +110,8 @@ def parse_pdf_document(value: PDFDocumentInput) -> tuple[PDFPageInput, ...]:
             )
             for number, page in enumerate(reader.pages, start=1)
         )
+        _validate_decoded_flate_streams(reader)
+        return pages
     except Exception as error:  # noqa: BLE001 - malformed PDF objects raise varied parser exceptions.
         raise ValueError("PDF document must be readable in full") from error  # noqa: TRY003
 

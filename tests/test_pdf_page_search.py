@@ -19,6 +19,8 @@ from __future__ import annotations
 import hashlib
 from typing import TYPE_CHECKING
 
+import pytest
+
 from powercontext.artifacts import MemoryCitation
 from powercontext.builtin.runtime import GetMemoryEntryRequest, open_builtin_runtime
 from powercontext.builtin.scope import ScopeDraft
@@ -29,6 +31,13 @@ from selftest_support.source_acceptance import persist
 
 if TYPE_CHECKING:
     from pathlib import Path
+
+
+async def _persist_pages(tmp_path: Path, pages: tuple[PDFPageInput, ...]):
+    registry = SourceDefinitionRegistry((PDF_PAGE_SOURCE_DEFINITION,))
+    observations = [project_source_for_transport(registry, await registry.resolve(page)) for page in pages]
+    config, scope_id, stored = await persist(tmp_path, PDF_PAGE_SOURCE_DEFINITION, observations)
+    return config, scope_id, stored, pages
 
 
 async def _persist_financial_pages(tmp_path: Path):
@@ -47,10 +56,7 @@ async def _persist_financial_pages(tmp_path: Path):
             start=1,
         )
     )
-    registry = SourceDefinitionRegistry((PDF_PAGE_SOURCE_DEFINITION,))
-    observations = [project_source_for_transport(registry, await registry.resolve(page)) for page in pages]
-    config, scope_id, stored = await persist(tmp_path, PDF_PAGE_SOURCE_DEFINITION, observations)
-    return config, scope_id, stored, pages
+    return await _persist_pages(tmp_path, pages)
 
 
 async def _read_page_numbers(memory, citations, stored, pages) -> tuple[int, ...]:
@@ -118,3 +124,68 @@ async def test_empty_scope_does_not_recall_another_scopes_report(tmp_path: Path)
         )
         assert scope.scope_id != scope_id
         assert await search_pdf_pages(runtime.memory.for_scope(scope.scope_id), question, limit=10) == ()
+
+
+def _competing_company_pages(company: str) -> tuple[PDFPageInput, ...]:
+    digest = hashlib.sha256(b"synthetic competing company reports").hexdigest()
+    return (
+        PDFPageInput(
+            document_id=f"{company}_2023_10K",
+            document_sha256=digest,
+            page_number=1,
+            text="Consolidated statements of income. Revenue 480. Cost of sales 300. "
+            "Operating income 90. Net income 65.",
+        ),
+        *(
+            PDFPageInput(
+                document_id="BETA_2022_10K",
+                document_sha256=digest,
+                page_number=number,
+                text="Operating income. " * 4,
+            )
+            for number in range(1, 22)
+        ),
+    )
+
+
+async def _retrieved_documents(memory, citations, stored) -> tuple[str, ...]:
+    documents = []
+    for citation in citations:
+        record = await memory.get(GetMemoryEntryRequest(citation=citation))
+        assert record.citation == citation
+        source = stored[record.entry.sources[0].source_id]
+        documents.append(source.projection(TEXT_EVIDENCE_PROJECTION_KEY)["metadata"]["document_id"])
+    return tuple(documents)
+
+
+@pytest.mark.parametrize(
+    "company, mention",
+    (("ACME", "Acme"), ("3M", "3M"), ("Cedar_Industries", "Cedar Industries"), ("CEDARINDUSTRIES", "Cedar Industries")),
+)
+async def test_named_company_survives_other_reports_repeating_financial_terms(
+    tmp_path: Path, company: str, mention: str
+) -> None:
+    config, scope_id, stored, _pages = await _persist_pages(tmp_path, _competing_company_pages(company))
+    async with open_builtin_runtime(config) as runtime:
+        memory = runtime.memory.for_scope(scope_id)
+        citations = await search_pdf_pages(memory, f"What is {mention}'s operating income for FY2022?", limit=20)
+        documents = await _retrieved_documents(memory, citations, stored)
+        assert documents
+        assert set(documents) == {f"{company}_2023_10K"}
+
+
+async def test_comparison_retains_multiple_named_companies(tmp_path: Path) -> None:
+    pages = _competing_company_pages("ACME") + (_competing_company_pages("3M")[0],)
+    config, scope_id, stored, _pages = await _persist_pages(tmp_path, pages)
+    async with open_builtin_runtime(config) as runtime:
+        memory = runtime.memory.for_scope(scope_id)
+        citations = await search_pdf_pages(memory, "Compare Acme and 3M operating income for FY2022.", limit=20)
+        assert set(await _retrieved_documents(memory, citations, stored)) == {"ACME_2023_10K", "3M_2023_10K"}
+
+
+async def test_unnamed_company_keeps_reports_available(tmp_path: Path) -> None:
+    config, scope_id, stored, _pages = await _persist_pages(tmp_path, _competing_company_pages("ACME"))
+    async with open_builtin_runtime(config) as runtime:
+        memory = runtime.memory.for_scope(scope_id)
+        citations = await search_pdf_pages(memory, "Which reports show operating income?", limit=30)
+        assert set(await _retrieved_documents(memory, citations, stored)) == {"ACME_2023_10K", "BETA_2022_10K"}
