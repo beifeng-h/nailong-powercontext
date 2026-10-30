@@ -79,12 +79,18 @@ def canonical_json(value: object) -> bytes:
 
 
 def normalize_text(value: str) -> str:
-    """Normalize and validate one durable entry body."""
+    """Normalize one ordinary candidate body and enforce its write-admission limit."""
 
-    normalized = _normalize_non_empty_string(value, "memory entry text")
+    normalized = normalize_text_content(value)
     if len(normalized.encode("utf-8")) > 8192:
         raise _CanonicalValueError("text-too-long")
     return normalized
+
+
+def normalize_text_content(value: str) -> str:
+    """Normalize complete entry content independently of candidate size admission."""
+
+    return _normalize_non_empty_string(value, "memory entry text")
 
 
 def normalize_query(value: str) -> str:
@@ -160,7 +166,7 @@ def entry_content_bytes(
 
     return canonical_json({
         "kind": normalize_kind(kind),
-        "text": normalize_text(text),
+        "text": normalize_text_content(text),
         "source_refs": normalize_refs(source_refs),
         "artifact_refs": normalize_refs(artifact_refs),
     })

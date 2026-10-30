@@ -41,6 +41,7 @@ from powercontext.builtin.artifacts.memory.canonical import (
     normalize_query,
     normalize_reason,
     normalize_text,
+    normalize_text_content,
     validate_identifier,
 )
 from powercontext.builtin.artifacts.memory.errors import (
@@ -112,6 +113,7 @@ from powercontext.errors import RevisionConflictError
 from powercontext.sources import (
     TEXT_EVIDENCE_PROJECTION_KEY,
     Source,
+    SourceMaterialization,
     SourceObservation,
     SourceProjectionKey,
     SourceRef,
@@ -1654,18 +1656,57 @@ class MemoryService:
             sources = (*previous.sources, *candidate_source_refs)
             artifacts = (*previous.artifacts, *candidate_artifacts)
         try:
-            return self._entry_material(
-                kind=candidate.kind,
-                text=candidate.text,
-                sources=sources,
-                artifacts=artifacts,
-            )
+            try:
+                return self._entry_material(
+                    kind=candidate.kind,
+                    text=candidate.text,
+                    sources=sources,
+                    artifacts=artifacts,
+                )
+            except ValueError as error:
+                if canonical_error_code(error) != "text-too-long" or not self._is_complete_source_text(
+                    candidate.text, candidate_sources
+                ):
+                    raise
+                return self._entry_material(
+                    kind=candidate.kind,
+                    text=candidate.text,
+                    sources=sources,
+                    artifacts=artifacts,
+                    allow_full_text=True,
+                )
         except (TypeError, ValueError) as error:
             raise InvalidMemoryCandidateError(
                 "canonical",
                 str(error),
                 canonical_code=canonical_error_code(error),
             ) from error
+
+    def _is_complete_source_text(self, text: str, sources: Sequence[Source]) -> bool:
+        resolver = self._source_resolver
+        if resolver is None:
+            return False
+        normalized = normalize_text_content(text)
+        for source in sources:
+            if source.materialization is not SourceMaterialization.CAPTURED:
+                continue
+            try:
+                projection = (
+                    source.projection(TEXT_EVIDENCE_PROJECTION_KEY)
+                    if isinstance(source, SourceObservation)
+                    else resolver.project(source, TEXT_EVIDENCE_PROJECTION_KEY)
+                )
+                evidence = TextEvidence.model_validate(projection)
+                reference = resolver.as_ref(source)
+                if (
+                    evidence.source_type == reference.source_type
+                    and evidence.source_id == reference.source_id
+                    and normalize_text_content(evidence.content) == normalized
+                ):
+                    return True
+            except Exception:
+                continue
+        return False
 
     async def _canonical_candidate_sources(
         self,
@@ -1706,6 +1747,7 @@ class MemoryService:
             text=version.text,
             sources=version.sources,
             artifacts=version.artifacts,
+            allow_full_text=True,
         )
 
     def _entry_material(
@@ -1715,9 +1757,10 @@ class MemoryService:
         text: str,
         sources: Sequence[SourceRef],
         artifacts: Sequence[ArtifactRef],
+        allow_full_text: bool = False,
     ) -> _EntryMaterial:
         normalized_kind = normalize_kind(kind)
-        normalized_text = normalize_text(text)
+        normalized_text = normalize_text_content(text) if allow_full_text else normalize_text(text)
         canonical_sources = _canonical_source_refs(sources)
         canonical_artifacts = _canonical_artifact_refs(artifacts)
         source_refs = tuple(source.model_dump(mode="json") for source in canonical_sources)
@@ -1824,7 +1867,7 @@ def _raise_if_write_held(plan: MemoryWritePlan) -> None:
 
 
 def _bounded_gate_evidence(identity: str, content: str) -> _GateEvidenceEntry:
-    normalized = normalize_text(content)
+    normalized = normalize_text_content(content)
     return _GateEvidenceEntry(
         text=f"{identity}\n{normalized[:_GATE_EVIDENCE_TEXT_LIMIT]}",
         complete=len(normalized) <= _GATE_EVIDENCE_TEXT_LIMIT,

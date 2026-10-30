@@ -552,9 +552,12 @@ call `reactivate()` first and then revise the content against the new head. A ba
 than once, and only the first of identical new
 entries is retained. `reason` uses the same normalization and length validation as `MemoryChange.reason`. The reason on
 an explicit input is copied into its add or revise change. A candidate generator with no reliable reason must use
-`None` rather than invent one. After NFC and surrounding-whitespace normalization, `text` must be non-empty and no more
-than 8192 bytes when encoded as UTF-8. This limit also ensures that the OceanBase `TEXT` full-text column can hold the
-tokens derived by analyzer v1.
+`None` rather than invent one. Ordinary candidate `text` must be non-empty and no more than 8192 UTF-8 bytes after NFC
+and surrounding-whitespace normalization. Complete source evidence may exceed this admission limit only when the
+resolver and the current operation's allowed evidence validate a `CAPTURED` Source, and its standard text-evidence
+projection has the same source identity and complete normalized text as the candidate. Attaching a source, changing
+its projection text, or inheriting a predecessor's references does not relax ordinary candidate limits. Content
+encoding, hashing, stored-version reads, and index rebuilds normalize content without reapplying candidate size admission.
 
 ## remember()
 

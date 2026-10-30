@@ -489,8 +489,9 @@ MemoryEntryInput:
 `MemoryEntryVersion` 表示修订；内容相同是 no-op。Inactive、过期或不相关的 entry 对象会被拒绝。调用方必须先显式
 `reactivate()`，再基于新 head 修订正文。同一批次不能重复修改同一 entry；相同新增只保留第一个。`reason` 经过与 `MemoryChange.reason` 相同的规范化和
 长度校验；显式输入的 reason 进入对应 add/revise change，候选生成器没有可靠原因时必须使用 `None`，不能编造。
-`text` 经 NFC 和首尾空白规范化后必须非空，UTF-8 编码不得超过 8192 bytes；该上限同时保证 OceanBase `TEXT` 全文列
-可以容纳 analyzer v1 的派生 tokens。
+普通候选的 `text` 经 NFC 和首尾空白规范化后必须非空，UTF-8 编码不得超过 8192 bytes。完整来源证据可以保存超过此上限的正文，
+但来源必须经过 resolver 与本次操作允许集合核对、状态为 `CAPTURED`，且标准 text-evidence 投影的身份和规范化后完整正文与候选一致。
+仅附加来源、改写投影或继承旧 entry 的来源不能放宽普通候选限制。内容编码、哈希、既存版本回读与索引重建只做内容规范化，不重新执行候选写入大小准入。
 
 ## remember()
 
