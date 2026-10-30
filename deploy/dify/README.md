@@ -19,6 +19,36 @@ Dify 官方只提供 **Docker Compose** 部署方式，所以这一页的路径�
 docker version && docker compose version
 ```
 
+### Windows 实操（按顺序）
+
+这台机器当前的状态是：**WSL2 的虚拟化平台没开**，所以 `wsl -l -v` 能列出 `seekdb-ubuntu` 但起不来。
+要装 Docker Desktop，先补这一步（需要管理员 PowerShell + 一次重启）：
+
+```powershell
+# 1) 管理员 PowerShell 里执行
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+
+# 2) 重启 Windows
+
+# 3) 重启后
+wsl --update
+wsl --set-default-version 2
+```
+
+然后在 BIOS 里确认 VT-x（Intel）/ SVM（AMD）是开的，装 [Docker Desktop](https://www.docker.com/products/docker-desktop/)，
+Settings → General 勾上 **Use the WSL 2 based engine**，Resources 里给 4GB 以上内存。
+
+国内拉镜像慢，在 Settings → Docker Engine 里加：
+
+```json
+{
+  "registry-mirrors": ["https://docker.1ms.run", "https://docker.m.daocloud.io"]
+}
+```
+
+`docker run hello-world` 能出结果，就可以回到第 1 步了。
+
 ## 1. 先起 seekdb
 
 Dify 需要 2881 端口上的 MySQL 兼容库。两种都行：
