@@ -428,10 +428,8 @@ def _required_statement_pages(ranked: list[tuple[float, _Page]], question: str) 
     return tuple(selected)
 
 
-def _select(
-    ranked: list[tuple[float, _Page]], limit: int, *, required: tuple[_Page, ...] = ()
-) -> tuple[MemoryCitation, ...]:
-    selected = list(required[:limit])
+def _global_select(ranked: list[tuple[float, _Page]], limit: int) -> tuple[MemoryCitation, ...]:
+    selected: list[_Page] = []
     selected_ids = {page.source_id for page in selected}
     candidates = [item for item in ranked[: max(80, limit * 4)] if item[1].source_id not in selected_ids]
     if not candidates:
@@ -453,6 +451,41 @@ def _select(
         choice = max(range(len(candidates)), key=lambda index: value(candidates[index]))
         selected.append(candidates.pop(choice)[1])
     return tuple(page.citation for page in selected)
+
+
+def _select(
+    ranked: list[tuple[float, _Page]],
+    limit: int,
+    *,
+    required: tuple[_Page, ...] = (),
+    facets: tuple[str, ...] = (),
+) -> tuple[MemoryCitation, ...]:
+    global_order = list(_global_select(ranked, limit))
+    if not required or not facets:
+        return tuple(global_order)
+    # Complete each requested statement facet before giving relevance its next turn.
+    # Neither report coverage nor lexical ranking can consume the entire budget.
+    types = {page.source_id: _statement_types(page.body) for page in required}
+    groups = [[page for page in required if facet in types[page.source_id]] for facet in facets]
+    selected = []
+    while len(selected) < limit and (global_order or any(groups)):
+        covered = set()
+        for facet, group in zip(facets, groups):
+            if facet in covered:
+                continue
+            while group and group[0].citation in selected:
+                group.pop(0)
+            if group:
+                page = group.pop(0)
+                selected.append(page.citation)
+                covered.update(types[page.source_id])
+                if len(selected) == limit:
+                    return tuple(selected)
+        while global_order and global_order[0] in selected:
+            global_order.pop(0)
+        if global_order:
+            selected.append(global_order.pop(0))
+    return tuple(selected)
 
 
 async def search_pdf_pages(
@@ -499,7 +532,9 @@ async def search_pdf_pages(
         for score, page in ranked
     ]
     ranked.sort(key=lambda item: (-item[0], item[1].document_id, item[1].source_id))
-    return _select(ranked, limit, required=_required_statement_pages(ranked, question))
+    return _select(
+        ranked, limit, required=_required_statement_pages(ranked, question), facets=_statement_requirements(question)
+    )
 
 
 __all__ = ["search_pdf_pages"]
