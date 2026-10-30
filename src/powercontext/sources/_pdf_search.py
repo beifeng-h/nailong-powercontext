@@ -216,6 +216,7 @@ _FINANCIAL_ACCOUNT_TYPES = (
         "balance-sheet",
         re.compile(
             r"\b(?:(?:current|total|net)\s+(?:assets?|liabilities)|working\s+capital|(?:current|quick)\s+ratio"
+            r"|receivables?|inventor(?:y|ies)|payables?"
             r"|(?:shareholders?|stockholders?)['\u2019]?\s+equity|return\s+on\s+(?:assets|equity))\b"
         ),
     ),
@@ -296,29 +297,23 @@ def _query(question: str) -> tuple[dict[str, float], tuple[str, ...], tuple[str,
     return weights, tuple(sorted(phrases)), tuple(dict.fromkeys(words)), tuple(dict.fromkeys(expanded_words))
 
 
-def _document_terms(pages: tuple[_Page, ...]) -> set[str]:
-    terms = set()
-    for page in pages:
-        terms.update(token for token in _tokens(page.document_id) if not token.isdigit() and len(token) > 1)
-    return terms
-
-
-def _named_company_pages(pages: tuple[_Page, ...], question: str) -> tuple[_Page, ...]:
-    matched = set()
+def _document_fields(pages: tuple[_Page, ...], question: str) -> dict[str, frozenset[str]]:
+    fields = {}
     for document_id in {page.document_id for page in pages}:
+        terms = set(_tokens(document_id))
         company = re.split(r"(?<![a-z0-9])(?:19|20)\d{2}(?!\d)", document_id.casefold(), maxsplit=1)[0]
         company = re.sub(r"(?:10[\W_]*[kq]|20[\W_]*f|40[\W_]*f)[\W_]*$", "", company)
         words = re.findall(r"[a-z0-9]+", company)
         while words and words[-1] in {"inc", "incorporated", "corp", "corporation", "co", "company", "ltd", "plc"}:
             words.pop()
         identity = "".join(words)
-        if not identity:
-            continue
-        pattern = r"(?<![a-z0-9])" + r"[\W_]*".join(map(re.escape, identity)) + r"(?![a-z0-9])"
-        if re.search(pattern, question.casefold()):
-            matched.add(document_id)
-    # A report's repeated financial vocabulary must not outweigh an explicit company identity.
-    return tuple(page for page in pages if page.document_id in matched) if matched else pages
+        if identity:
+            pattern = r"(?<![a-z0-9])" + r"[\W_]*".join(map(re.escape, identity)) + r"(?![a-z0-9])"
+            match = re.search(pattern, question.casefold())
+            if match is not None:
+                terms.update(_tokens(match.group()))
+        fields[document_id] = frozenset(terms)
+    return fields
 
 
 def _page_score(
@@ -326,16 +321,17 @@ def _page_score(
     weights: dict[str, float],
     phrases: tuple[str, ...],
     idf: dict[str, float],
-    document_terms: set[str],
+    identity_terms: frozenset[str],
     average_length: float,
 ) -> float:
-    length_norm = 1.2 * (0.55 + 0.45 * page.counts.total() / average_length)
+    length_norm = 0.55 + 0.45 * page.counts.total() / average_length
     score = 0.0
     for term, weight in weights.items():
-        count = page.counts[term]
-        if count:
-            adjusted = weight * (0.12 if term in document_terms else 1.0)
-            score += adjusted * idf[term] * count * 2.2 / (count + length_norm)
+        # The short identity field contributes at most one occurrence per term.
+        # Its contribution is independent of the page body's length.
+        frequency = page.counts[term] / length_norm + (term in identity_terms)
+        if frequency:
+            score += weight * idf[term] * frequency * 2.2 / (frequency + 1.2)
     normalized_body = " ".join(_tokens(page.body))
     heading = " ".join(_tokens(page.body[:1600]))
     for phrase in phrases:
@@ -348,13 +344,12 @@ def _page_score(
 def _rank(
     pages: tuple[_Page, ...], question: str, weights: dict[str, float], phrases: tuple[str, ...]
 ) -> list[tuple[float, _Page]]:
-    pages = _named_company_pages(pages, question)
+    fields = _document_fields(pages, question)
     frequencies: Counter[str] = Counter()
     for page in pages:
-        frequencies.update(page.counts.keys())
+        frequencies.update(page.counts.keys() | fields[page.document_id])
     idf = {term: math.log1p((len(pages) - count + 0.5) / (count + 0.5)) for term, count in frequencies.items()}
-    document_terms = _document_terms(pages)
-    topical = {term for term in weights if not term.isdigit() and term not in document_terms}
+    topical = {term for term in weights if not term.isdigit()}
     if not topical:
         return []
     average_length = sum(page.counts.total() for page in pages) / len(pages)
@@ -363,7 +358,7 @@ def _rank(
     for page in pages:
         if not topical.intersection(page.counts):
             continue
-        score = _page_score(page, weights, phrases, idf, document_terms, average_length)
+        score = _page_score(page, weights, phrases, idf, fields[page.document_id], average_length)
         if question_years.intersection(_YEARS.findall(page.document_id)):
             score *= 1.05
         if score > 0:
@@ -412,13 +407,19 @@ def _required_statement_pages(ranked: list[tuple[float, _Page]], question: str) 
     if not requested:
         return ()
     page_types = {page.source_id: _statement_types(page.body) for _score, page in ranked}
+    # A report's strong discussion pages do not replace another report's tables.
+    # First appearance orders reports by their best query score, not their IDs.
+    documents = tuple(dict.fromkeys(page.document_id for _score, page in ranked))
     groups = [
-        tuple(page for _score, page in ranked if name in page_types[page.source_id])[:2]
+        tuple(
+            page for _score, page in ranked
+            if page.document_id == document_id and name in page_types[page.source_id]
+        )[:2]
+        for document_id in documents
         for name in requested
     ]
     selected = []
     seen = set()
-    # Reserve one candidate for each explicit source before taking a continuation.
     for depth in range(2):
         for group in groups:
             if depth < len(group) and group[depth].source_id not in seen:

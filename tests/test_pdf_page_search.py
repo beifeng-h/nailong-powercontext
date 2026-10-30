@@ -143,18 +143,30 @@ def _competing_company_pages(company: str) -> tuple[PDFPageInput, ...]:
                 page_number=number,
                 text="Operating income. " * 4,
             )
-            for number in range(1, 22)
+            for number in range(1, 61)
         ),
     )
 
 
 async def _retrieved_documents(memory, citations, stored) -> tuple[str, ...]:
     documents = []
+    locations = set()
+    assert isinstance(citations, tuple)
     for citation in citations:
+        assert isinstance(citation, MemoryCitation)
         record = await memory.get(GetMemoryEntryRequest(citation=citation))
         assert record.citation == citation
+        assert len(record.entry.sources) == 1
+        assert record.entry.sources[0].source_type == "pdf-page"
         source = stored[record.entry.sources[0].source_id]
-        documents.append(source.projection(TEXT_EVIDENCE_PROJECTION_KEY)["metadata"]["document_id"])
+        evidence = source.projection(TEXT_EVIDENCE_PROJECTION_KEY)
+        metadata = evidence["metadata"]
+        assert record.entry.text == evidence["content"].strip()
+        assert set(metadata) == {"document_id", "document_sha256", "page_number"}
+        location = (metadata["document_id"], metadata["document_sha256"], metadata["page_number"])
+        assert location not in locations
+        locations.add(location)
+        documents.append(metadata["document_id"])
     return tuple(documents)
 
 
@@ -170,8 +182,27 @@ async def test_named_company_survives_other_reports_repeating_financial_terms(
         memory = runtime.memory.for_scope(scope_id)
         citations = await search_pdf_pages(memory, f"What is {mention}'s operating income for FY2022?", limit=20)
         documents = await _retrieved_documents(memory, citations, stored)
-        assert documents
-        assert set(documents) == {f"{company}_2023_10K"}
+        assert len(citations) <= 20
+        assert f"{company}_2023_10K" in documents[:3]
+
+
+@pytest.mark.parametrize("paragraph_count", (10, 50), ids=("116-words", "516-words"))
+async def test_long_named_company_page_remains_in_top_twenty_against_short_competing_pages(
+    tmp_path: Path, paragraph_count: int
+) -> None:
+    original = _competing_company_pages("ACME")
+    paragraph = (
+        " Accounting policies estimates leases insurance inventories receivables property depreciation amortization."
+    )
+    target = original[0].model_copy(update={"text": original[0].text + paragraph * paragraph_count})
+    pages = (target, *original[1:])
+    config, scope_id, stored, _pages = await _persist_pages(tmp_path, pages)
+    async with open_builtin_runtime(config) as runtime:
+        memory = runtime.memory.for_scope(scope_id)
+        citations = await search_pdf_pages(memory, "What is Acme's operating income for FY2022?", limit=20)
+        documents = await _retrieved_documents(memory, citations, stored)
+        assert len(citations) <= 20
+        assert target.document_id in documents
 
 
 async def test_comparison_retains_multiple_named_companies(tmp_path: Path) -> None:
@@ -180,15 +211,202 @@ async def test_comparison_retains_multiple_named_companies(tmp_path: Path) -> No
     async with open_builtin_runtime(config) as runtime:
         memory = runtime.memory.for_scope(scope_id)
         citations = await search_pdf_pages(memory, "Compare Acme and 3M operating income for FY2022.", limit=20)
-        assert set(await _retrieved_documents(memory, citations, stored)) == {"ACME_2023_10K", "3M_2023_10K"}
+        documents = await _retrieved_documents(memory, citations, stored)
+        assert len(citations) <= 20
+        assert {"ACME_2023_10K", "3M_2023_10K"}.issubset(documents)
+
+
+async def test_requested_company_statements_survive_other_documents_repeating_financial_terms(tmp_path: Path) -> None:
+    digest = hashlib.sha256(b"synthetic cross-document statement coverage").hexdigest()
+    target_id = "ACME_2022_10K"
+    rows = [
+        (
+            target_id,
+            1,
+            "Acme\nConsolidated Statements of Income\n"
+            "Revenue 480. Cost of sales 300. Operating income 90. Net income 65.",
+        ),
+        (
+            target_id,
+            2,
+            "Acme\nConsolidated Statements of Cash Flows\n"
+            "Cash provided by operating activities 140. Depreciation and amortization 25. "
+            "Capital expenditures for property plant and equipment 40.",
+        ),
+        *(
+            (target_id, number, "The company maintains policies for office administration and records.")
+            for number in range(3, 13)
+        ),
+    ]
+    competing_text = (
+        "EBITDA capex operating income depreciation amortization cash flow income statement "
+        "capital expenditures spending purchase property plant equipment. "
+    )
+    for document_id in ("BETA_2022_10K", "GAMMA_2022_10K"):
+        for number in range(1, 13):
+            heading = "Consolidated Statements of Income" if number % 2 else "Consolidated Statements of Cash Flows"
+            rows.append((document_id, number, f"{heading}\n{competing_text * 4}"))
+    pages = tuple(
+        PDFPageInput(document_id=document_id, document_sha256=digest, page_number=number, text=text)
+        for document_id, number, text in rows
+    )
+    expected_pages = {(page.document_id, page.document_sha256, page.page_number): page for page in pages}
+    config, scope_id, stored, _pages = await _persist_pages(tmp_path, pages)
+    question = (
+        "Use Acme's income statement and cash flow statement for FY2022 EBITDA less capex. "
+        "Use operating income plus depreciation and amortization minus capital expenditures."
+    )
+    async with open_builtin_runtime(config) as runtime:
+        memory = runtime.memory.for_scope(scope_id)
+        citations = await search_pdf_pages(memory, question, limit=20)
+        assert isinstance(citations, tuple) and len(citations) <= 20
+        locations = set()
+        for citation in citations:
+            assert isinstance(citation, MemoryCitation)
+            record = await memory.get(GetMemoryEntryRequest(citation=citation))
+            assert record.citation == citation
+            assert len(record.entry.sources) == 1
+            reference = record.entry.sources[0]
+            assert reference.source_type == "pdf-page"
+            evidence = stored[reference.source_id].projection(TEXT_EVIDENCE_PROJECTION_KEY)
+            metadata = evidence["metadata"]
+            location = (metadata["document_id"], metadata["document_sha256"], metadata["page_number"])
+            assert location not in locations
+            locations.add(location)
+            page = expected_pages[location]
+            assert record.entry.text == evidence["content"].strip()
+            assert record.entry.text == f"{page.document_id}\n{page.text}".strip()
+        assert {(target_id, digest, 1), (target_id, digest, 2)}.issubset(locations)
 
 
 async def test_unnamed_company_keeps_reports_available(tmp_path: Path) -> None:
-    config, scope_id, stored, _pages = await _persist_pages(tmp_path, _competing_company_pages("ACME"))
+    config, scope_id, stored, pages = await _persist_pages(tmp_path, _competing_company_pages("ACME"))
     async with open_builtin_runtime(config) as runtime:
         memory = runtime.memory.for_scope(scope_id)
-        citations = await search_pdf_pages(memory, "Which reports show operating income?", limit=30)
+        citations = await search_pdf_pages(memory, "Which reports show operating income?", limit=len(pages))
         assert set(await _retrieved_documents(memory, citations, stored)) == {"ACME_2023_10K", "BETA_2022_10K"}
+
+
+@pytest.mark.parametrize("unrelated_document_id", ("report-b", "revenue"))
+async def test_opaque_document_id_does_not_override_relevant_page_text(
+    tmp_path: Path, unrelated_document_id: str
+) -> None:
+    digest = hashlib.sha256(b"synthetic opaque report identities").hexdigest()
+    pages = (
+        PDFPageInput(
+            document_id="report-a",
+            document_sha256=digest,
+            page_number=1,
+            text="Acme total revenue was 120 in 2025.",
+        ),
+        PDFPageInput(
+            document_id=unrelated_document_id,
+            document_sha256=digest,
+            page_number=1,
+            text="Beta litigation reserves were 10 in 2025.",
+        ),
+    )
+    config, scope_id, stored, _pages = await _persist_pages(tmp_path, pages)
+    async with open_builtin_runtime(config) as runtime:
+        memory = runtime.memory.for_scope(scope_id)
+        citations = await search_pdf_pages(memory, "What was Acme total revenue in 2025?", limit=1)
+        assert await _retrieved_documents(memory, citations, stored) == ("report-a",)
+
+
+async def test_generic_document_id_does_not_outweigh_company_evidence_in_competing_revenue_pages(
+    tmp_path: Path,
+) -> None:
+    digest = hashlib.sha256(b"synthetic generic identifier and topical competition").hexdigest()
+    pages = (
+        PDFPageInput(
+            document_id="report-a",
+            document_sha256=digest,
+            page_number=1,
+            text="Acme total revenue was 120 in 2025.",
+        ),
+        *(
+            PDFPageInput(
+                document_id="revenue",
+                document_sha256=digest,
+                page_number=number,
+                text="Beta total revenue was 800 in 2025. Total revenue includes product and service revenue.",
+            )
+            for number in range(1, 61)
+        ),
+    )
+    config, scope_id, stored, _pages = await _persist_pages(tmp_path, pages)
+    async with open_builtin_runtime(config) as runtime:
+        memory = runtime.memory.for_scope(scope_id)
+        citations = await search_pdf_pages(memory, "What was Acme total revenue in 2025?", limit=20)
+        documents = await _retrieved_documents(memory, citations, stored)
+        assert len(citations) <= 20
+        assert "report-a" in documents
+
+
+@pytest.mark.parametrize("term", ("revenue", "total"))
+async def test_query_term_remains_searchable_when_it_is_also_the_document_id(tmp_path: Path, term: str) -> None:
+    page = PDFPageInput(
+        document_id=term,
+        document_sha256=hashlib.sha256(b"synthetic single financial term report").hexdigest(),
+        page_number=1,
+        text=f"{term.capitalize()} 120.",
+    )
+    config, scope_id, stored, _pages = await _persist_pages(tmp_path, (page,))
+    async with open_builtin_runtime(config) as runtime:
+        memory = runtime.memory.for_scope(scope_id)
+        citations = await search_pdf_pages(memory, term, limit=1)
+        assert await _retrieved_documents(memory, citations, stored) == (term,)
+
+
+async def test_comparison_keeps_company_named_by_an_explicit_page_alias(tmp_path: Path) -> None:
+    digest = hashlib.sha256(b"synthetic company alias comparison").hexdigest()
+    pages = tuple(
+        PDFPageInput(document_id=document_id, document_sha256=digest, page_number=1, text=text)
+        for document_id, text in (
+            ("ACME_2025_10K", "Acme total revenue was 120 in 2025."),
+            (
+                "CEDAR_INDUSTRIES_2025_10K",
+                "Cedar Industries, also called Cedar, had total revenue of 150 in 2025.",
+            ),
+            ("BETA_2025_10K", "Beta total revenue was 900 in 2025."),
+        )
+    )
+    config, scope_id, stored, _pages = await _persist_pages(tmp_path, pages)
+    async with open_builtin_runtime(config) as runtime:
+        memory = runtime.memory.for_scope(scope_id)
+        citations = await search_pdf_pages(memory, "Compare Acme and Cedar revenue in 2025.", limit=20)
+        documents = await _retrieved_documents(memory, citations, stored)
+        assert len(citations) <= 20
+        assert {"ACME_2025_10K", "CEDAR_INDUSTRIES_2025_10K"}.issubset(documents)
+
+
+async def test_company_evidence_in_text_survives_competition_with_opaque_document_ids(tmp_path: Path) -> None:
+    digest = hashlib.sha256(b"synthetic company names in opaque reports").hexdigest()
+    pages = (
+        PDFPageInput(
+            document_id="report-a",
+            document_sha256=digest,
+            page_number=1,
+            text="Acme\nConsolidated statements of income. Revenue 480. Cost of sales 300. "
+            "Operating income 90. Net income 65.",
+        ),
+        *(
+            PDFPageInput(
+                document_id="report-b",
+                document_sha256=digest,
+                page_number=number,
+                text="Beta Corporation\n" + "Operating income. " * 4,
+            )
+            for number in range(1, 61)
+        ),
+    )
+    config, scope_id, stored, _pages = await _persist_pages(tmp_path, pages)
+    async with open_builtin_runtime(config) as runtime:
+        memory = runtime.memory.for_scope(scope_id)
+        citations = await search_pdf_pages(memory, "What is Acme's operating income?", limit=20)
+        documents = await _retrieved_documents(memory, citations, stored)
+        assert len(citations) <= 20
+        assert "report-a" in documents[:3]
 
 
 def _competing_statement_pages(income_heading: str, cash_flow_heading: str) -> tuple[PDFPageInput, ...]:
@@ -276,6 +494,55 @@ async def test_shared_statement_names_and_financial_ratios_cover_each_source(tmp
     async with open_builtin_runtime(config) as runtime:
         memory = runtime.memory.for_scope(scope_id)
         citations = await search_pdf_pages(memory, question, limit=20)
+        assert {1, 2}.issubset(await _read_page_numbers(memory, citations, stored, pages))
+
+
+@pytest.mark.parametrize(
+    "document_id,question,balance_text",
+    (
+        (
+            "JUNIPER_2024_10K",
+            "For Juniper in 2024, calculate days sales outstanding as 365 times average net trade receivables "
+            "divided by total revenue.",
+            "Net trade receivables 80 in 2024 and 60 in 2023.",
+        ),
+        (
+            "FLINT_2023_10K",
+            "What is Flint's inventory turnover in 2023, computed as cost of sales divided by average inventories?",
+            "Inventories 90 in 2023 and 75 in 2022.",
+        ),
+        (
+            "ALDER_2021_10K",
+            "For Alder in 2021, what percentage of cost of sales is represented by average trade payables? "
+            "Divide trade payables by cost of sales and multiply by 100.",
+            "Trade payables 55 in 2021 and 50 in 2020.",
+        ),
+    ),
+    ids=("receivables", "inventories", "payables"),
+)
+async def test_financial_account_ratios_recall_income_and_balance_sheet_pages(
+    tmp_path: Path, document_id: str, question: str, balance_text: str
+) -> None:
+    digest = hashlib.sha256(b"synthetic financial account ratios").hexdigest()
+    discussion = (
+        f"Management discussion of financial ratios. {question} "
+        "Net revenue, net sales, total revenue, operating income, cost of sales and financial reporting. "
+    )
+    texts = (
+        "Consolidated Statements of Income\n"
+        "Total revenue 480. Net sales 480. Cost of sales 300. Net income 65.",
+        f"Consolidated Balance Sheets\n{balance_text}",
+        *(discussion * 4 for _ in range(21)),
+    )
+    pages = tuple(
+        PDFPageInput(document_id=document_id, document_sha256=digest, page_number=number, text=text)
+        for number, text in enumerate(texts, start=1)
+    )
+    config, scope_id, stored, pages = await _persist_pages(tmp_path, pages)
+    async with open_builtin_runtime(config) as runtime:
+        memory = runtime.memory.for_scope(scope_id)
+        citations = await search_pdf_pages(memory, question, limit=20)
+        assert len(citations) <= 20
         assert {1, 2}.issubset(await _read_page_numbers(memory, citations, stored, pages))
 
 
