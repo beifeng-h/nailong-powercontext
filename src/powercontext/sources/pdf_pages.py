@@ -94,9 +94,9 @@ def _stream_filter_parameters(stream: StreamObject, count: int) -> tuple[PdfObje
     return cast(tuple[PdfObject, ...], parameters)
 
 
-def _require_identity_crypt_parameter(parameter: PdfObject) -> None:
+def _crypt_filter_name(parameter: PdfObject) -> NameObject:
     if isinstance(parameter, NullObject):
-        return
+        return NameObject("/Identity")
     if not isinstance(parameter, DictionaryObject):
         raise ValueError("PDF Crypt filter parameters must be a dictionary")  # noqa: TRY003
     kind = _resolved_pdf_value(parameter.get("/Type"))
@@ -106,14 +106,15 @@ def _require_identity_crypt_parameter(parameter: PdfObject) -> None:
         raise ValueError("PDF Crypt filter parameter type is invalid")  # noqa: TRY003
     name = _resolved_pdf_value(parameter.get("/Name"))
     if name is None or isinstance(name, NullObject):
-        return
-    if not isinstance(name, NameObject) or name != "/Identity":
-        raise ValueError("PDF contains an unsupported non-Identity Crypt filter")  # noqa: TRY003
+        return NameObject("/Identity")
+    if not isinstance(name, NameObject):
+        raise ValueError("PDF Crypt filter name must be a name")  # noqa: TRY003
+    return name
 
 
-def _identity_crypt_filter_info(
+def _crypt_filter_info(
     stream: StreamObject,
-) -> tuple[tuple[NameObject, ...], tuple[PdfObject, ...], frozenset[int]] | None:
+) -> tuple[tuple[NameObject, ...], tuple[PdfObject, ...], frozenset[int], NameObject] | None:
     filters = _resolved_pdf_value(stream.get("/Filter", ()))
     values = tuple(filters) if isinstance(filters, ArrayObject) else (filters,)
     values = tuple(_resolved_pdf_value(value) for value in values)
@@ -125,15 +126,15 @@ def _identity_crypt_filter_info(
     if any(not isinstance(value, NameObject) for value in values):
         raise ValueError("PDF stream filters must be names")  # noqa: TRY003
     parameters = _stream_filter_parameters(stream, len(values))
-    _require_identity_crypt_parameter(parameters[0])
-    return cast(tuple[NameObject, ...], values), tuple(parameters), positions
+    name = _crypt_filter_name(parameters[0])
+    return cast(tuple[NameObject, ...], values), tuple(parameters), positions, name
 
 
-def _remove_identity_crypt_filters(stream: StreamObject) -> None:
-    information = _identity_crypt_filter_info(stream)
+def _remove_crypt_filter(stream: StreamObject) -> None:
+    information = _crypt_filter_info(stream)
     if information is None:
         return
-    filters, parameters, positions = information
+    filters, parameters, positions, _name = information
     remaining = tuple(index for index in range(len(filters)) if index not in positions)
     stream[NameObject("/Filter")] = ArrayObject([filters[index] for index in remaining])
     stream[NameObject("/DecodeParms")] = ArrayObject([parameters[index] for index in remaining])
@@ -141,41 +142,63 @@ def _remove_identity_crypt_filters(stream: StreamObject) -> None:
         stream.decoded_self = None
 
 
-class _IdentityAwareDecryption:
-    """Select Identity for stream bytes while retaining the original string cipher."""
+class _CryptAwareDecryption:
+    """Select each stream's declared cipher while retaining the document string cipher."""
 
-    def __init__(self, original: Encryption) -> None:
+    def __init__(self, original: Encryption, filters: DictionaryObject | None) -> None:
         self._original = original
+        self._filters = filters
 
     def __getattr__(self, name: str) -> Any:
         return getattr(self._original, name)
 
     def decrypt_object(self, value: PdfObject, idnum: int, generation: int, **kwargs: Any) -> PdfObject:
-        if not isinstance(value, StreamObject) or _identity_crypt_filter_info(value) is None:
+        information = _crypt_filter_info(value) if isinstance(value, StreamObject) else None
+        if information is None:
             return self._original.decrypt_object(value, idnum, generation, **kwargs)
-        # The dictionary still uses the document string filter. Only this stream's
-        # raw bytes bypass the default stream cipher, as its Identity marker declares.
-        dictionary = DictionaryObject(value.items())
-        decrypted = self._original.decrypt_object(dictionary, idnum, generation, **kwargs)
-        value.update(cast(DictionaryObject, decrypted))
-        return value
+        name = information[3]
+        if name == "/Identity":
+            method = "/Identity"
+        else:
+            definition = _resolved_pdf_value(self._filters.get(name)) if self._filters is not None else None
+            if not isinstance(definition, DictionaryObject):
+                raise ValueError("PDF references an unknown Crypt filter")  # noqa: TRY003
+            cipher = _resolved_pdf_value(definition.get("/CFM"))
+            if not isinstance(cipher, NameObject) or cipher not in ("/V2", "/AESV2", "/AESV3"):
+                raise ValueError("PDF contains an unsupported Crypt filter method")  # noqa: TRY003
+            method = str(cipher)
+        selected = copy(self._original)
+        selected.StmF = method
+        return selected.decrypt_object(value, idnum, generation, **kwargs)
 
 
-class _IdentityPdfReader(PdfReader):
-    """Apply explicit Identity semantics within this Reader, before native decoding."""
+class _CryptPdfReader(PdfReader):
+    """Apply stream Crypt semantics within this Reader, before native decoding."""
 
     def get_object(self, indirect_reference: int | IndirectObject) -> PdfObject | None:
         original = getattr(self, "_encryption", None)
-        if original is None or isinstance(original, _IdentityAwareDecryption):
+        if original is None or isinstance(original, _CryptAwareDecryption):
             value = super().get_object(indirect_reference)
         else:
-            self._encryption = cast(Encryption, _IdentityAwareDecryption(original))
+            entry = self.trailer.get("/Encrypt")
+            if isinstance(entry, IndirectObject):
+                entry = super().get_object(entry)
+            filters = entry.get("/CF") if isinstance(entry, DictionaryObject) else None
+            if isinstance(filters, IndirectObject):
+                filters = super().get_object(filters)
+            self._encryption = cast(
+                Encryption,
+                _CryptAwareDecryption(original, filters if isinstance(filters, DictionaryObject) else None),
+            )
             try:
                 value = super().get_object(indirect_reference)
             finally:
                 self._encryption = original
         if isinstance(value, StreamObject):
-            _remove_identity_crypt_filters(value)
+            information = _crypt_filter_info(value)
+            if information is not None and information[3] != "/Identity" and original is None:
+                raise ValueError("PDF named Crypt filter requires document encryption")  # noqa: TRY003
+            _remove_crypt_filter(value)
         return value
 
 
@@ -336,7 +359,7 @@ def parse_pdf_document(value: PDFDocumentInput) -> tuple[PDFPageInput, ...]:
     try:
         if not value.content.rstrip(_PDF_WHITESPACE).endswith(b"%%EOF"):
             raise ValueError("PDF document has an incomplete end marker")  # noqa: TRY003
-        reader = _IdentityPdfReader(io.BytesIO(value.content), strict=True)
+        reader = _CryptPdfReader(io.BytesIO(value.content), strict=True)
         if reader.is_encrypted and not reader.decrypt(""):
             raise ValueError("PDF document requires a non-empty password")  # noqa: TRY003
         digest = hashlib.sha256(value.content).hexdigest()

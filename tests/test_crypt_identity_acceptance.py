@@ -28,8 +28,13 @@ def _build_fixture(**options):
         {},
         {"flate": True},
         {"explicit_name": ""},
+        {"explicit_name": "/StdCF", "algorithm": "AES-256"},
+        {"explicit_name": "/StdCF", "algorithm": "AES-256", "flate": True},
     ),
-    ids=("global-identity-blank", "implicit-aes-control", "explicit-identity", "identity-flate", "default-name"),
+    ids=(
+        "global-identity-blank", "implicit-aes-control", "explicit-identity", "identity-flate", "default-name",
+        "named-aes256", "named-aes256-flate",
+    ),
 )
 def test_legitimate_empty_password_stream_crypt_filters_preserve_complete_pages(options) -> None:
     fixture = _build_fixture(**options)
@@ -48,9 +53,9 @@ def test_legitimate_empty_password_stream_crypt_filters_preserve_complete_pages(
     (
         {"flate": True, "truncate_flate": True},
         {"user_password": "synthetic-user"},
-        {"explicit_name": "/StdCF"},
+        {"explicit_name": "/MissingCF"},
     ),
-    ids=("truncated-flate-after-identity", "nonempty-user-password", "nonidentity-crypt"),
+    ids=("truncated-flate-after-identity", "nonempty-user-password", "unknown-crypt-filter"),
 )
 def test_invalid_or_unsupported_crypt_document_fails_atomically(options) -> None:
     fixture = _build_fixture(**options)

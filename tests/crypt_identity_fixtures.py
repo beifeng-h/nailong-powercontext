@@ -10,6 +10,7 @@ from __future__ import annotations
 import io
 import re
 import zlib
+from typing import Literal
 
 from pypdf import PdfWriter
 from pypdf.generic import (
@@ -45,9 +46,10 @@ def build_fixture(
     truncate_flate: bool = False,
     blank: bool = False,
     user_password: str = "",
+    algorithm: Literal["AES-128", "AES-256"] = "AES-128",
 ) -> dict:
     writer = PdfWriter()
-    writer.pdf_header = "%PDF-1.6"
+    writer.pdf_header = "%PDF-2.0" if algorithm == "AES-256" else "%PDF-1.6"
     font = DictionaryObject({
         NameObject("/Type"): NameObject("/Font"),
         NameObject("/Subtype"): NameObject("/Type1"),
@@ -93,7 +95,7 @@ def build_fixture(
         if number == 2 and explicit_name in ("", "/Identity"):
             identity_streams.add(reference.idnum)
 
-    writer.encrypt(user_password, owner_password="synthetic-owner", algorithm="AES-128")
+    writer.encrypt(user_password, owner_password="synthetic-owner", algorithm=algorithm)
     encryption = writer._encryption
     assert encryption is not None and writer._encrypt_entry is not None
     permissions = int(writer._encrypt_entry["/P"])
