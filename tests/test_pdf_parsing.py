@@ -143,3 +143,69 @@ def test_form_streams_are_validated_without_duplicating_text(data: bytes, valid:
         pages = parse_pdf_document(value)
         assert len(pages) == 1
         assert pages[0].text.strip() == "Revenue 123"
+
+
+@pytest.mark.parametrize("encrypted", [False, True], ids=["plain", "empty-password"])
+@pytest.mark.parametrize("marker", [b"%", b"%%", b"%%E", b"%%EO"])
+def test_truncated_file_end_marker_fails_atomically(marker: bytes, encrypted: bool) -> None:
+    writer = PdfWriter()
+    _add_compressed_page(writer, zlib.compress(b"BT /F1 12 Tf (Revenue 123) Tj ET"))
+    writer.add_blank_page(width=100, height=200)
+    if encrypted:
+        writer.encrypt(user_password="", owner_password="owner")
+    content = _document_bytes(writer)
+    complete, separator, _suffix = content.rpartition(b"%%EOF")
+    assert separator
+    with pytest.raises(ValueError):
+        parse_pdf_document(PDFDocumentInput(document_id="truncated-footer", content=complete + marker))
+
+
+@pytest.mark.parametrize("suffix", [b"", b"\n", b"\r\n", b" \x00\t\r\n\f"])
+def test_complete_file_end_marker_preserves_text_and_blank_page(suffix: bytes) -> None:
+    writer = PdfWriter()
+    _add_compressed_page(writer, zlib.compress(b"BT /F1 12 Tf (Revenue 123) Tj ET"))
+    writer.add_blank_page(width=100, height=200)
+    content = _document_bytes(writer).rstrip(b"\x00\t\n\f\r ") + suffix
+    pages = parse_pdf_document(PDFDocumentInput(document_id="complete-footer", content=content))
+    assert [(page.page_number, page.text) for page in pages] == [(1, "Revenue 123"), (2, "")]
+    assert all(page.document_sha256 == hashlib.sha256(content).hexdigest() for page in pages)
+
+
+def _literal_lzw(data: bytes, *, terminated: bool) -> bytes:
+    codes = [256, *data, *([257] if terminated else [])]
+    bits = "".join(f"{code:09b}" for code in codes)
+    bits += "0" * (-len(bits) % 8)
+    return int(bits, 2).to_bytes(len(bits) // 8, "big")
+
+
+@pytest.mark.parametrize("filter_name", ["/ASCII85Decode", "/ASCIIHexDecode", "/RunLengthDecode", "/LZWDecode"])
+@pytest.mark.parametrize("terminated", [False, True], ids=["missing-eod", "complete"])
+@pytest.mark.parametrize("wrapped", [False, True], ids=["single-filter", "asciihex-chain"])
+def test_content_filter_end_markers_are_required_without_rejecting_complete_streams(
+    filter_name: str, terminated: bool, wrapped: bool
+) -> None:
+    payload = b"BT /F1 12 Tf (Revenue 123) Tj ET"
+    if filter_name == "/ASCII85Decode":
+        data = a85encode(payload, adobe=True)[2:]
+        if not terminated:
+            data = data[:-2]
+    elif filter_name == "/ASCIIHexDecode":
+        data = payload.hex().encode() + (b">" if terminated else b"")
+    elif filter_name == "/RunLengthDecode":
+        data = bytes([len(payload) - 1]) + payload + (b"\x80" if terminated else b"")
+    else:
+        data = _literal_lzw(payload, terminated=terminated)
+    writer = PdfWriter()
+    _add_compressed_page(writer, zlib.compress(b"BT /F1 12 Tf (First page) Tj ET"))
+    _add_compressed_page(writer, data.hex().encode() + b">" if wrapped else data)
+    stream = writer.pages[-1]["/Contents"]
+    stream[NameObject("/Filter")] = (
+        ArrayObject([NameObject("/ASCIIHexDecode"), NameObject(filter_name)]) if wrapped else NameObject(filter_name)
+    )
+    value = PDFDocumentInput(document_id="encoded-content", content=_document_bytes(writer))
+    if not terminated:
+        with pytest.raises(ValueError):
+            parse_pdf_document(value)
+    else:
+        pages = parse_pdf_document(value)
+        assert [(page.page_number, page.text) for page in pages] == [(1, "First page"), (2, "Revenue 123")]
