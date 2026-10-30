@@ -1,0 +1,9 @@
+# 运行时依赖（本地 demo）
+fastapi>=0.110
+uvicorn[standard]>=0.27
+pymysql>=1.1
+numpy>=1.24
+transformers>=4.40
+torch>=2.2
+accelerate>=0.30
+pyyaml>=6.0

@@ -1,0 +1,439 @@
+version: 0.6.0
+kind: app
+app:
+  name: 向量动物园 Vector Zoo
+  description: 输入两个词，让它们在向量空间里交配，生出一只新物种并写进 seekdb 图鉴。基因组、亲缘、稀有度全部由 seekdb 的向量检索决定，Dify 负责理解意图与撰写图鉴。
+  icon: 🧬
+  icon_type: emoji
+  icon_background: '#0A0C10'
+  mode: advanced-chat
+  use_icon_as_answer_icon: false
+dependencies: []
+workflow:
+  conversation_variables: []
+  environment_variables:
+  - id: 6f0f0e8e-1a2b-4c3d-9e8f-000000000001
+    name: ZOO_API
+    value: http://host.docker.internal:8077
+    value_type: string
+    description: zoo service 地址。Dify 跑在 Docker 里用 host.docker.internal；本机直连用 127.0.0.1
+  features:
+    file_upload:
+      enabled: false
+    opening_statement: 说出两个八竿子打不着的词，比如「西瓜 × 章鱼」「台风 × 仓鼠」，我来让它们在向量空间里交配。
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions:
+    - 西瓜 × 章鱼
+    - 快递箱 × 萤火虫
+    - 月亮 × 榴莲
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    nodes:
+    - id: '1000000000001'
+      type: custom
+      position:
+        x: 40
+        y: 320
+      positionAbsolute:
+        x: 40
+        y: 320
+      width: 244
+      height: 90
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      data:
+        type: start
+        title: ① 对话入口
+        desc: 用户输入一句话，比如「做个会飞的西瓜和章鱼的混种」
+        variables: []
+    - id: '1000000000002'
+      type: custom
+      position:
+        x: 330
+        y: 320
+      positionAbsolute:
+        x: 330
+        y: 320
+      width: 244
+      height: 98
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      data:
+        type: llm
+        title: ② 读题：挑两个母本
+        desc: 从自然语言里挑出两个母本词和混合比例
+        model:
+          provider: langgenius/tongyi/tongyi
+          name: qwen-plus
+          mode: chat
+          completion_params:
+            temperature: 0.7
+        prompt_template:
+        - role: system
+          text: '你是『向量动物园』的接待员。用户会说自己想造一只什么样的物种。
+
+            请从用户的话里挑出两个母本词（名词，2-6 个字，越反差越好），并给出混合比例 ratio（0.15-0.85，代表母本 A 的占比）。
+
+            如果用户只给了一个词，你补一个反差极大的名词；如果用户给了三个以上，只保留最有画面感的两个。
+
+            只输出 JSON，不要解释：{"a":"母本A","b":"母本B","ratio":0.5}'
+        - role: user
+          text: '{{#sys.query#}}'
+        variables: []
+        context:
+          enabled: false
+          variable_selector: []
+        vision:
+          enabled: false
+    - id: '1000000000003'
+      type: custom
+      position:
+        x: 620
+        y: 320
+      positionAbsolute:
+        x: 620
+        y: 320
+      width: 244
+      height: 110
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      data:
+        type: code
+        title: ③ 解析意图
+        desc: ''
+        code: "import json\nimport re\n\n\ndef main(text: str) -> dict:\n    \"\"\"把 LLM 输出的 JSON 抠出来，失败就退回默认母本。\"\"\"\n    m = re.search(r\"\\{.*\\}\", text or \"\", re.S)\n    data = {}\n    if m:\n        try:\n            data = json.loads(m.group(0))\n        except Exception:\n            data = {}\n    a = str(data.get(\"a\") or \"西瓜\").strip()[:12]\n    b = str(data.get(\"b\") or \"章鱼\").strip()[:12]\n    try:\n        ratio = float(data.get(\"ratio\") or 0.5)\n    except Exception:\n        ratio = 0.5\n    ratio = min(0.85, max(0.15, ratio))\n    return {\"a\": a, \"b\": b, \"ratio\": ratio}\n"
+        code_language: python3
+        variables:
+        - variable: text
+          value_selector:
+          - '1000000000002'
+          - text
+        outputs:
+          a:
+            type: string
+            children: null
+          b:
+            type: string
+            children: null
+          ratio:
+            type: number
+            children: null
+    - id: '1000000000004'
+      type: custom
+      position:
+        x: 910
+        y: 320
+      positionAbsolute:
+        x: 910
+        y: 320
+      width: 244
+      height: 120
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      data:
+        type: http-request
+        title: ④ 造基因组 + 亲缘检索（seekdb）
+        desc: 服务端把两个词 embedding 后混合成基因组，再用 seekdb 的 HNSW 找出最近的亲戚、算出新颖度与稀有度
+        method: POST
+        url: '{{#env.ZOO_API#}}/api/dify/forge'
+        authorization:
+          type: no-auth
+        headers: 'Content-Type: application/json'
+        params: ''
+        body:
+          type: json
+          data: '{"a": "{{#1000000000003.a#}}", "b": "{{#1000000000003.b#}}", "ratio": {{#1000000000003.ratio#}}, "mutation": 0.08}'
+        timeout:
+          connect: 10
+          read: 60
+          write: 30
+        retry_config:
+          enabled: false
+          max_retries: 1
+          retry_interval: 1000
+    - id: '1000000000005'
+      type: custom
+      position:
+        x: 1200
+        y: 320
+      positionAbsolute:
+        x: 1200
+        y: 320
+      width: 244
+      height: 98
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      data:
+        type: llm
+        title: ⑤ 撰写图鉴
+        desc: 根据基因轴和亲戚，写名字、习性和图鉴正文
+        model:
+          provider: langgenius/tongyi/tongyi
+          name: qwen-plus
+          mode: chat
+          completion_params:
+            temperature: 0.9
+        prompt_template:
+        - role: system
+          text: '你是『向量动物园』的造物主。你会拿到两个母本词、一份由基因组向量投影得到的表型（8 条 0-100 的基因轴），以及园里基因最接近的几位亲戚。
+
+            请创造一只既继承两个母本气质、又在设定上明显区别于亲戚的新物种。语气要像一本正经的博物志，带一点冷幽默。
+
+            只输出 JSON，不要任何解释或代码块。'
+        - role: user
+          text: "母本 A：{{#1000000000003.a#}}\n母本 B：{{#1000000000003.b#}}\n\nseekdb 返回的基因组与亲缘信息（JSON）：\n{{#1000000000004.body#}}\n\n请输出严格 JSON：\n{\"name\":\"不超过6个汉字，有画面感，不要直接拼接两个母本词\",\n \"latin\":\"两段式拉丁学名\",\n \"tagline\":\"一句话，20字以内\",\n \"appearance\":\"外形，40-60字\",\n \"habitat\":\"栖息地，12字以内\",\n \"diet\":\"食性，12字以内\",\n \"behavior\":\"习性，25字以内\",\n \"weakness\":\"弱点，20字以内\",\n \"lore\":\"图鉴正文，80-120字，像博物志词条，结尾带一句冷幽默\"}"
+        variables: []
+        context:
+          enabled: false
+          variable_selector: []
+        vision:
+          enabled: false
+    - id: '1000000000006'
+      type: custom
+      position:
+        x: 1490
+        y: 320
+      positionAbsolute:
+        x: 1490
+        y: 320
+      width: 244
+      height: 110
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      data:
+        type: code
+        title: ⑥ 打包 token + 图鉴
+        desc: ''
+        code: "import json\nimport re\n\n\ndef main(text: str, forge: str) -> dict:\n    \"\"\"解析图鉴 JSON，并把 forge 返回的 token 一起打包给落库节点。\"\"\"\n    m = re.search(r\"\\{.*\\}\", text or \"\", re.S)\n    prof = {}\n    if m:\n        try:\n            prof = json.loads(m.group(0))\n        except Exception:\n            prof = {}\n    if not prof.get(\"name\"):\n        prof = {\"name\": \"无名物种\", \"latin\": \"\", \"tagline\": \"\", \"appearance\": \"\",\n                \"habitat\": \"\", \"diet\": \"\", \"behavior\": \"\", \"weakness\": \"\",\n                \"lore\": (text or \"\")[:200]}\n    token = \"\"\n    try:\n        token = json.loads(forge or \"{}\").get(\"token\", \"\")\n    except Exception:\n        token = \"\"\n    return {\"token\": token,\n            \"profile_json\": json.dumps(prof, ensure_ascii=False),\n            \"name\": prof.get(\"name\", \"\")}\n"
+        code_language: python3
+        variables:
+        - variable: text
+          value_selector:
+          - '1000000000005'
+          - text
+        - variable: forge
+          value_selector:
+          - '1000000000004'
+          - body
+        outputs:
+          token:
+            type: string
+            children: null
+          profile_json:
+            type: string
+            children: null
+          name:
+            type: string
+            children: null
+    - id: '1000000000007'
+      type: custom
+      position:
+        x: 1780
+        y: 320
+      positionAbsolute:
+        x: 1780
+        y: 320
+      width: 244
+      height: 120
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      data:
+        type: http-request
+        title: ⑦ 落库（seekdb）
+        desc: 用 token 把图鉴写进 seekdb 的 creatures 表（向量 + JSON + 全文一次性落库）
+        method: POST
+        url: '{{#env.ZOO_API#}}/api/dify/commit'
+        authorization:
+          type: no-auth
+        headers: ''
+        params: ''
+        body:
+          type: x-www-form-urlencoded
+          data:
+          - key: token
+            type: text
+            value: '{{#1000000000006.token#}}'
+          - key: profile_json
+            type: text
+            value: '{{#1000000000006.profile_json#}}'
+        timeout:
+          connect: 10
+          read: 30
+          write: 30
+        retry_config:
+          enabled: false
+          max_retries: 1
+          retry_interval: 1000
+    - id: '1000000000008'
+      type: custom
+      position:
+        x: 2070
+        y: 320
+      positionAbsolute:
+        x: 2070
+        y: 320
+      width: 244
+      height: 110
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      data:
+        type: code
+        title: ⑧ 渲染图鉴卡片
+        desc: ''
+        code: "import json\n\n\ndef main(body: str) -> dict:\n    \"\"\"落库接口已经返回排好版的 Markdown 卡片，直接透传。\"\"\"\n    try:\n        data = json.loads(body or \"{}\")\n        md = data.get(\"card_markdown\") or json.dumps(data, ensure_ascii=False, indent=2)\n    except Exception:\n        md = body or \"\"\n    return {\"markdown\": md}\n"
+        code_language: python3
+        variables:
+        - variable: body
+          value_selector:
+          - '1000000000007'
+          - body
+        outputs:
+          markdown:
+            type: string
+            children: null
+    - id: '1000000000009'
+      type: custom
+      position:
+        x: 2360
+        y: 320
+      positionAbsolute:
+        x: 2360
+        y: 320
+      width: 244
+      height: 90
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      data:
+        type: answer
+        title: ⑨ 图鉴出炉
+        desc: ''
+        answer: '{{#1000000000008.markdown#}}'
+        variables: []
+    edges:
+    - id: 1000000000001-source-1000000000002-target
+      source: '1000000000001'
+      sourceHandle: source
+      target: '1000000000002'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+      selected: false
+      data:
+        sourceType: start
+        targetType: llm
+        isInIteration: false
+        isInLoop: false
+    - id: 1000000000002-source-1000000000003-target
+      source: '1000000000002'
+      sourceHandle: source
+      target: '1000000000003'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+      selected: false
+      data:
+        sourceType: llm
+        targetType: code
+        isInIteration: false
+        isInLoop: false
+    - id: 1000000000003-source-1000000000004-target
+      source: '1000000000003'
+      sourceHandle: source
+      target: '1000000000004'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+      selected: false
+      data:
+        sourceType: code
+        targetType: http-request
+        isInIteration: false
+        isInLoop: false
+    - id: 1000000000004-source-1000000000005-target
+      source: '1000000000004'
+      sourceHandle: source
+      target: '1000000000005'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+      selected: false
+      data:
+        sourceType: http-request
+        targetType: llm
+        isInIteration: false
+        isInLoop: false
+    - id: 1000000000005-source-1000000000006-target
+      source: '1000000000005'
+      sourceHandle: source
+      target: '1000000000006'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+      selected: false
+      data:
+        sourceType: llm
+        targetType: code
+        isInIteration: false
+        isInLoop: false
+    - id: 1000000000006-source-1000000000007-target
+      source: '1000000000006'
+      sourceHandle: source
+      target: '1000000000007'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+      selected: false
+      data:
+        sourceType: code
+        targetType: http-request
+        isInIteration: false
+        isInLoop: false
+    - id: 1000000000007-source-1000000000008-target
+      source: '1000000000007'
+      sourceHandle: source
+      target: '1000000000008'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+      selected: false
+      data:
+        sourceType: http-request
+        targetType: code
+        isInIteration: false
+        isInLoop: false
+    - id: 1000000000008-source-1000000000009-target
+      source: '1000000000008'
+      sourceHandle: source
+      target: '1000000000009'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+      selected: false
+      data:
+        sourceType: code
+        targetType: answer
+        isInIteration: false
+        isInLoop: false
+    viewport:
+      x: 0
+      y: 0
+      zoom: 0.5
