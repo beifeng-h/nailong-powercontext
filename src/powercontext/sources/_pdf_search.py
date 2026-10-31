@@ -87,6 +87,11 @@ _TEMPORAL_COMPARISON = re.compile(
     r"\bbetween\s+(?:fy\s*)?(?:19|20)\d{2}\s+and\s+(?:fy\s*)?(?:19|20)\d{2}\b",
     re.IGNORECASE,
 )
+_QUERY_CLAUSE_START = re.compile(
+    r"\s*(?:please\s+)?(?:what|which|where|when|why|how|is|are|was|were|do|does|did|has|have|can|could|would"
+    r"|explain|describe|list|show|give|calculate|state|provide|identify|assess|evaluate|summari[sz]e|report|tell|outline)\b",
+    re.IGNORECASE,
+)
 _MARGIN_QUERY = re.compile(r"\b(?:operating|gross|net|profit)\s+margins?\b")
 _CAPITAL_INTENSITY_QUERY = re.compile(r"\bcapital[\s\-\u2010-\u2015]+intensive\b")
 
@@ -398,14 +403,18 @@ def _has_ambiguous_company_subject(question: str, matches: list[tuple[int, int, 
     known_ends = {end for _start, end, identity in matches if identity in selected}
     if any(match.start() not in known_ends for match in re.finditer(r"(?<=\w)['\u2019]s\b", question)):
         return True
-    return any(
-        identity in selected
-        and (
-            re.match(r"\s*(?:['\u2019]s\s*)?(?:and\b|or\b|[&/,])", question[end:], re.IGNORECASE)
-            or re.search(r"(?:\band|\bor|[&/,])\s*$", question[:start], re.IGNORECASE)
-        )
-        for start, end, identity in matches
-    )
+    for start, end, identity in matches:
+        if identity not in selected:
+            continue
+        suffix = question[end:]
+        if re.match(r"\s*(?:['\u2019]s\s*)?(?:and\b|or\b|[&/])", suffix, re.IGNORECASE) or re.search(
+            r"(?:\band|\bor|[&/,])\s*$", question[:start], re.IGNORECASE
+        ):
+            return True
+        comma = re.match(r"\s*(?:['\u2019]s\s*)?,", suffix, re.IGNORECASE)
+        if comma and not _QUERY_CLAUSE_START.match(suffix[comma.end() :]):
+            return True
+    return False
 
 
 def _requested_company_pages(pages: tuple[_Page, ...], question: str) -> tuple[_Page, ...]:
