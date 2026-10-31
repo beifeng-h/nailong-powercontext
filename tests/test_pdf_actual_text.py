@@ -21,7 +21,15 @@ import io
 
 import pytest
 from pypdf import PdfWriter
-from pypdf.generic import ArrayObject, DecodedStreamObject, DictionaryObject, NameObject, NumberObject, TextStringObject
+from pypdf.generic import (
+    ArrayObject,
+    DecodedStreamObject,
+    DictionaryObject,
+    FloatObject,
+    NameObject,
+    NumberObject,
+    TextStringObject,
+)
 
 from powercontext.sources.pdf_pages import PDFDocumentInput, parse_pdf_document
 
@@ -184,3 +192,81 @@ def test_outer_replacement_covers_inner_form_text_without_duplicating_inner_repl
     _page_content(writer, b"/Span << /ActualText (Outer replacement) >> BDC ET /Fm Do BT EMC")
     pages = parse_pdf_document(PDFDocumentInput(document_id="outer-form", content=_bytes(writer)))
     assert pages[0].text.strip() == "Outer replacement"
+
+
+def _glyph_writer(glyph_name: str, *, unicode_text: str | None = None) -> PdfWriter:
+    writer = PdfWriter()
+    glyph = DecodedStreamObject()
+    glyph.set_data(b"600 0 d0 250 0 100 600 re f 100 400 400 100 re f")
+    font = DictionaryObject({
+        NameObject("/Type"): NameObject("/Font"),
+        NameObject("/Subtype"): NameObject("/Type3"),
+        NameObject("/FontBBox"): ArrayObject([NumberObject(value) for value in (0, 0, 600, 700)]),
+        NameObject("/FontMatrix"): ArrayObject([FloatObject(value) for value in (0.001, 0, 0, 0.001, 0, 0)]),
+        NameObject("/CharProcs"): DictionaryObject({NameObject(glyph_name): writer._add_object(glyph)}),
+        NameObject("/Encoding"): DictionaryObject({
+            NameObject("/BaseEncoding"): NameObject("/WinAnsiEncoding"),
+            NameObject("/Differences"): ArrayObject([NumberObject(1), NameObject(glyph_name)]),
+        }),
+        NameObject("/FirstChar"): NumberObject(1),
+        NameObject("/LastChar"): NumberObject(1),
+        NameObject("/Widths"): ArrayObject([NumberObject(600)]),
+        NameObject("/Resources"): DictionaryObject(),
+    })
+    if unicode_text is not None:
+        mapping = DecodedStreamObject()
+        hexadecimal = unicode_text.encode("utf-16-be").hex().encode("ascii")
+        mapping.set_data(b"1 beginbfchar\n<01> <" + hexadecimal + b">\nendbfchar")
+        font[NameObject("/ToUnicode")] = writer._add_object(mapping)
+    page = writer.add_blank_page(width=612, height=792)
+    page[NameObject("/Resources")] = DictionaryObject({
+        NameObject("/Font"): DictionaryObject({NameObject("/F1"): writer._add_object(font)}),
+    })
+    return writer
+
+
+@pytest.mark.parametrize(
+    "glyph_name,expected",
+    (("/t.ss04", "t"), ("/A.swash", "A"), ("/one.oldstyle", "1"), ("/ampersand.alt01", "&")),
+)
+def test_glyph_style_names_retain_their_base_character(glyph_name: str, expected: str) -> None:
+    writer = _glyph_writer(glyph_name)
+    _page_content(writer, b"<01> Tj")
+    content = _bytes(writer)
+    pages = parse_pdf_document(PDFDocumentInput(document_id="styled-glyph", content=content))
+    assert pages[0].text == expected
+    assert pages[0].document_sha256 == hashlib.sha256(content).hexdigest()
+
+
+def test_explicit_unicode_map_keeps_its_own_glyph_meaning() -> None:
+    writer = _glyph_writer("/A.swash", unicode_text="Ω")
+    _page_content(writer, b"<01> Tj")
+    pages = parse_pdf_document(PDFDocumentInput(document_id="explicit-glyph-map", content=_bytes(writer)))
+    assert pages[0].text == "Ω"
+
+
+def test_plain_literal_text_is_not_treated_as_a_glyph_name() -> None:
+    writer = _writer()
+    _page_content(writer, b"(The literal /t.ss04 stays.) Tj")
+    pages = parse_pdf_document(PDFDocumentInput(document_id="literal-glyph-name", content=_bytes(writer)))
+    assert pages[0].text == "The literal /t.ss04 stays."
+
+
+def test_form_glyph_styles_keep_their_own_font_encoding() -> None:
+    writer = _glyph_writer("/t.alt")
+    form = DecodedStreamObject()
+    form.set_data(b"BT /F1 12 Tf 40 600 Td <01> Tj ET")
+    form.update({
+        NameObject("/Type"): NameObject("/XObject"),
+        NameObject("/Subtype"): NameObject("/Form"),
+        NameObject("/BBox"): ArrayObject([NumberObject(value) for value in (0, 0, 612, 792)]),
+        NameObject("/Resources"): writer.pages[0]["/Resources"],
+    })
+    writer.pages[0][NameObject("/Resources")] = DictionaryObject({
+        NameObject("/XObject"): DictionaryObject({NameObject("/Fm"): writer._add_object(form)}),
+    })
+    page_stream = DecodedStreamObject()
+    page_stream.set_data(b"/Fm Do")
+    writer.pages[0][NameObject("/Contents")] = writer._add_object(page_stream)
+    pages = parse_pdf_document(PDFDocumentInput(document_id="form-styled-glyph", content=_bytes(writer)))
+    assert pages[0].text.strip() == "t"

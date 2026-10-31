@@ -31,6 +31,8 @@ from pypdf.generic import (
     create_string_object,
 )
 
+from powercontext.sources._pdf_font_encodings import normalized_font_encodings
+
 
 @dataclass
 class _MarkedText:
@@ -106,5 +108,7 @@ def extract_pdf_page_text(page: PageObject) -> str:
     """Extract one physical page, retaining explicit ActualText replacements."""
 
     resources = _resolved(page.get("/Resources"))
-    visitor = _ActualTextVisitor(resources if isinstance(resources, DictionaryObject) else DictionaryObject())
-    return page.extract_text(visitor_operand_before=visitor.before, visitor_operand_after=visitor.after) or ""
+    resources = resources if isinstance(resources, DictionaryObject) else DictionaryObject()
+    with normalized_font_encodings(resources):
+        visitor = _ActualTextVisitor(resources)
+        return page.extract_text(visitor_operand_before=visitor.before, visitor_operand_after=visitor.after) or ""
