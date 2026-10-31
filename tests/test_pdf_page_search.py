@@ -650,3 +650,71 @@ async def test_specific_expense_category_note_keeps_its_precise_citation_first(t
         memory = runtime.memory.for_scope(scope_id)
         citations = await search_pdf_pages(memory, question, limit=1)
         assert await _read_page_numbers(memory, citations, stored, pages) == (2,)
+
+
+@pytest.mark.parametrize(
+    "question",
+    (
+        "Compare Cedar Industries and Juniper's geographic regions and report sales by market.",
+        "Compare the geographic distribution of Cedar Industries and Juniper's sales.",
+    ),
+)
+async def test_geographic_comparison_recalls_each_companys_area_sales(tmp_path: Path, question: str) -> None:
+    digest = hashlib.sha256(b"synthetic regional sales comparison").hexdigest()
+    documents = ("CEDAR_INDUSTRIES_2025_10K", "JUNIPER_2025_10K")
+    pages = tuple(
+        PDFPageInput(
+            document_id=document_id,
+            document_sha256=digest,
+            page_number=number,
+            text=(
+                "Sales by geographic area\nNorth 80. South 60. East 40. Worldwide 180."
+                if number == 1
+                else "Geographic regions and geographic distribution of sales by market. "
+                "Management describes business operations and reporting policies."
+            ),
+        )
+        for document_id in documents
+        for number in range(1, 23)
+    )
+    config, scope_id, stored, _pages = await _persist_pages(tmp_path, pages)
+    async with open_builtin_runtime(config) as runtime:
+        memory = runtime.memory.for_scope(scope_id)
+        citations = await search_pdf_pages(memory, question, limit=20)
+        assert len(citations) <= 20
+        await _retrieved_documents(memory, citations, stored)
+        locations = set()
+        for citation in citations:
+            record = await memory.get(GetMemoryEntryRequest(citation=citation))
+            metadata = stored[record.entry.sources[0].source_id].projection(TEXT_EVIDENCE_PROJECTION_KEY)["metadata"]
+            locations.add((metadata["document_id"], metadata["page_number"]))
+        assert {(document_id, 1) for document_id in documents}.issubset(locations)
+
+
+async def test_geographic_explanation_stays_ahead_of_an_area_sales_table(tmp_path: Path) -> None:
+    digest = hashlib.sha256(b"synthetic geographic explanation and table").hexdigest()
+    pages = tuple(
+        PDFPageInput(
+            document_id="CEDAR_INDUSTRIES_2025_10K",
+            document_sha256=digest,
+            page_number=number,
+            text=text,
+        )
+        for number, text in enumerate(
+            (
+                "Sales by geographic area\nNorth 80. South 60. East 40. Worldwide 180.",
+                "Sales attributed to geographic regions differ from final consumer demand because customers "
+                "export products to consumers in other regions. The reporting policy follows delivery locations.",
+            ),
+            start=1,
+        )
+    )
+    config, scope_id, stored, pages = await _persist_pages(tmp_path, pages)
+    async with open_builtin_runtime(config) as runtime:
+        memory = runtime.memory.for_scope(scope_id)
+        citations = await search_pdf_pages(
+            memory,
+            "Why do sales attributed to geographic regions differ from final consumer demand?",
+            limit=1,
+        )
+        assert await _read_page_numbers(memory, citations, stored, pages) == (2,)

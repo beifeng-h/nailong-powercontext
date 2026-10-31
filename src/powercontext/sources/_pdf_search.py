@@ -48,8 +48,8 @@ _STOP_WORDS = frozenset(
 _FINANCIAL_VOCABULARY = (
     (
         "geography geographies geographic geographical region country countries",
-        "geographic geographical segment division international foreign region country",
-        ("geographic information", "business segments", "reportable segments", "principal markets"),
+        "geographic geographical segment division international foreign region country area",
+        ("geographic information", "business segments", "reportable segments", "principal markets", "geographic area"),
     ),
     (
         "legal litigation lawsuit lawsuits battle proceeding proceedings contingency contingencies",
