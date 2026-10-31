@@ -1,0 +1,61 @@
+name: Competition public checks
+
+on:
+  push:
+    branches: [2026-competition]
+    paths:
+      - src/**
+      - tests/test_pdf*.py
+      - .github/workflows/competition-public.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: competition-public-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  public-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out candidate
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Verify frozen baseline ancestry
+        run: |
+          git merge-base --is-ancestor 9db1753434162c0aa7c9f1189a1722e617880a52 HEAD
+
+      - name: Build the official fixed-dependency image
+        run: make -C competition docker-build
+
+      - name: Run PDF regressions in the offline resource-limited container
+        run: |
+          set -o pipefail
+          docker compose -f competition/compose.yaml run --rm \
+            --volume "$PWD/tests:/product-tests:ro" \
+            selftest python -m pytest -q -c /selftest/pytest.ini --confcutdir=/selftest \
+            /product-tests/test_pdf_actual_text.py \
+            /product-tests/test_pdf_parsing.py \
+            /product-tests/test_pdf_page_search.py \
+            /product-tests/test_pdf_page_selection.py \
+            /product-tests/test_pdf_page_capacity.py | tee pdf-regressions.log
+
+      - name: Run all official public challenges
+        run: |
+          set -o pipefail
+          make -C competition docker-test | tee competition-public.log
+
+      - name: Preserve public validation output
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        with:
+          name: competition-public-${{ github.sha }}
+          path: |
+            pdf-regressions.log
+            competition-public.log
