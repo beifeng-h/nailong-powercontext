@@ -44,6 +44,7 @@ jobs:
             /product-tests/test_pdf_parsing.py \
             /product-tests/test_pdf_page_search.py \
             /product-tests/test_pdf_page_selection.py \
+            /product-tests/test_pdf_query_scope.py \
             /product-tests/test_pdf_page_capacity.py | tee pdf-regressions.log
 
       - name: Run all official public challenges

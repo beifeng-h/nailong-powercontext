@@ -43,6 +43,52 @@ _STOP_WORDS = frozenset(
     "million millions billion billions usd dollar dollars fiscal fy year years annual report reported reporting "
     "primarily respective respectively relevant information concerning tell give find determine".split()
 )
+_COMPANY_LABELS = _STOP_WORDS | frozenset([
+    "document",
+    "doc",
+    "pdf",
+    "file",
+    "source",
+    "filing",
+    "quarterly",
+    "financial",
+    "statement",
+    "revenue",
+    "revenues",
+    "sales",
+    "income",
+    "earnings",
+    "expenses",
+    "expense",
+    "costs",
+    "cost",
+    "total",
+    "assets",
+    "liabilities",
+    "cash",
+    "balance",
+    "equity",
+])
+_COMPANY_SUFFIXES = frozenset({"inc", "incorporated", "corp", "corporation", "co", "company", "ltd", "plc"})
+_REPORT_SUFFIX = re.compile(
+    r"[\W_]+(?:10[\W_]*k(?:[\W_]+annual)?|10[\W_]*q|8[\W_]*k|earnings|20[\W_]*f|40[\W_]*f)[\W_]*$"
+)
+_REPORT_PERIOD_SUFFIX = re.compile(r"[\W_]+(?:fy[\W_]*)?(?:19|20)\d{2}(?:[\W_]*q[1-4])?[\W_]*$")
+_REPORT_DATE_SUFFIX = re.compile(r"[\W_]+dated-(?:19|20)\d{2}-\d{2}-\d{2}$")
+_FINANCIAL_LABEL = re.compile(
+    r"(?:(?:net|gross|operating|total|current|noncurrent|adjusted|unadjusted|free|consolidated|retained|deferred))*"
+    r"(?:income|earnings|profit|revenues?|sales|cash(?:flow)?|assets?|liabilities|equity|expenses?|costs?|debt)"
+)
+_COMPARISON = re.compile(
+    r"\b(?:compar(?:e[ds]?|ing|ison)|versus|vs|both|between|than|against|relative\s+to|differences?)\b",
+    re.IGNORECASE,
+)
+_TEMPORAL_COMPARISON = re.compile(
+    r"\bbetween\s+(?:fy\s*)?(?:19|20)\d{2}\s+and\s+(?:fy\s*)?(?:19|20)\d{2}\b",
+    re.IGNORECASE,
+)
+_MARGIN_QUERY = re.compile(r"\b(?:operating|gross|net|profit)\s+margins?\b")
+_CAPITAL_INTENSITY_QUERY = re.compile(r"\bcapital[\s\-\u2010-\u2015]+intensive\b")
 
 # Vocabulary is shared across companies and reports; no question or document identity is encoded here.
 _FINANCIAL_VOCABULARY = (
@@ -114,6 +160,11 @@ _PHRASE_VOCABULARY = (
         ("statements cash flows", "cash provided operating activities", "cash used investing activities"),
     ),
     (
+        ("capital intensive",),
+        "capital expenditure purchase property plant equipment asset revenue sales",
+        ("capital expenditures", "property plant equipment", "total assets", "net revenues", "net sales"),
+    ),
+    (
         ("capital expenditure", "capital spending"),
         "capital expenditure spending purchase property plant equipment",
         ("capital expenditures", "capital spending", "property plant equipment"),
@@ -170,7 +221,8 @@ _STATEMENT_FACETS = (
         "balance-sheet",
         re.compile(r"\b(?:balance\s+sheets?|statements?\s+(?:of\s+)?financial\s+position)\b"),
         re.compile(
-            _STATEMENT_PREFIX + r"(?:balance\s+sheets?|statements?\s+(?:of\s+)?financial\s+position)"
+            _STATEMENT_PREFIX
+            + r"(?:balance\s+sheets?|statements?\s+(?:of\s+)?financial\s+position)"
             + _STATEMENT_SUFFIX,
         ),
     ),
@@ -179,9 +231,7 @@ _STATEMENT_SUBJECT = (
     r"(?:income|earnings|operations|cash[\s-]*flows?|profit\s*(?:and|&)\s*loss|p\s*&\s*l"
     r"|balance\s+sheets?|financial\s+position)"
 )
-_COORDINATED_STATEMENT_SUBJECTS = (
-    _STATEMENT_SUBJECT + r"(?:\s*(?:,?\s+and|,?\s*&|,)\s*" + _STATEMENT_SUBJECT + r")+"
-)
+_COORDINATED_STATEMENT_SUBJECTS = _STATEMENT_SUBJECT + r"(?:\s*(?:,?\s+and|,?\s*&|,)\s*" + _STATEMENT_SUBJECT + r")+"
 _SHARED_STATEMENT_PATTERNS = (
     re.compile(r"\b(?P<subjects>" + _COORDINATED_STATEMENT_SUBJECTS + r")\s+statements?\b"),
     re.compile(r"\bstatements?\s+(?:of\s+)?(?P<subjects>" + _COORDINATED_STATEMENT_SUBJECTS + r")\b"),
@@ -323,6 +373,81 @@ def _document_fields(pages: tuple[_Page, ...], question: str) -> dict[str, froze
     return fields
 
 
+def _company_identity(document_id: str) -> str | None:
+    name = document_id.casefold().strip().removesuffix(".pdf")
+    name = _REPORT_DATE_SUFFIX.sub("", name)
+    original = name
+    without_kind = _REPORT_SUFFIX.sub("", name)
+    without_period = _REPORT_PERIOD_SUFFIX.sub("", without_kind)
+    # Strip one report period, preserving numbers that belong to the company.
+    name = _REPORT_SUFFIX.sub("", without_period) if without_kind == name else without_period
+    if name == original:
+        return None
+    words = re.findall(r"[a-z0-9]+", name)
+    while words and words[-1] in _COMPANY_SUFFIXES:
+        words.pop()
+    if not words or words[0] in _COMPANY_LABELS:
+        return None
+    identity = "".join(words)
+    if _FINANCIAL_LABEL.fullmatch(identity):
+        return None
+    return identity if len(identity) >= 2 and re.search(r"[a-z]", identity) else None
+
+
+def _has_ambiguous_company_subject(question: str, matches: list[tuple[int, int, str]], selected: set[str]) -> bool:
+    known_ends = {end for _start, end, identity in matches if identity in selected}
+    if any(match.start() not in known_ends for match in re.finditer(r"(?<=\w)['\u2019]s\b", question)):
+        return True
+    return any(
+        identity in selected
+        and (
+            re.match(r"\s*(?:['\u2019]s\s*)?(?:and\b|or\b|[&/,])", question[end:], re.IGNORECASE)
+            or re.search(r"(?:\band|\bor|[&/,])\s*$", question[:start], re.IGNORECASE)
+        )
+        for start, end, identity in matches
+    )
+
+
+def _requested_company_pages(pages: tuple[_Page, ...], question: str) -> tuple[_Page, ...]:
+    # Time comparison does not introduce another company. Ranking keeps the
+    # original question, including these years and all comparison wording.
+    scoped_question = _TEMPORAL_COMPARISON.sub(" ", question)
+    if _COMPARISON.search(scoped_question):
+        return pages
+    identities = {document_id: _company_identity(document_id) for document_id in {page.document_id for page in pages}}
+    if any(identity is None for identity in identities.values()):
+        return pages
+    names = {identity for identity in identities.values() if identity is not None}
+    matches = []
+    for identity in names:
+        pattern = r"(?<![a-z0-9])" + r"[\W_]*".join(map(re.escape, identity)) + r"(?![a-z0-9])"
+        matches.extend(
+            (match.start(), match.end(), identity) for match in re.finditer(pattern, scoped_question.casefold())
+        )
+    selected = {
+        identity
+        for start, end, identity in matches
+        if not any(
+            other_start <= start
+            and end <= other_end
+            and identity != other_identity
+            and other_end - other_start > end - start
+            for other_start, other_end, other_identity in matches
+        )
+    }
+    if len(selected) != 1:
+        return pages
+    if _has_ambiguous_company_subject(scoped_question, matches, selected):
+        return pages
+    words = {word for word in _WORDS.findall(scoped_question.casefold()) if len(word) >= 3}
+    for identity in names - {match[2] for match in matches}:
+        if any(
+            identity.startswith(word) or identity.endswith(word) for word in words - _COMPANY_LABELS - _COMPANY_SUFFIXES
+        ):
+            return pages
+    return tuple(page for page in pages if identities[page.document_id] in selected)
+
+
 def _page_score(
     page: _Page,
     weights: dict[str, float],
@@ -378,18 +503,23 @@ def _statement_types(body: str) -> frozenset[str]:
     found = set()
     for index in range(len(lines)):
         for width in range(1, 4):
-            heading = " ".join(lines[index:index + width])
+            heading = " ".join(lines[index : index + width])
             for name, _query_pattern, heading_pattern in _STATEMENT_FACETS:
                 if heading_pattern.fullmatch(heading):
                     found.add(name)
     return frozenset(found)
 
 
-def _expense_category_requirements(question: str) -> tuple[str, ...]:
+def _concept_statement_requirements(question: str) -> tuple[str, ...]:
     normalized = " ".join(re.sub(r"[-\u2010-\u2015]", " ", question.casefold()).split())
+    requested = []
     if _EXPENSE_CATEGORY_QUERY.search(normalized) and not _SPECIFIC_EXPENSE_QUERY.search(normalized):
-        return ("income",)
-    return ()
+        requested.append("income")
+    if _MARGIN_QUERY.search(normalized):
+        requested.append("income")
+    if _CAPITAL_INTENSITY_QUERY.search(normalized):
+        requested.extend(("income", "cash-flow", "balance-sheet"))
+    return tuple(dict.fromkeys(requested))
 
 
 def _statement_requirements(question: str) -> tuple[str, ...]:
@@ -414,7 +544,7 @@ def _statement_requirements(question: str) -> tuple[str, ...]:
         if len({name for _position, name in inferred}) >= 2:
             requested.extend(inferred)
     requirements = (name for _position, name in sorted(requested))
-    return tuple(dict.fromkeys((*requirements, *_expense_category_requirements(question))))
+    return tuple(dict.fromkeys((*requirements, *_concept_statement_requirements(question))))
 
 
 def _required_statement_pages(ranked: list[tuple[float, _Page]], question: str) -> tuple[_Page, ...]:
@@ -427,8 +557,7 @@ def _required_statement_pages(ranked: list[tuple[float, _Page]], question: str) 
     documents = tuple(dict.fromkeys(page.document_id for _score, page in ranked))
     groups = [
         tuple(
-            page for _score, page in ranked
-            if page.document_id == document_id and name in page_types[page.source_id]
+            page for _score, page in ranked if page.document_id == document_id and name in page_types[page.source_id]
         )[:2]
         for document_id in documents
         for name in requested
@@ -451,14 +580,12 @@ def _global_select(ranked: list[tuple[float, _Page]], limit: int) -> tuple[Memor
         return tuple(page.citation for page in selected)
     maximum = candidates[0][0]
     while candidates and len(selected) < limit:
+
         def value(item: tuple[float, _Page]) -> float:
             score, page = item
             vocabulary = page.counts.keys()
             similarity = max(
-                (
-                    len(vocabulary & other.counts.keys()) / len(vocabulary | other.counts.keys())
-                    for other in selected
-                ),
+                (len(vocabulary & other.counts.keys()) / len(vocabulary | other.counts.keys()) for other in selected),
                 default=0.0,
             )
             return score / maximum - 0.12 * similarity
@@ -508,8 +635,9 @@ async def search_pdf_pages(
 ) -> tuple[MemoryCitation, ...]:
     """Rank actual PDF page entries without models, external assets, or invented references.
 
-    One scoped listing supplies the page corpus for offline ranking. Two bounded full-text
-    searches add exact lexical evidence without letting a long question's admission floor
+    One scoped listing supplies the page corpus for offline ranking. An unambiguous
+    company mention can narrow recognizable report IDs; unclear subjects retain the corpus.
+    Two bounded full-text searches add exact lexical evidence without letting a long question's admission floor
     hide relevant pages. Every returned citation belongs to a stored page entry.
     """
 
@@ -521,6 +649,7 @@ async def search_pdf_pages(
     pages = _pages((await memory.list()).entries)
     if not pages:
         return ()
+    pages = _requested_company_pages(pages, question)
     ranked = _rank(pages, question, weights, phrases)
     if not ranked:
         return ()
@@ -540,7 +669,9 @@ async def search_pdf_pages(
     ranked = [
         (
             score
-            + 0.05 * maximum_score * signals.get((page.citation.entry_id, page.citation.entry_version_id), 0.0)
+            + 0.05
+            * maximum_score
+            * signals.get((page.citation.entry_id, page.citation.entry_version_id), 0.0)
             / maximum_signal,
             page,
         )
