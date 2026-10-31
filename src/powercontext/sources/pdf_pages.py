@@ -29,6 +29,7 @@ from pypdf._encryption import Encryption
 from pypdf.filters import ZLIB_MAX_OUTPUT_LENGTH, decode_stream_data
 from pypdf.generic import (
     ArrayObject,
+    ContentStream,
     DictionaryObject,
     EncodedStreamObject,
     IndirectObject,
@@ -203,7 +204,7 @@ class _CryptPdfReader(PdfReader):
         return value
 
 
-def _decode_page_content_streams(page: DictionaryObject) -> tuple[EncodedStreamObject, ...]:
+def _decode_page_content_streams(page: DictionaryObject, reader: PdfReader) -> tuple[EncodedStreamObject, ...]:
     # Text extraction skips fontless pages and can suppress Form decoding errors.
     # Read their content independently before deciding whether the page is empty.
     streams: list[EncodedStreamObject] = []
@@ -227,6 +228,9 @@ def _decode_page_content_streams(page: DictionaryObject) -> tuple[EncodedStreamO
         if isinstance(value, EncodedStreamObject):
             streams.append(value)
         if value.get("/Subtype") == "/Form":
+            # Extraction can swallow Form syntax errors and return partial text.
+            # A fresh ContentStream forces its lazy parser before extraction.
+            _ = ContentStream(value, reader).operations
             visit_resources(value)
 
     def visit_resources(owner: DictionaryObject) -> None:
@@ -246,7 +250,11 @@ def _decode_page_content_streams(page: DictionaryObject) -> tuple[EncodedStreamO
             if isinstance(value, DictionaryObject) and value.get("/Subtype") == "/Form":
                 decode(value)
 
-    decode(page.get("/Contents"))
+    contents = page.get("/Contents")
+    decode(contents)
+    if contents is not None and not isinstance(_resolved_pdf_value(contents), NullObject):
+        # A page's array is one logical stream; literals may span its segments.
+        _ = ContentStream(contents, reader).operations
     visit_resources(page)
     return tuple(streams)
 
@@ -367,7 +375,7 @@ def parse_pdf_document(value: PDFDocumentInput) -> tuple[PDFPageInput, ...]:
         pages: list[PDFPageInput] = []
         content_streams: list[EncodedStreamObject] = []
         for number, page in enumerate(reader.pages, start=1):
-            content_streams.extend(_decode_page_content_streams(page))
+            content_streams.extend(_decode_page_content_streams(page, reader))
             pages.append(
                 PDFPageInput(
                     document_id=value.document_id,

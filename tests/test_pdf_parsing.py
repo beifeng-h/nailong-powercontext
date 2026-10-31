@@ -145,6 +145,78 @@ def test_form_streams_are_validated_without_duplicating_text(data: bytes, valid:
         assert pages[0].text.strip() == "Revenue 123"
 
 
+@pytest.mark.parametrize("compressed", [False, True], ids=["decoded", "flate"])
+@pytest.mark.parametrize("nested", [False, True], ids=["direct-form", "nested-form"])
+def test_malformed_form_syntax_fails_atomically(compressed: bool, nested: bool) -> None:
+    writer = PdfWriter()
+    _add_compressed_page(writer, zlib.compress(b"BT /F1 12 Tf (Earlier page 900) Tj ET"))
+    _add_compressed_page(
+        writer,
+        zlib.compress(b"BT /F1 12 Tf (Before 123) Tj ET\nq /Fm1 Do Q\nBT /F1 12 Tf (After 456) Tj ET"),
+    )
+    page = writer.pages[-1]
+    resources = page["/Resources"]
+    form = EncodedStreamObject() if compressed else DecodedStreamObject()
+    if compressed:
+        form._data = zlib.compress(b"(Unterminated literal string")
+        form[NameObject("/Filter")] = NameObject("/FlateDecode")
+    else:
+        form.set_data(b"(Unterminated literal string")
+    form[NameObject("/Type")] = NameObject("/XObject")
+    form[NameObject("/Subtype")] = NameObject("/Form")
+    form[NameObject("/BBox")] = ArrayObject([NumberObject(value) for value in (0, 0, 100, 200)])
+    form[NameObject("/Resources")] = DictionaryObject({NameObject("/Font"): resources["/Font"]})
+    reference = writer._add_object(form)
+    if nested:
+        parent = DecodedStreamObject()
+        parent.set_data(b"q /Nested Do Q")
+        parent[NameObject("/Type")] = NameObject("/XObject")
+        parent[NameObject("/Subtype")] = NameObject("/Form")
+        parent[NameObject("/BBox")] = form["/BBox"]
+        parent[NameObject("/Resources")] = DictionaryObject({
+            NameObject("/Font"): resources["/Font"],
+            NameObject("/XObject"): DictionaryObject({NameObject("/Nested"): reference}),
+        })
+        reference = writer._add_object(parent)
+    resources[NameObject("/XObject")] = DictionaryObject({NameObject("/Fm1"): reference})
+    with pytest.raises(ValueError):
+        parse_pdf_document(PDFDocumentInput(document_id="malformed-form-syntax", content=_document_bytes(writer)))
+
+
+def test_fontless_malformed_content_syntax_fails_atomically() -> None:
+    writer = PdfWriter()
+    _add_compressed_page(writer, zlib.compress(b"BT /F1 12 Tf (Earlier page 900) Tj ET"))
+    _add_compressed_page(writer, zlib.compress(b"(Unterminated literal string"))
+    del writer.pages[-1]["/Resources"]
+    with pytest.raises(ValueError):
+        parse_pdf_document(PDFDocumentInput(document_id="malformed-fontless-syntax", content=_document_bytes(writer)))
+
+
+def test_valid_page_literal_can_span_multiple_content_streams() -> None:
+    writer = PdfWriter()
+    _add_compressed_page(writer, zlib.compress(b"q Q"))
+    pieces = []
+    for data in (b"BT /F1 12 Tf (Revenue", b" 123) Tj ET"):
+        stream = DecodedStreamObject()
+        stream.set_data(data)
+        pieces.append(writer._add_object(stream))
+    writer.pages[0][NameObject("/Contents")] = ArrayObject(pieces)
+    pages = parse_pdf_document(PDFDocumentInput(document_id="split-page-content", content=_document_bytes(writer)))
+    assert len(pages) == 1
+    assert pages[0].text.split() == ["Revenue", "123"]
+
+
+def test_valid_fontless_inline_image_remains_an_empty_physical_page() -> None:
+    writer = PdfWriter()
+    _add_compressed_page(writer, zlib.compress(b"BT /F1 12 Tf (Earlier page 900) Tj ET"))
+    _add_compressed_page(writer, zlib.compress(b"q\nBI /W 1 /H 1 /CS /RGB /BPC 8 ID \xff\x00\x80\nEI\nQ"))
+    del writer.pages[-1]["/Resources"]
+    content = _document_bytes(writer)
+    pages = parse_pdf_document(PDFDocumentInput(document_id="fontless-inline-image", content=content))
+    assert [(page.page_number, page.text) for page in pages] == [(1, "Earlier page 900"), (2, "")]
+    assert all(page.document_sha256 == hashlib.sha256(content).hexdigest() for page in pages)
+
+
 @pytest.mark.parametrize("encrypted", [False, True], ids=["plain", "empty-password"])
 @pytest.mark.parametrize("marker", [b"%", b"%%", b"%%E", b"%%EO"])
 def test_truncated_file_end_marker_fails_atomically(marker: bytes, encrypted: bool) -> None:
