@@ -195,6 +195,13 @@ _FINANCIAL_ARITHMETIC = re.compile(
     r"\b(?:ratio|proportion|fraction|percentage|percent|margin|plus|minus|less|subtract(?:ing|ed)?"
     r"|divid(?:e|ed|ing)|sum|calculate|compute|return\s+on)\b|%"
 )
+_EXPENSE_CATEGORY_QUERY = re.compile(
+    r"\b(?:(?:operating\s+)?expenses?\s+(?:categor(?:y|ies)|breakdown)"
+    r"|(?:categor(?:y|ies)|breakdown)\s+of\s+(?:operating\s+)?expenses?)\b"
+)
+_SPECIFIC_EXPENSE_QUERY = re.compile(
+    r"\b(?:notes?|pension|retirement)\b|\b(?:stock|share)(?:\s+based)?\s+compensation\b"
+)
 _FINANCIAL_ACCOUNT_TYPES = (
     (
         "income",
@@ -378,6 +385,13 @@ def _statement_types(body: str) -> frozenset[str]:
     return frozenset(found)
 
 
+def _expense_category_requirements(question: str) -> tuple[str, ...]:
+    normalized = " ".join(re.sub(r"[-\u2010-\u2015]", " ", question.casefold()).split())
+    if _EXPENSE_CATEGORY_QUERY.search(normalized) and not _SPECIFIC_EXPENSE_QUERY.search(normalized):
+        return ("income",)
+    return ()
+
+
 def _statement_requirements(question: str) -> tuple[str, ...]:
     normalized_question = " ".join(question.casefold().split())
     requested = []
@@ -399,7 +413,8 @@ def _statement_requirements(question: str) -> tuple[str, ...]:
                 inferred.append((match.start(), name))
         if len({name for _position, name in inferred}) >= 2:
             requested.extend(inferred)
-    return tuple(dict.fromkeys(name for _position, name in sorted(requested)))
+    requirements = (name for _position, name in sorted(requested))
+    return tuple(dict.fromkeys((*requirements, *_expense_category_requirements(question))))
 
 
 def _required_statement_pages(ranked: list[tuple[float, _Page]], question: str) -> tuple[_Page, ...]:

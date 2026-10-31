@@ -580,3 +580,73 @@ async def test_single_source_ratios_keep_specific_disclosures_ahead_of_statement
         memory = runtime.memory.for_scope(scope_id)
         citations = await search_pdf_pages(memory, question, limit=1)
         assert await _read_page_numbers(memory, citations, stored, pages) == (operational_page.page_number,)
+
+
+@pytest.mark.parametrize(
+    "question",
+    (
+        "Compare Cedar Industries and Juniper's main expense categories in FY2025. "
+        "Give each company's categories, amounts and total.",
+        "For Cedar Industries and Juniper, give the breakdown of operating expenses for FY2025.",
+        "For Cedar Industries and Juniper, list operating-expense categories for FY2025.",
+    ),
+)
+async def test_expense_category_comparison_recalls_both_complete_statements(tmp_path: Path, question: str) -> None:
+    digest = hashlib.sha256(b"synthetic expense-category comparison").hexdigest()
+    documents = ("CEDAR_INDUSTRIES_2025_10K", "JUNIPER_2025_10K")
+    pages = tuple(
+        PDFPageInput(
+            document_id=document_id,
+            document_sha256=digest,
+            page_number=number,
+            text=(
+                "Consolidated Statements of Income\n"
+                "Expenses: research and development 30; marketing 20; administration 10. Total expenses 60."
+                if number == 1
+                else f"Management discussion of expense reporting. {question} " * 4
+            ),
+        )
+        for document_id in documents
+        for number in range(1, 25)
+    )
+    config, scope_id, stored, _pages = await _persist_pages(tmp_path, pages)
+    async with open_builtin_runtime(config) as runtime:
+        memory = runtime.memory.for_scope(scope_id)
+        citations = await search_pdf_pages(memory, question, limit=20)
+        assert len(citations) <= 20
+        await _retrieved_documents(memory, citations, stored)
+        locations = set()
+        for citation in citations:
+            record = await memory.get(GetMemoryEntryRequest(citation=citation))
+            metadata = stored[record.entry.sources[0].source_id].projection(TEXT_EVIDENCE_PROJECTION_KEY)["metadata"]
+            locations.add((metadata["document_id"], metadata["page_number"]))
+        assert {(document_id, 1) for document_id in documents}.issubset(locations)
+
+
+@pytest.mark.parametrize(
+    "specialist",
+    ("retirement", "pension", "stock-based compensation", "share compensation note"),
+)
+async def test_specific_expense_category_note_keeps_its_precise_citation_first(tmp_path: Path, specialist: str) -> None:
+    digest = hashlib.sha256(b"synthetic specific expense-category note").hexdigest()
+    question = f"Give Cedar Industries' {specialist} expense categories and amounts."
+    pages = tuple(
+        PDFPageInput(
+            document_id="CEDAR_INDUSTRIES_2025_10K",
+            document_sha256=digest,
+            page_number=number,
+            text=text,
+        )
+        for number, text in enumerate(
+            (
+                "Consolidated Statements of Income\nExpenses: research 30; marketing 20. Total expenses 50.",
+                f"{specialist.title()} expense note\n{question} Service costs 41 and interest costs 7.",
+            ),
+            start=1,
+        )
+    )
+    config, scope_id, stored, pages = await _persist_pages(tmp_path, pages)
+    async with open_builtin_runtime(config) as runtime:
+        memory = runtime.memory.for_scope(scope_id)
+        citations = await search_pdf_pages(memory, question, limit=1)
+        assert await _read_page_numbers(memory, citations, stored, pages) == (2,)
