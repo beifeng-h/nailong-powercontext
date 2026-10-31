@@ -39,6 +39,7 @@ from pypdf.generic import (
 )
 
 from powercontext.sources._pdf_search import search_pdf_pages
+from powercontext.sources._pdf_text import extract_pdf_page_text
 from powercontext.sources.definitions import AdapterSourceDefinition
 from powercontext.sources.models import Source, SourceMaterialization
 from powercontext.sources.projections import TEXT_EVIDENCE_PROJECTION_KEY, TextEvidence
@@ -372,7 +373,7 @@ def parse_pdf_document(value: PDFDocumentInput) -> tuple[PDFPageInput, ...]:
                     document_id=value.document_id,
                     document_sha256=digest,
                     page_number=number,
-                    text=page.extract_text() or "",
+                    text=extract_pdf_page_text(page),
                 )
             )
         _validate_decoded_streams(reader, tuple(content_streams))
