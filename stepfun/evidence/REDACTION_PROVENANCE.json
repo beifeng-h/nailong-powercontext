@@ -2,6 +2,29 @@
   "classification": "LOCAL_REVIEW_DERIVATIVE_NOT_ORIGINAL_NOT_RELEASED",
   "base_commit": "d647275c308e09b7b623f322a26f5c4e85734fb0",
   "source_commit": "43c0d60429e2cab60256c6e36109687e955551b3",
+  "initial_derivative_snapshot": {
+    "commit": "03d5a28df9d52c3140cb162034ac19bc467c9dd5",
+    "scope": "The existing original and derived hashes and byte counts in modified_source_files describe this initial derivative and its source commit. They do not assert the contents of later commits or the current working tree.",
+    "historical_runtime_tests_field": "The existing runtime_tests value records the initial snapshot status, not the status of later candidate tests."
+  },
+  "subsequent_candidate_state": {
+    "observed_head_before_provenance_update": "fa9c27ebcb8ad883b526e68eab1584ddb7fa246b",
+    "recorded_browser_runtime_commit": "a67ba18b886320b00b8ef13641f90f3c1cfd60b7",
+    "runtime_commit_scope": "Browser runtime evidence is associated with the recorded runtime commit; the observed HEAD and this provenance edit are not relabelled as that test commit.",
+    "description": "The observed HEAD is the known documentation and evidence snapshot; its later candidate commits include optional loopback port support, browser documentation, benchmark results and reload evidence. The subsequent provenance correction changes only this provenance file and is not represented by the observed HEAD.",
+    "readme_git_blob_sha256": {
+      "path": "stepfun/README.md",
+      "source_commit": "43c0d60429e2cab60256c6e36109687e955551b3",
+      "source_sha256": "f2939e937679ea466b3cab30fe051941da20cd0c6516c51041024bc294f04b4d",
+      "source_bytes": 8682,
+      "initial_derivative_commit": "03d5a28df9d52c3140cb162034ac19bc467c9dd5",
+      "initial_derivative_sha256": "338b928132fe987530d563999ab06a79c69f60bb726d78a42079f3a61f2bff38",
+      "initial_derivative_bytes": 9000,
+      "observed_head_sha256": "65d565e9c3d3ebaf9049f1a4c1bbf46c8fa0ca10b18588132b6c9b81103b3dc5",
+      "observed_head_bytes": 10493,
+      "hash_input": "Raw Git blob content bytes, before any working-tree line-ending conversion."
+    }
+  },
   "source_tree_files": 170,
   "source_modes": {
     "stepfun/.gitattributes": "100644",
@@ -428,7 +451,7 @@
   "runtime_tests": "NOT_YET_RUN",
   "official_score": "NOT_ASSERTED",
   "limitations": [
-    "Candidate directory is a preview, not a Git commit or official submission.",
+    "The initial derivative and subsequent candidate revisions were local Git commits at review time; this record does not claim an official submission.",
     "One-off historic audit scripts have relocated root paths; old Git commit/resource requirements remain.",
     "The c4 checks.stdout-stderr.log remains unavailable and is not represented as delivered.",
     "Hash/pattern checks do not prove absence of all sensitive data."
