@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sddctx"
+version = "1.0.0"
+description = "面向软件持续演进的 SDD 上下文管理系统：让 AI 开发助手拿到当前有效的规格、代码与测试"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+sddctx = "sddctx.cli:main"
+
+[tool.setuptools]
+packages = ["sddctx"]
+

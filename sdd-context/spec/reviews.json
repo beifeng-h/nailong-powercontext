@@ -1,0 +1,34 @@
+{
+  "reviews": [
+    {
+      "spec_id": "SPEC-001",
+      "content_hash": "2852a7e5fe7798cd",
+      "reviewed_at": "2026-11-03T05:46:30+00:00",
+      "note": "验收通过：实现与用例齐备"
+    },
+    {
+      "spec_id": "SPEC-002",
+      "content_hash": "d699aacc7fee661c",
+      "reviewed_at": "2026-11-03T05:46:30+00:00",
+      "note": "验收通过：实现与用例齐备"
+    },
+    {
+      "spec_id": "SPEC-003",
+      "content_hash": "e35979185c0b6cff",
+      "reviewed_at": "2026-11-03T05:46:30+00:00",
+      "note": "验收通过：实现与用例齐备"
+    },
+    {
+      "spec_id": "SPEC-004",
+      "content_hash": "d877ae80576d13dc",
+      "reviewed_at": "2026-11-03T05:46:30+00:00",
+      "note": "验收通过：实现与用例齐备"
+    },
+    {
+      "spec_id": "SPEC-005",
+      "content_hash": "7d35a1e5a1a27974",
+      "reviewed_at": "2026-11-03T05:46:31+00:00",
+      "note": "验收通过：实现与用例齐备"
+    }
+  ]
+}
