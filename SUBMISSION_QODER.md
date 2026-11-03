@@ -9,7 +9,7 @@
 | 代码仓库地址 | https://github.com/beifeng-h/nailong-powercontext.git |
 | Branch | `qoder-studytorch` |
 | 作品链接 | https://studytorch-okhinknhvg0.qoder.website |
-| Commit id | 见本分支最新提交（提交说明里以链接形式给出实际 SHA） |
+| Commit id | `83ac29b3f2e80ab9bbdc250d33c183d9d79b637b`（[permalink](https://github.com/beifeng-h/nailong-powercontext/commit/83ac29b3f2e80ab9bbdc250d33c183d9d79b637b)） |
 
 ## 用了什么
 
@@ -104,3 +104,14 @@ scripts/verify-site.ts 共 30 项检查，全部通过（产物完整性、无�
 - 本机没有配置 DASHSCOPE_API_KEY，因此嵌入与问答走的是**本地确定性降级实现**（归一化分词 + 哈希投影到 1024 维、L2 归一化；回答为检索片段抽取式组织），服务端日志有明确 warning。DashScope text-embedding-v3 与 qwen-turbo 的代码路径均已实现，在 .env 填入 Key 并重启后自动切回云端模型，无需改代码。
 - 降级嵌入器只反映字面/词形重叠，语义召回能力弱于云端嵌入；这一点在实现里显式标注，未做掩饰。
 - 线上站点为静态构建，不含 Functions 与后端数据库（databaseAccess 为 none）。
+
+## 提交校验
+
+本分支携带完整项目的提交为 `83ac29b3f2e80ab9bbdc250d33c183d9d79b637b`，
+commit 链接： https://github.com/beifeng-h/nailong-powercontext/commit/83ac29b3f2e80ab9bbdc250d33c183d9d79b637b
+
+仓库内 `studytorch/site/index.html` 的 SHA-256 与 Qoder Sites 站点描述文件
+`studytorch/.StudySeek.qoder.site` 中记录的 `indexSha256` 完全一致，
+即仓库里的静态产物与线上已发布的字节完全相同。
+
+线上站点： https://studytorch-okhinknhvg0.qoder.website （无登录态 HTTP 200）
