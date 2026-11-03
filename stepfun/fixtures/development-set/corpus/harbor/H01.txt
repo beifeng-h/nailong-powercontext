@@ -1,0 +1,3 @@
+Lost company laptop
+
+A staff member who loses a company laptop must contact the service desk immediately and provide the asset tag if known. The service desk marks the device as missing and starts a remote lock request.

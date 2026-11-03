@@ -1,0 +1,11 @@
+# Actual protocol-only state checks
+
+`RUN.json` and `REOPEN.json` are actual stdout receipts from two sequential Node processes, both exit 0. The reviewed driver and exact frozen inputs are preserved in `reproducer/`; driver SHA256 is `1fb7817b9906ae697f23b52c4373987338bc5f6275fb3951b9d4f93fb50572f3`. `BINDING.json` records the existing embedded service and functional source version. No service was started or restarted for these checks.
+
+Run `c30b0a88-d617-4190-ab83-3d2ae3cfd1e1` created only its two new `TEST_ONLY_PROTOCOL_SYNTHETIC_` KBs. The run made 15 sequential requests: health, registry, two creations, four imports, and seven searches. Harbor went count20/revision1 → count21/revision2 after H21 → count21/revision3 after replacing H05. Beacon had count2/revision1. Returned bodies and metadata matched the current fixtures, and Harbor/Beacon/Harbor selection retained each KB's own results. No old KB was a write target; no deletion or retry occurred.
+
+The separate client process made six requests: health, registry and four read-only searches. It verified the same UUIDs, labels, profiles and revisions, current H05/B01 bodies and H21 visibility. The service and database remained open throughout. This is a new-client visibility check, not service/DB restart or crash-recovery evidence. No independent count endpoint exists; historical import counts are retained, while `freshCountAfterReopen` is null. Top-K length is never described as a new total count.
+
+Vectors are deliberately Node-generated one-hot inputs. The API schema's q8/model declaration does not change their provenance. These results do **not** prove browser inference, model precision, retrieval quality, automatic fallback, UI dropdown/cache state, or independent full-text-index correctness. Keep these test KBs separate from browser model/quality experiments.
+
+Default `node reproducer/state-probe.mjs` is plan-only. A new run requires `run --execute` and creates new KBs. Inspect an uncertain outcome before any further execution; there is no automatic retry. A genuine new run's receipt can be used by the separate `reopen --receipt <that-receipt> --execute` command. Do not edit an old receipt to grant write access.

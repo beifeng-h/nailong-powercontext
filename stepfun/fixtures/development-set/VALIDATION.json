@@ -1,0 +1,17 @@
+{
+  "recorded_utc": "2026-10-31T21:58:34.902452+00:00",
+  "scope": "data/label/file consistency only; no retrieval, model, browser, database or user experiment",
+  "passed": [
+    "24 text versions/23 IDs; initial harbor20+beacon2",
+    "10 queries; complete 200 binary judgments; 20 positives",
+    "every declared positive set matches exhaustive labels",
+    "source text bytes and per-document SHA match; UTF8/LF",
+    "mutation IDs/revisions/expected deadline content consistent",
+    "observation templates remain all null"
+  ],
+  "root_semantic_review": "pending",
+  "initial_serialization_issue": "Intermediate Windows CRLF TXT bytes differed from JSON LF; corrected only TXT serialization before final snapshot. Labels and semantic content unchanged.",
+  "actual_rankings": false,
+  "vectors": false,
+  "measured_quality_or_performance": false
+}

@@ -1,0 +1,20 @@
+{
+  "documents": [
+    {
+      "id": "H21",
+      "kb_id": "harbor",
+      "revision": "1",
+      "title": "Shared bicycle key cabinet",
+      "source_path": "mutations/add/H21.txt",
+      "text": "Shared bicycle key cabinet\n\nThe shared bicycle key cabinet is in the east lobby beside the visitor desk. Its inventory reference is cobaltmesa418. Return a borrowed bicycle key to this cabinet before leaving the building.\n"
+    },
+    {
+      "id": "H05",
+      "kb_id": "harbor",
+      "revision": "2",
+      "title": "Travel expense submission update",
+      "source_path": "mutations/update/H05-r2.txt",
+      "text": "Travel expense submission update\n\nTravel expense packets must now be submitted within eleven calendar days after returning from a business trip. Include the itinerary and available receipts in the expense portal. This replacement policy carries the update marker ledgermint604.\n"
+    }
+  ]
+}

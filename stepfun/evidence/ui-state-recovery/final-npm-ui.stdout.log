@@ -1,0 +1,205 @@
+
+> stepfun-browser-local-kb@0.1.0 test:ui-state
+> node --experimental-vm-modules evidence/ui-state-recovery/fallback-boundary-repro.mjs --source-dir public
+
+{
+  "scope": "OFFLINE real client/app code with VM DOM/Worker/API substitutes; NOT browser/model/DB evidence",
+  "sourceDir": "<LOCAL_USER_DIR>\\Documents\\ChatGPT\\oceanbaes\\stepfun-local-contest\\stepfun\\public",
+  "sourceHashes": {
+    "app.mjs": "502963ad62d224218d58e77121c9802b98f6b19c5878cd43822be5af07fd03e9",
+    "embedding-client.mjs": "11424cead4b69030e2367f6dc008bf90b643b7becdb161c42ac99550d5faba59",
+    "embedding-worker.js": "de54a97ef76441dbf68378150e2e1b2e162775f4b6efaa77c3b38cd61d821648"
+  },
+  "controlAndRegressionCases": [
+    {
+      "name": "CONTROL: initialization failure destroys old worker and replays full input on WASM",
+      "observations": {
+        "oldGpuTerminated": true,
+        "wasmFullInput": [
+          "Offline substitute input 1",
+          "Offline substitute input 2",
+          "Offline substitute input 3",
+          "Offline substitute input 4",
+          "Offline substitute input 5"
+        ]
+      },
+      "status": "pass"
+    },
+    {
+      "name": "REGRESSION: precision-invalidated KB must clear old results and timings",
+      "observations": {
+        "oldGpuTerminated": true,
+        "gpuInput": [
+          "Offline substitute input 1",
+          "Offline substitute input 2",
+          "Offline substitute input 3",
+          "Offline substitute input 4",
+          "Offline substitute input 5"
+        ],
+        "wasmInput": [
+          "Offline substitute input 1",
+          "Offline substitute input 2",
+          "Offline substitute input 3",
+          "Offline substitute input 4",
+          "Offline substitute input 5"
+        ],
+        "selectedKb": "",
+        "resultText": "",
+        "timingText": "",
+        "generationAdvanced": true,
+        "forbiddenApiCalls": 0
+      },
+      "status": "pass"
+    },
+    {
+      "name": "REGRESSION: terminal retry failure must invalidate activeModel and make ensureModel initialize again",
+      "observations": {
+        "clientStateNull": true,
+        "activeModelAfterFailure": null,
+        "selectedKbAfterFailure": "",
+        "newWorkerCreatedByEnsure": true,
+        "forbiddenApiCalls": 0
+      },
+      "status": "pass"
+    },
+    {
+      "name": "BOUNDARY: fatal fp32 Worker failure restores choices after ready without reviving cancelled token",
+      "observations": {
+        "statusTrace": [
+          {
+            "status": "failed",
+            "backend": null,
+            "beforePrecision": "fp32",
+            "afterPrecision": null,
+            "selection": "",
+            "generation": 4,
+            "compatibleChoices": []
+          },
+          {
+            "status": "fallback",
+            "backend": null,
+            "beforePrecision": null,
+            "afterPrecision": null,
+            "selection": "",
+            "generation": 4,
+            "compatibleChoices": []
+          },
+          {
+            "status": "loading",
+            "backend": null,
+            "beforePrecision": null,
+            "afterPrecision": null,
+            "selection": "",
+            "generation": 4,
+            "compatibleChoices": []
+          },
+          {
+            "status": "ready",
+            "backend": "wasm",
+            "beforePrecision": null,
+            "afterPrecision": "fp32",
+            "selection": "",
+            "generation": 5,
+            "compatibleChoices": [
+              "OFFLINE_FP32_KB"
+            ]
+          },
+          {
+            "status": "closed",
+            "backend": null,
+            "beforePrecision": "fp32",
+            "afterPrecision": "fp32",
+            "selection": "",
+            "generation": 5,
+            "compatibleChoices": [
+              "OFFLINE_FP32_KB"
+            ]
+          }
+        ],
+        "returnedBackend": "wasm",
+        "returnedDtype": "fp32",
+        "finalChoices": [
+          "OFFLINE_FP32_KB"
+        ],
+        "finalSelection": "",
+        "oldTokenCancelled": true,
+        "oldGpuTerminated": true,
+        "gpuInput": [
+          "Offline substitute input 1",
+          "Offline substitute input 2",
+          "Offline substitute input 3",
+          "Offline substitute input 4",
+          "Offline substitute input 5"
+        ],
+        "wasmInput": [
+          "Offline substitute input 1",
+          "Offline substitute input 2",
+          "Offline substitute input 3",
+          "Offline substitute input 4",
+          "Offline substitute input 5"
+        ]
+      },
+      "status": "pass"
+    },
+    {
+      "name": "BOUNDARY: nonfatal same-precision fallback preserves current choice and query token",
+      "observations": {
+        "statusTrace": [
+          {
+            "status": "fallback",
+            "backend": "webgpu",
+            "beforePrecision": "fp32",
+            "afterPrecision": "fp32",
+            "selection": "OFFLINE_FP32_KB",
+            "generation": 3,
+            "compatibleChoices": [
+              "OFFLINE_FP32_KB"
+            ]
+          },
+          {
+            "status": "loading",
+            "backend": null,
+            "beforePrecision": "fp32",
+            "afterPrecision": "fp32",
+            "selection": "OFFLINE_FP32_KB",
+            "generation": 3,
+            "compatibleChoices": [
+              "OFFLINE_FP32_KB"
+            ]
+          },
+          {
+            "status": "ready",
+            "backend": "wasm",
+            "beforePrecision": "fp32",
+            "afterPrecision": "fp32",
+            "selection": "OFFLINE_FP32_KB",
+            "generation": 3,
+            "compatibleChoices": [
+              "OFFLINE_FP32_KB"
+            ]
+          },
+          {
+            "status": "closed",
+            "backend": null,
+            "beforePrecision": "fp32",
+            "afterPrecision": "fp32",
+            "selection": "OFFLINE_FP32_KB",
+            "generation": 3,
+            "compatibleChoices": [
+              "OFFLINE_FP32_KB"
+            ]
+          }
+        ],
+        "finalSelection": "OFFLINE_FP32_KB",
+        "queryTokenPreserved": true
+      },
+      "status": "pass"
+    }
+  ],
+  "failed": 0,
+  "realBrowser": false,
+  "realModelInference": false,
+  "realHttpOrDatabase": false,
+  "workerSourceExecuted": false,
+  "desiredAssertionsUnchangedForAfterFix": true
+}

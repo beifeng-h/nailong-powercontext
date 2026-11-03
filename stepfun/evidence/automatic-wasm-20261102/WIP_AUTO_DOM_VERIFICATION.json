@@ -1,0 +1,29 @@
+{
+  "reviewedAtUtc": "2026-11-02T09:42:43.647291+00:00",
+  "provenance": "ASSERTIONS_ON_ORIGINAL_UI_DOM_CAPTURE_AND_REAL_SCREENSHOT; NOT_AN_ORIGINAL_APP_EXPORT",
+  "allObservableChecksPassed": true,
+  "checks": {
+    "originalUiModeAuto": true,
+    "automaticQ8WasmReady": true,
+    "actualWorkerUnavailableAdapterObserved": true,
+    "pinnedRealModel": true,
+    "freshQ8KbCreated": true,
+    "singleDocumentRealEmbeddingImportRefresh": true,
+    "oneQueryRealEmbeddingAndDbReturn": true,
+    "originalBodyRendered": true,
+    "newKbStillSelected": true,
+    "noAppErrorEvents": true,
+    "actualScreenshotPreserved": true,
+    "sourceHashesStable": true
+  },
+  "originalInput": "WIP_LOCAL_URL_AUTO_QUERY_RESULT.json",
+  "kbId": "94a92ef3-d47a-47a9-8f72-7c41ec375223",
+  "syntheticTestInputDocument": true,
+  "modelOrSdkSubstitute": false,
+  "sourceBinding": "WIP_LOCAL_URL_SOURCE_BINDING.json",
+  "screenshotVisuallyReviewed": true,
+  "originalExportFileObtained": false,
+  "originalExportOfflineValidatorRun": false,
+  "formalScoreClaimed": false,
+  "scope": "One controlled headless browser initialization fallback + one fresh document import/refresh + one real query, not a quality benchmark or general device-failure guarantee"
+}

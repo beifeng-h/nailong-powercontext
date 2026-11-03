@@ -1,0 +1,3 @@
+Account protection after device loss
+
+After a lost company laptop report, the security team revokes the affected login sessions. The employee changes the account password after security confirms that session revocation is complete.

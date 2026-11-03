@@ -1,0 +1,45 @@
+{
+  "recordType": "compact observation transcribed from retained browser DOM; not the full raw report",
+  "observedDateUtc": "2026-11-01",
+  "functionalCommit": "c4f99a1a9c94da7111291f16cafc5eb30ff7c657",
+  "runId": "77153f14-da1b-4e20-b6b9-d5d033b1c4f5",
+  "startedAt": "2026-11-01T01:00:30.141Z",
+  "finishedAt": "2026-11-01T01:04:54.859Z",
+  "browser": "Edge 156.0.0.0, Windows x64",
+  "hardwareConcurrency": 16,
+  "deviceMemoryGiB": 16,
+  "webGpuAdapterReported": {"vendor": "intel", "architecture": "gen-12lp", "shaderF16": true},
+  "qualityScope": "AI-assisted frozen synthetic development set; 20 documents, 10 complete queries, two relevant documents per query; not official gold",
+  "independentDomArithmeticCheck": {
+    "querySamples": 120,
+    "exactFullQueriesMatchedFrozenFixture": true,
+    "eachQueryRepeats": [1, 2, 3],
+    "allReturnedPagesHaveFiveUniqueHarborIds": true,
+    "allRecomputedRecallAndBinaryNdcgMatchReportedValues": true,
+    "failures": []
+  },
+  "modes": [
+    {"id": "fp32-gpu", "backendReported": "webgpu", "dtypeReported": "fp32", "selection": "explicit-experiment", "kbId": "84564b7d-dcbc-4f11-8395-3a48c35a4d9f", "querySamples": 30, "macroRecallAt5": 1, "macroNdcgAt5": 1, "subsequentReadyMedianMs": 27.050000071525577, "batch4WallTimeSpeedup": 2.147394136088443},
+    {"id": "fp16-gpu", "backendReported": "webgpu", "dtypeReported": "fp16", "selection": "explicit-experiment", "kbId": "60f59a02-65dc-482a-9cce-410fa47fac41", "querySamples": 30, "macroRecallAt5": 1, "macroNdcgAt5": 1, "subsequentReadyMedianMs": 27.450000047683716, "batch4WallTimeSpeedup": 2.7932367140544208},
+    {"id": "fp32-wasm", "backendReported": "wasm", "dtypeReported": "fp32", "selection": "explicit-wasm", "kbId": "49241595-e41f-4b38-9f5f-703edfc50bfb", "querySamples": 30, "macroRecallAt5": 1, "macroNdcgAt5": 1, "subsequentReadyMedianMs": 39.39999997615814, "batch4WallTimeSpeedup": 1.0176261873138472},
+    {"id": "q8-wasm", "backendReported": "wasm", "dtypeReported": "q8", "selection": "explicit-wasm", "kbId": "47758c27-2fde-4350-ab3c-bbf7dda03f1b", "querySamples": 30, "macroRecallAt5": 1, "macroNdcgAt5": 1, "subsequentReadyMedianMs": 30.40000009536743, "batch4WallTimeSpeedup": 0.9674966453693656}
+  ],
+  "comparisons": [
+    {"baselineId": "fp32-gpu", "candidateId": "fp16-gpu", "modelTotalBytesCompressionRatio": 1.9750800000908264, "subsequentReadyMedianSpeedup": 0.9854280518956904, "recallDelta": 0, "ndcgDelta": 0},
+    {"baselineId": "fp32-wasm", "candidateId": "q8-wasm", "modelTotalBytesCompressionRatio": 3.8187539407643536, "subsequentReadyMedianSpeedup": 1.2960526267288464, "recallDelta": 0, "ndcgDelta": 0}
+  ],
+  "eachModeBatchTrials": "20 documents; batch sizes 1 and 4, each repeated three times, ordered 1/4,4/1,1/4",
+  "timingLimits": {
+    "readyBoundary": "query vector generation plus local search round trip; excludes model initialization and corpus import",
+    "subsequentReadySamplesPerMode": 20,
+    "displayBoundary": "DOM update plus two requestAnimationFrame callbacks; samples near 2 seconds, physical foreground uncalibrated",
+    "cacheCleared": false,
+    "fullColdLoadMeasured": false,
+    "automaticWasmFallbackMeasured": false
+  },
+  "fullBrowserRawReportArchived": false,
+  "fullBrowserRawReportLocation": "Edge3 tab1638301526, http://127.0.0.1:34021/benchmark.html, #raw",
+  "apiEventArchive": "native-api-events.jsonl: 120 start + 120 complete, API level only",
+  "gpuKernelPrecisionTrace": false,
+  "formalPlatformScore": null
+}

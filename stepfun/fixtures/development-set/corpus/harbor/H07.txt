@@ -1,0 +1,3 @@
+Unexpected search service outage
+
+For an unexpected search service outage, page the on-call engineer through the incident channel. The engineer opens an incident log and assigns a technical responder.

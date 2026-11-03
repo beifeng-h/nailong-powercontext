@@ -1,0 +1,104 @@
+{
+  "queries": [
+    {
+      "id": "Q01",
+      "kb_id": "harbor",
+      "query": "Which actions should follow the loss of a work laptop?",
+      "relevant_ids": [
+        "H01",
+        "H02"
+      ],
+      "annotation_note": "H01 states the missing-device report and remote lock process; H02 states the account-session and password protection steps."
+    },
+    {
+      "id": "Q02",
+      "kb_id": "harbor",
+      "query": "What must be arranged before a new employee can use their laptop and work account?",
+      "relevant_ids": [
+        "H03",
+        "H04"
+      ],
+      "annotation_note": "H03 covers advance equipment preparation; H04 covers account activation and second-factor enrollment."
+    },
+    {
+      "id": "Q03",
+      "kb_id": "harbor",
+      "query": "After a business trip, when is an expense packet due and how is a missing taxi receipt handled?",
+      "relevant_ids": [
+        "H05",
+        "H06"
+      ],
+      "annotation_note": "H05 gives the submission deadline; H06 gives the missing taxi receipt evidence and approval rule."
+    },
+    {
+      "id": "Q04",
+      "kb_id": "harbor",
+      "query": "During an unexpected search service outage, what escalation and public update rules apply?",
+      "relevant_ids": [
+        "H07",
+        "H08"
+      ],
+      "annotation_note": "H07 names the escalation channel and technical response; H08 gives public status updates and restoration communication."
+    },
+    {
+      "id": "Q05",
+      "kb_id": "harbor",
+      "query": "How long are nightly snapshots kept, and how do we check that they can be recovered?",
+      "relevant_ids": [
+        "H09",
+        "H10"
+      ],
+      "annotation_note": "H09 gives retention; H10 gives the scheduled restore check and record-count validation."
+    },
+    {
+      "id": "Q06",
+      "kb_id": "harbor",
+      "query": "How is a feature introduced gradually, and who can return users to the previous behavior if release checks fail?",
+      "relevant_ids": [
+        "H11",
+        "H12"
+      ],
+      "annotation_note": "H11 gives the exposure stages and checks; H12 gives rollback authority and the feature-flag action."
+    },
+    {
+      "id": "Q07",
+      "kb_id": "harbor",
+      "query": "How quickly is a verified owner's workspace removed, and which billing fields remain outside that erasure?",
+      "relevant_ids": [
+        "H13",
+        "H14"
+      ],
+      "annotation_note": "H13 gives active workspace erasure timing; H14 identifies separate retained billing fields."
+    },
+    {
+      "id": "Q08",
+      "kb_id": "harbor",
+      "query": "What are the booking rules and duration limits for meeting rooms and quiet pods?",
+      "relevant_ids": [
+        "H15",
+        "H16"
+      ],
+      "annotation_note": "H15 covers room booking and its limit; H16 covers quiet pods and their limit."
+    },
+    {
+      "id": "Q09",
+      "kb_id": "harbor",
+      "query": "What must a host do before a visitor arrives, and what badge and access rules apply during the visit?",
+      "relevant_ids": [
+        "H17",
+        "H18"
+      ],
+      "annotation_note": "H17 gives advance registration; H18 covers identity, temporary badge, escort and return."
+    },
+    {
+      "id": "Q10",
+      "kb_id": "harbor",
+      "query": "How do staff join a training course and record their paid learning hours?",
+      "relevant_ids": [
+        "H19",
+        "H20"
+      ],
+      "annotation_note": "H19 covers approval and enrollment; H20 covers the paid-hour allowance and timesheet evidence."
+    }
+  ]
+}

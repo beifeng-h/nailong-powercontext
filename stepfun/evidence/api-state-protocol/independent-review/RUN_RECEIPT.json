@@ -1,0 +1,5 @@
+{
+  "actual_check_process_exit": 0,
+  "observed_from": "functions.exec running checks.py (exit0)",
+  "scope": "Read-only receipt/document/summary consistency checks; no DB/probe/test/model/UI execution"
+}

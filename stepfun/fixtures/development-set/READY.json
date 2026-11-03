@@ -1,0 +1,36 @@
+{
+  "proposal_root": "<LOCAL_USER_DIR>\\AppData\\Local\\Temp\\stepfun-synthetic-quality-20261031-jsume4wu",
+  "source_official_path": "<LOCAL_USER_DIR>\\Documents\\ChatGPT\\oceanbaes\\artifacts\\project-continuation-20261031\\stepfun-official-readonly\\FULL_TEXT_NORMALIZED.md",
+  "source_official_sha256": "143265a525617aca976990aacfe2e72f9cc9c1e0968dc96ce856b8cd97a4c7fc",
+  "source_url": "https://oceanbase.yuque.com/org-wiki-obtech-vh7w9r/hc3pio/kw9wfx4bu9pyvat9",
+  "read_scope": "full normalized task title through section4.3 final paragraph; no immutable web version",
+  "read_order": [
+    "README.md",
+    "documents.initial.jsonl",
+    "queries.jsonl",
+    "LABEL_GUIDE.md",
+    "qrels.complete.tsv",
+    "STATE_SCENARIOS.json",
+    "documents.mutations.jsonl",
+    "TEST_PLAN.md",
+    "DATA_MANIFEST.json"
+  ],
+  "counts": {
+    "initial_harbor": 20,
+    "initial_beacon": 2,
+    "fixed_quality_queries": 10,
+    "judged_pairs": 200,
+    "positive_labels": 20,
+    "distinct_document_ids_including_add": 23,
+    "text_versions_including_update": 24
+  },
+  "label_provenance": "AI-assisted synthetic text and agent-authored explicit labels; root independent review pending; not real-person/official gold",
+  "structural_validation": "VALIDATION.json",
+  "actual_execution": "not run",
+  "model_or_vectors": false,
+  "browser_or_database": false,
+  "measured_metrics": false,
+  "product_writes": false,
+  "application_owner": "root only",
+  "next": "root reviews all texts and explicit relevance labels, then freezes source hashes before any actual FP32/quantized comparison"
+}

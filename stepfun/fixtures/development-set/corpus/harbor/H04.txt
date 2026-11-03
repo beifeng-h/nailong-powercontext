@@ -1,0 +1,3 @@
+First account activation
+
+Before a new employee can use the work account, the line manager sends an activation code. The employee must enroll a second authentication factor before opening internal applications.

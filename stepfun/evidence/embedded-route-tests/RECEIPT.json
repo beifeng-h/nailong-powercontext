@@ -1,0 +1,19 @@
+{
+  "time": "2026-11-01T00:25:57.167869+00:00",
+  "testedHead": "3c6c73fabdd9d8c210d6cfcae5ba7215d81ed337",
+  "command": "node --test --test-reporter=tap stepfun/native-hybrid.test.mjs",
+  "counts": {
+    "pass": 13,
+    "fail": 0,
+    "skip": 0
+  },
+  "exitCode": 0,
+  "scope": "pure routing/protocol/configuration; no native runtime, DB, browser or quality claim",
+  "files": {
+    "bridge.mjs": "02590d0be828b85ae93cd0157cc6ec411913b17c627503923f3172ffc2aee4b6",
+    "native-hybrid.mjs": "c9dd4b00a5660283dcaec184b0d876babe5f6cff636aaef4bfbfbee57dee291f",
+    "native-hybrid.test.mjs": "2c9f95b86ae0744a7e65d0c44217bade89f18fc6517e1ff724b9b4756b21ab8b",
+    "main.mjs": "abc072a0cba6e4857a8e1bfd4f473b6db43f7c62aba0688f781b6ee3af466429",
+    "package-lock.json": "1fda91b09ad39ba0715376af5b3b814fc82a7da637177c4ae6e83bcc44ce6122"
+  }
+}

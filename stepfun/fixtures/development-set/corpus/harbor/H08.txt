@@ -1,0 +1,3 @@
+Public outage updates
+
+During an unexpected search service outage, the communications owner posts a status-page update every twenty minutes. A final update must say when service was restored and summarize the customer impact.

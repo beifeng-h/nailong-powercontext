@@ -1,0 +1,13 @@
+{
+  "checkedAtUtc": "2026-11-02T09:39:13.877781+00:00",
+  "originalExportSaved": false,
+  "newCandidates": [],
+  "candidateMetadata": [
+    {
+      "path": "<LOCAL_USER_DIR>\\Downloads\\stepfun-local-run.json",
+      "bytes": 2546,
+      "mtime": 1793489703.7033105
+    }
+  ],
+  "purpose": "Read-only recheck after export tool socket timeout; no new click/download or browser operation"
+}

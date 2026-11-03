@@ -1,0 +1,26 @@
+{
+  "recordedAtUtc": "2026-11-01T01:47:17.688Z",
+  "scope": "Offline VM/DOM/Worker/API substitute regressions only",
+  "baselineFunctionalCommit": "c4f99a1a9c94da7111291f16cafc5eb30ff7c657",
+  "driverSha256": "6172bdd1eacfe17fd1c2635c326b2fa6b02615aa1e6e3a88b2314b6add1dac2e",
+  "originalFailed": 2,
+  "firstFixFailed": 1,
+  "bothFixesFailed": 0,
+  "finalSourceHashes": {
+    "app.mjs": "502963ad62d224218d58e77121c9802b98f6b19c5878cd43822be5af07fd03e9",
+    "embedding-client.mjs": "11424cead4b69030e2367f6dc008bf90b643b7becdb161c42ac99550d5faba59",
+    "embedding-worker.js": "de54a97ef76441dbf68378150e2e1b2e162775f4b6efaa77c3b38cd61d821648"
+  },
+  "clientAndWorkerUnchanged": true,
+  "realBrowser": false,
+  "realModelInference": false,
+  "realDatabase": false,
+  "readyBoundaryAdditionalCasesPending": false,
+  "extendedOriginalFailed": 3,
+  "extendedFixedFailed": 0,
+  "finalCommand": "npm run test:ui-state",
+  "extendedDriverSha256": "18bc9489ebad64782fd9d32bc02d4edf9aa89cad55430b658349e1ae586c93d0",
+  "finalUiRecord": "final-npm-ui.json",
+  "finalNpmTestExitCode": 0,
+  "finalNpmTestPass": 19
+}

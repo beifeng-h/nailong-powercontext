@@ -1,0 +1,18 @@
+{
+  "recordedAt": "2026-11-01T00:59:03.527024+00:00",
+  "command": "node --test --test-reporter=tap native-hybrid.test.mjs prepared-rrf.test.mjs",
+  "exitCode": 0,
+  "counts": {
+    "pass": 19,
+    "fail": 0,
+    "skip": 0
+  },
+  "scope": "pure routing, binding, result-codec tests; no browser quality claim",
+  "files": {
+    "prepared-rrf.mjs": "580daf8e1d200e20700454237e1a53b4e235b6b5fc82c83f7b71ed8ac1881ce4",
+    "prepared-rrf.test.mjs": "a5548198ecfc619197eb2d9ea8acae787ab32e1aa5db9528ce933bb2934d92d0",
+    "bridge.mjs": "de2f195495ebe6d29530f11272ea66435e1e032a32cb849a113b11b160fc65d1",
+    "native-hybrid.mjs": "faa530ee5005d3bbb8e2603449455d5c518f214c3efaf8fa48ffd508b9198ca6",
+    "native-hybrid.test.mjs": "4b279bc9bd2ff4b4d9eb54b46c475a6db619beb426220e14f0ebabd356066457"
+  }
+}

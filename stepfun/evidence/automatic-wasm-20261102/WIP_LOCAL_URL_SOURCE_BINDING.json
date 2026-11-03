@@ -1,0 +1,23 @@
+{
+  "boundAtUtc": "2026-11-02T09:29:00.750172+00:00",
+  "repositoryHead": "8fee656f11f38af56e0014f7bba2d7bdbcbcdd2c",
+  "gitStatus": " M stepfun/public/embedding-client.mjs\n M stepfun/public/embedding-worker.js\n?? stepfun/tests/\n",
+  "phase": "Worker handshake plus absolute same-origin model/WASM local URL WIP",
+  "testedByContentHashes": true,
+  "files": [
+    {
+      "source": "public/embedding-client.mjs",
+      "sha256": "a58c89a9597e47d7f871c7f4d8671f1acbe07a8e2db43d434abe844da2f385ad",
+      "bytes": 10348,
+      "snapshot": "WIP_LOCAL_URL_CLIENT_SOURCE.mjs"
+    },
+    {
+      "source": "public/embedding-worker.js",
+      "sha256": "ee0bb64c0627624fba8967dffa7ddb55535a59989fc764248cdd5cf12acfc714",
+      "bytes": 6094,
+      "snapshot": "WIP_LOCAL_URL_WORKER_SOURCE.js"
+    }
+  ],
+  "networkOrBrowserSettingsChanged": false,
+  "runtimeResult": "NOT_YET_OBSERVED"
+}

@@ -1,0 +1,3 @@
+Meeting room reservations
+
+Book meeting rooms in Room Board before use. A reservation can last at most two hours, and an unused room reservation should be cancelled after ten minutes.

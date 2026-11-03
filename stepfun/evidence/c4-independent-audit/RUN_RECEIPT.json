@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "<LOCAL_USER_DIR>/AppData/Local/Temp/powercontext-restart-20261031/Scripts/python.exe",
+    "-X",
+    "utf8",
+    "<LOCAL_USER_DIR>\\AppData\\Local\\Temp\\stepfun-c4-api-audit-20261101-2n2yzdoj\\audit.py"
+  ],
+  "actual_exit_code": 0,
+  "scope": "Read-only Git/file/log/resource checks; no browser/UI/DB/inference/test execution"
+}

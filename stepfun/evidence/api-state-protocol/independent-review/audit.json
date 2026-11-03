@@ -1,0 +1,90 @@
+{
+  "checked_at_utc": "2026-11-01T01:38:35.735120+00:00",
+  "scope": "Read-only file/receipt/summary audit only; no probe/test/browser/DB/model rerun",
+  "checks_passed": true,
+  "run_request_counts": {
+    "health": 1,
+    "registry": 1,
+    "create": 2,
+    "import": 4,
+    "search": 7
+  },
+  "run_total_requests": 15,
+  "imports_observed_count_revision": [
+    [
+      20,
+      1
+    ],
+    [
+      21,
+      2
+    ],
+    [
+      21,
+      3
+    ],
+    [
+      2,
+      1
+    ]
+  ],
+  "owned_kbs": [
+    {
+      "id": "5eb0a965-2f4d-457d-a757-685861529984",
+      "label": "TEST_ONLY_PROTOCOL_SYNTHETIC_c30b0a88-d617-4190-ab83-3d2ae3cfd1e1_harbor",
+      "profile": "q8",
+      "confirmedRevision": 3,
+      "lastImportObservedCount": 21,
+      "createdThisRun": true
+    },
+    {
+      "id": "44512a0d-303b-4486-b030-701e1ed22c05",
+      "label": "TEST_ONLY_PROTOCOL_SYNTHETIC_c30b0a88-d617-4190-ab83-3d2ae3cfd1e1_beacon",
+      "profile": "q8",
+      "confirmedRevision": 1,
+      "lastImportObservedCount": 2,
+      "createdThisRun": true
+    }
+  ],
+  "all_recorded_mutations_only_new_run_kbs": true,
+  "disjoint_from_four_quality_run_kbs": true,
+  "reopen_request_counts": {
+    "health": 1,
+    "registry": 1,
+    "search": 4
+  },
+  "reopen_total_requests": 6,
+  "run_client_pid": 288788,
+  "reopen_client_pid": 288188,
+  "server_pid_observed_before_run": 291436,
+  "server_restart_claimed": false,
+  "reopen_fresh_count": null,
+  "document_bodies_match_frozen_protocol_fixtures": true,
+  "recorded_requests_all_successful": true,
+  "driver_sha_matches_binding": true,
+  "docs_metric_roundings_match_root_transcribed_summary": true,
+  "docs_batch_ratio_direction_corrected": "T_batch1/T_batch4",
+  "ready_speedup_ratios": [
+    0.9854280518956904,
+    1.2960526267288464
+  ],
+  "source_files_sha256": {
+    "evidence/api-state-protocol/RUN.json": "6d4cc90045b2e52a635e727d726c0c0c0ef3b075e663a24d26c9534c16468fed",
+    "evidence/api-state-protocol/REOPEN.json": "e5c9051dfb1fb498ef37df78e8c2784dd046827cd43e56041329be505885ae6f",
+    "evidence/api-state-protocol/BINDING.json": "66c6130e30a1dd2429e5d1ba99faeecba9a76f6c3b431a5960a5a277d64d215d",
+    "evidence/api-state-protocol/reproducer/state-probe.mjs": "1fb7817b9906ae697f23b52c4373987338bc5f6275fb3951b9d4f93fb50572f3",
+    "evidence/browser-run-77153f14/OBSERVED_SUMMARY.json": "472d73b3d3c536d3de92ffbae29b46894392047541e5834881ad21b376e9a318",
+    "README.md": "95b4787463221ee3c33c6e12d248439bd9fd6e0bbb2785d33e06c1377f2f39df",
+    "docs/technical-note.md": "9f79a4cd0a64d99f760ea0b58b7631e5af85292dd09706586cdc2e383af626b3",
+    "public/benchmark.mjs": "caa32c3b5ae0a6bf39cf556742a901f87423286c926776948d5e28c3f09bcf68"
+  },
+  "limits": [
+    "Receipt self-consistency and reviewed ownership guards support the recorded action scope, not a network/global-process audit.",
+    "The two PIDs are client probe PIDs, not proof of service/database reopen; BINDING explicitly says serverRestarted=false.",
+    "Import counts20/21/21/2 were returned during original import; reopen freshCount is null. Top-K lengths are not row counts.",
+    "Synthesized one-hot vectors and q8 declaration are API schema/state tests only, not browser inference/quantization/relevance-quality/independent FTS correctness.",
+    "Registry identity/revision and all returned metadata were asserted by the bound driver; complete raw registry and metadata payloads are not serialized for independent replay in these receipts.",
+    "Documentation values were checked against the compact root DOM transcription and benchmark formulas. No independent DOM/raw-sample median or GPU kernel-precision verification occurred.",
+    "Complete browser raw report remains unarchived per supplied summary; docs acknowledge this."
+  ]
+}

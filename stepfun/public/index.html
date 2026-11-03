@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>本地知识库 · 阶跃 × seekdb</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main>
+    <header><p class="eyebrow">浏览器本地推理 · seekdb 混合检索</p><h1>把文档留在自己的设备上</h1><p>导入文本，在浏览器生成向量，从自己的知识库查找相关原文。</p></header>
+    <section class="status" aria-live="polite"><strong id="backend">尚未加载模型</strong><span id="model-progress">初始化后显示当前推理后端</span><span id="db-status">正在连接本地资料库…</span></section>
+    <section class="panel">
+      <div class="row"><label>模型模式<select id="mode"><option value="auto">自动 · WebGPU 优先</option><option value="fp32">FP32 · WebGPU 基线</option><option value="fp16">FP16 · WebGPU</option><option value="fp32-wasm">FP32 · WASM 基线</option><option value="q8">INT8 · WASM</option></select></label><button id="load-model">加载本地模型</button></div>
+      <p class="hint">自动模式在 GPU 不可用时改用 INT8 / WASM。不同精度的知识库分开保存，便于比较质量。</p>
+      <div class="row"><label class="grow">当前知识库<select id="kb"><option value="">请先加载模型</option></select></label><label>新知识库名称<input id="kb-name" maxlength="60" value="我的知识库"></label><button id="create-kb">新建知识库</button></div>
+    </section>
+    <section class="panel">
+      <h2>导入文档</h2>
+      <label>文档 ID<input id="doc-id" maxlength="100" value="note-1"></label>
+      <label>原文<textarea id="doc-text" rows="5" placeholder="在这里粘贴一段文本，或选择本地文本文件。"></textarea></label>
+      <div class="row"><button id="import-text">导入这篇文本</button><label class="file">选择文本文件<input id="files" type="file" accept=".txt,.md" multiple></label><button class="secondary" id="import-sample">导入合成样例</button></div>
+      <p class="hint">同一 ID 再次导入会更新原文和向量；写入并刷新完成后才报告成功。</p>
+    </section>
+    <section class="panel">
+      <h2>检索知识库</h2>
+      <form id="search-form" class="row"><label class="grow">问题<input id="query" maxlength="1000" placeholder="输入想查找的内容" required></label><button>检索</button></form>
+      <p id="search-timing" class="hint"></p><div id="results" aria-live="polite"></div>
+    </section>
+    <section class="panel"><h2>运行记录</h2><p id="message" role="status" aria-live="polite">模型文件只从本地服务加载；实际推理发生在浏览器。</p><button class="secondary" id="export-log">导出本次记录</button><details><summary>查看阶段耗时和运行事件</summary><pre id="events">[]</pre></details></section>
+  </main>
+  <script type="module" src="/app.mjs"></script>
+</body>
+</html>

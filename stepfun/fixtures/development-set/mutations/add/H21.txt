@@ -1,0 +1,3 @@
+Shared bicycle key cabinet
+
+The shared bicycle key cabinet is in the east lobby beside the visitor desk. Its inventory reference is cobaltmesa418. Return a borrowed bicycle key to this cabinet before leaving the building.

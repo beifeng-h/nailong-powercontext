@@ -1,0 +1,3 @@
+Travel expense submission update
+
+Travel expense packets must now be submitted within eleven calendar days after returning from a business trip. Include the itinerary and available receipts in the expense portal. This replacement policy carries the update marker ledgermint604.

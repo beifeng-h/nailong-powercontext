@@ -1,0 +1,62 @@
+{
+  "diagnosticOnly": true,
+  "databaseWrites": false,
+  "modelInference": false,
+  "startedAt": "2026-11-01T00:39:49.966Z",
+  "kbId": "79980e2d-3eda-411a-9fd4-a2746f405e42",
+  "logicalId": "H02",
+  "stages": [
+    {
+      "stage": "before-first-sdk-execute",
+      "at": "2026-11-01T00:39:49.966Z"
+    },
+    {
+      "stage": "opened",
+      "at": "2026-11-01T00:39:51.763Z"
+    },
+    {
+      "stage": "scalar-complete",
+      "at": "2026-11-01T00:39:51.765Z"
+    },
+    {
+      "stage": "stored-id-and-json-complete",
+      "at": "2026-11-01T00:39:51.815Z"
+    },
+    {
+      "stage": "all-read-only-queries-complete",
+      "at": "2026-11-01T00:39:51.820Z"
+    }
+  ],
+  "status": "complete",
+  "version": [
+    {
+      "version": "5.7.25-OceanBase seekdb-v1.4.0.0"
+    }
+  ],
+  "scalar": [
+    {
+      "literal_len": 3,
+      "bound_len": 3,
+      "binary_len": 512
+    }
+  ],
+  "stored": {
+    "lengthFromSql": 512,
+    "hexLength": 1024,
+    "hexPrefix": "483032000000000000000000000000000000000000000000",
+    "hexSuffixAllZero": true,
+    "encodedId": {
+      "prefix": "H02",
+      "utf8Bytes": 512,
+      "trailingNuls": 509,
+      "sha256": "0d8b054d0cd5a24bfa6ce64978125d7e75e340891083ed657dd00e7b9a4ff740"
+    }
+  },
+  "publicSdkGet": {
+    "ids": [
+      "H02"
+    ],
+    "documentCount": 1
+  },
+  "finishedAt": "2026-11-01T00:39:51.820Z"
+}

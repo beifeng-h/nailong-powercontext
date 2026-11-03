@@ -1,0 +1,19 @@
+鉁?native arguments preserve update/delete, quotes, semicolons and Unicode as bound JSON values (4.0079ms)
+鉁?validated topK boundaries retain the 50-candidate native RRF settings (0.2208ms)
+鉁?collection identity uses the public readonly 32-hex ID and rejects malformed identities (0.2664ms)
+鉁?results preserve DB order and score values, including ties, without client reranking (1.4211ms)
+鉁?native JSON-string arrays and SQL NULL/empty arrays are supported (0.46ms)
+鉁?malformed response envelopes and non-array JSON are rejected rather than treated as empty (0.6591ms)
+鉁?malformed hit fields and non-finite/string scores are rejected (0.2276ms)
+鉁?duplicate IDs are rejected even when nonadjacent (0.0903ms)
+鉁?a complete topK page is accepted, overflow is rejected rather than truncated (0.1412ms)
+鉁?public bridge.search executes fixed native SQL with values, preserving original query and default size5 (5.0477ms)
+鉁?public bridge.search surfaces invalid native result failure instead of successful empty output (0.7104ms)
+鈩?tests 11
+鈩?suites 0
+鈩?pass 11
+鈩?fail 0
+鈩?cancelled 0
+鈩?skipped 0
+鈩?todo 0
+鈩?duration_ms 110.128

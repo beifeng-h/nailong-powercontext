@@ -1,0 +1,9 @@
+# Offline UI-state regressions
+
+These checks execute the real app and client modules with VM DOM/Worker/API substitutes. They do not execute `embedding-worker.js`, a model, browser, HTTP or database. Synthetic Worker replies are explicitly marked `OFFLINE`; actual external fetch is forbidden. No inference, quality, speed or real fallback result is claimed.
+
+`original.stdout.json` records one control pass and two actual failures on the original source. `step1.stdout.json` records that view invalidation fixes the stale-results regression while readiness remains failing. `fixed.stdout.json` records all three passing after readiness synchronization. The exact three-case driver is preserved as `fallback-ui-repro.mjs`. `STAGED_FIX_RECEIPT.json` ties these outcomes to source hashes and unchanged client/worker bytes.
+
+`fallback-boundary-repro.mjs` keeps those original assertions unchanged and adds two necessary same-precision controls: a fatal Worker failure emits failed then recovery-ready, restoring compatible choices without reviving the old token; ordinary nonfatal fallback preserves the active choice/token. The expanded original source run had three failures (`original-expanded.stdout.json`); current source passed all five (`fixed-boundary.stdout.json`, independently rerun through `npm run test:ui-state` in `final-npm-ui.json`). The two scripts require `--source-dir` to select real source modules; their default original-snapshot directory is not bundled because original code is retained in Git.
+
+From `stepfun/`, `npm run test:ui-state` runs the five-case driver against `public/` using Node's experimental VM-module support. The flag enables Node's test substitute harness, not OS virtualization or a browser permission change. The separate `npm test` covers 19 pure SDK/SQL/identity regressions. Neither command establishes the still-pending real-browser fallback, state/reload or foreground timing acceptance.

@@ -1,0 +1,41 @@
+{
+  "description": "Sanitized summary of actual serial model-weight downloads, not browser inference or cold-start timing. Includes HTTPS, redirects, read, write and flush/fsync; SHA validation followed timing. Excludes shared configs and npm runtime.",
+  "model": "Xenova/all-MiniLM-L6-v2",
+  "revision": "751bff37182d3f1213fa05d7196b954e230abad9",
+  "original_receipt_sha256": "c73afdbac7275c0745d753bac2e08eeb02f8e96af173877d93883bf3e2e2a694",
+  "records": [
+    {
+      "precision": "fp32",
+      "started_utc": "2026-10-31T22:09:01.717888+00:00",
+      "finished_utc": "2026-10-31T22:09:20.858468+00:00",
+      "elapsed_seconds": 19.14058,
+      "bytes": 90387606,
+      "sha256": "759c3cd2b7fe7e93933ad23c4c9181b7396442a2ed746ec7c1d46192c469c46e",
+      "http_status": 200,
+      "verified": true
+    },
+    {
+      "precision": "fp16",
+      "started_utc": "2026-10-31T22:09:21.289275+00:00",
+      "finished_utc": "2026-10-31T22:09:32.717982+00:00",
+      "elapsed_seconds": 11.428707,
+      "bytes": 45297825,
+      "sha256": "2cdb5e58291813b6d6e248ed69010100246821a367fa17b1b81ae9483744533d",
+      "http_status": 200,
+      "verified": true
+    },
+    {
+      "precision": "q8",
+      "started_utc": "2026-10-31T22:09:33.116797+00:00",
+      "finished_utc": "2026-10-31T22:09:39.323663+00:00",
+      "elapsed_seconds": 6.206866,
+      "bytes": 22972370,
+      "sha256": "afdb6f1a0e45b715d0bb9b11772f032c399babd23bfc31fed1c170afc848bdb1",
+      "http_status": 200,
+      "verified": true
+    }
+  ],
+  "privacy": "Original local paths and redirect URLs omitted.",
+  "redacted_receipt_sha256": "88a622691a226d155c8a12dd1308c0b0428fcb6c68e69b6be4b5706e58d638b3",
+  "redaction_notice": "original_receipt_sha256 is historical; redacted_receipt_sha256 identifies the derivative."
+}

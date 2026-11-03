@@ -1,0 +1,23 @@
+{
+  "recorded_utc": "2026-11-01T01:48:31.068612+00:00",
+  "expanded_harness_sha256": "18bc9489ebad64782fd9d32bc02d4edf9aa89cad55430b658349e1ae586c93d0",
+  "original_case_block_sha256": "ea5671c5ba10cdc49d54dda09fa00d50696d327f06c34fe34718583b125493d0",
+  "original_expanded": {
+    "exit_code": 1,
+    "passed": 2,
+    "failed": 3,
+    "stdout": "original-expanded.stdout.json"
+  },
+  "current_product": {
+    "exit_code": 0,
+    "passed": 5,
+    "failed": 0,
+    "stdout": "fixed-boundary.stdout.json",
+    "source_hashes": {
+      "app.mjs": "502963ad62d224218d58e77121c9802b98f6b19c5878cd43822be5af07fd03e9",
+      "embedding-client.mjs": "11424cead4b69030e2367f6dc008bf90b643b7becdb161c42ac99550d5faba59",
+      "embedding-worker.js": "de54a97ef76441dbf68378150e2e1b2e162775f4b6efaa77c3b38cd61d821648"
+    }
+  },
+  "scope": "Real app/client code in offline VM DOM/Worker/API substitutes only; no actual browser/model/HTTP/DB; worker source static only"
+}

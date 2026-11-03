@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>本地向量化 · 固定样例比较</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>table{border-collapse:collapse;width:100%;font-size:.9rem}th,td{padding:.65rem;text-align:left;border-bottom:1px solid #cbd5e1}pre{white-space:pre-wrap;overflow-wrap:anywhere}#stage{min-height:2.5em}</style>
+</head>
+<body><main>
+  <header><p class="eyebrow">浏览器本地推理 · seekdb 内部混合检索</p><h1>固定样例比较</h1><p>FP32 / FP16 使用 WebGPU；FP32 / INT8 使用 WASM。每个模式独立初始化、建库、写入、刷新，并执行全部 10 条固定查询，每条重复 3 次。</p></header>
+  <section class="panel">
+    <p>请先在其他应用页切换模型模式以释放空闲模型。测试运行时请保持此页和本地数据库开启，避免并行推理。</p>
+    <p>标签来自经复核的 AI 辅助合成开发集，不是官方答案。首次请求指新 Worker 会话，未清除浏览器、模型或设备缓存。分别记录结果准备完成，以及更新可见原文后经过两个前台帧机会的延迟；后者不是物理屏幕呈现时刻。</p>
+    <button id="start">运行四模式比较</button>
+    <button id="export" disabled>导出原始 JSON</button>
+    <span id="export-status" role="status" aria-live="polite"></span>
+    <p id="stage" role="status" aria-live="polite">尚未执行</p>
+  </section>
+  <section class="panel"><h2>当前检索原文</h2><p id="query-label">尚未查询</p><div id="current-results"></div></section>
+  <section class="panel"><h2>完整结果</h2><div id="summary">实际运行完成后显示，失败模式不纳入平均。</div><p id="pairs"></p></section>
+  <section class="panel"><h2>原始记录</h2><p>仅保留在此页面内存和下方展示中；刷新页面会丢失本次记录。</p><details><summary>查看实验条件、全部阶段样本与查询排名</summary><pre id="raw">尚未执行</pre></details></section>
+  <p><a href="/">返回知识库应用</a></p>
+</main><script type="module" src="/benchmark-page.mjs"></script></body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "recordedAtUtc": "2026-11-01T01:33:10.9181327Z",
+  "functionalCommit": "c4f99a1a9c94da7111291f16cafc5eb30ff7c657",
+  "servicePidObservedBeforeRun": 291436,
+  "serviceListenerObserved": "127.0.0.1:34021",
+  "storageMode": "embedded",
+  "databaseVersionObserved": "5.7.25-OceanBase seekdb-v1.4.0.0",
+  "driverSha256": "1fb7817b9906ae697f23b52c4373987338bc5f6275fb3951b9d4f93fb50572f3",
+  "sourceTreeBinding": "independent c4 audit; two source files use CRLF on disk but normalize to exact c4 blobs",
+  "serverRestarted": false,
+  "browserEmbeddingVerified": false,
+  "modelQualityVerified": false,
+  "browserUiStateVerified": false,
+  "officialScore": null
+}

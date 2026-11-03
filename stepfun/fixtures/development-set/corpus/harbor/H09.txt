@@ -1,0 +1,3 @@
+Nightly snapshot retention
+
+The archive job creates a snapshot every night. Nightly snapshots are retained for fourteen days in the backup store before the rotation job removes the oldest copy.

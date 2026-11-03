@@ -1,0 +1,35 @@
+agent-browser doctor
+
+Environment
+  pass  CLI version 0.33.2 (windows x86_64)
+  pass  Home directory <LOCAL_USER_DIR>
+  info  State directory does not exist yet (will be created on first use): <LOCAL_USER_DIR>\.agent-browser\namespaces\stepfun-wasm-20261102\state
+  pass  Socket directory <LOCAL_USER_DIR>\.agent-browser\namespaces\stepfun-wasm-20261102\run
+  info  Disk free check unavailable on this platform
+
+Chrome
+  fail  No Chrome binary found
+        fix: agent-browser install
+
+Daemons
+  pass  Session stepfun-wasm-control-20261102 (pid 272596)
+
+Config
+  pass  <LOCAL_USER_DIR>\.agent-browser\config.json (valid JSON)
+
+Security
+  info  No encryption key set (will be auto-generated on first auth save)
+        fix: export AGENT_BROWSER_ENCRYPTION_KEY=$(openssl rand -hex 32)
+
+Providers
+  info  Browserless: BROWSERLESS_API_KEY not set
+  info  Browserbase: BROWSERBASE_API_KEY not set
+  info  Browser Use: BROWSER_USE_API_KEY not set
+  info  Kernel: KERNEL_API_KEY not set
+  info  AgentCore: no AWS credentials in env (AWS_ACCESS_KEY_ID / AWS_PROFILE)
+  info  AI_GATEWAY_API_KEY not set (chat command disabled)
+        fix: export AI_GATEWAY_API_KEY=gw_...
+
+Summary: 5 pass, 0 warn, 1 fail
+
+tip: Run with --fix to attempt repairs.

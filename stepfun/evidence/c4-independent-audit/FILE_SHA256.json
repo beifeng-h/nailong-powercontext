@@ -1,0 +1,51 @@
+{
+  "files": [
+    {
+      "path": "audit.json",
+      "bytes": 64073,
+      "sha256": "83802294a50b1bf28c1a1dc89c0605fc659ecf94f8b1161a5604774cb33dd9f9",
+      "original_sha256": "781eb84f46e0999d3738e3b5bfb6763ca8c90d14acda99d51c6563ec616e5316",
+      "original_bytes": 63933,
+      "redacted_derivative": true
+    },
+    {
+      "path": "audit.md",
+      "bytes": 5124,
+      "sha256": "7452e03db9bac5da040b7b1f3e62f305351142f0906b0bfd13714c2088aa8a61",
+      "original_sha256": "cecd74e889c5f640149c30e21ca4e8998ff63cbe3ec5885bd1f94e1237cffa6d",
+      "original_bytes": 4706,
+      "redacted_derivative": true
+    },
+    {
+      "path": "audit.py",
+      "bytes": 13750,
+      "sha256": "f7359c89f2dc7ee926ab696d9fbe7c1a82488bb2d53100ccfaaca2c1daa84c7b",
+      "original_sha256": "05eee2d7b3784dcf5063691549a31d1e23e359f4f34f3e6ac59d7971e6bf15dd",
+      "original_bytes": 13785,
+      "redacted_derivative": true
+    },
+    {
+      "path": "bridge-api-events-snapshot.jsonl",
+      "bytes": 64619,
+      "sha256": "c6518fe0e43b98a5e2ce6f92fede8d6143d1c61da172811676d6dfae4d64c538",
+      "recovered_identical_from": "../browser-run-77153f14/native-api-events.jsonl"
+    },
+    {
+      "path": "RUN_RECEIPT.json",
+      "bytes": 360,
+      "sha256": "8688f5739c334b554a6f85dae8f211725c92f21f400a6751d20b52797bab3a7d",
+      "original_sha256": "7c1311ba2fbac485474f6ffe4558d3fec2a17f7daaf169d981f521a05a7a2fd8",
+      "original_bytes": 352,
+      "redacted_derivative": true
+    }
+  ],
+  "omitted_not_delivered": [
+    {
+      "path": "checks.stdout-stderr.log",
+      "bytes": 1089,
+      "sha256": "50b053f0bc99702bc6cd2ab25d1548d5766ba27ad6df2e33dc9bc84d7debdd0e",
+      "reason": "not_present_in_tracked_source_tree"
+    }
+  ],
+  "redaction_notice": "Derivative index covers available files only; omitted files were not present in the tracked source tree. Their historical fingerprints remain listed."
+}

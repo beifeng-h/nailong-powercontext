@@ -1,0 +1,7 @@
+node_modules/
+public/models/
+public/vendor/
+runtime/
+artifacts/
+.env
+__pycache__/

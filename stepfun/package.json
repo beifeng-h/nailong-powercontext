@@ -1,0 +1,19 @@
+{
+  "name": "stepfun-browser-local-kb",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node main.mjs",
+    "test": "node --test native-hybrid.test.mjs prepared-rrf.test.mjs tests/embedding-client-protocol.test.mjs",
+    "test:ui-state": "node --experimental-vm-modules tests/ui-state-ready-adapter.mjs --source-dir public",
+    "test:report-export": "node --experimental-vm-modules --test tests/benchmark-export.test.mjs"
+  },
+  "dependencies": {
+    "@seekdb/js-bindings": "1.4.0",
+    "seekdb": "1.4.0"
+  }
+}

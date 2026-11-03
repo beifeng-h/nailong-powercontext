@@ -1,0 +1,7 @@
+# Root review of frozen development labels
+
+Reviewed before any model vectors, rankings or latency measurements. All22 initial texts,10 queries and positive sets were read. This is AI-assisted synthetic material reviewed by an AI agent, not human-labelled official gold or a real organization policy.
+
+Q01:H01/H02 device loss report and account protection; Q02:H03/H04 new equipment and first account activation; Q03:H05/H06 expense deadline and missing taxi receipt; Q04:H07/H08 outage escalation and public updates; Q05:H09/H10 snapshot retention and recovery check; Q06:H11/H12 gradual release and rollback; Q07:H13/H14 workspace erasure and separate billing fields; Q08:H15/H16 rooms and pods; Q09:H17/H18 registration and visitor access; Q10:H19/H20 course approval and learning-time records. Different preconditions (new account vs lost laptop, release checks vs unexpected outage) were checked rather than treating shared words as relevance.
+
+All10 complete two-document positive sets are retained. The200 pairwise matrix is checked against these sets by the dataset's structural validation; no labels are changed to match retrieval output. Beacon is outside the quality candidate pool. Mutations are tested separately: H21 adds cobaltmesa418/east lobby; H05 revision2 replaces seven with eleven calendar days/ledgermint604. Beacon's23-day deadline checks KB separation. No measured result is claimed here.

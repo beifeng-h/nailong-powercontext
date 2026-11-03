@@ -1,0 +1,18 @@
+{
+  "time": "2026-11-01T00:08:03.824559+00:00",
+  "testCommand": "node --test stepfun/native-hybrid.test.mjs",
+  "exitCode": 0,
+  "counts": {
+    "tests": 11,
+    "pass": 11,
+    "fail": 0,
+    "skip": 0
+  },
+  "scope": "pure routing/protocol tests with SDK double; not browser, DB, retrieval-quality or formal score evidence",
+  "files": {
+    "native-hybrid.mjs": "c9dd4b00a5660283dcaec184b0d876babe5f6cff636aaef4bfbfbee57dee291f",
+    "native-hybrid.test.mjs": "4cdaa3b9a329e9e6d7befa0b2b7526e913628c103e99c1709e1aa05738dbb11f",
+    "bridge.mjs": "a5e9a2b9e616963163dc34696786e92489b8a5f8bd5eca52f40c7a6dd7ab3d83",
+    "sql-capture.mjs": "bd3a7b1736c3fbe9671674e8d11a87821b26da2f6b254bbc8a220490159baa59"
+  }
+}

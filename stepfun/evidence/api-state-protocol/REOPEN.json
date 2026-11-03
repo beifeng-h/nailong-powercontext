@@ -1,0 +1,222 @@
+{
+  "schema": "TEST_ONLY_API_STATE_V1",
+  "kind": "new-process-read-only-reopen",
+  "runId": "c30b0a88-d617-4190-ab83-3d2ae3cfd1e1",
+  "processId": 288188,
+  "startedUtc": "2026-11-01T01:29:45.668Z",
+  "status": "passed-new-process-read-only-visibility",
+  "endpoint": "http://127.0.0.1:34021",
+  "basedOnApiContract": "c4f99a1a9c94da7111291f16cafc5eb30ff7c657",
+  "actualServerCommit": "not exposed by API; root binds actual running source separately",
+  "vectorOrigin": "synthetic-one-hot-384-api-state-only-not-model-embeddings",
+  "declaredApiProfile": "q8",
+  "declaredApiModelManifestNotInferenceEvidence": {
+    "repo": "Xenova/all-MiniLM-L6-v2",
+    "revision": "751bff37182d3f1213fa05d7196b954e230abad9",
+    "precision": "q8",
+    "dimension": 384,
+    "pooling": "mean",
+    "normalize": true
+  },
+  "browserEmbeddingVerifiedByThisProbe": false,
+  "qualityOrModelPrecisionEvidence": false,
+  "fixtures": {
+    "corpus": "a8c6c7bbe74dba8535009a5d8151ef9ab186856b55a164474d8db49cb9891793",
+    "mutations": "2cffb6044601203c6f902875c80370a7b047eae52cc0aca9c0f1cc8864a49fa1"
+  },
+  "plannedLabels": [],
+  "created": [],
+  "requests": [
+    {
+      "startedUtc": "2026-11-01T01:29:45.669Z",
+      "method": "GET",
+      "path": "/api/health",
+      "writeIntent": false,
+      "httpStatus": 200,
+      "outcome": "response-received"
+    },
+    {
+      "startedUtc": "2026-11-01T01:29:45.692Z",
+      "method": "GET",
+      "path": "/api/kbs",
+      "writeIntent": false,
+      "httpStatus": 200,
+      "outcome": "response-received"
+    },
+    {
+      "startedUtc": "2026-11-01T01:29:45.696Z",
+      "method": "POST",
+      "path": "/api/kbs/5eb0a965-2f4d-457d-a757-685861529984/search",
+      "writeIntent": false,
+      "queryText": "What is the travel expense deadline in this workspace?",
+      "vectorOrigin": "synthetic-one-hot-384-api-state-only-not-model-embeddings",
+      "httpStatus": 200,
+      "outcome": "response-received"
+    },
+    {
+      "startedUtc": "2026-11-01T01:29:45.710Z",
+      "method": "POST",
+      "path": "/api/kbs/44512a0d-303b-4486-b030-701e1ed22c05/search",
+      "writeIntent": false,
+      "queryText": "What is the travel expense deadline in this workspace?",
+      "vectorOrigin": "synthetic-one-hot-384-api-state-only-not-model-embeddings",
+      "httpStatus": 200,
+      "outcome": "response-received"
+    },
+    {
+      "startedUtc": "2026-11-01T01:29:45.721Z",
+      "method": "POST",
+      "path": "/api/kbs/5eb0a965-2f4d-457d-a757-685861529984/search",
+      "writeIntent": false,
+      "queryText": "What is the travel expense deadline in this workspace?",
+      "vectorOrigin": "synthetic-one-hot-384-api-state-only-not-model-embeddings",
+      "httpStatus": 200,
+      "outcome": "response-received"
+    },
+    {
+      "startedUtc": "2026-11-01T01:29:45.730Z",
+      "method": "POST",
+      "path": "/api/kbs/5eb0a965-2f4d-457d-a757-685861529984/search",
+      "writeIntent": false,
+      "queryText": "Where is the bicycle key cabinet marked cobaltmesa418?",
+      "vectorOrigin": "synthetic-one-hot-384-api-state-only-not-model-embeddings",
+      "httpStatus": 200,
+      "outcome": "response-received"
+    }
+  ],
+  "importResponses": [],
+  "searchResponses": [
+    {
+      "kbId": "5eb0a965-2f4d-457d-a757-685861529984",
+      "queryText": "What is the travel expense deadline in this workspace?",
+      "revision": 3,
+      "resultIds": [
+        "H05",
+        "H13",
+        "H21",
+        "H14",
+        "H06",
+        "H17",
+        "H02",
+        "H09",
+        "H20",
+        "H19",
+        "H18",
+        "H03",
+        "H12",
+        "H10",
+        "H01",
+        "H07",
+        "H04",
+        "H11",
+        "H08",
+        "H16",
+        "H15"
+      ],
+      "countMeaning": "returned top-K count, NOT database row count",
+      "requiredBodies": {
+        "H05": "Travel expense submission update\n\nTravel expense packets must now be submitted within eleven calendar days after returning from a business trip. Include the itinerary and available receipts in the expense portal. This replacement policy carries the update marker ledgermint604.\n"
+      }
+    },
+    {
+      "kbId": "44512a0d-303b-4486-b030-701e1ed22c05",
+      "queryText": "What is the travel expense deadline in this workspace?",
+      "revision": 1,
+      "resultIds": [
+        "B01",
+        "B02"
+      ],
+      "countMeaning": "returned top-K count, NOT database row count",
+      "requiredBodies": {
+        "B01": "Beacon travel expense deadline\n\nIn the Beacon workspace, a travel expense packet is due within twenty-three calendar days after returning. This deadline belongs only to Beacon and must not replace another workspace's expense policy.\n"
+      }
+    },
+    {
+      "kbId": "5eb0a965-2f4d-457d-a757-685861529984",
+      "queryText": "What is the travel expense deadline in this workspace?",
+      "revision": 3,
+      "resultIds": [
+        "H05",
+        "H13",
+        "H21",
+        "H14",
+        "H06",
+        "H17",
+        "H02",
+        "H09",
+        "H20",
+        "H19",
+        "H18",
+        "H03",
+        "H12",
+        "H10",
+        "H01",
+        "H07",
+        "H04",
+        "H11",
+        "H08",
+        "H16",
+        "H15"
+      ],
+      "countMeaning": "returned top-K count, NOT database row count",
+      "requiredBodies": {
+        "H05": "Travel expense submission update\n\nTravel expense packets must now be submitted within eleven calendar days after returning from a business trip. Include the itinerary and available receipts in the expense portal. This replacement policy carries the update marker ledgermint604.\n"
+      }
+    },
+    {
+      "kbId": "5eb0a965-2f4d-457d-a757-685861529984",
+      "queryText": "Where is the bicycle key cabinet marked cobaltmesa418?",
+      "revision": 3,
+      "resultIds": [
+        "H21",
+        "H02",
+        "H06",
+        "H13",
+        "H19",
+        "H03",
+        "H09",
+        "H12",
+        "H10",
+        "H17",
+        "H01",
+        "H07",
+        "H04",
+        "H20",
+        "H11",
+        "H05",
+        "H08",
+        "H18",
+        "H14",
+        "H15",
+        "H16"
+      ],
+      "countMeaning": "returned top-K count, NOT database row count",
+      "requiredBodies": {
+        "H21": "Shared bicycle key cabinet\n\nThe shared bicycle key cabinet is in the east lobby beside the visitor desk. Its inventory reference is cobaltmesa418. Return a borrowed bicycle key to this cabinet before leaving the building.\n"
+      }
+    }
+  ],
+  "previousProcessId": 288788,
+  "serverConfigurationReported": {
+    "ok": true,
+    "database": "stepfun_kb_demo",
+    "databaseVersion": "5.7.25-OceanBase seekdb-v1.4.0.0",
+    "sdkTargetVersion": "1.4.0",
+    "storageMode": "embedded",
+    "embedding": "browser-only",
+    "dimension": 384
+  },
+  "importCountsFromPreviousActualRunNotRecounted": [
+    {
+      "id": "5eb0a965-2f4d-457d-a757-685861529984",
+      "count": 21
+    },
+    {
+      "id": "44512a0d-303b-4486-b030-701e1ed22c05",
+      "count": 2
+    }
+  ],
+  "freshCountAfterReopen": null,
+  "countLimit": "Current API exposes registry revision and search results, no independent count endpoint. Top-K length is never treated as database count.",
+  "finishedUtc": "2026-11-01T01:29:45.740Z"
+}

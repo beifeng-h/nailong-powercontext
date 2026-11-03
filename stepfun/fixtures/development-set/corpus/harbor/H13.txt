@@ -1,0 +1,3 @@
+Workspace erasure timeline
+
+A workspace owner can request erasure after ownership is verified. The service team removes the active workspace and its message content within three working days of that verification.

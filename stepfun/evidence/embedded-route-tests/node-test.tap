@@ -1,0 +1,88 @@
+TAP version 13
+# Subtest: native arguments preserve update/delete, quotes, semicolons and Unicode as bound JSON values
+ok 1 - native arguments preserve update/delete, quotes, semicolons and Unicode as bound JSON values
+  ---
+  duration_ms: 1.4799
+  type: 'test'
+  ...
+# Subtest: validated topK boundaries retain the 50-candidate native RRF settings
+ok 2 - validated topK boundaries retain the 50-candidate native RRF settings
+  ---
+  duration_ms: 0.209
+  type: 'test'
+  ...
+# Subtest: collection identity uses the public readonly 32-hex ID and rejects malformed identities
+ok 3 - collection identity uses the public readonly 32-hex ID and rejects malformed identities
+  ---
+  duration_ms: 0.2639
+  type: 'test'
+  ...
+# Subtest: results preserve DB order and score values, including ties, without client reranking
+ok 4 - results preserve DB order and score values, including ties, without client reranking
+  ---
+  duration_ms: 0.267
+  type: 'test'
+  ...
+# Subtest: native JSON-string arrays and SQL NULL/empty arrays are supported
+ok 5 - native JSON-string arrays and SQL NULL/empty arrays are supported
+  ---
+  duration_ms: 0.1502
+  type: 'test'
+  ...
+# Subtest: malformed response envelopes and non-array JSON are rejected rather than treated as empty
+ok 6 - malformed response envelopes and non-array JSON are rejected rather than treated as empty
+  ---
+  duration_ms: 0.1607
+  type: 'test'
+  ...
+# Subtest: malformed hit fields and non-finite/string scores are rejected
+ok 7 - malformed hit fields and non-finite/string scores are rejected
+  ---
+  duration_ms: 0.2042
+  type: 'test'
+  ...
+# Subtest: duplicate IDs are rejected even when nonadjacent
+ok 8 - duplicate IDs are rejected even when nonadjacent
+  ---
+  duration_ms: 0.1085
+  type: 'test'
+  ...
+# Subtest: a complete topK page is accepted, overflow is rejected rather than truncated
+ok 9 - a complete topK page is accepted, overflow is rejected rather than truncated
+  ---
+  duration_ms: 0.1402
+  type: 'test'
+  ...
+# Subtest: embedded configuration passes only the absolute path and logical database through the public SDK
+ok 10 - embedded configuration passes only the absolute path and logical database through the public SDK
+  ---
+  duration_ms: 0.9798
+  type: 'test'
+  ...
+# Subtest: invalid or mixed embedded/server configuration fails before any SDK construction
+ok 11 - invalid or mixed embedded/server configuration fails before any SDK construction
+  ---
+  duration_ms: 0.3722
+  type: 'test'
+  ...
+# Subtest: public bridge.search executes fixed native SQL with values, preserving original query and default size5
+ok 12 - public bridge.search executes fixed native SQL with values, preserving original query and default size5
+  ---
+  duration_ms: 2.2526
+  type: 'test'
+  ...
+# Subtest: public bridge.search surfaces invalid native result failure instead of successful empty output
+ok 13 - public bridge.search surfaces invalid native result failure instead of successful empty output
+  ---
+  duration_ms: 0.5806
+  type: 'test'
+  ...
+1..13
+# tests 13
+# suites 0
+# pass 13
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 109.4334

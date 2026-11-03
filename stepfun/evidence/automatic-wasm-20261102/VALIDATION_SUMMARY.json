@@ -1,0 +1,29 @@
+{
+  "recordedUtc": "2026-11-02T09:45:25.118142+00:00",
+  "scope": "Actual browser DOM/screenshot/source-hash validation; not original app export",
+  "automaticFallbackAndOneQueryObserved": true,
+  "kbId": "94a92ef3-d47a-47a9-8f72-7c41ec375223",
+  "documentIds": [
+    "WASM01"
+  ],
+  "remoteModelsEnabled": false,
+  "networkAllowlistPreserved": [
+    "127.0.0.1"
+  ],
+  "controlledEnvironmentFlag": "--disable-features=WebGPUService",
+  "originalExportDownloaded": false,
+  "formalScoreClaimed": false,
+  "offlineChecks": {
+    "npmTest": {
+      "passed": 26,
+      "failed": 0,
+      "source": "dev_batch_review actual tool run; output summary, no raw transcript file claimed"
+    },
+    "uiStateAdapter": {
+      "passed": 5,
+      "businessAssertionsChanged": false,
+      "originalFixtureSha256": "18bc9489ebad64782fd9d32bc02d4edf9aa89cad55430b658349e1ae586c93d0"
+    },
+    "modelExecutionInOfflineTests": false
+  }
+}

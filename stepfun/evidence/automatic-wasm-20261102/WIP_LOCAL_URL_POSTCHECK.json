@@ -1,0 +1,23 @@
+{
+  "checkedAtUtc": "2026-11-02T09:37:35.555049+00:00",
+  "allProductHashBindingsMatch": true,
+  "files": [
+    {
+      "file": "public/embedding-client.mjs",
+      "sha256": "a58c89a9597e47d7f871c7f4d8671f1acbe07a8e2db43d434abe844da2f385ad",
+      "matchesBeforeActualRuntime": true
+    },
+    {
+      "file": "public/embedding-worker.js",
+      "sha256": "ee0bb64c0627624fba8967dffa7ddb55535a59989fc764248cdd5cf12acfc714",
+      "matchesBeforeActualRuntime": true
+    }
+  ],
+  "original18EvidenceUnchanged": true,
+  "repositoryHeadNow": "8fee656f11f38af56e0014f7bba2d7bdbcbcdd2c",
+  "gitStatusNow": " M stepfun/package.json\n M stepfun/public/embedding-client.mjs\n M stepfun/public/embedding-worker.js\n?? stepfun/tests/\n",
+  "runtimeResult": "Actual original UI automatic q8/WASM fallback, one fresh KB, one real document embedding/import/refresh, one real embedded query returned original body. Original export download not confirmed.",
+  "modelSyntheticOrSubstituteUsed": false,
+  "syntheticInputDocumentClearlyMarked": true,
+  "formalScoreClaimed": false
+}

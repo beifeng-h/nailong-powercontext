@@ -1,0 +1,14 @@
+{
+  "recordedAt": "2026-11-01T01:25:40.189258+00:00",
+  "runId": "77153f14-da1b-4e20-b6b9-d5d033b1c4f5",
+  "functionalCommit": "c4f99a1a9c94da7111291f16cafc5eb30ff7c657",
+  "eventCount": 240,
+  "completedSearches": 120,
+  "sourceSnapshotSha256": "c6518fe0e43b98a5e2ce6f92fede8d6143d1c61da172811676d6dfae4d64c538",
+  "evidenceLevel": "public-sdk-api, not network wire or GPU precision trace",
+  "browserReportLocation": "Edge3 tab1638301526 #raw; currently retained in live page",
+  "browserCompleteObserved": "2026-11-01T01:04:54.859Z",
+  "browserRawFileArchived": false,
+  "displayTimingStatus": "two-frame samples near2seconds; physical foreground not calibrated",
+  "formalPlatformScore": null
+}

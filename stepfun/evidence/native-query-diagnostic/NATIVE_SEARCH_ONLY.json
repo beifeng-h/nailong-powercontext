@@ -1,0 +1,39 @@
+{
+  "diagnosticOnly": true,
+  "databaseWrites": false,
+  "newModelInference": false,
+  "vectorBasis": "Existing browser-generated document H02 vector; not a query embedding or retrieval-quality experiment",
+  "kbId": "e8d58d31-0386-4827-8031-91338c9e7783",
+  "startedAt": "2026-11-01T00:48:43.447Z",
+  "stage": "diagnostic-only-SQL-quote-encoded",
+  "cases": [
+    {
+      "name": "original-Q07",
+      "text": "How quickly is a verified owner's workspace removed, and which billing fields remain outside that erasure?",
+      "status": "failed",
+      "error": {
+        "name": "Error",
+        "message": "Parse error (ret=-5001)"
+      }
+    },
+    {
+      "name": "diagnostic-only-apostrophe-removed",
+      "text": "How quickly is a verified owners workspace removed, and which billing fields remain outside that erasure?",
+      "status": "executed",
+      "returnedRowCount": 1
+    },
+    {
+      "name": "diagnostic-only-SQL-quote-encoded",
+      "text": "How quickly is a verified owner''s workspace removed, and which billing fields remain outside that erasure?",
+      "status": "executed",
+      "returnedRowCount": 1
+    }
+  ],
+  "version": [
+    {
+      "version": "5.7.25-OceanBase seekdb-v1.4.0.0"
+    }
+  ],
+  "status": "complete",
+  "finishedAt": "2026-11-01T00:48:48.232Z"
+}

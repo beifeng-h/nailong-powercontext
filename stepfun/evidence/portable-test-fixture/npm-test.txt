@@ -1,0 +1,31 @@
+
+> stepfun-browser-local-kb@0.1.0 test
+> node --test native-hybrid.test.mjs prepared-rrf.test.mjs
+
+鉁?native arguments preserve update/delete, quotes, semicolons and Unicode as bound JSON values (1.8715ms)
+鉁?validated topK boundaries retain the 50-candidate native RRF settings (0.2123ms)
+鉁?collection identity uses the public readonly 32-hex ID and rejects malformed identities (0.2536ms)
+鉁?results preserve DB order and score values, including ties, without client reranking (1.5981ms)
+鉁?native JSON-string arrays and SQL NULL/empty arrays are supported (0.4092ms)
+鉁?embedded fixed-512-byte binary IDs decode to the public SDK identity, preserving UTF-8 and whitespace (0.1574ms)
+鉁?ID codec rejects noncanonical NUL forms and duplicates after decoding (0.2262ms)
+鉁?malformed response envelopes and non-array JSON are rejected rather than treated as empty (0.1798ms)
+鉁?malformed hit fields and non-finite/string scores are rejected (0.2318ms)
+鉁?duplicate IDs are rejected even when nonadjacent (0.1592ms)
+鉁?a complete topK page is accepted, overflow is rejected rather than truncated (0.1139ms)
+鉁?embedded configuration passes only the absolute path and logical database through the public SDK (0.9439ms)
+鉁?invalid or mixed embedded/server configuration fails before any SDK construction (0.3899ms)
+鉁?public bridge.search executes one bound DB-side RRF query with original text and default size5 (2.4498ms)
+鉁?public bridge.search surfaces invalid native result failure instead of successful empty output (0.5025ms)
+鉁?full original text and vector stay bound while the SQL shape is invariant (1.8241ms)
+鉁?only a server-selected 32-hex identifier enters SQL; invalid boundaries are refused (0.3954ms)
+鉁?actual embedded decimal/JSON strings decode without changing database order or text (0.4043ms)
+鉁?invalid score/metadata/envelope or duplicate identity never becomes a successful result (0.5926ms)
+鈩?tests 19
+鈩?suites 0
+鈩?pass 19
+鈩?fail 0
+鈩?cancelled 0
+鈩?skipped 0
+鈩?todo 0
+鈩?duration_ms 108.0962

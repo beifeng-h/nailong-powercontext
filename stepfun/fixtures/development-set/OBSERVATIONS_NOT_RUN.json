@@ -1,0 +1,35 @@
+{
+  "status": "not_run",
+  "scope": "Template only; no user/model/browser/database experiment has occurred",
+  "fixed_quality_scope": "Harbor H01-H20 revision1; Q01-Q10; complete qrels",
+  "conditions": {
+    "device": null,
+    "browser_version": null,
+    "model_id": null,
+    "model_revision": null,
+    "runtime_version": null,
+    "backend": null,
+    "batch_size": null,
+    "embedding_dimension": null,
+    "pooling_and_normalization": null,
+    "seekdb_version_and_config": null,
+    "seekdb_js_version": null
+  },
+  "fp32": {
+    "model_total_bytes": null,
+    "recall_at_5": null,
+    "ndcg_at_5": null,
+    "latency_samples": null
+  },
+  "quantized": {
+    "precision": null,
+    "model_total_bytes": null,
+    "compression_ratio": null,
+    "recall_at_5": null,
+    "ndcg_at_5": null,
+    "latency_samples": null
+  },
+  "signed_quality_delta": null,
+  "state_scenarios_observed": null,
+  "fallback_observed": null
+}

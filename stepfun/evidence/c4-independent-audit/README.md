@@ -1,0 +1,9 @@
+# Frozen read-only audit
+
+These are clearly labelled redacted derivatives of the independent agent's actual c4 audit and exit-0 receipt; the original bytes and their SHA-256 remain in local evidence and REDACTION_PROVENANCE.json. They were produced before the later test-only portability change and evidence/docs commit. The source snapshot checked 83 then-tracked files: 81 raw-byte Git matches and two CRLF-only differences. It separately checked the preserved 240-event benchmark interval and the actual 12 model/runtime resources against acquisition receipts. See the report's detailed limits.
+
+`audit.py` is a redacted derivative whose local root was relocated; it is not the exact original byte sequence and is **not a portable replay command**. The historic method expects the old HEAD and exactly 240 events in the live input log, and writes output beside itself. The live log later grew because the separate API state test ran. Do not rerun this archived script to overwrite the frozen results or claim a newer audit. The benchmark's matching event bytes are separately archived at `../browser-run-77153f14/native-api-events.jsonl` with SHA256 `c6518fe0e43b98a5e2ce6f92fede8d6143d1c61da172811676d6dfae4d64c538`.
+
+The agent did not read the browser report, execute models, query the DB, control UI or change product files. Its audit is independent source/resource/API evidence, not network traffic, per-kernel precision measurement, process-launch attestation or official acceptance.
+
+The 240-event snapshot is reproduced byte-for-byte from the separately tracked `../browser-run-77153f14/native-api-events.jsonl`, after verifying the original SHA-256 and byte count. The historical `checks.stdout-stderr.log` remains unavailable in the source tree; its expected fingerprint is retained in the derivative index and it is not represented as present.

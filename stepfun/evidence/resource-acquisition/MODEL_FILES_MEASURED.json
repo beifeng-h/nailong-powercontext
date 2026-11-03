@@ -1,0 +1,30 @@
+{
+  "measured_utc": "2026-10-31T22:15:16.034732+00:00",
+  "basis": "Actual downloaded files; five common config/tokenizer text files included in each model package; runtime assets counted separately",
+  "profiles": {
+    "fp32": {
+      "weight_bytes": 90387606,
+      "common_bytes": 944310,
+      "total_model_package_bytes": 91331916,
+      "weight_sha256": "759c3cd2b7fe7e93933ad23c4c9181b7396442a2ed746ec7c1d46192c469c46e",
+      "compression_ratio_vs_fp32": 1.0
+    },
+    "fp16": {
+      "weight_bytes": 45297825,
+      "common_bytes": 944310,
+      "total_model_package_bytes": 46242135,
+      "weight_sha256": "2cdb5e58291813b6d6e248ed69010100246821a367fa17b1b81ae9483744533d",
+      "compression_ratio_vs_fp32": 1.9750800000908262
+    },
+    "q8": {
+      "weight_bytes": 22972370,
+      "common_bytes": 944310,
+      "total_model_package_bytes": 23916680,
+      "weight_sha256": "afdb6f1a0e45b715d0bb9b11772f032c399babd23bfc31fed1c170afc848bdb1",
+      "compression_ratio_vs_fp32": 3.8187539407643536
+    }
+  },
+  "runtime_asset_bytes": 22540034,
+  "retrieval_quality_measured": false,
+  "inference_latency_measured": false
+}

@@ -1,0 +1,3 @@
+Visitor registration before arrival
+
+A visitor's host registers the guest's name and arrival time in the reception portal at least one working day before the visit. Reception uses this entry to prepare the arrival check.

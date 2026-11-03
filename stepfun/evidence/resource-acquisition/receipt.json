@@ -1,0 +1,498 @@
+{
+  "schema": 1,
+  "status": "acquisition_complete_not_runtime_tested",
+  "started_at": "2026-10-31T22:08:52.554079+00:00",
+  "evidence": "<LOCAL_USER_DIR>\\Documents\\ChatGPT\\oceanbaes\\stepfun-local-contest\\stepfun\\artifacts\\browser-resource-fetch-20261031T220852Z-120c0f4259",
+  "plan": {
+    "schema": 1,
+    "mode": "plan",
+    "root": "<LOCAL_USER_DIR>\\Documents\\ChatGPT\\oceanbaes\\stepfun-local-contest\\stepfun",
+    "model": "Xenova/all-MiniLM-L6-v2",
+    "revision": "751bff37182d3f1213fa05d7196b954e230abad9",
+    "runtime_version": "3.8.1",
+    "onnxruntime_web": "1.22.0-dev.20250409-89f8206ba4",
+    "npm_integrity": "sha512-tsTk4zVjImqdqjS8/AOZg2yNLd1z9S5v+7oUPpXaasDRwEDhB+xnglK1k5cad26lL5/ZIaeREgWWy0bs9y9pPA==",
+    "resources": [
+      {
+        "kind": "runtime",
+        "source": "https://registry.npmjs.org/@huggingface/transformers/-/transformers-3.8.1.tgz",
+        "tar_member": "package/dist/transformers.min.js",
+        "relative": "public/vendor/transformers.min.js",
+        "expected_bytes": 888173,
+        "expected_sha256": "aa5002b70e789798da263f5f99c62bd3e8fcd0c119258a493c40c180648365fa",
+        "target": "<LOCAL_USER_DIR>\\Documents\\ChatGPT\\oceanbaes\\stepfun-local-contest\\stepfun\\public\\vendor\\transformers.min.js",
+        "reuse": false
+      },
+      {
+        "kind": "runtime",
+        "source": "https://registry.npmjs.org/@huggingface/transformers/-/transformers-3.8.1.tgz",
+        "tar_member": "package/dist/ort-wasm-simd-threaded.jsep.mjs",
+        "relative": "public/vendor/ort-wasm-simd-threaded.jsep.mjs",
+        "expected_bytes": 44484,
+        "expected_sha256": "08fb86ec433c78bfb032c5d84a68b8e8e5a8d81268fa39e24314179a5767a5b9",
+        "target": "<LOCAL_USER_DIR>\\Documents\\ChatGPT\\oceanbaes\\stepfun-local-contest\\stepfun\\public\\vendor\\ort-wasm-simd-threaded.jsep.mjs",
+        "reuse": false
+      },
+      {
+        "kind": "runtime",
+        "source": "https://registry.npmjs.org/@huggingface/transformers/-/transformers-3.8.1.tgz",
+        "tar_member": "package/dist/ort-wasm-simd-threaded.jsep.wasm",
+        "relative": "public/vendor/ort-wasm-simd-threaded.jsep.wasm",
+        "expected_bytes": 21596019,
+        "expected_sha256": "c46655e8a94afc45338d4cb2b840475f88e5012d524509916e505079c00bfa39",
+        "target": "<LOCAL_USER_DIR>\\Documents\\ChatGPT\\oceanbaes\\stepfun-local-contest\\stepfun\\public\\vendor\\ort-wasm-simd-threaded.jsep.wasm",
+        "reuse": false
+      },
+      {
+        "kind": "runtime",
+        "source": "https://registry.npmjs.org/@huggingface/transformers/-/transformers-3.8.1.tgz",
+        "tar_member": "package/LICENSE",
+        "relative": "public/vendor/LICENSE.transformers.txt",
+        "expected_bytes": 11358,
+        "expected_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "target": "<LOCAL_USER_DIR>\\Documents\\ChatGPT\\oceanbaes\\stepfun-local-contest\\stepfun\\public\\vendor\\LICENSE.transformers.txt",
+        "reuse": false
+      },
+      {
+        "kind": "model",
+        "source": "https://huggingface.co/Xenova/all-MiniLM-L6-v2/resolve/751bff37182d3f1213fa05d7196b954e230abad9/config.json",
+        "relative": "public/models/751bff37182d3f1213fa05d7196b954e230abad9/Xenova/all-MiniLM-L6-v2/config.json",
+        "expected_bytes": 650,
+        "expected_sha256": "7135149f7cffa1a573466c6e4d8423ed73b62fd2332c575bf738a0d033f70df7",
+        "optional": false,
+        "target": "<LOCAL_USER_DIR>\\Documents\\ChatGPT\\oceanbaes\\stepfun-local-contest\\stepfun\\public\\models\\751bff37182d3f1213fa05d7196b954e230abad9\\Xenova\\all-MiniLM-L6-v2\\config.json",
+        "reuse": false
+      },
+      {
+        "kind": "model",
+        "source": "https://huggingface.co/Xenova/all-MiniLM-L6-v2/resolve/751bff37182d3f1213fa05d7196b954e230abad9/tokenizer.json",
+        "relative": "public/models/751bff37182d3f1213fa05d7196b954e230abad9/Xenova/all-MiniLM-L6-v2/tokenizer.json",
+        "expected_bytes": 711661,
+        "expected_sha256": "da0e79933b9ed51798a3ae27893d3c5fa4a201126cef75586296df9b4d2c62a0",
+        "optional": false,
+        "target": "<LOCAL_USER_DIR>\\Documents\\ChatGPT\\oceanbaes\\stepfun-local-contest\\stepfun\\public\\models\\751bff37182d3f1213fa05d7196b954e230abad9\\Xenova\\all-MiniLM-L6-v2\\tokenizer.json",
+        "reuse": false
+      },
+      {
+        "kind": "model",
+        "source": "https://huggingface.co/Xenova/all-MiniLM-L6-v2/resolve/751bff37182d3f1213fa05d7196b954e230abad9/tokenizer_config.json",
+        "relative": "public/models/751bff37182d3f1213fa05d7196b954e230abad9/Xenova/all-MiniLM-L6-v2/tokenizer_config.json",
+        "expected_bytes": 366,
+        "expected_sha256": "9261e7d79b44c8195c1cada2b453e55b00aeb81e907a6664974b4d7776172ab3",
+        "optional": false,
+        "target": "<LOCAL_USER_DIR>\\Documents\\ChatGPT\\oceanbaes\\stepfun-local-contest\\stepfun\\public\\models\\751bff37182d3f1213fa05d7196b954e230abad9\\Xenova\\all-MiniLM-L6-v2\\tokenizer_config.json",
+        "reuse": false
+      },
+      {
+        "kind": "model",
+        "source": "https://huggingface.co/Xenova/all-MiniLM-L6-v2/resolve/751bff37182d3f1213fa05d7196b954e230abad9/onnx/model.onnx",
+        "relative": "public/models/751bff37182d3f1213fa05d7196b954e230abad9/Xenova/all-MiniLM-L6-v2/onnx/model.onnx",
+        "expected_bytes": 90387606,
+        "expected_sha256": "759c3cd2b7fe7e93933ad23c4c9181b7396442a2ed746ec7c1d46192c469c46e",
+        "optional": false,
+        "target": "<LOCAL_USER_DIR>\\Documents\\ChatGPT\\oceanbaes\\stepfun-local-contest\\stepfun\\public\\models\\751bff37182d3f1213fa05d7196b954e230abad9\\Xenova\\all-MiniLM-L6-v2\\onnx\\model.onnx",
+        "reuse": false
+      },
+      {
+        "kind": "model",
+        "source": "https://huggingface.co/Xenova/all-MiniLM-L6-v2/resolve/751bff37182d3f1213fa05d7196b954e230abad9/onnx/model_fp16.onnx",
+        "relative": "public/models/751bff37182d3f1213fa05d7196b954e230abad9/Xenova/all-MiniLM-L6-v2/onnx/model_fp16.onnx",
+        "expected_bytes": 45297825,
+        "expected_sha256": "2cdb5e58291813b6d6e248ed69010100246821a367fa17b1b81ae9483744533d",
+        "optional": false,
+        "target": "<LOCAL_USER_DIR>\\Documents\\ChatGPT\\oceanbaes\\stepfun-local-contest\\stepfun\\public\\models\\751bff37182d3f1213fa05d7196b954e230abad9\\Xenova\\all-MiniLM-L6-v2\\onnx\\model_fp16.onnx",
+        "reuse": false
+      },
+      {
+        "kind": "model",
+        "source": "https://huggingface.co/Xenova/all-MiniLM-L6-v2/resolve/751bff37182d3f1213fa05d7196b954e230abad9/onnx/model_quantized.onnx",
+        "relative": "public/models/751bff37182d3f1213fa05d7196b954e230abad9/Xenova/all-MiniLM-L6-v2/onnx/model_quantized.onnx",
+        "expected_bytes": 22972370,
+        "expected_sha256": "afdb6f1a0e45b715d0bb9b11772f032c399babd23bfc31fed1c170afc848bdb1",
+        "optional": false,
+        "target": "<LOCAL_USER_DIR>\\Documents\\ChatGPT\\oceanbaes\\stepfun-local-contest\\stepfun\\public\\models\\751bff37182d3f1213fa05d7196b954e230abad9\\Xenova\\all-MiniLM-L6-v2\\onnx\\model_quantized.onnx",
+        "reuse": false
+      },
+      {
+        "kind": "model",
+        "source": "https://huggingface.co/Xenova/all-MiniLM-L6-v2/resolve/751bff37182d3f1213fa05d7196b954e230abad9/special_tokens_map.json",
+        "relative": "public/models/751bff37182d3f1213fa05d7196b954e230abad9/Xenova/all-MiniLM-L6-v2/special_tokens_map.json",
+        "expected_bytes": 125,
+        "expected_sha256": "b6d346be366a7d1d48332dbc9fdf3bf8960b5d879522b7799ddba59e76237ee3",
+        "optional": true,
+        "target": "<LOCAL_USER_DIR>\\Documents\\ChatGPT\\oceanbaes\\stepfun-local-contest\\stepfun\\public\\models\\751bff37182d3f1213fa05d7196b954e230abad9\\Xenova\\all-MiniLM-L6-v2\\special_tokens_map.json",
+        "reuse": false
+      },
+      {
+        "kind": "model",
+        "source": "https://huggingface.co/Xenova/all-MiniLM-L6-v2/resolve/751bff37182d3f1213fa05d7196b954e230abad9/vocab.txt",
+        "relative": "public/models/751bff37182d3f1213fa05d7196b954e230abad9/Xenova/all-MiniLM-L6-v2/vocab.txt",
+        "expected_bytes": 231508,
+        "expected_sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+        "optional": true,
+        "target": "<LOCAL_USER_DIR>\\Documents\\ChatGPT\\oceanbaes\\stepfun-local-contest\\stepfun\\public\\models\\751bff37182d3f1213fa05d7196b954e230abad9\\Xenova\\all-MiniLM-L6-v2\\vocab.txt",
+        "reuse": false
+      }
+    ],
+    "size_accounting": {
+      "common_minimum_bytes": 712677,
+      "optional_text_bytes": 231633,
+      "model_packages": [
+        {
+          "weight": "onnx/model.onnx",
+          "common_plus_weight_bytes": 91100283,
+          "with_optional_text_bytes": 91331916
+        },
+        {
+          "weight": "onnx/model_fp16.onnx",
+          "common_plus_weight_bytes": 46010502,
+          "with_optional_text_bytes": 46242135
+        },
+        {
+          "weight": "onnx/model_quantized.onnx",
+          "common_plus_weight_bytes": 23685047,
+          "with_optional_text_bytes": 23916680
+        }
+      ],
+      "runtime_assets_bytes": 22540034,
+      "runtime_includes_license": true
+    },
+    "assurance": "File acquisition/integrity only; not model execution or browser acceptance."
+  },
+  "downloads": [
+    {
+      "kind": "npm_tarball",
+      "expected_integrity": "sha512-tsTk4zVjImqdqjS8/AOZg2yNLd1z9S5v+7oUPpXaasDRwEDhB+xnglK1k5cad26lL5/ZIaeREgWWy0bs9y9pPA==",
+      "reuse": false,
+      "redirects": [],
+      "started_at": "2026-10-31T22:08:52.585909+00:00",
+      "source": "https://registry.npmjs.org/@huggingface/transformers/-/transformers-3.8.1.tgz",
+      "actual_bytes": 10482401,
+      "partial": "<LOCAL_USER_DIR>\\Documents\\ChatGPT\\oceanbaes\\stepfun-local-contest\\stepfun\\artifacts\\browser-resource-fetch-20261031T220852Z-120c0f4259\\transformers-3.8.1.tgz.part",
+      "final_source_without_query": "https://registry.npmjs.org/@huggingface/transformers/-/transformers-3.8.1.tgz",
+      "http_status": 200,
+      "content_length": "10482401",
+      "finished_at": "2026-10-31T22:08:55.950900+00:00",
+      "actual_sha256": "207714c36765b87accfd9b7b0672c3505805af97140990e0d9f8ac6e3cd5471e",
+      "actual_sha512": "b6c4e4e33563226a9daa34bcfc0399836c8d2ddd73f52e6ffbba143e95da6ac0d1c040e107ec678252b593971a776ea52f9fd921a791120596cb46ecf72f693c",
+      "verified": true
+    },
+    {
+      "kind": "model",
+      "expected_bytes": 650,
+      "expected_sha256": "7135149f7cffa1a573466c6e4d8423ed73b62fd2332c575bf738a0d033f70df7",
+      "reuse": false,
+      "redirects": [
+        {
+          "status": 307,
+          "target": "https://huggingface.co/api/resolve-cache/models/Xenova/all-MiniLM-L6-v2/751bff37182d3f1213fa05d7196b954e230abad9/config.json"
+        }
+      ],
+      "started_at": "2026-10-31T22:08:56.249040+00:00",
+      "source": "https://huggingface.co/Xenova/all-MiniLM-L6-v2/resolve/751bff37182d3f1213fa05d7196b954e230abad9/config.json",
+      "actual_bytes": 650,
+      "partial": "<LOCAL_USER_DIR>\\Documents\\ChatGPT\\oceanbaes\\stepfun-local-contest\\stepfun\\artifacts\\browser-resource-fetch-20261031T220852Z-120c0f4259\\model-4.part",
+      "final_source_without_query": "https://huggingface.co/api/resolve-cache/models/Xenova/all-MiniLM-L6-v2/751bff37182d3f1213fa05d7196b954e230abad9/config.json",
+      "http_status": 200,
+      "content_length": "650",
+      "finished_at": "2026-10-31T22:08:57.841288+00:00",
+      "actual_sha256": "7135149f7cffa1a573466c6e4d8423ed73b62fd2332c575bf738a0d033f70df7",
+      "verified": true
+    },
+    {
+      "kind": "model",
+      "expected_bytes": 711661,
+      "expected_sha256": "da0e79933b9ed51798a3ae27893d3c5fa4a201126cef75586296df9b4d2c62a0",
+      "reuse": false,
+      "redirects": [
+        {
+          "status": 307,
+          "target": "https://huggingface.co/api/resolve-cache/models/Xenova/all-MiniLM-L6-v2/751bff37182d3f1213fa05d7196b954e230abad9/tokenizer.json"
+        }
+      ],
+      "started_at": "2026-10-31T22:08:57.877814+00:00",
+      "source": "https://huggingface.co/Xenova/all-MiniLM-L6-v2/resolve/751bff37182d3f1213fa05d7196b954e230abad9/tokenizer.json",
+      "actual_bytes": 711661,
+      "partial": "<LOCAL_USER_DIR>\\Documents\\ChatGPT\\oceanbaes\\stepfun-local-contest\\stepfun\\artifacts\\browser-resource-fetch-20261031T220852Z-120c0f4259\\model-5.part",
+      "final_source_without_query": "https://huggingface.co/api/resolve-cache/models/Xenova/all-MiniLM-L6-v2/751bff37182d3f1213fa05d7196b954e230abad9/tokenizer.json",
+      "http_status": 200,
+      "content_length": "711661",
+      "finished_at": "2026-10-31T22:09:00.013344+00:00",
+      "actual_sha256": "da0e79933b9ed51798a3ae27893d3c5fa4a201126cef75586296df9b4d2c62a0",
+      "verified": true
+    },
+    {
+      "kind": "model",
+      "expected_bytes": 366,
+      "expected_sha256": "9261e7d79b44c8195c1cada2b453e55b00aeb81e907a6664974b4d7776172ab3",
+      "reuse": false,
+      "redirects": [
+        {
+          "status": 307,
+          "target": "https://huggingface.co/api/resolve-cache/models/Xenova/all-MiniLM-L6-v2/751bff37182d3f1213fa05d7196b954e230abad9/tokenizer_config.json"
+        }
+      ],
+      "started_at": "2026-10-31T22:09:00.053537+00:00",
+      "source": "https://huggingface.co/Xenova/all-MiniLM-L6-v2/resolve/751bff37182d3f1213fa05d7196b954e230abad9/tokenizer_config.json",
+      "actual_bytes": 366,
+      "partial": "<LOCAL_USER_DIR>\\Documents\\ChatGPT\\oceanbaes\\stepfun-local-contest\\stepfun\\artifacts\\browser-resource-fetch-20261031T220852Z-120c0f4259\\model-6.part",
+      "final_source_without_query": "https://huggingface.co/api/resolve-cache/models/Xenova/all-MiniLM-L6-v2/751bff37182d3f1213fa05d7196b954e230abad9/tokenizer_config.json",
+      "http_status": 200,
+      "content_length": "366",
+      "finished_at": "2026-10-31T22:09:01.682363+00:00",
+      "actual_sha256": "9261e7d79b44c8195c1cada2b453e55b00aeb81e907a6664974b4d7776172ab3",
+      "verified": true
+    },
+    {
+      "kind": "model",
+      "expected_bytes": 90387606,
+      "expected_sha256": "759c3cd2b7fe7e93933ad23c4c9181b7396442a2ed746ec7c1d46192c469c46e",
+      "reuse": false,
+      "redirects": [
+        {
+          "status": 302,
+          "target": "https://us.aws.cdn.hf.co/xet-bridge-us/645192b75fb40b9f50b71914/b7d9d5cb1d321ba62f985cb04b9a7760d641a666be316f61f6ca4b37a0220fd9"
+        }
+      ],
+      "started_at": "2026-10-31T22:09:01.717888+00:00",
+      "source": "https://huggingface.co/Xenova/all-MiniLM-L6-v2/resolve/751bff37182d3f1213fa05d7196b954e230abad9/onnx/model.onnx",
+      "actual_bytes": 90387606,
+      "partial": "<LOCAL_USER_DIR>\\Documents\\ChatGPT\\oceanbaes\\stepfun-local-contest\\stepfun\\artifacts\\browser-resource-fetch-20261031T220852Z-120c0f4259\\model-7.part",
+      "final_source_without_query": "https://us.aws.cdn.hf.co/xet-bridge-us/645192b75fb40b9f50b71914/b7d9d5cb1d321ba62f985cb04b9a7760d641a666be316f61f6ca4b37a0220fd9",
+      "http_status": 200,
+      "content_length": "90387606",
+      "finished_at": "2026-10-31T22:09:20.858468+00:00",
+      "actual_sha256": "759c3cd2b7fe7e93933ad23c4c9181b7396442a2ed746ec7c1d46192c469c46e",
+      "verified": true
+    },
+    {
+      "kind": "model",
+      "expected_bytes": 45297825,
+      "expected_sha256": "2cdb5e58291813b6d6e248ed69010100246821a367fa17b1b81ae9483744533d",
+      "reuse": false,
+      "redirects": [
+        {
+          "status": 302,
+          "target": "https://us.aws.cdn.hf.co/xet-bridge-us/645192b75fb40b9f50b71914/a9c2d9fa1944a3aaadb331f7c9f9f7ed0ba17e15be0860777d65ae20560228cd"
+        }
+      ],
+      "started_at": "2026-10-31T22:09:21.289275+00:00",
+      "source": "https://huggingface.co/Xenova/all-MiniLM-L6-v2/resolve/751bff37182d3f1213fa05d7196b954e230abad9/onnx/model_fp16.onnx",
+      "actual_bytes": 45297825,
+      "partial": "<LOCAL_USER_DIR>\\Documents\\ChatGPT\\oceanbaes\\stepfun-local-contest\\stepfun\\artifacts\\browser-resource-fetch-20261031T220852Z-120c0f4259\\model-8.part",
+      "final_source_without_query": "https://us.aws.cdn.hf.co/xet-bridge-us/645192b75fb40b9f50b71914/a9c2d9fa1944a3aaadb331f7c9f9f7ed0ba17e15be0860777d65ae20560228cd",
+      "http_status": 200,
+      "content_length": "45297825",
+      "finished_at": "2026-10-31T22:09:32.717982+00:00",
+      "actual_sha256": "2cdb5e58291813b6d6e248ed69010100246821a367fa17b1b81ae9483744533d",
+      "verified": true
+    },
+    {
+      "kind": "model",
+      "expected_bytes": 22972370,
+      "expected_sha256": "afdb6f1a0e45b715d0bb9b11772f032c399babd23bfc31fed1c170afc848bdb1",
+      "reuse": false,
+      "redirects": [
+        {
+          "status": 302,
+          "target": "https://us.aws.cdn.hf.co/xet-bridge-us/645192b75fb40b9f50b71914/c96f5f1e2aee643bd8191bb520a3e175db7b05821579a02a70acdf31e655d194"
+        }
+      ],
+      "started_at": "2026-10-31T22:09:33.116797+00:00",
+      "source": "https://huggingface.co/Xenova/all-MiniLM-L6-v2/resolve/751bff37182d3f1213fa05d7196b954e230abad9/onnx/model_quantized.onnx",
+      "actual_bytes": 22972370,
+      "partial": "<LOCAL_USER_DIR>\\Documents\\ChatGPT\\oceanbaes\\stepfun-local-contest\\stepfun\\artifacts\\browser-resource-fetch-20261031T220852Z-120c0f4259\\model-9.part",
+      "final_source_without_query": "https://us.aws.cdn.hf.co/xet-bridge-us/645192b75fb40b9f50b71914/c96f5f1e2aee643bd8191bb520a3e175db7b05821579a02a70acdf31e655d194",
+      "http_status": 200,
+      "content_length": "22972370",
+      "finished_at": "2026-10-31T22:09:39.323663+00:00",
+      "actual_sha256": "afdb6f1a0e45b715d0bb9b11772f032c399babd23bfc31fed1c170afc848bdb1",
+      "verified": true
+    },
+    {
+      "kind": "model",
+      "expected_bytes": 125,
+      "expected_sha256": "b6d346be366a7d1d48332dbc9fdf3bf8960b5d879522b7799ddba59e76237ee3",
+      "reuse": false,
+      "redirects": [
+        {
+          "status": 307,
+          "target": "https://huggingface.co/api/resolve-cache/models/Xenova/all-MiniLM-L6-v2/751bff37182d3f1213fa05d7196b954e230abad9/special_tokens_map.json"
+        }
+      ],
+      "started_at": "2026-10-31T22:09:39.563484+00:00",
+      "source": "https://huggingface.co/Xenova/all-MiniLM-L6-v2/resolve/751bff37182d3f1213fa05d7196b954e230abad9/special_tokens_map.json",
+      "actual_bytes": 125,
+      "partial": "<LOCAL_USER_DIR>\\Documents\\ChatGPT\\oceanbaes\\stepfun-local-contest\\stepfun\\artifacts\\browser-resource-fetch-20261031T220852Z-120c0f4259\\model-10.part",
+      "final_source_without_query": "https://huggingface.co/api/resolve-cache/models/Xenova/all-MiniLM-L6-v2/751bff37182d3f1213fa05d7196b954e230abad9/special_tokens_map.json",
+      "http_status": 200,
+      "content_length": "125",
+      "finished_at": "2026-10-31T22:09:41.122814+00:00",
+      "actual_sha256": "b6d346be366a7d1d48332dbc9fdf3bf8960b5d879522b7799ddba59e76237ee3",
+      "verified": true
+    },
+    {
+      "kind": "model",
+      "expected_bytes": 231508,
+      "expected_sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+      "reuse": false,
+      "redirects": [
+        {
+          "status": 307,
+          "target": "https://huggingface.co/api/resolve-cache/models/Xenova/all-MiniLM-L6-v2/751bff37182d3f1213fa05d7196b954e230abad9/vocab.txt"
+        }
+      ],
+      "started_at": "2026-10-31T22:09:41.165840+00:00",
+      "source": "https://huggingface.co/Xenova/all-MiniLM-L6-v2/resolve/751bff37182d3f1213fa05d7196b954e230abad9/vocab.txt",
+      "actual_bytes": 231508,
+      "partial": "<LOCAL_USER_DIR>\\Documents\\ChatGPT\\oceanbaes\\stepfun-local-contest\\stepfun\\artifacts\\browser-resource-fetch-20261031T220852Z-120c0f4259\\model-11.part",
+      "final_source_without_query": "https://huggingface.co/api/resolve-cache/models/Xenova/all-MiniLM-L6-v2/751bff37182d3f1213fa05d7196b954e230abad9/vocab.txt",
+      "http_status": 200,
+      "content_length": "231508",
+      "finished_at": "2026-10-31T22:09:43.110982+00:00",
+      "actual_sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+      "verified": true
+    }
+  ],
+  "results": [
+    {
+      "relative": "public/vendor/transformers.min.js",
+      "kind": "runtime",
+      "source": "https://registry.npmjs.org/@huggingface/transformers/-/transformers-3.8.1.tgz",
+      "expected_bytes": 888173,
+      "expected_sha256": "aa5002b70e789798da263f5f99c62bd3e8fcd0c119258a493c40c180648365fa",
+      "tar_member": "package/dist/transformers.min.js",
+      "reuse": false,
+      "status": "published",
+      "actual_bytes": 888173,
+      "actual_sha256": "aa5002b70e789798da263f5f99c62bd3e8fcd0c119258a493c40c180648365fa"
+    },
+    {
+      "relative": "public/vendor/ort-wasm-simd-threaded.jsep.mjs",
+      "kind": "runtime",
+      "source": "https://registry.npmjs.org/@huggingface/transformers/-/transformers-3.8.1.tgz",
+      "expected_bytes": 44484,
+      "expected_sha256": "08fb86ec433c78bfb032c5d84a68b8e8e5a8d81268fa39e24314179a5767a5b9",
+      "tar_member": "package/dist/ort-wasm-simd-threaded.jsep.mjs",
+      "reuse": false,
+      "status": "published",
+      "actual_bytes": 44484,
+      "actual_sha256": "08fb86ec433c78bfb032c5d84a68b8e8e5a8d81268fa39e24314179a5767a5b9"
+    },
+    {
+      "relative": "public/vendor/ort-wasm-simd-threaded.jsep.wasm",
+      "kind": "runtime",
+      "source": "https://registry.npmjs.org/@huggingface/transformers/-/transformers-3.8.1.tgz",
+      "expected_bytes": 21596019,
+      "expected_sha256": "c46655e8a94afc45338d4cb2b840475f88e5012d524509916e505079c00bfa39",
+      "tar_member": "package/dist/ort-wasm-simd-threaded.jsep.wasm",
+      "reuse": false,
+      "status": "published",
+      "actual_bytes": 21596019,
+      "actual_sha256": "c46655e8a94afc45338d4cb2b840475f88e5012d524509916e505079c00bfa39"
+    },
+    {
+      "relative": "public/vendor/LICENSE.transformers.txt",
+      "kind": "runtime",
+      "source": "https://registry.npmjs.org/@huggingface/transformers/-/transformers-3.8.1.tgz",
+      "expected_bytes": 11358,
+      "expected_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "tar_member": "package/LICENSE",
+      "reuse": false,
+      "status": "published",
+      "actual_bytes": 11358,
+      "actual_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "relative": "public/models/751bff37182d3f1213fa05d7196b954e230abad9/Xenova/all-MiniLM-L6-v2/config.json",
+      "kind": "model",
+      "source": "https://huggingface.co/Xenova/all-MiniLM-L6-v2/resolve/751bff37182d3f1213fa05d7196b954e230abad9/config.json",
+      "expected_bytes": 650,
+      "expected_sha256": "7135149f7cffa1a573466c6e4d8423ed73b62fd2332c575bf738a0d033f70df7",
+      "reuse": false,
+      "status": "published",
+      "actual_bytes": 650,
+      "actual_sha256": "7135149f7cffa1a573466c6e4d8423ed73b62fd2332c575bf738a0d033f70df7"
+    },
+    {
+      "relative": "public/models/751bff37182d3f1213fa05d7196b954e230abad9/Xenova/all-MiniLM-L6-v2/tokenizer.json",
+      "kind": "model",
+      "source": "https://huggingface.co/Xenova/all-MiniLM-L6-v2/resolve/751bff37182d3f1213fa05d7196b954e230abad9/tokenizer.json",
+      "expected_bytes": 711661,
+      "expected_sha256": "da0e79933b9ed51798a3ae27893d3c5fa4a201126cef75586296df9b4d2c62a0",
+      "reuse": false,
+      "status": "published",
+      "actual_bytes": 711661,
+      "actual_sha256": "da0e79933b9ed51798a3ae27893d3c5fa4a201126cef75586296df9b4d2c62a0"
+    },
+    {
+      "relative": "public/models/751bff37182d3f1213fa05d7196b954e230abad9/Xenova/all-MiniLM-L6-v2/tokenizer_config.json",
+      "kind": "model",
+      "source": "https://huggingface.co/Xenova/all-MiniLM-L6-v2/resolve/751bff37182d3f1213fa05d7196b954e230abad9/tokenizer_config.json",
+      "expected_bytes": 366,
+      "expected_sha256": "9261e7d79b44c8195c1cada2b453e55b00aeb81e907a6664974b4d7776172ab3",
+      "reuse": false,
+      "status": "published",
+      "actual_bytes": 366,
+      "actual_sha256": "9261e7d79b44c8195c1cada2b453e55b00aeb81e907a6664974b4d7776172ab3"
+    },
+    {
+      "relative": "public/models/751bff37182d3f1213fa05d7196b954e230abad9/Xenova/all-MiniLM-L6-v2/onnx/model.onnx",
+      "kind": "model",
+      "source": "https://huggingface.co/Xenova/all-MiniLM-L6-v2/resolve/751bff37182d3f1213fa05d7196b954e230abad9/onnx/model.onnx",
+      "expected_bytes": 90387606,
+      "expected_sha256": "759c3cd2b7fe7e93933ad23c4c9181b7396442a2ed746ec7c1d46192c469c46e",
+      "reuse": false,
+      "status": "published",
+      "actual_bytes": 90387606,
+      "actual_sha256": "759c3cd2b7fe7e93933ad23c4c9181b7396442a2ed746ec7c1d46192c469c46e"
+    },
+    {
+      "relative": "public/models/751bff37182d3f1213fa05d7196b954e230abad9/Xenova/all-MiniLM-L6-v2/onnx/model_fp16.onnx",
+      "kind": "model",
+      "source": "https://huggingface.co/Xenova/all-MiniLM-L6-v2/resolve/751bff37182d3f1213fa05d7196b954e230abad9/onnx/model_fp16.onnx",
+      "expected_bytes": 45297825,
+      "expected_sha256": "2cdb5e58291813b6d6e248ed69010100246821a367fa17b1b81ae9483744533d",
+      "reuse": false,
+      "status": "published",
+      "actual_bytes": 45297825,
+      "actual_sha256": "2cdb5e58291813b6d6e248ed69010100246821a367fa17b1b81ae9483744533d"
+    },
+    {
+      "relative": "public/models/751bff37182d3f1213fa05d7196b954e230abad9/Xenova/all-MiniLM-L6-v2/onnx/model_quantized.onnx",
+      "kind": "model",
+      "source": "https://huggingface.co/Xenova/all-MiniLM-L6-v2/resolve/751bff37182d3f1213fa05d7196b954e230abad9/onnx/model_quantized.onnx",
+      "expected_bytes": 22972370,
+      "expected_sha256": "afdb6f1a0e45b715d0bb9b11772f032c399babd23bfc31fed1c170afc848bdb1",
+      "reuse": false,
+      "status": "published",
+      "actual_bytes": 22972370,
+      "actual_sha256": "afdb6f1a0e45b715d0bb9b11772f032c399babd23bfc31fed1c170afc848bdb1"
+    },
+    {
+      "relative": "public/models/751bff37182d3f1213fa05d7196b954e230abad9/Xenova/all-MiniLM-L6-v2/special_tokens_map.json",
+      "kind": "model",
+      "source": "https://huggingface.co/Xenova/all-MiniLM-L6-v2/resolve/751bff37182d3f1213fa05d7196b954e230abad9/special_tokens_map.json",
+      "expected_bytes": 125,
+      "expected_sha256": "b6d346be366a7d1d48332dbc9fdf3bf8960b5d879522b7799ddba59e76237ee3",
+      "reuse": false,
+      "status": "published",
+      "actual_bytes": 125,
+      "actual_sha256": "b6d346be366a7d1d48332dbc9fdf3bf8960b5d879522b7799ddba59e76237ee3"
+    },
+    {
+      "relative": "public/models/751bff37182d3f1213fa05d7196b954e230abad9/Xenova/all-MiniLM-L6-v2/vocab.txt",
+      "kind": "model",
+      "source": "https://huggingface.co/Xenova/all-MiniLM-L6-v2/resolve/751bff37182d3f1213fa05d7196b954e230abad9/vocab.txt",
+      "expected_bytes": 231508,
+      "expected_sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+      "reuse": false,
+      "status": "published",
+      "actual_bytes": 231508,
+      "actual_sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3"
+    }
+  ],
+  "runtime_tested": false,
+  "models_executed": false,
+  "finished_at": "2026-10-31T22:09:43.285738+00:00"
+}

@@ -1,0 +1,237 @@
+{
+  "created_utc": "2026-10-31T21:54:17.277687+00:00",
+  "provenance": "AI-assisted synthetic English corpus and agent-authored explicit relevance labels; root item-by-item review pending. Not real-person annotation, official gold or a user experiment.",
+  "quality_corpus": "harbor initial H01-H20, one document per text file",
+  "initial_documents": [
+    {
+      "id": "H01",
+      "kb_id": "harbor",
+      "revision": "1",
+      "title": "Lost company laptop",
+      "source_path": "corpus/harbor/H01.txt",
+      "utf8_bytes": 220,
+      "sha256": "56fa9af89bcce5d5a8c8fe6290f866600c57af3bd73ef2237b7eed0c9c144688"
+    },
+    {
+      "id": "H02",
+      "kb_id": "harbor",
+      "revision": "1",
+      "title": "Account protection after device loss",
+      "source_path": "corpus/harbor/H02.txt",
+      "utf8_bytes": 232,
+      "sha256": "a36d51124bffa532733f4a1bda69500f32b63606c14af646f5af69deffc1ad6c"
+    },
+    {
+      "id": "H03",
+      "kb_id": "harbor",
+      "revision": "1",
+      "title": "Equipment for a new employee",
+      "source_path": "corpus/harbor/H03.txt",
+      "utf8_bytes": 218,
+      "sha256": "5fecaecb3873a0380b2265c4e8e83f91082056d76c51473aac577b24a0a8365c"
+    },
+    {
+      "id": "H04",
+      "kb_id": "harbor",
+      "revision": "1",
+      "title": "First account activation",
+      "source_path": "corpus/harbor/H04.txt",
+      "utf8_bytes": 211,
+      "sha256": "777ecb41908eb5b0e88d445d56a4d859c52fe749d5d2e0a4559ef96825b37b3c"
+    },
+    {
+      "id": "H05",
+      "kb_id": "harbor",
+      "revision": "1",
+      "title": "Travel expense submission",
+      "source_path": "corpus/harbor/H05.txt",
+      "utf8_bytes": 201,
+      "sha256": "314a0df2bbadccb70fe85b7b9b19bdf0853d05a79a807ac7dc9e25c9792ab48e"
+    },
+    {
+      "id": "H06",
+      "kb_id": "harbor",
+      "revision": "1",
+      "title": "Missing taxi receipts",
+      "source_path": "corpus/harbor/H06.txt",
+      "utf8_bytes": 202,
+      "sha256": "43f6129176f9a00be9c60ee1f3f85fcb3f0dbe2e1aa11bf70c7bc430ce6d1664"
+    },
+    {
+      "id": "H07",
+      "kb_id": "harbor",
+      "revision": "1",
+      "title": "Unexpected search service outage",
+      "source_path": "corpus/harbor/H07.txt",
+      "utf8_bytes": 201,
+      "sha256": "9d074125d5735020279ed70127c8a7edfeab81fdbb19d0c06a30ee5b58171dea"
+    },
+    {
+      "id": "H08",
+      "kb_id": "harbor",
+      "revision": "1",
+      "title": "Public outage updates",
+      "source_path": "corpus/harbor/H08.txt",
+      "utf8_bytes": 226,
+      "sha256": "b009340cf07f2f3e83b979e8a6987e12b9ebf08663a4d1363c7269fbbc438370"
+    },
+    {
+      "id": "H09",
+      "kb_id": "harbor",
+      "revision": "1",
+      "title": "Nightly snapshot retention",
+      "source_path": "corpus/harbor/H09.txt",
+      "utf8_bytes": 194,
+      "sha256": "8048cfcbf16004676b2460f680dfdbffa17e4e67bbb7a561a1c30d7832f5fe66"
+    },
+    {
+      "id": "H10",
+      "kb_id": "harbor",
+      "revision": "1",
+      "title": "Checking backup recovery",
+      "source_path": "corpus/harbor/H10.txt",
+      "utf8_bytes": 238,
+      "sha256": "90ceceb173d956b3640e3e85cc33ad0f38ebcbbf35ca02a232f859b2ddc29d3f"
+    },
+    {
+      "id": "H11",
+      "kb_id": "harbor",
+      "revision": "1",
+      "title": "Gradual feature release",
+      "source_path": "corpus/harbor/H11.txt",
+      "utf8_bytes": 241,
+      "sha256": "9e82089ae458829a8bf6c06c8b40a0dedaad27b933ba8fb45492252e476f4ac9"
+    },
+    {
+      "id": "H12",
+      "kb_id": "harbor",
+      "revision": "1",
+      "title": "Reverting a feature flag",
+      "source_path": "corpus/harbor/H12.txt",
+      "utf8_bytes": 233,
+      "sha256": "562868f9d0d6b1fb30f9b1bc9b4030b42124036018c3951635a2f0e0d4cdf6e5"
+    },
+    {
+      "id": "H13",
+      "kb_id": "harbor",
+      "revision": "1",
+      "title": "Workspace erasure timeline",
+      "source_path": "corpus/harbor/H13.txt",
+      "utf8_bytes": 213,
+      "sha256": "0b06b3c68b232194ec25ba9a42c3334ac596e99d22d57ccd8b3dfa9379fb2264"
+    },
+    {
+      "id": "H14",
+      "kb_id": "harbor",
+      "revision": "1",
+      "title": "Billing fields outside workspace erasure",
+      "source_path": "corpus/harbor/H14.txt",
+      "utf8_bytes": 250,
+      "sha256": "18993601209846f307107832301774fef9123e525c9175d46f3cf7080d31a070"
+    },
+    {
+      "id": "H15",
+      "kb_id": "harbor",
+      "revision": "1",
+      "title": "Meeting room reservations",
+      "source_path": "corpus/harbor/H15.txt",
+      "utf8_bytes": 184,
+      "sha256": "7f9b2a55a5e6ea9897caccce9b2740ca5622d09ed51ca662c8c9a529ce2433dd"
+    },
+    {
+      "id": "H16",
+      "kb_id": "harbor",
+      "revision": "1",
+      "title": "Quiet pod reservations",
+      "source_path": "corpus/harbor/H16.txt",
+      "utf8_bytes": 166,
+      "sha256": "e9a5c29059466e973d850da13711c3b67fea194404a5801b058dbf6c7a4afd08"
+    },
+    {
+      "id": "H17",
+      "kb_id": "harbor",
+      "revision": "1",
+      "title": "Visitor registration before arrival",
+      "source_path": "corpus/harbor/H17.txt",
+      "utf8_bytes": 221,
+      "sha256": "cf9205b756c7a390836b46de4b80c8390dd98874c2c6fe1ddd8f1bd39bcee7d6"
+    },
+    {
+      "id": "H18",
+      "kb_id": "harbor",
+      "revision": "1",
+      "title": "Visitor badges and escort",
+      "source_path": "corpus/harbor/H18.txt",
+      "utf8_bytes": 220,
+      "sha256": "a6f9d7ebe7799930ebb83a90286ce3dd6b186788cf90ec6ae41c5fd1b372700b"
+    },
+    {
+      "id": "H19",
+      "kb_id": "harbor",
+      "revision": "1",
+      "title": "Joining a training course",
+      "source_path": "corpus/harbor/H19.txt",
+      "utf8_bytes": 221,
+      "sha256": "fb38804dcc317743cdb6f629436567eac02fbc7371fb9e7a94cb063a29e10ba6"
+    },
+    {
+      "id": "H20",
+      "kb_id": "harbor",
+      "revision": "1",
+      "title": "Recording paid learning time",
+      "source_path": "corpus/harbor/H20.txt",
+      "utf8_bytes": 208,
+      "sha256": "9ddae25769a793fd57f04affe01b96fec4ddbec2cca0b18325e25160cfcbc8cb"
+    },
+    {
+      "id": "B01",
+      "kb_id": "beacon",
+      "revision": "1",
+      "title": "Beacon travel expense deadline",
+      "source_path": "corpus/beacon/B01.txt",
+      "utf8_bytes": 233,
+      "sha256": "314e2596cf749ac31911cb5c79a81fe956442e94da2bd6bcb701e1994c28fda5"
+    },
+    {
+      "id": "B02",
+      "kb_id": "beacon",
+      "revision": "1",
+      "title": "Beacon visitor access",
+      "source_path": "corpus/beacon/B02.txt",
+      "utf8_bytes": 193,
+      "sha256": "1d4180a3298182319900a4c835f612cfb9a6a737035e5c9a55904c8daf0a6fb1"
+    }
+  ],
+  "mutation_documents": [
+    {
+      "id": "H21",
+      "kb_id": "harbor",
+      "revision": "1",
+      "title": "Shared bicycle key cabinet",
+      "source_path": "mutations/add/H21.txt",
+      "utf8_bytes": 222,
+      "sha256": "d570fe9430dd4766ceef882f7932046c0a325150b96d1d3998d4672384245fd3"
+    },
+    {
+      "id": "H05",
+      "kb_id": "harbor",
+      "revision": "2",
+      "title": "Travel expense submission update",
+      "source_path": "mutations/update/H05-r2.txt",
+      "utf8_bytes": 278,
+      "sha256": "d68b47d3b7d02ba1104bdfc899dd35e4008171dc98fb5007222f17d64e52898d"
+    }
+  ],
+  "counts": {
+    "initial_harbor": 20,
+    "initial_beacon": 2,
+    "fixed_quality_queries": 10,
+    "judged_pairs": 200,
+    "positive_labels": 20,
+    "distinct_document_ids_including_add": 23,
+    "text_versions_including_update": 24
+  },
+  "no_vectors_or_measurements": true,
+  "labels_human_annotated": false,
+  "independent_root_review": "pending"
+}

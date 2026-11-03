@@ -1,0 +1,13 @@
+{
+  "recordedAtUtc": "2026-11-02T09:35:30.251310+00:00",
+  "configuredDownloadDirectoryAlreadyExisted": false,
+  "configuredDownloadDirectory": "<LOCAL_USER_DIR>\\AppData\\Local\\Temp\\stepfun-wasm-fallback-check-20261102\\live-20261102T0839\\downloads",
+  "beforeCandidates": [
+    {
+      "path": "<LOCAL_USER_DIR>\\Downloads\\stepfun-local-run.json",
+      "bytes": 2546,
+      "mtime": 1793489703.7033105
+    }
+  ],
+  "action": "Original UI export-log button, no model/event/export substitution"
+}

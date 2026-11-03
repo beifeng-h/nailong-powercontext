@@ -1,0 +1,28 @@
+{
+  "files": [
+    {
+      "path": "audit.json",
+      "bytes": 3856,
+      "sha256": "bfcc19763b0832d5d1c5042e6822723eb521690b2cc344c0dc64f3c0158ba9ca"
+    },
+    {
+      "path": "checks.py",
+      "bytes": 9918,
+      "sha256": "de877e39e6ee163712f470b4aec1118f5caaba8dfa3671813761a952f6c42ef4",
+      "original_sha256": "005c0f14fce3350c692b191608eb3daaefc6c5fd3a5085bc1ee21062b85a5052",
+      "original_bytes": 9961,
+      "redacted_derivative": true
+    },
+    {
+      "path": "review.md",
+      "bytes": 2744,
+      "sha256": "3a69bd43aadeca4a099ed3ef8c563166721e7a68894aac1d2295f26ec5deec26"
+    },
+    {
+      "path": "RUN_RECEIPT.json",
+      "bytes": 210,
+      "sha256": "779affe1bd17a7dbf71655d09d4a899b864375870b34eb18af0b1bf1fdb7ac52"
+    }
+  ],
+  "redaction_notice": "Derivative integrity index; original fingerprints are retained on changed entries."
+}

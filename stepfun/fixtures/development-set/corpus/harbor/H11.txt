@@ -1,0 +1,3 @@
+Gradual feature release
+
+A new feature starts behind a feature flag for five percent of users. The release captain may increase exposure to twenty-five percent after one hour if the error and latency checks remain within the release limits.

@@ -1,0 +1,362 @@
+{
+  "scope": "Self-authored development scenarios. Abstract operations must be mapped to the actual app/seekdb-js interface; not API implementations or executed observations. Run separately from frozen quality comparisons.",
+  "initial_state": {
+    "harbor_ids": [
+      "H01",
+      "H02",
+      "H03",
+      "H04",
+      "H05",
+      "H06",
+      "H07",
+      "H08",
+      "H09",
+      "H10",
+      "H11",
+      "H12",
+      "H13",
+      "H14",
+      "H15",
+      "H16",
+      "H17",
+      "H18",
+      "H19",
+      "H20"
+    ],
+    "beacon_ids": [
+      "B01",
+      "B02"
+    ],
+    "active_kb": "harbor"
+  },
+  "sequence": [
+    {
+      "id": "S01_add_and_refresh",
+      "precondition": "Fresh initial state: harbor H01-H20 and beacon B01-B02; active harbor.",
+      "steps": [
+        {
+          "op": "query",
+          "kb_id": "harbor",
+          "query": "Where is the bicycle key cabinet marked cobaltmesa418?",
+          "top_k": 5,
+          "expect": {
+            "must_not_contain_ids": [
+              "H21"
+            ],
+            "allowed_ids": [
+              "H01",
+              "H02",
+              "H03",
+              "H04",
+              "H05",
+              "H06",
+              "H07",
+              "H08",
+              "H09",
+              "H10",
+              "H11",
+              "H12",
+              "H13",
+              "H14",
+              "H15",
+              "H16",
+              "H17",
+              "H18",
+              "H19",
+              "H20"
+            ]
+          }
+        },
+        {
+          "op": "import",
+          "input": "documents.mutations.jsonl: H21 revision 1",
+          "kb_id": "harbor"
+        },
+        {
+          "op": "await_index_refresh_complete",
+          "expect": {
+            "completion_must_be_observed": true,
+            "fixed_sleep_is_not_completion_proof": true
+          }
+        },
+        {
+          "op": "query",
+          "kb_id": "harbor",
+          "query": "Where is the bicycle key cabinet marked cobaltmesa418?",
+          "top_k": 5,
+          "expect": {
+            "must_include_ids": [
+              "H21"
+            ],
+            "allowed_ids": [
+              "H01",
+              "H02",
+              "H03",
+              "H04",
+              "H05",
+              "H06",
+              "H07",
+              "H08",
+              "H09",
+              "H10",
+              "H11",
+              "H12",
+              "H13",
+              "H14",
+              "H15",
+              "H16",
+              "H17",
+              "H18",
+              "H19",
+              "H20",
+              "H21"
+            ],
+            "harbor_document_count": 21,
+            "for_id": {
+              "H21": {
+                "revision": "1",
+                "text_must_include": [
+                  "cobaltmesa418",
+                  "east lobby"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "S02_replace_and_refresh",
+      "precondition": "S01 complete, harbor H05 still revision 1.",
+      "steps": [
+        {
+          "op": "upsert_same_document_id",
+          "input": "documents.mutations.jsonl: H05 revision 2",
+          "kb_id": "harbor"
+        },
+        {
+          "op": "await_index_refresh_complete",
+          "expect": {
+            "completion_must_be_observed": true
+          }
+        },
+        {
+          "op": "query",
+          "kb_id": "harbor",
+          "query": "Under the ledgermint604 expense update, what is the submission deadline?",
+          "top_k": 5,
+          "expect": {
+            "must_include_ids": [
+              "H05"
+            ],
+            "allowed_ids": [
+              "H01",
+              "H02",
+              "H03",
+              "H04",
+              "H05",
+              "H06",
+              "H07",
+              "H08",
+              "H09",
+              "H10",
+              "H11",
+              "H12",
+              "H13",
+              "H14",
+              "H15",
+              "H16",
+              "H17",
+              "H18",
+              "H19",
+              "H20",
+              "H21"
+            ],
+            "harbor_document_count": 21,
+            "max_rows_for_document_id": {
+              "H05": 1
+            },
+            "for_id": {
+              "H05": {
+                "revision": "2",
+                "text_must_include": [
+                  "eleven calendar days",
+                  "ledgermint604"
+                ],
+                "text_must_not_include": [
+                  "seven calendar days"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "S03_switch_and_return",
+      "precondition": "S02 complete. Query results must use the selected KB; no stale result cache.",
+      "steps": [
+        {
+          "op": "select_kb",
+          "kb_id": "harbor"
+        },
+        {
+          "op": "query",
+          "kb_id": "harbor",
+          "query": "What is the travel expense deadline in this workspace?",
+          "top_k": 5,
+          "expect": {
+            "must_include_ids": [
+              "H05"
+            ],
+            "allowed_ids": [
+              "H01",
+              "H02",
+              "H03",
+              "H04",
+              "H05",
+              "H06",
+              "H07",
+              "H08",
+              "H09",
+              "H10",
+              "H11",
+              "H12",
+              "H13",
+              "H14",
+              "H15",
+              "H16",
+              "H17",
+              "H18",
+              "H19",
+              "H20",
+              "H21"
+            ],
+            "for_id": {
+              "H05": {
+                "revision": "2",
+                "text_must_include": [
+                  "eleven calendar days"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "op": "select_kb",
+          "kb_id": "beacon"
+        },
+        {
+          "op": "query",
+          "kb_id": "beacon",
+          "query": "What is the travel expense deadline in this workspace?",
+          "top_k": 5,
+          "expect": {
+            "must_include_ids": [
+              "B01"
+            ],
+            "allowed_ids": [
+              "B01",
+              "B02"
+            ],
+            "beacon_document_count": 2,
+            "for_id": {
+              "B01": {
+                "revision": "1",
+                "text_must_include": [
+                  "twenty-three calendar days"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "op": "select_kb",
+          "kb_id": "harbor"
+        },
+        {
+          "op": "query",
+          "kb_id": "harbor",
+          "query": "What is the travel expense deadline in this workspace?",
+          "top_k": 5,
+          "expect": {
+            "must_include_ids": [
+              "H05"
+            ],
+            "allowed_ids": [
+              "H01",
+              "H02",
+              "H03",
+              "H04",
+              "H05",
+              "H06",
+              "H07",
+              "H08",
+              "H09",
+              "H10",
+              "H11",
+              "H12",
+              "H13",
+              "H14",
+              "H15",
+              "H16",
+              "H17",
+              "H18",
+              "H19",
+              "H20",
+              "H21"
+            ],
+            "for_id": {
+              "H05": {
+                "revision": "2",
+                "text_must_include": [
+                  "eleven calendar days"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "op": "query",
+          "kb_id": "harbor",
+          "query": "Where is the bicycle key cabinet marked cobaltmesa418?",
+          "top_k": 5,
+          "expect": {
+            "must_include_ids": [
+              "H21"
+            ],
+            "allowed_ids": [
+              "H01",
+              "H02",
+              "H03",
+              "H04",
+              "H05",
+              "H06",
+              "H07",
+              "H08",
+              "H09",
+              "H10",
+              "H11",
+              "H12",
+              "H13",
+              "H14",
+              "H15",
+              "H16",
+              "H17",
+              "H18",
+              "H19",
+              "H20",
+              "H21"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "Top-K=5 and these expected targets are local development checks, not additional official scoring thresholds.",
+    "Before explicit refresh completion, visibility may already occur through automatic refresh; do not require absence during that interval. Only the pre-import absence and post-completion visibility are asserted.",
+    "An old phrase may still retrieve an updated document through vector similarity; validate current revision/body, not an unsupported rule that an old-term query must return no ID.",
+    "Preserve fixture IDs as metadata or record an explicit mapping to actual seekdb IDs. Do not hardcode query results."
+  ]
+}

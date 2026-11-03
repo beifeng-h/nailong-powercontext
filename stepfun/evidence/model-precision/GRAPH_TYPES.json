@@ -1,0 +1,134 @@
+{
+  "recordedAt": "2026-11-01T01:24:09.465162+00:00",
+  "schema": "https://github.com/onnx/onnx/blob/v1.18.0/onnx/onnx.proto3",
+  "scope": "Serialized top-level initializer types/operators only; not runtime kernel precision, model inference, or retrieval quality",
+  "modelRevision": "751bff37182d3f1213fa05d7196b954e230abad9",
+  "models": [
+    {
+      "file": "model.onnx",
+      "bytes": 90387606,
+      "sha256": "759c3cd2b7fe7e93933ad23c4c9181b7396442a2ed746ec7c1d46192c469c46e",
+      "initializerCounts": {
+        "INT64": 1,
+        "FLOAT32": 101
+      },
+      "initializerElementCounts": {
+        "INT64": 512,
+        "FLOAT32": 22565376
+      },
+      "initializerRawDataBytes": {
+        "INT64": 4096,
+        "FLOAT32": 90261504
+      },
+      "externalInitializers": 0,
+      "topLevelOperators": {
+        "Unsqueeze": 51,
+        "Cast": 1,
+        "Constant": 146,
+        "Sub": 14,
+        "Mul": 26,
+        "Shape": 49,
+        "Gather": 52,
+        "Slice": 1,
+        "Add": 88,
+        "ReduceMean": 26,
+        "Pow": 13,
+        "Sqrt": 13,
+        "Div": 25,
+        "MatMul": 48,
+        "Concat": 24,
+        "Reshape": 24,
+        "Transpose": 24,
+        "Softmax": 6,
+        "Erf": 6
+      }
+    },
+    {
+      "file": "model_fp16.onnx",
+      "bytes": 45297825,
+      "sha256": "2cdb5e58291813b6d6e248ed69010100246821a367fa17b1b81ae9483744533d",
+      "initializerCounts": {
+        "INT64": 1,
+        "FLOAT16": 101
+      },
+      "initializerElementCounts": {
+        "INT64": 512,
+        "FLOAT16": 22565376
+      },
+      "initializerRawDataBytes": {
+        "INT64": 4096,
+        "FLOAT16": 45130752
+      },
+      "externalInitializers": 0,
+      "topLevelOperators": {
+        "Unsqueeze": 51,
+        "Cast": 2,
+        "Constant": 146,
+        "Sub": 14,
+        "Mul": 26,
+        "Shape": 49,
+        "Gather": 52,
+        "Slice": 1,
+        "Add": 88,
+        "ReduceMean": 26,
+        "Pow": 13,
+        "Sqrt": 13,
+        "Div": 25,
+        "MatMul": 48,
+        "Concat": 24,
+        "Reshape": 24,
+        "Transpose": 24,
+        "Softmax": 6,
+        "Erf": 6
+      }
+    },
+    {
+      "file": "model_quantized.onnx",
+      "bytes": 22972370,
+      "sha256": "afdb6f1a0e45b715d0bb9b11772f032c399babd23bfc31fed1c170afc848bdb1",
+      "initializerCounts": {
+        "INT64": 1,
+        "FLOAT32": 101,
+        "UINT8": 6,
+        "INT8": 72
+      },
+      "initializerElementCounts": {
+        "INT64": 512,
+        "FLOAT32": 51459,
+        "UINT8": 11917827,
+        "INT8": 10637568
+      },
+      "initializerRawDataBytes": {
+        "INT64": 4096,
+        "FLOAT32": 122880,
+        "UINT8": 11917824,
+        "INT8": 10616832
+      },
+      "externalInitializers": 0,
+      "topLevelOperators": {
+        "Constant": 146,
+        "Unsqueeze": 51,
+        "Shape": 49,
+        "Gather": 52,
+        "DequantizeLinear": 3,
+        "Cast": 37,
+        "Add": 88,
+        "Sub": 14,
+        "Slice": 1,
+        "Mul": 98,
+        "ReduceMean": 26,
+        "Pow": 13,
+        "Sqrt": 13,
+        "Div": 25,
+        "DynamicQuantizeLinear": 24,
+        "MatMulInteger": 36,
+        "Concat": 24,
+        "Reshape": 24,
+        "Transpose": 24,
+        "MatMul": 12,
+        "Softmax": 6,
+        "Erf": 6
+      }
+    }
+  ]
+}

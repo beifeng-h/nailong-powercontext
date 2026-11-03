@@ -1,0 +1,24 @@
+{
+  "recordedAtUtc": "2026-11-01T01:34:43.772Z",
+  "command": "npm test",
+  "exitCode": 0,
+  "tests": 19,
+  "pass": 19,
+  "fail": 0,
+  "scope": "Pure tests after replacing Windows-only absolute test fixtures with node:path.resolve; no production runtime change",
+  "functionalCommit": "c4f99a1a9c94da7111291f16cafc5eb30ff7c657",
+  "files": [
+    {
+      "path": "native-hybrid.test.mjs",
+      "rawSha256": "ff4f4167d8e65c7e26538a922af3798d8e4d125517d6c02cc403ab50dd9ee04a"
+    },
+    {
+      "path": "bridge.mjs",
+      "rawSha256": "de2f195495ebe6d29530f11272ea66435e1e032a32cb849a113b11b160fc65d1"
+    },
+    {
+      "path": "prepared-rrf.mjs",
+      "rawSha256": "580daf8e1d200e20700454237e1a53b4e235b6b5fc82c83f7b71ed8ac1881ce4"
+    }
+  ]
+}

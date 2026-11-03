@@ -1,0 +1,3 @@
+Billing fields outside workspace erasure
+
+Invoice numbers and tax totals are kept in a separate billing ledger and are outside the workspace erasure operation. Workspace message bodies are not billing records and must not be copied into that ledger.

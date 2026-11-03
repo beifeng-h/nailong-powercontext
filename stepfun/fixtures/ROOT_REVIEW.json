@@ -1,0 +1,14 @@
+{
+  "reviewed_utc": "2026-10-31T22:05:16.697737+00:00",
+  "official_gold": false,
+  "human_annotation": false,
+  "model_run_performed": false,
+  "source_manifest_sha256": "80561416d6aaf060095442a1cff977d638b10f180311bac4998300d407fbe83c",
+  "public_files": {
+    "corpus.json": "a8c6c7bbe74dba8535009a5d8151ef9ab186856b55a164474d8db49cb9891793",
+    "mutations.json": "2cffb6044601203c6f902875c80370a7b047eae52cc0aca9c0f1cc8864a49fa1",
+    "queries.json": "2653a3e20482d0a3ebd685a1f72b1f406b8b65702c78d8ab69a9c44c3adcee87"
+  },
+  "redacted_source_manifest_sha256": "0cf20bb90b74ddbaa7766e099c5c748b127d29b113895415c96fdab030fdddf4",
+  "redaction_notice": "Historical source_manifest_sha256 is the original historical fingerprint; redacted_source_manifest_sha256 verifies this derivative copy."
+}

@@ -1,0 +1,112 @@
+{
+  "recordedUtc": "2026-11-03T13:19:32.626312+00:00",
+  "sourceCommit": "43c0d60429e2cab60256c6e36109687e955551b3",
+  "count": 8,
+  "method": "eight originals opened individually by supported view_image and visually inspected; bytes matched audited Git blob; no image edits and no OCR",
+  "scope": "Inspection of user paths, usernames, emails, account names, tokens, credentials or unrelated private data visibly present; this does not prove absence of all sensitive content",
+  "contextReferences": [
+    "stepfun/fixtures/development-set/README.md",
+    "stepfun/evidence/browser-ui-state-20261101/REPORT.md",
+    "stepfun/evidence/automatic-wasm-20261102/README.md"
+  ],
+  "summary": "no obvious hits in specified visible categories",
+  "images": [
+    {
+      "path": "stepfun/evidence/automatic-wasm-20261102/WIP_LOCAL_URL_AUTO_QUERY.png",
+      "gitBlob": "514d8fc2288103bec6c9f392b0d2e72c47e0d219",
+      "sha256": "53e15e43a9cf802d23ae7587b86b71d70139ee55027258e7ca683dab45320faa",
+      "workingTreeMatchesAuditedGitBlob": true,
+      "method": "manual visual review using view_image; no OCR",
+      "finding": "no obvious user directory, personal email, account name or credential visible",
+      "limitations": [
+        "Cannot rule out unreadable tiny text, steganography, or unidentified sensitive semantics",
+        "Screenshots contain test knowledge-base labels and development example text"
+      ]
+    },
+    {
+      "path": "stepfun/evidence/browser-ui-state-20261101/01-h05-current-body.jpg",
+      "gitBlob": "554ad3bb96f848634b8659ee2ae551056edfe9b0",
+      "sha256": "680c705154bafb6e319a7290570083e8c3ed58708cc6e847f5eb22305d2c0a22",
+      "workingTreeMatchesAuditedGitBlob": true,
+      "method": "manual visual review using view_image; no OCR",
+      "finding": "no obvious user directory, personal email, account name or credential visible",
+      "limitations": [
+        "Cannot rule out unreadable tiny text, steganography, or unidentified sensitive semantics",
+        "Screenshots contain test knowledge-base labels and development example text"
+      ]
+    },
+    {
+      "path": "stepfun/evidence/browser-ui-state-20261101/02-switch-clears-stale-view.jpg",
+      "gitBlob": "9927efab27e4b86d5d3363c6cfddcb3d464b8414",
+      "sha256": "804931a7729398a93330266cdaa6127aefd6db4ea73c05660cb9e0e882ba98e2",
+      "workingTreeMatchesAuditedGitBlob": true,
+      "method": "manual visual review using view_image; no OCR",
+      "finding": "no obvious user directory, personal email, account name or credential visible",
+      "limitations": [
+        "Cannot rule out unreadable tiny text, steganography, or unidentified sensitive semantics",
+        "Screenshots contain test knowledge-base labels and development example text"
+      ]
+    },
+    {
+      "path": "stepfun/evidence/browser-ui-state-20261101/03-beacon-isolation.jpg",
+      "gitBlob": "98d93363d72cc897808249ba4e2684be382692b4",
+      "sha256": "e85bc8bad1625222b0923e73af2531d6b57ca99b01c42b2dc8a32b049069f392",
+      "workingTreeMatchesAuditedGitBlob": true,
+      "method": "manual visual review using view_image; no OCR",
+      "finding": "no obvious user directory, personal email, account name or credential visible",
+      "limitations": [
+        "Cannot rule out unreadable tiny text, steganography, or unidentified sensitive semantics",
+        "Screenshots contain test knowledge-base labels and development example text"
+      ]
+    },
+    {
+      "path": "stepfun/evidence/browser-ui-state-20261101/04-harbor-added-h21.jpg",
+      "gitBlob": "b1efd7425a78325d26106b38aa3d354a31df420f",
+      "sha256": "c7783b9912bc2f4ec49028f6e5b67dcd20a2b30d0abe9f8dce08ee095b6152f4",
+      "workingTreeMatchesAuditedGitBlob": true,
+      "method": "manual visual review using view_image; no OCR",
+      "finding": "no obvious user directory, personal email, account name or credential visible",
+      "limitations": [
+        "Cannot rule out unreadable tiny text, steganography, or unidentified sensitive semantics",
+        "Screenshots contain test knowledge-base labels and development example text"
+      ]
+    },
+    {
+      "path": "stepfun/evidence/browser-ui-state-20261101/05-reload-persists-h05.jpg",
+      "gitBlob": "575c1dd0fa5c4f9347c1c321fc916087e0fefc43",
+      "sha256": "078042b8352019d9514b3d37b3e2c4d6c07eea6a2c9b9fbbf248a137f6c87fe1",
+      "workingTreeMatchesAuditedGitBlob": true,
+      "method": "manual visual review using view_image; no OCR",
+      "finding": "no obvious user directory, personal email, account name or credential visible",
+      "limitations": [
+        "Cannot rule out unreadable tiny text, steganography, or unidentified sensitive semantics",
+        "Screenshots contain test knowledge-base labels and development example text"
+      ]
+    },
+    {
+      "path": "stepfun/evidence/browser-ui-state-20261101/06-reload-persists-h21.jpg",
+      "gitBlob": "6d7100fcf3fe7c0f690a27cd88eb5a86d14a1a4a",
+      "sha256": "e9db10634e78e2d2310a9d6ab6bedf7021997910e56046fe2caa39d1304d6c72",
+      "workingTreeMatchesAuditedGitBlob": true,
+      "method": "manual visual review using view_image; no OCR",
+      "finding": "no obvious user directory, personal email, account name or credential visible",
+      "limitations": [
+        "Cannot rule out unreadable tiny text, steganography, or unidentified sensitive semantics",
+        "Screenshots contain test knowledge-base labels and development example text"
+      ]
+    },
+    {
+      "path": "stepfun/evidence/browser-ui-state-20261101/07-reload-persists-beacon.jpg",
+      "gitBlob": "b7ca3854fdbd036ff8940343916bd3af4c63400d",
+      "sha256": "9c1c9de2430b64a441c12f090f0fa4b2fdb17df1fecb3b8ae236899a52a37a59",
+      "workingTreeMatchesAuditedGitBlob": true,
+      "method": "manual visual review using view_image; no OCR",
+      "finding": "no obvious user directory, personal email, account name or credential visible",
+      "limitations": [
+        "Cannot rule out unreadable tiny text, steganography, or unidentified sensitive semantics",
+        "Screenshots contain test knowledge-base labels and development example text"
+      ]
+    }
+  ],
+  "notAnApprovalToPublish": true
+}

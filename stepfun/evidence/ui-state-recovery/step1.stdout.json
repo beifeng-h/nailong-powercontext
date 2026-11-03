@@ -1,0 +1,76 @@
+{
+  "scope": "OFFLINE real client/app code with VM DOM/Worker/API substitutes; NOT browser/model/DB evidence",
+  "sourceDir": "<LOCAL_USER_DIR>\\Documents\\ChatGPT\\oceanbaes\\stepfun-local-contest\\stepfun\\public",
+  "sourceHashes": {
+    "app.mjs": "48431428b0fad2cbec3cd1e324ba7e85fe0e19f13b028d20e8155a1a06b475ec",
+    "embedding-client.mjs": "11424cead4b69030e2367f6dc008bf90b643b7becdb161c42ac99550d5faba59",
+    "embedding-worker.js": "de54a97ef76441dbf68378150e2e1b2e162775f4b6efaa77c3b38cd61d821648"
+  },
+  "controlAndRegressionCases": [
+    {
+      "name": "CONTROL: initialization failure destroys old worker and replays full input on WASM",
+      "observations": {
+        "oldGpuTerminated": true,
+        "wasmFullInput": [
+          "Offline substitute input 1",
+          "Offline substitute input 2",
+          "Offline substitute input 3",
+          "Offline substitute input 4",
+          "Offline substitute input 5"
+        ]
+      },
+      "status": "pass"
+    },
+    {
+      "name": "REGRESSION: precision-invalidated KB must clear old results and timings",
+      "observations": {
+        "oldGpuTerminated": true,
+        "gpuInput": [
+          "Offline substitute input 1",
+          "Offline substitute input 2",
+          "Offline substitute input 3",
+          "Offline substitute input 4",
+          "Offline substitute input 5"
+        ],
+        "wasmInput": [
+          "Offline substitute input 1",
+          "Offline substitute input 2",
+          "Offline substitute input 3",
+          "Offline substitute input 4",
+          "Offline substitute input 5"
+        ],
+        "selectedKb": "",
+        "resultText": "",
+        "timingText": "",
+        "generationAdvanced": true,
+        "forbiddenApiCalls": 0
+      },
+      "status": "pass"
+    },
+    {
+      "name": "REGRESSION: terminal retry failure must invalidate activeModel and make ensureModel initialize again",
+      "observations": {
+        "clientStateNull": true,
+        "activeModelAfterFailure": {
+          "repo": "OFFLINE_STUB_NOT_A_MODEL_RUN",
+          "revision": "OFFLINE",
+          "precision": "q8",
+          "dimension": 384,
+          "pooling": "mean",
+          "normalize": true
+        },
+        "selectedKbAfterFailure": "OFFLINE_FP16_KB",
+        "newWorkerCreatedByEnsure": false,
+        "forbiddenApiCalls": 0
+      },
+      "status": "fail",
+      "assertion": "App kept a stale ready model after client dropped its Worker\n+ actual - expected\n\n+ {\n+   dimension: 384,\n+   normalize: true,\n+   pooling: 'mean',\n+   precision: 'q8',\n+   repo: 'OFFLINE_STUB_NOT_A_MODEL_RUN',\n+   revision: 'OFFLINE'\n+ }\n- null\n"
+    }
+  ],
+  "failed": 1,
+  "realBrowser": false,
+  "realModelInference": false,
+  "realHttpOrDatabase": false,
+  "workerSourceExecuted": false,
+  "desiredAssertionsUnchangedForAfterFix": true
+}
