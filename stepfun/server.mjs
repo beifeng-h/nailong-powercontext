@@ -4,10 +4,19 @@ import { extname, isAbsolute, relative, resolve, sep } from 'node:path';
 import { pipeline } from 'node:stream/promises';
 
 export const HTTP_HOST = '127.0.0.1';
-export const HTTP_PORT = 34021;
+const requestedPort = process.env.STEPFUN_HTTP_PORT;
+if (requestedPort !== undefined && (!/^[0-9]{1,5}$/u.test(requestedPort)
+  || Number(requestedPort) < 1 || Number(requestedPort) > 65535)) {
+  throw new RangeError('STEPFUN_HTTP_PORT must be an integer from 1 to 65535');
+}
+export const HTTP_PORT = requestedPort === undefined ? 34021 : Number(requestedPort);
 export const MAX_JSON_BYTES = 4 * 1024 * 1024;
 
 const LOCAL_HOSTS = new Set([`${HTTP_HOST}:${HTTP_PORT}`, `localhost:${HTTP_PORT}`]);
+if (HTTP_PORT === 80) {
+  LOCAL_HOSTS.add(HTTP_HOST);
+  LOCAL_HOSTS.add('localhost');
+}
 const MIME_TYPES = new Map([
   ['.html', 'text/html; charset=utf-8'],
   ['.js', 'text/javascript; charset=utf-8'],
@@ -43,7 +52,11 @@ function checkLocalRequest(request) {
   if (request.method === 'POST' && origin !== undefined) {
     const allowedOrigin = typeof origin === 'string'
       && [...LOCAL_HOSTS].some((entry) => origin === `http://${entry}`);
-    if (!allowedOrigin || (host !== undefined && origin !== `http://${host.toLowerCase()}`)) {
+    const originHost = allowedOrigin ? origin.slice('http://'.length) : undefined;
+    const normalizeDefaultPort = (value) => HTTP_PORT === 80 ? value.replace(/:80$/u, '') : value;
+    const sameHost = host === undefined || (allowedOrigin
+      && normalizeDefaultPort(host.toLowerCase()) === normalizeDefaultPort(originHost));
+    if (!allowedOrigin || !sameHost) {
       throw new HttpError(403, 'ORIGIN_NOT_ALLOWED', 'Use the application from its local origin.', { close: true });
     }
   }
@@ -228,7 +241,7 @@ async function serveStatic(request, response, publicDir, segments) {
 }
 
 /**
- * Create an unbound HTTP server. No configuration or credentials are read here.
+ * Create an unbound HTTP server. Only the optional local port is configured at import.
  * The startup owner supplies a bridge and an absolute public directory, then calls:
  *   server.listen(HTTP_PORT, HTTP_HOST);
  * This module deliberately has no CLI bootstrap or automatic listen call.

@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "node main.mjs",
-    "test": "node --test native-hybrid.test.mjs prepared-rrf.test.mjs tests/embedding-client-protocol.test.mjs",
+    "test": "node --test native-hybrid.test.mjs prepared-rrf.test.mjs tests/embedding-client-protocol.test.mjs tests/server-port.test.mjs",
     "test:ui-state": "node --experimental-vm-modules tests/ui-state-ready-adapter.mjs --source-dir public",
     "test:report-export": "node --experimental-vm-modules --test tests/benchmark-export.test.mjs"
   },
