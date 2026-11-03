@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0",
+  "events": [
+    {
+      "at": "2026-11-03T14:10:48.666Z",
+      "type": "database-ready",
+      "ok": true,
+      "database": "stepfun_kb_demo",
+      "databaseVersion": "5.7.25-OceanBase seekdb-v1.4.0.0",
+      "sdkTargetVersion": "1.4.0",
+      "storageMode": "embedded",
+      "embedding": "browser-only",
+      "dimension": 384
+    },
+    {
+      "at": "2026-11-03T14:11:01.552Z",
+      "type": "model-ready",
+      "backend": "webgpu",
+      "dtype": "fp16",
+      "profile": "fp16",
+      "model": {
+        "repo": "Xenova/all-MiniLM-L6-v2",
+        "revision": "751bff37182d3f1213fa05d7196b954e230abad9",
+        "precision": "fp16",
+        "dimension": 384,
+        "pooling": "mean",
+        "normalize": true
+      },
+      "gpu": {
+        "checked": true,
+        "adapterAvailable": true,
+        "shaderF16": true,
+        "adapterInfo": {
+          "vendor": "intel",
+          "architecture": "gen-12lp",
+          "device": "",
+          "description": ""
+        }
+      },
+      "timings": {
+        "loadMs": 2645.800000190735,
+        "warmupPerformed": false,
+        "totalInitMs": 3027.399999856949
+      },
+      "jobId": "1:1",
+      "selection": "automatic-preference",
+      "fallback": null
+    },
+    {
+      "at": "2026-11-03T14:11:20.285Z",
+      "type": "search",
+      "kb": "b7d950d1-e936-44eb-95f2-4ef61603f460",
+      "text": "What badge must visitors wear?",
+      "ids": [
+        "H01",
+        "H02"
+      ],
+      "embeddingMs": 1392.4000000953674,
+      "queryMs": 259.2707999999402,
+      "endToEndMs": 1693.1000001430511
+    }
+  ]
+}
