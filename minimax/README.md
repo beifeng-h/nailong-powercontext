@@ -1,6 +1,6 @@
 # 规有所依：MiniMax 任务上下文 CLI
 
-本模块用真实 seekdb SQL 检索规格、代码和测试，用 PowerContext 保存任务进度，在新进程中恢复，并把这些上下文交给 MiniMax 修改一个 Taskboard 业务函数。已保存真实 SQL、跨进程恢复、一次 MiniMax 调用及同组测试由失败转通过的历史证据。本目录是从官方生态基线整理的独立本地候选；完整干净环境与真实数据库组合复现、该候选的官方评测仍未完成。
+本模块用真实 seekdb SQL 检索规格、代码和测试，用 PowerContext 保存任务进度，在新进程中恢复，并把这些上下文交给 MiniMax 修改一个 Taskboard 业务函数。本候选已在独立离线 venv 中通过业务前后测试、无 Key 预检及真实 seekdb 与全新状态的组合复核；一次真实 MiniMax 开发调用的请求、生成代码和差异也已交付。本目录基于官方生态基线整理，尚未推送或正式提测。
 
 ## 安装和资料库
 
@@ -76,7 +76,11 @@ python -m unittest discover -s tests -p test_develop_preflight.py -v
 
 真实模型请求、最终代码和差异见 [模型记录](evidence/minimax/cn-dsh-20261103-run1/README.md)，同轮测试派生日志也位于该目录。原始 `context.json` 因含本机路径未交付；实际请求中的脱敏上下文与已交付 `context.redacted.json` 结构和值相同。
 
-2026-11-03 的[隔离项目复核](evidence/isolated-repro-20261103/SUMMARY.json)验证了新状态目录和两个独立进程，但复用既有依赖，未执行真实 seekdb SQL。[离线环境摘要](evidence/offline-install-20261103/SUMMARY.json)记录 50 项锁定依赖、`pip check` 和业务前后测试；该轮未执行状态恢复或数据库整链。完整干净安装、真实 SQL、状态恢复与模型开发的同轮链路尚未完成，不能据此声明全部官方门槛通过。
+2026-11-04 直接运行本候选的[复核记录](evidence/candidate-verification-20261104/README.md)：before 为3项目标失败、6项回归通过，after 为9项通过；开发入口6项回归和README中的无Key预检通过。随后从空状态记忆真实测试结果，由新进程完整恢复并生成下一步计划，8项检查通过。运行使用此前独立安装的离线 venv，没有再次调用模型或执行 SourceDB SQL。Git 属性保留源码和证据的原始换行字节，确保检出后的固定哈希与实测输入相同。
+
+随后完成本候选的[真实 SQL 与状态组合复核](evidence/sql-composition-20261104/README.md)：使用官方 Windows seekdb 1.3.0.0 的本轮独立测试命名空间，实际执行初始化、v1导入/检索、v2更新/检索、旧要求拒绝、全新状态写入、新进程组合上下文和第三进程恢复。9个CLI阶段返回预期结果，10项整链断言通过。3次SQL上下文中的每份规格、代码、测试正文及SHA均与实际来源字节一致；本轮没有新模型调用。运行复用了此前独立安装的离线依赖，不是另一台机器上的重新安装测试。
+
+2026-11-03 的[隔离项目复核](evidence/isolated-repro-20261103/SUMMARY.json)和[离线环境摘要](evidence/offline-install-20261103/SUMMARY.json)保留各自当时的限制，不能用后续通过改写旧记录。当前本地验证已覆盖资料入库、规格变化、真实SQL、新进程状态使用和固定业务测试；MiniMax使用通过既有真实开发记录核对，不要求再生成同一补丁。尚未在另一台机器重新安装全部依赖，本候选也尚无官方评分。
 
 Windows 受限执行上下文可能在 asyncio 的本地 socketpair 初始化处受阻。应保留具体失败和执行环境，区分环境故障与业务断言，不更改系统设置或用假状态代替实际恢复。
 

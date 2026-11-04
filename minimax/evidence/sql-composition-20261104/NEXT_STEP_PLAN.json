@@ -1,0 +1,15 @@
+{
+  "createdUtc": "2026-11-04T01:59:26.671365+00:00",
+  "derivedFrom": "08-context-after-restart.stdout.json",
+  "restoredTaskId": "taskboard-state-filter-v2",
+  "nextStepConsumed": "Reuse this restored task state with the current v2 SQL sources when reviewing the delivered after implementation.",
+  "currentSqlSourceKeys": [
+    "taskboard/implementation",
+    "taskboard/state-filter",
+    "taskboard/tests"
+  ],
+  "specRevision": "2",
+  "afterSha256": "6ff48b87ddf11e44bd62a980c1b9c12f128f30b3c7299d3f2c20a7d1358772ac",
+  "status": "PREPARED_LOCAL_REVIEW_PLAN_ONLY",
+  "modelCalled": false
+}

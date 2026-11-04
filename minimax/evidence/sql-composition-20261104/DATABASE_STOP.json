@@ -1,0 +1,7 @@
+{
+  "utc": "2026-11-04T01:59:26.672365+00:00",
+  "pid": 280612,
+  "method": "Terminate only this controller-owned Windows command-mode test process after all SQL connections close; no graceful-shutdown claim",
+  "terminatedOwnProcess": true,
+  "processAndListenerGone": true
+}

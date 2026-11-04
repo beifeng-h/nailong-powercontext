@@ -1,0 +1,183 @@
+{
+  "generatedUtc": "2026-11-04T02:02:48.286381+00:00",
+  "classification": "REAL_FINAL_CANDIDATE_SQL_AND_STATE_COMPOSITION",
+  "files": {
+    "RECEIPT.json": "bbdcf352eb696fa1029c8777590fcc535f96554e628df1d678153182a4bd977b",
+    "SOURCE_MANIFEST.json": "4162315c34a42338b6fafb2e56e303c1d725c10e4943f48415771843ac31ee16",
+    "state-input.json": "93b9ec965254362aa16a72b3f3c07477010231fac66ec43f4ae2dcce655716c9",
+    "NEXT_STEP_PLAN.json": "4e2e4174ad9c4a0e07995315c42ae423ae2dbf9f8a20d886498aa1293a021392",
+    "PROVENANCE.json": "92e254a57a550bd1b1a0140b6c86fe35dc9cbaa54776135c81098ccbef298c10",
+    "DATABASE_STOP.json": "3b7d6b5a94b70b48105c09d3016f63baae227feda9d4fdb3ebc82b7ea9bdaa5d",
+    "01-init.stdout.json": "a445a1ac2eb394b33cbb92cc09eaee1db7eb00c05d662eda3177fc21f7fd7124",
+    "01-init.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "02-import-v1.stdout.json": "8d42602fb808e4767ee55538c682b88efd05ab73411f70cb88719153ebc844c6",
+    "02-import-v1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "03-context-v1.stdout.json": "b8feed5f9e6bd21c15e0c57ad9fc5e37732d26f9255c68b918a74b34967028a1",
+    "03-context-v1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "04-import-v2.stdout.json": "86f75417bf00f2a7c7218da86fea378776eea959dcae12e711247155ec1e8671",
+    "04-import-v2.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "05-context-v2.stdout.json": "d16f2893a46d6b1944585e691acfddc72827df5cf58c28c6ad9e5f976e5dca98",
+    "05-context-v2.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "06-stale-v1-rejected.stdout.json": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "06-stale-v1-rejected.stderr.txt": "e34468a302e9d001473c737d8bfc134a1df2e2acdf994b94331e35061e3cba45",
+    "07-remember.stdout.json": "487dc4007510604df8711226fd467e10e9c5121d30358ed150e4040222003f82",
+    "07-remember.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "08-context-after-restart.stdout.json": "83710a81a44159f176d6e2e2ddf6eb2f82237f481dfd2b84e22a5daaab297ee4",
+    "08-context-after-restart.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "09-resume.stdout.json": "8b4b0d784184b29aab1abeb84b050056f163a82975d0e6acd5836d6d9d4acbad",
+    "09-resume.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "records": [
+    {
+      "path": "RECEIPT.json",
+      "originalSha256": "7bdd92baac22f5d20d611497ba77385930d0bebb169e340883717e5c91685469",
+      "deliveredSha256": "bbdcf352eb696fa1029c8777590fcc535f96554e628df1d678153182a4bd977b",
+      "classification": "LOCAL_PATH_REDACTED_DERIVATIVE"
+    },
+    {
+      "path": "SOURCE_MANIFEST.json",
+      "originalSha256": "4162315c34a42338b6fafb2e56e303c1d725c10e4943f48415771843ac31ee16",
+      "deliveredSha256": "4162315c34a42338b6fafb2e56e303c1d725c10e4943f48415771843ac31ee16",
+      "classification": "UNCHANGED_COPY"
+    },
+    {
+      "path": "state-input.json",
+      "originalSha256": "93b9ec965254362aa16a72b3f3c07477010231fac66ec43f4ae2dcce655716c9",
+      "deliveredSha256": "93b9ec965254362aa16a72b3f3c07477010231fac66ec43f4ae2dcce655716c9",
+      "classification": "UNCHANGED_COPY"
+    },
+    {
+      "path": "NEXT_STEP_PLAN.json",
+      "originalSha256": "4e2e4174ad9c4a0e07995315c42ae423ae2dbf9f8a20d886498aa1293a021392",
+      "deliveredSha256": "4e2e4174ad9c4a0e07995315c42ae423ae2dbf9f8a20d886498aa1293a021392",
+      "classification": "UNCHANGED_COPY"
+    },
+    {
+      "path": "PROVENANCE.json",
+      "originalSha256": "92e254a57a550bd1b1a0140b6c86fe35dc9cbaa54776135c81098ccbef298c10",
+      "deliveredSha256": "92e254a57a550bd1b1a0140b6c86fe35dc9cbaa54776135c81098ccbef298c10",
+      "classification": "UNCHANGED_COPY"
+    },
+    {
+      "path": "DATABASE_STOP.json",
+      "originalSha256": "3b7d6b5a94b70b48105c09d3016f63baae227feda9d4fdb3ebc82b7ea9bdaa5d",
+      "deliveredSha256": "3b7d6b5a94b70b48105c09d3016f63baae227feda9d4fdb3ebc82b7ea9bdaa5d",
+      "classification": "UNCHANGED_COPY"
+    },
+    {
+      "path": "01-init.stdout.json",
+      "originalSha256": "a445a1ac2eb394b33cbb92cc09eaee1db7eb00c05d662eda3177fc21f7fd7124",
+      "deliveredSha256": "a445a1ac2eb394b33cbb92cc09eaee1db7eb00c05d662eda3177fc21f7fd7124",
+      "classification": "UNCHANGED_COPY"
+    },
+    {
+      "path": "01-init.stderr.txt",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "deliveredSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "UNCHANGED_COPY"
+    },
+    {
+      "path": "02-import-v1.stdout.json",
+      "originalSha256": "8d42602fb808e4767ee55538c682b88efd05ab73411f70cb88719153ebc844c6",
+      "deliveredSha256": "8d42602fb808e4767ee55538c682b88efd05ab73411f70cb88719153ebc844c6",
+      "classification": "UNCHANGED_COPY"
+    },
+    {
+      "path": "02-import-v1.stderr.txt",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "deliveredSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "UNCHANGED_COPY"
+    },
+    {
+      "path": "03-context-v1.stdout.json",
+      "originalSha256": "b8feed5f9e6bd21c15e0c57ad9fc5e37732d26f9255c68b918a74b34967028a1",
+      "deliveredSha256": "b8feed5f9e6bd21c15e0c57ad9fc5e37732d26f9255c68b918a74b34967028a1",
+      "classification": "UNCHANGED_COPY"
+    },
+    {
+      "path": "03-context-v1.stderr.txt",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "deliveredSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "UNCHANGED_COPY"
+    },
+    {
+      "path": "04-import-v2.stdout.json",
+      "originalSha256": "86f75417bf00f2a7c7218da86fea378776eea959dcae12e711247155ec1e8671",
+      "deliveredSha256": "86f75417bf00f2a7c7218da86fea378776eea959dcae12e711247155ec1e8671",
+      "classification": "UNCHANGED_COPY"
+    },
+    {
+      "path": "04-import-v2.stderr.txt",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "deliveredSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "UNCHANGED_COPY"
+    },
+    {
+      "path": "05-context-v2.stdout.json",
+      "originalSha256": "d16f2893a46d6b1944585e691acfddc72827df5cf58c28c6ad9e5f976e5dca98",
+      "deliveredSha256": "d16f2893a46d6b1944585e691acfddc72827df5cf58c28c6ad9e5f976e5dca98",
+      "classification": "UNCHANGED_COPY"
+    },
+    {
+      "path": "05-context-v2.stderr.txt",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "deliveredSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "UNCHANGED_COPY"
+    },
+    {
+      "path": "06-stale-v1-rejected.stdout.json",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "deliveredSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "UNCHANGED_COPY"
+    },
+    {
+      "path": "06-stale-v1-rejected.stderr.txt",
+      "originalSha256": "e34468a302e9d001473c737d8bfc134a1df2e2acdf994b94331e35061e3cba45",
+      "deliveredSha256": "e34468a302e9d001473c737d8bfc134a1df2e2acdf994b94331e35061e3cba45",
+      "classification": "UNCHANGED_COPY"
+    },
+    {
+      "path": "07-remember.stdout.json",
+      "originalSha256": "487dc4007510604df8711226fd467e10e9c5121d30358ed150e4040222003f82",
+      "deliveredSha256": "487dc4007510604df8711226fd467e10e9c5121d30358ed150e4040222003f82",
+      "classification": "UNCHANGED_COPY"
+    },
+    {
+      "path": "07-remember.stderr.txt",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "deliveredSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "UNCHANGED_COPY"
+    },
+    {
+      "path": "08-context-after-restart.stdout.json",
+      "originalSha256": "83710a81a44159f176d6e2e2ddf6eb2f82237f481dfd2b84e22a5daaab297ee4",
+      "deliveredSha256": "83710a81a44159f176d6e2e2ddf6eb2f82237f481dfd2b84e22a5daaab297ee4",
+      "classification": "UNCHANGED_COPY"
+    },
+    {
+      "path": "08-context-after-restart.stderr.txt",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "deliveredSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "UNCHANGED_COPY"
+    },
+    {
+      "path": "09-resume.stdout.json",
+      "originalSha256": "8b4b0d784184b29aab1abeb84b050056f163a82975d0e6acd5836d6d9d4acbad",
+      "deliveredSha256": "8b4b0d784184b29aab1abeb84b050056f163a82975d0e6acd5836d6d9d4acbad",
+      "classification": "UNCHANGED_COPY"
+    },
+    {
+      "path": "09-resume.stderr.txt",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "deliveredSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "UNCHANGED_COPY"
+    }
+  ],
+  "originalsRetainedUnchanged": true,
+  "candidateHeadAtRunStart": "0b9826dd733c5d535980f75a2a88063832357428",
+  "sourceFilesIndependentlyMatched": 21,
+  "commandOutputHashesIndependentlyMatched": 18,
+  "modelCalls": 0,
+  "newDependencyDownloads": 0,
+  "omittedEnvironmentRecords": "Receipt evidenceSha256 fields identify original server/OS/ACL observations retained locally; these auxiliary environment records and all database storage are not part of the portable review copy."
+}

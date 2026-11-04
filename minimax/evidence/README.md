@@ -4,11 +4,11 @@
 
 | 官方要求 | 交付证据 | 能支持的结论与限制 |
 | --- | --- | --- |
-| 能够运行 | [入口与安装步骤](../README.md)、[离线安装摘要](offline-install-20261103/SUMMARY.json) | 50 项锁定依赖、pip check 与业务测试已有记录；新环境完整真实数据库整链未完成 |
+| 能够运行 | [入口与安装步骤](../README.md)、[SQL组合复核](sql-composition-20261104/README.md)、[离线安装摘要](offline-install-20261103/SUMMARY.json) | 独立离线venv中执行本候选，真实资料库、新状态、业务测试已验证；另一台机器重新安装未执行 |
 | MiniMax 实际参与 | [真实调用](minimax/cn-dsh-20261103-run1/README.md) | 一次真实中国区 M3.1-Flash 请求，源码身份 b99c2e0a；实际 request、model-final、diff 与 after 可核验 |
-| 上下文正确 | [SourceDB 记录](sourcedb-real/INDEX.json)、[组合上下文](task-context-real/INDEX.json) | 规格 v2 覆盖 v1、旧要求被拒、SQL 返回规格/代码/测试；属于历史运行 |
-| 数据库实际参与 | [SourceDB 回执](sourcedb-real/RECEIPT.json) | 实际 seekdb SQL 入库与查询，非本地文件替代；新离线环境未复跑 SQL |
-| 状态能够复用 | [SDK 跨进程记录](powercontext-real/INDEX.json)、[组合 CLI](task-context-real/INDEX.json)、[隔离复核摘要](isolated-repro-20261103/SUMMARY.json) | 保存与恢复 PID 不同；恢复状态被实际上下文使用；隔离复核复用既有依赖 |
+| 上下文正确 | [本轮实际SQL上下文](sql-composition-20261104/INDEX.json)、[历史SourceDB记录](sourcedb-real/INDEX.json) | 本候选v2覆盖v1、旧要求精确失效；3次上下文的9份真实来源正文及SHA独立核对 |
+| 数据库实际参与 | [本轮SQL回执](sql-composition-20261104/RECEIPT.json) | 真实seekdb 1.3.0.0实际入库与查询；SQL正文直接合入新进程任务上下文 |
+| 状态能够复用 | [本轮组合CLI](sql-composition-20261104/README.md)、[候选状态复核](candidate-verification-20261104/README.md) | 空状态保存后由两个新进程恢复；状态、scope、citation和next_step一致，并实际用于SQL上下文 |
 | 代码修改有效 | [同轮测试派生回执](minimax/cn-dsh-20261103-run1/redacted-evidence/tests/RECEIPT.redacted.json)、[固定测试](../tests/test_taskboard.py) | 3 项目标由失败转通过、6 项回归通过；测试和前后代码 SHA-256 固定，无官方结果推断 |
 
 ## 派生文件的核验规则
@@ -27,5 +27,7 @@
 - `minimax/cn-dsh-20261103-run1/redacted-evidence/tests/` 才是一次真实模型调用后的固定 before/after 对照，派生日志的原始与交付 hash 见其 MANIFEST。
 - `isolated-repro-20261103/` 是隔离项目/新状态的复核，复用依赖、没有真实 SQL，且复制时 develop.py 早于后续预检修复。
 - `offline-install-20261103/` 是新离线 venv 的依赖和业务测试摘要，没有状态恢复或真实 SQL。摘要引用的是独立历史结果，不是当前候选整链成功。
+- `candidate-verification-20261104/` 是直接执行本候选的业务前后测试、开发入口回归、无Key预检与新状态跨进程复核；复用此前独立安装的离线venv，不是重新安装或真实SQL组合验证。收据中的sourceHashes绑定被测Python字节；该轮Git HEAD仍是提交前的生态基线，不能把这些文件说成生态基线自带。
+- `sql-composition-20261104/` 是其后的真实seekdb与全新状态组合复核，9个CLI阶段、10项组合检查通过；输入绑定21份源码/样例/规格字节和起始提交0b9826dd。原服务器和OS辅助记录及存储留在本地，不是运行依赖；交付副本与原件的哈希归属在本目录INDEX中说明。
 
-本候选只整理既有真实记录；没有新增模型或数据库调用。模式扫描无法排除所有敏感内容，最终发布范围和官方判题以单独核实的目标与回执为准。
+本候选整理历史模型开发记录，并补做了2026-11-04的实际业务、资料库与状态组合复核；本轮没有新模型请求。模式扫描无法排除所有敏感内容，最终发布范围和官方判题以单独核实的目标与回执为准。

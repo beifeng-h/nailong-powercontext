@@ -1,0 +1,23 @@
+{
+  "business/after/taskboard.py": "6ff48b87ddf11e44bd62a980c1b9c12f128f30b3c7299d3f2c20a7d1358772ac",
+  "business/before/taskboard.py": "482b90add2d94cf22df14b24302c818ccc003bc9a9bec8bc0d71fc9b39115062",
+  "evidence/minimax/cn-dsh-20261103-run1/before.py": "482b90add2d94cf22df14b24302c818ccc003bc9a9bec8bc0d71fc9b39115062",
+  "evidence/minimax/cn-dsh-20261103-run1/fixed-tests.py": "90a2d6dcebdbf00e6359aea493f116aa06b2081c4fd4f6006324ee2fd17f8abc",
+  "minimax_sdd/__init__.py": "4901ecb68d85631fa2abf76f969f7e7c49b20f1d60b6d790a93251ba4105b096",
+  "minimax_sdd/__main__.py": "482b8693e2fe6dbd732e3d7961e03827d3efa187bad11d29da188be580ebbeea",
+  "minimax_sdd/cli.py": "94bb4339c0ff573b47f715c408bdf7438868c84529e326697ec5e4b4e66e6c67",
+  "minimax_sdd/develop.py": "139fa566616b1da792464ae2bd85e63fd3ddc21a89653c398d0f14588b368d85",
+  "minimax_sdd/source_db.py": "ea761d89ab8f72acf72a40bc8cf89911f150ba8294be23446b482268d799efb5",
+  "minimax_sdd/state.py": "d0e54c0635287e7091a94bb946f846e84a005722f75075b638a8e5516006d99b",
+  "run_tests.py": "ce65a978a850d841854cb856499dcd92c986701b94785da2e969cd94556c0673",
+  "tests/test_develop_preflight.py": "ae3134f6417b61554b3b4b736a152c4ca36ead2c503be977a658a65f6933a6a7",
+  "tests/test_taskboard.py": "90a2d6dcebdbf00e6359aea493f116aa06b2081c4fd4f6006324ee2fd17f8abc",
+  "examples/import-v1.json": "f22a1281d0c196fa36ec77609d92b2d5c61672e165e1963b41ce9ffb07c4dabf",
+  "examples/import-v2.json": "7fba69b645abadae9ea61459c87253a85ba172706c9cf7f9521ca0db6bd6b0a6",
+  "examples/task-v1.json": "c2b2b7e48dbae72db93c6e7ef7739a0b5dd3c45450a16978983be85e79573a45",
+  "examples/task-v2.json": "2876b1dc2af0d70345bbcaad2b66926bf35f207a997644767e81176b50656b1f",
+  "fixtures/task.json": "6810b5cd3a4c21ebe17d72c9f7acd2bb126c893d230c0e853c0d8c0ad3c70a61",
+  "fixtures/tasks.json": "8b9c2cbae9c6b098c0bc4ababfde53f86446b1ac8cf15d0964c40aab673fcec1",
+  "specs/v1.md": "b142678a6902e0773fb51efa93517a3e4511ce2d1b28643ed72c670bdd65205e",
+  "specs/v2.md": "dc41604d3e4d1da8c8fbf645db14bf1a46a36b5479912260b8c74c7437dbde58"
+}

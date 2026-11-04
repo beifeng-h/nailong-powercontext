@@ -6,6 +6,6 @@
 
 [model-final.json](model-final.json)中的完整代码与 [交付 after](../../../business/after/taskboard.py)字节一致，SHA-256 为 `6ff48b87ddf11e44bd62a980c1b9c12f128f30b3c7299d3f2c20a7d1358772ac`；实际应用差异见 [application.diff](application.diff)。规格、测试和 fixture 没有修改。
 
-同轮固定 before/after 对照见 [派生测试回执](redacted-evidence/tests/RECEIPT.redacted.json)：同一组 9 项，before 3 项目标失败、6 项回归通过，after 9 项通过。原始回执内日志 hash 标识历史原件；交付派生副本 hash 见 [MANIFEST.json](redacted-evidence/MANIFEST.json)。本地测试没有替代官方评分，完整干净环境数据库整链仍未完成。
+同轮固定 before/after 对照见 [派生测试回执](redacted-evidence/tests/RECEIPT.redacted.json)：同一组 9 项，before 3 项目标失败、6 项回归通过，after 9 项通过。原始回执内日志 hash 标识历史原件；交付派生副本 hash 见 [MANIFEST.json](redacted-evidence/MANIFEST.json)。后续候选的[真实SQL与状态复核](../../sql-composition-20261104/README.md)单独保留，不改写本次模型调用身份；本地结果不替代官方评分。
 
 本目录没有凭据、原始响应或私有 reasoning；这句话描述所选材料范围，模式扫描结果不构成不存在任何敏感内容的证明或公开发布授权。

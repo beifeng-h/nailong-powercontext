@@ -1,0 +1,14 @@
+{
+  "parentRunnerSha256": "04be20403724f6e23a5b3957fe890975a270f81336a8a490303921531129520c",
+  "runnerSha256": "0a84de77ee07f2fc9941ee1fbe8c722694d69923f26b3158cc8343f169a3475f",
+  "changes": [
+    "Reuse only this task's attempt3 system-initialized data; verify no business namespace",
+    "Save initial ACL, set GLOBAL loopback ACL, reconnect and save actual value before asserting and before any business writes",
+    "Compare actual raw UTF-8 file content without newline translation",
+    "Verify stale-v1 exit 2 came from the expected required-source metadata mismatch",
+    "Observe candidate Git HEAD at run start"
+  ],
+  "candidateChanged": false,
+  "priorFailuresPreserved": true,
+  "initialListenerPreprotectedByLoopbackAcl": false
+}

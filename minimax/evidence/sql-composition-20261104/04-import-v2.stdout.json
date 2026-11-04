@@ -1,0 +1,15 @@
+{
+  "operation": "import",
+  "project_id": "taskboard-final-20261104",
+  "documents_submitted": 1,
+  "rows_affected": 2,
+  "documents": [
+    {
+      "logical_key": "taskboard/state-filter",
+      "kind": "spec",
+      "source_path": "specs/v2.md",
+      "revision": "2",
+      "content_sha256": "dc41604d3e4d1da8c8fbf645db14bf1a46a36b5479912260b8c74c7437dbde58"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "classification": "LOCAL_CANDIDATE_PACKAGING_SNAPSHOT_NOT_PUBLICATION_APPROVAL",
-  "generated_utc": "2026-11-04T01:44:09.857078+00:00",
+  "generated_utc": "2026-11-04T02:04:40.244972+00:00",
   "base_commit": "d647275c308e09b7b623f322a26f5c4e85734fb0",
   "historical_model_source_commit": "b99c2e0a470cb92ddb5f0cc0a3161218e077b293",
   "files": [
@@ -41,15 +41,15 @@
     },
     {
       "path": "docs/design.md",
-      "bytes": 3693,
-      "sha256": "33df7d40cbdbd2377197f396feebdbe4576e3d252d40ac805afacdaa7fa06f31",
+      "bytes": 4008,
+      "sha256": "56c665ba94a976b759d0c35acbb863e436e36c45009575d24d8bbe3fc68b5147",
       "original_source_sha256": "d3bba53e87f15a970161339070cf07df9754210e4bdda5f49a6fb539eebee881",
       "same_bytes_as_original_source": false
     },
     {
       "path": "docs/technical-note.md",
-      "bytes": 1947,
-      "sha256": "d85d99f6ed436f7145f43a6fc5f82cd270f8f4562f120576b5969b51a4e70c7c",
+      "bytes": 2116,
+      "sha256": "27acd4159643459ac7138cb2e28369f9abb367a66fd5f8c62e055a32e3d08227",
       "original_source_sha256": "d7a2ca6c2797ff236653b6e05b26e97740766e876c629479a411d15f25a6b7af",
       "same_bytes_as_original_source": false
     },
@@ -244,8 +244,8 @@
     },
     {
       "path": "evidence/minimax/cn-dsh-20261103-run1/README.md",
-      "bytes": 1817,
-      "sha256": "3d9f882e9006034ef7083defe93b2f26576e317401086b6e81d784baaf4a3bb6"
+      "bytes": 1900,
+      "sha256": "466884d7aa464c0153322dcc3d50b780d282e558e52adf5ffb2e3c9c28bba145"
     },
     {
       "path": "evidence/minimax/cn-dsh-20261103-run1/redacted-evidence/context.redacted.json",
@@ -387,8 +387,8 @@
     },
     {
       "path": "evidence/README.md",
-      "bytes": 3856,
-      "sha256": "596c7c633da921419d4c768f01b9b6723ae60dae57ffced09354deda5e5cbd28"
+      "bytes": 4743,
+      "sha256": "8607b2bd0e95dc7f441dd14380c08734d957de896cb8f21a348f7d8ba8296e58"
     },
     {
       "path": "evidence/sourcedb-real/01-init.stderr.log",
@@ -487,6 +487,136 @@
       "sha256": "bcfb55dc8e86a8e1d8bdfe823ba7b38e32ee19e06ff20e9eeef4b1b4be5ab4ac",
       "original_source_sha256": "405210cac725b17b7775994a487a5a7fa341def38a019994be9aaf2f3e2430a0",
       "same_bytes_as_original_source": false
+    },
+    {
+      "path": "evidence/sql-composition-20261104/01-init.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/sql-composition-20261104/01-init.stdout.json",
+      "bytes": 64,
+      "sha256": "a445a1ac2eb394b33cbb92cc09eaee1db7eb00c05d662eda3177fc21f7fd7124"
+    },
+    {
+      "path": "evidence/sql-composition-20261104/02-import-v1.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/sql-composition-20261104/02-import-v1.stdout.json",
+      "bytes": 901,
+      "sha256": "8d42602fb808e4767ee55538c682b88efd05ab73411f70cb88719153ebc844c6"
+    },
+    {
+      "path": "evidence/sql-composition-20261104/03-context-v1.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/sql-composition-20261104/03-context-v1.stdout.json",
+      "bytes": 5549,
+      "sha256": "b8feed5f9e6bd21c15e0c57ad9fc5e37732d26f9255c68b918a74b34967028a1"
+    },
+    {
+      "path": "evidence/sql-composition-20261104/04-import-v2.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/sql-composition-20261104/04-import-v2.stdout.json",
+      "bytes": 390,
+      "sha256": "86f75417bf00f2a7c7218da86fea378776eea959dcae12e711247155ec1e8671"
+    },
+    {
+      "path": "evidence/sql-composition-20261104/05-context-v2.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/sql-composition-20261104/05-context-v2.stdout.json",
+      "bytes": 6613,
+      "sha256": "d16f2893a46d6b1944585e691acfddc72827df5cf58c28c6ad9e5f976e5dca98"
+    },
+    {
+      "path": "evidence/sql-composition-20261104/06-stale-v1-rejected.stderr.txt",
+      "bytes": 73,
+      "sha256": "e34468a302e9d001473c737d8bfc134a1df2e2acdf994b94331e35061e3cba45"
+    },
+    {
+      "path": "evidence/sql-composition-20261104/06-stale-v1-rejected.stdout.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/sql-composition-20261104/07-remember.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/sql-composition-20261104/07-remember.stdout.json",
+      "bytes": 458,
+      "sha256": "487dc4007510604df8711226fd467e10e9c5121d30358ed150e4040222003f82"
+    },
+    {
+      "path": "evidence/sql-composition-20261104/08-context-after-restart.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/sql-composition-20261104/08-context-after-restart.stdout.json",
+      "bytes": 8037,
+      "sha256": "83710a81a44159f176d6e2e2ddf6eb2f82237f481dfd2b84e22a5daaab297ee4"
+    },
+    {
+      "path": "evidence/sql-composition-20261104/09-resume.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/sql-composition-20261104/09-resume.stdout.json",
+      "bytes": 1336,
+      "sha256": "8b4b0d784184b29aab1abeb84b050056f163a82975d0e6acd5836d6d9d4acbad"
+    },
+    {
+      "path": "evidence/sql-composition-20261104/DATABASE_STOP.json",
+      "bytes": 284,
+      "sha256": "3b7d6b5a94b70b48105c09d3016f63baae227feda9d4fdb3ebc82b7ea9bdaa5d"
+    },
+    {
+      "path": "evidence/sql-composition-20261104/INDEX.json",
+      "bytes": 9933,
+      "sha256": "371077ad278947f09c0008a966e7372c67489f1f7a6c4f2d6cc865ad8fb6092f"
+    },
+    {
+      "path": "evidence/sql-composition-20261104/NEXT_STEP_PLAN.json",
+      "bytes": 611,
+      "sha256": "4e2e4174ad9c4a0e07995315c42ae423ae2dbf9f8a20d886498aa1293a021392"
+    },
+    {
+      "path": "evidence/sql-composition-20261104/PROVENANCE.json",
+      "bytes": 760,
+      "sha256": "92e254a57a550bd1b1a0140b6c86fe35dc9cbaa54776135c81098ccbef298c10"
+    },
+    {
+      "path": "evidence/sql-composition-20261104/README.md",
+      "bytes": 2000,
+      "sha256": "545786984bfa71e63355736a8b236a0987a179ac526dda015b46beb369133335"
+    },
+    {
+      "path": "evidence/sql-composition-20261104/RECEIPT.json",
+      "bytes": 9242,
+      "sha256": "bbdcf352eb696fa1029c8777590fcc535f96554e628df1d678153182a4bd977b"
+    },
+    {
+      "path": "evidence/sql-composition-20261104/SOURCE_MANIFEST.json",
+      "bytes": 2077,
+      "sha256": "4162315c34a42338b6fafb2e56e303c1d725c10e4943f48415771843ac31ee16"
+    },
+    {
+      "path": "evidence/sql-composition-20261104/state-input.json",
+      "bytes": 774,
+      "sha256": "93b9ec965254362aa16a72b3f3c07477010231fac66ec43f4ae2dcce655716c9"
     },
     {
       "path": "evidence/task-context-real/01-remember.stderr.log",
@@ -623,8 +753,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 7971,
-      "sha256": "9df901d783aea197cd00a07868e0b0c3c27a4db79b56bd28d6412ee3ad33101e",
+      "bytes": 9163,
+      "sha256": "47b602825adf73c01bf40c57aa92dca497086709338a0bbc11f89e8462eaa284",
       "original_source_sha256": "694c7b58003d688e66fe0c192a0a84cca73956f7daae020b90eb876a4808d468",
       "same_bytes_as_original_source": false
     },
@@ -672,9 +802,9 @@
     }
   ],
   "manifest_excludes_itself": true,
-  "scope": "Packaging snapshot before any later independent state verification or document integration. Regenerate if candidate files change.",
+  "scope": "Hashes of the currently delivered files. Runtime records retain their own dates and source identities; regenerate after any candidate file changes.",
   "all_code_copied_without_modification": true,
   "source_hashes_in_records": "original_source_sha256 identifies original copied bytes, including documents subsequently rewritten; sha256 identifies delivered bytes at this packaging snapshot.",
-  "new_model_calls": 0,
-  "new_database_calls": 0
+  "packaging_process_model_calls": 0,
+  "packaging_process_database_calls": 0
 }

@@ -1,0 +1,17 @@
+{
+  "task_id": "taskboard-state-filter-v2",
+  "completed": [
+    "Actual final candidate CLI initialized a fresh seekdb database, imported three v1 sources, replaced the specification with v2, retrieved exactly three SQL rows, and rejected the stale v1 requirement."
+  ],
+  "pending": [
+    "Reuse this restored task state with the current v2 SQL sources when reviewing the delivered after implementation."
+  ],
+  "verification": {
+    "sql_import_v1_v2": true,
+    "stale_v1_rejected": true,
+    "database_query_rows": 3,
+    "source_manifest_sha256": "4162315c34a42338b6fafb2e56e303c1d725c10e4943f48415771843ac31ee16",
+    "after_sha256": "6ff48b87ddf11e44bd62a980c1b9c12f128f30b3c7299d3f2c20a7d1358772ac",
+    "model_call_this_verification": false
+  }
+}

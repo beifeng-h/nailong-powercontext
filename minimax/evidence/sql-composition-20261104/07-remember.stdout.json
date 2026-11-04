@@ -1,0 +1,16 @@
+{
+  "task_id": "taskboard-state-filter-v2",
+  "pid": 288568,
+  "scope_id": "scp_02vcc77ga8t8ztcn94pav8f6x8",
+  "empty_before_save": true,
+  "citation": {
+    "memory_ref": {
+      "family": "memory",
+      "artifact_id": "memory",
+      "revision": 1
+    },
+    "entry_id": "mem_ent_b7ec2dcdbd904613af76f9c334246993",
+    "entry_version_id": "mem_ver_6c7e3caac3514cbb84401e9f5adae6e1"
+  },
+  "powercontext_version": "1.2.1.dev2+gdab240063"
+}
