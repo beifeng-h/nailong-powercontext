@@ -1,0 +1,45 @@
+{
+  "classification": "DELIVERED_CANDIDATE_INDEX_OF_HISTORICAL_EVIDENCE",
+  "original_index_sha256": "84840576c9c9a555da694841186cd9fa99b5ccf29187eeb970719cee952d875d",
+  "files": {
+    "01-init.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "01-init.stdout.json": "a445a1ac2eb394b33cbb92cc09eaee1db7eb00c05d662eda3177fc21f7fd7124",
+    "02-import-v1.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "02-import-v1.stdout.json": "1a47dfcd9cbef166a068f8b04003719aa1d6e384172877bd70cfc30cc523f1c6",
+    "03-context-v1.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "03-context-v1.stdout.json": "842411aa60e603ba248d7dd159fa3aebfacac89a47abb03107dc1e175ad4fb47",
+    "04-import-v2.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "04-import-v2.stdout.json": "74230f13939395c53db5e37124200a814588b0c68a78abd24dbb7531f5c21b63",
+    "05-context-v2.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "05-context-v2.stdout.json": "89e444ac324bd939736d8c9e77b294d8caeba34a3bf2e6a3038848e9c2a73a6b",
+    "06-stale-v1-rejected.stderr.log": "e34468a302e9d001473c737d8bfc134a1df2e2acdf994b94331e35061e3cba45",
+    "06-stale-v1-rejected.stdout.json": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "RECEIPT.json": "bcfb55dc8e86a8e1d8bdfe823ba7b38e32ee19e06ff20e9eeef4b1b4be5ab4ac"
+  },
+  "hash_semantics": "files contains actual delivered byte hashes only. Individual _derivation entries distinguish altered historical records. Original index hashes are historical original identities, not hashes of the derived copies.",
+  "historical_original_index": {
+    "receipt": "RECEIPT.json",
+    "receipt_sha256": "405210cac725b17b7775994a487a5a7fa341def38a019994be9aaf2f3e2430a0",
+    "recorded_commit": "ca7bd42d1d81575a939e0dabd5b89d1c7ea8e072",
+    "files": {
+      "01-init.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "01-init.stdout.json": "a445a1ac2eb394b33cbb92cc09eaee1db7eb00c05d662eda3177fc21f7fd7124",
+      "02-import-v1.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "02-import-v1.stdout.json": "1a47dfcd9cbef166a068f8b04003719aa1d6e384172877bd70cfc30cc523f1c6",
+      "03-context-v1.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "03-context-v1.stdout.json": "842411aa60e603ba248d7dd159fa3aebfacac89a47abb03107dc1e175ad4fb47",
+      "04-import-v2.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "04-import-v2.stdout.json": "74230f13939395c53db5e37124200a814588b0c68a78abd24dbb7531f5c21b63",
+      "05-context-v2.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "05-context-v2.stdout.json": "89e444ac324bd939736d8c9e77b294d8caeba34a3bf2e6a3038848e9c2a73a6b",
+      "06-stale-v1-rejected.stderr.log": "e34468a302e9d001473c737d8bfc134a1df2e2acdf994b94331e35061e3cba45",
+      "06-stale-v1-rejected.stdout.json": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "RECEIPT.json": "405210cac725b17b7775994a487a5a7fa341def38a019994be9aaf2f3e2430a0"
+    },
+    "official_score_claim": false,
+    "minimax_model_participation": false,
+    "powercontext_integration": false
+  },
+  "new_runtime_or_model_calls": false,
+  "formal_result_claim": false
+}

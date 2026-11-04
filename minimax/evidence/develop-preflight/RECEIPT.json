@@ -1,0 +1,41 @@
+{
+  "command": [
+    "<local-python>",
+    "-m",
+    "minimax_sdd.develop",
+    "--root",
+    ".",
+    "--task",
+    "examples/task-v2.json",
+    "--context",
+    "evidence/task-context-real/02-context-after-process-restart.stdout.json",
+    "--region",
+    "intl",
+    "--endpoint",
+    "https://api.minimax.io/v1/chat/completions",
+    "--model",
+    "MiniMax-M3.1-Flash",
+    "--source-version",
+    "84c245a6301aaeb8af8f66f96f17861bcba5bb8b",
+    "--expected-before-sha256",
+    "482b90add2d94cf22df14b24302c818ccc003bc9a9bec8bc0d71fc9b39115062",
+    "--expected-tests-sha256",
+    "90a2d6dcebdbf00e6359aea493f116aa06b2081c4fd4f6006324ee2fd17f8abc",
+    "--run-dir",
+    "evidence/minimax/run1",
+    "--check-only"
+  ],
+  "commit": "84c245a6301aaeb8af8f66f96f17861bcba5bb8b",
+  "exit_code": 0,
+  "actual_model_call": false,
+  "key_value_read": false,
+  "after_present": false,
+  "adapter_LF_sha256": "ac14570deb93a12df5c533a3e9713336b70703f7102fc3411f5b00191cf485f6",
+  "_derivation": {
+    "classification": "DERIVED_REDACTED_HISTORICAL_EVIDENCE",
+    "original_sha256": "5b40213935840bff61d1d1ca029c8cba6bf6ad4282740b568adfe53784c2a68f",
+    "original_relative_path": "evidence/develop-preflight/RECEIPT.json",
+    "original_delivered": false,
+    "note": "Original retained locally unchanged. Runtime results, dates, PIDs and source versions remain historical. Embedded pre-existing hashes identify historical original bytes, not the derived files delivered here; INDEX.json and HISTORY_DERIVATIONS.json identify delivered bytes."
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "task_id": "taskboard-state-filter-v2",
+  "completed": [
+    "Loaded actual spec/code/test documents into seekdb and used the SQL results in task context.",
+    "Reimported specification v2 and verified the context uses its changed source and hash.",
+    "Ran the unchanged before business tests: three target functional assertions failed and six regression tests passed."
+  ],
+  "next_step": "Have an actually authorized MiniMax coding call use the retrieved and restored context to change only the business implementation.",
+  "prior_verification": {
+    "before_record": {
+      "recorded_at_utc": "2026-10-31T21:03:45.194950+00:00",
+      "command": [
+        "<local-python>",
+        "-B",
+        "run_tests.py",
+        "--implementation",
+        "business/before",
+        "--suite",
+        "all"
+      ],
+      "cwd": "<project-root>",
+      "exit_code": 1,
+      "python_version": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+      "version_type": "Temp content snapshot, not a Git commit/formal version",
+      "snapshot_sha256": "7b0218831e038c915614f050b49e61cc431958aa44c5c406ee9da2d5537c17b2",
+      "tests_sha256": "90a2d6dcebdbf00e6359aea493f116aa06b2081c4fd4f6006324ee2fd17f8abc",
+      "implementation_sha256": "482b90add2d94cf22df14b24302c818ccc003bc9a9bec8bc0d71fc9b39115062",
+      "actual": {
+        "tests_run": 9,
+        "target_assertion_failures": 3,
+        "regression_passes": 6,
+        "environment_or_import_error": false
+      },
+      "expected_before_behavior_observed": true,
+      "scope": "stdlib before business fixture only; no MiniMax/SourceDB/PowerContext or formal pass claimed",
+      "after_implementation_exists": false,
+      "preparation_note": "Fixture directory creation error was corrected before this run; that preparation error is not test red evidence.",
+      "input_manifest": "evidence/before-input-manifest.json"
+    },
+    "source_database": {
+      "receipt": "evidence/sourcedb-real/RECEIPT.json",
+      "commit": "ca7bd42d1d81575a939e0dabd5b89d1c7ea8e072",
+      "success": true,
+      "rows": 3,
+      "specification_reimport_used": true,
+      "stale_requirement_rejected": true
+    },
+    "actual_minimax_call_performed": false
+  },
+  "powercontext_citation": {
+    "memory_ref": {
+      "family": "memory",
+      "artifact_id": "memory",
+      "revision": 1
+    },
+    "entry_id": "mem_ent_30b7bc7e9e4a4c5db265dd2763f47de4",
+    "entry_version_id": "mem_ver_d1b662dace554d809b63cfa7907257fc"
+  },
+  "_derivation": {
+    "classification": "DERIVED_REDACTED_HISTORICAL_EVIDENCE",
+    "original_sha256": "1b3b7cb1fabb1f6d5857de97f779e91cd70a7c9f3c4e58727fa1b306ca3aa9d8",
+    "original_relative_path": "evidence/powercontext-real/context-from-restored-state.json",
+    "original_delivered": false,
+    "note": "Original retained locally unchanged. Runtime results, dates, PIDs and source versions remain historical. Embedded pre-existing hashes identify historical original bytes, not the derived files delivered here; INDEX.json and HISTORY_DERIVATIONS.json identify delivered bytes."
+  }
+}

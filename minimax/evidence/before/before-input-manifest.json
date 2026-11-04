@@ -1,0 +1,41 @@
+{
+  "files": {
+    "business/before/taskboard.py": {
+      "bytes": 316,
+      "sha256": "482b90add2d94cf22df14b24302c818ccc003bc9a9bec8bc0d71fc9b39115062"
+    },
+    "DESIGN.md": {
+      "bytes": 10340,
+      "sha256": "9c6e9627183330673e22f969dfde672d789899453af958db4b206a7d31bca40a"
+    },
+    "fixtures/task.json": {
+      "bytes": 922,
+      "sha256": "6810b5cd3a4c21ebe17d72c9f7acd2bb126c893d230c0e853c0d8c0ad3c70a61"
+    },
+    "fixtures/tasks.json": {
+      "bytes": 370,
+      "sha256": "8b9c2cbae9c6b098c0bc4ababfde53f86446b1ac8cf15d0964c40aab673fcec1"
+    },
+    "README.md": {
+      "bytes": 2163,
+      "sha256": "1c164c0cfb9a1483bba15a32173d3e7bb9030f1da9f808fe91889659c11fbf76"
+    },
+    "run_tests.py": {
+      "bytes": 1969,
+      "sha256": "ce65a978a850d841854cb856499dcd92c986701b94785da2e969cd94556c0673"
+    },
+    "specs/v1.md": {
+      "bytes": 1131,
+      "sha256": "b142678a6902e0773fb51efa93517a3e4511ce2d1b28643ed72c670bdd65205e"
+    },
+    "specs/v2.md": {
+      "bytes": 2112,
+      "sha256": "dc41604d3e4d1da8c8fbf645db14bf1a46a36b5479912260b8c74c7437dbde58"
+    },
+    "tests/test_taskboard.py": {
+      "bytes": 2395,
+      "sha256": "90a2d6dcebdbf00e6359aea493f116aa06b2081c4fd4f6006324ee2fd17f8abc"
+    }
+  },
+  "snapshot_sha256": "7b0218831e038c915614f050b49e61cc431958aa44c5c406ee9da2d5537c17b2"
+}

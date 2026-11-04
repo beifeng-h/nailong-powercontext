@@ -1,0 +1,24 @@
+{
+  "classification": "DELIVERED_CANDIDATE_INDEX_OF_HISTORICAL_EVIDENCE",
+  "original_index_sha256": "26c283bcef6142c89f152fb7261076857deec01e1a81fdc88390199a83eb8167",
+  "files": {
+    "01-remember.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "01-remember.stdout.json": "f98c26944723ae4907b09f47f9857b1e3410782df3cb2cbb1ed7898552df3e02",
+    "02-context-after-process-restart.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "02-context-after-process-restart.stdout.json": "9ddf3eda76cd770786a93eb7f997369c2a7322b8a0bf621508cd7f340666b2b8",
+    "RECEIPT.json": "c6f5507fb7591ac1d9926b2c467b8b3af25594b5f425c88a46ef58baa79a02d8"
+  },
+  "hash_semantics": "files contains actual delivered byte hashes only. Individual _derivation entries distinguish altered historical records. Original index hashes are historical original identities, not hashes of the derived copies.",
+  "historical_original_index": {
+    "files": {
+      "01-remember.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "01-remember.stdout.json": "f98c26944723ae4907b09f47f9857b1e3410782df3cb2cbb1ed7898552df3e02",
+      "02-context-after-process-restart.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "02-context-after-process-restart.stdout.json": "be3a5cdca3a30d8c7e37b18d8d383e044312af2bd9cbe80b20f9076b849b1f6c",
+      "RECEIPT.json": "01d5decb7b8a0fbb7ee109275801c6a46cf38f1bfd2792b1516cdcaab116234f"
+    },
+    "actual_model_call_performed": false
+  },
+  "new_runtime_or_model_calls": false,
+  "formal_result_claim": false
+}

@@ -1,0 +1,33 @@
+{
+  "task_id": "taskboard-state-filter-v2",
+  "request": "Update list_tasks state filtering from exact matching to trim plus Unicode casefold while preserving None/all, unmatched/empty, ordering, fields and input values.",
+  "query_terms": [
+    "list_tasks"
+  ],
+  "active_spec": {
+    "logical_key": "taskboard/state-filter",
+    "source_path": "specs/v2.md",
+    "revision": "2"
+  },
+  "required_sources": [
+    {
+      "kind": "spec",
+      "path": "specs/v2.md",
+      "item": "TASKBOARD-STATE-FILTER"
+    },
+    {
+      "kind": "code",
+      "path": "business/before/taskboard.py",
+      "symbol": "list_tasks"
+    },
+    {
+      "kind": "test",
+      "path": "tests/test_taskboard.py",
+      "symbols": [
+        "TargetBehaviorTests",
+        "RegressionBehaviorTests"
+      ]
+    }
+  ],
+  "scope": "Task fixture only. No actual MiniMax/SourceDB/PowerContext execution claimed."
+}

@@ -1,0 +1,50 @@
+{
+  "state": {
+    "task_id": "taskboard-state-filter-v2",
+    "completed": [
+      "Ran the same nine tests against the delivered before and after implementations in this candidate; before had three target failures and after passed all nine."
+    ],
+    "pending": [
+      "Verify this candidate's source import and restored-state context against a real seekdb instance."
+    ],
+    "verification": {
+      "businessTests": {
+        "beforeExit": 1,
+        "targetFailures": 3,
+        "regressionPassed": 6,
+        "afterExit": 0,
+        "afterPassed": 9
+      },
+      "sourceHashes": {
+        "business/after/taskboard.py": "6ff48b87ddf11e44bd62a980c1b9c12f128f30b3c7299d3f2c20a7d1358772ac",
+        "business/before/taskboard.py": "482b90add2d94cf22df14b24302c818ccc003bc9a9bec8bc0d71fc9b39115062",
+        "evidence/minimax/cn-dsh-20261103-run1/before.py": "482b90add2d94cf22df14b24302c818ccc003bc9a9bec8bc0d71fc9b39115062",
+        "evidence/minimax/cn-dsh-20261103-run1/fixed-tests.py": "90a2d6dcebdbf00e6359aea493f116aa06b2081c4fd4f6006324ee2fd17f8abc",
+        "minimax_sdd/__init__.py": "4901ecb68d85631fa2abf76f969f7e7c49b20f1d60b6d790a93251ba4105b096",
+        "minimax_sdd/__main__.py": "482b8693e2fe6dbd732e3d7961e03827d3efa187bad11d29da188be580ebbeea",
+        "minimax_sdd/cli.py": "94bb4339c0ff573b47f715c408bdf7438868c84529e326697ec5e4b4e66e6c67",
+        "minimax_sdd/develop.py": "139fa566616b1da792464ae2bd85e63fd3ddc21a89653c398d0f14588b368d85",
+        "minimax_sdd/source_db.py": "ea761d89ab8f72acf72a40bc8cf89911f150ba8294be23446b482268d799efb5",
+        "minimax_sdd/state.py": "d0e54c0635287e7091a94bb946f846e84a005722f75075b638a8e5516006d99b",
+        "run_tests.py": "ce65a978a850d841854cb856499dcd92c986701b94785da2e969cd94556c0673",
+        "tests/test_develop_preflight.py": "ae3134f6417b61554b3b4b736a152c4ca36ead2c503be977a658a65f6933a6a7",
+        "tests/test_taskboard.py": "90a2d6dcebdbf00e6359aea493f116aa06b2081c4fd4f6006324ee2fd17f8abc"
+      },
+      "actualSourceDbSqlThisRun": false,
+      "modelCallThisRun": false
+    }
+  },
+  "citation": {
+    "memory_ref": {
+      "family": "memory",
+      "artifact_id": "memory",
+      "revision": 1
+    },
+    "entry_id": "mem_ent_391b54430b2f46a3a07637e19d2128e0",
+    "entry_version_id": "mem_ver_48bb687095ad4d24b50224ff1fa4ddfd"
+  },
+  "scope_id": "scp_3xyvj2csqf42h54jhwp3nkf90a",
+  "pid": 285276,
+  "next_step": "Verify this candidate's source import and restored-state context against a real seekdb instance.",
+  "powercontext_version": "1.2.1.dev2+gdab240063"
+}

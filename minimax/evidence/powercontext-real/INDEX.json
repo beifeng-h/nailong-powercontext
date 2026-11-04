@@ -1,0 +1,30 @@
+{
+  "classification": "DELIVERED_CANDIDATE_INDEX_OF_HISTORICAL_EVIDENCE",
+  "original_index_sha256": "e96444fe860ae888070e1f41eeaa14e36f9c702e73b93cdc8bffc5d0208fa6c0",
+  "files": {
+    "context-from-restored-state.json": "95f493737355c559621d98201c76ca911a5651d57baa5698d4a28e8720ef88d8",
+    "controller-summary.json": "fcce95c6e563be009ac21a4ea03b5b5d3f2d7bf4b681a1cfa2bb5e0a0293c8a7",
+    "resume-receipt.json": "0a1973a8abf1ea27559e0c8b0f23e78465dc0d2eda46494facb54beaa15ccf0a",
+    "resume.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "resume.stdout.log": "cadde4d889fae068c3c29fdd5e3a2297eb9ad2c00f9b16f31345fdee356178cd",
+    "save-receipt.json": "7fb4ab8179a69cdc9d7abdec3916d21851db95760d481b71015c0386f4e29dc9",
+    "save.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "save.stdout.log": "5ffcbaf792ca755c3748f47c4a9af3fbc370c0a2680079cd9d7cef7230d75086"
+  },
+  "hash_semantics": "files contains actual delivered byte hashes only. Individual _derivation entries distinguish altered historical records. Original index hashes are historical original identities, not hashes of the derived copies.",
+  "historical_original_index": {
+    "files": {
+      "context-from-restored-state.json": "1b3b7cb1fabb1f6d5857de97f779e91cd70a7c9f3c4e58727fa1b306ca3aa9d8",
+      "controller-summary.json": "154b3b9a8e2d666b62b2fe2ceb96fc0086073d1c144feab71176fdecaaa45417",
+      "resume-receipt.json": "44fc8b16512b7a4ccefdfec779cbafb7bc9c0b70c74e8f24cb08c985132fa2eb",
+      "resume.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "resume.stdout.log": "3ae836c0e4f20dc525c030141f3581f2d56e169cc1c4421e653993d279441174",
+      "save-receipt.json": "6e7cb9cf9cd13da191b309009e8f95f7881234719e5681692644d8b666af0f24",
+      "save.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "save.stdout.log": "e1c69e3af678301095590a707804bb4de50a8f739249f1209d7d607da0a8795a"
+    },
+    "actual_model_call_performed": false
+  },
+  "new_runtime_or_model_calls": false,
+  "formal_result_claim": false
+}

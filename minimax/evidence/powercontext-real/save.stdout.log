@@ -1,0 +1,31 @@
+{
+  "role": "save",
+  "pid": 273820,
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "sdk": {
+    "fixed_commit": "dab240063bfcfa7917898dc44da4baadb3747bd0",
+    "module_origin": "<fixed-sdk>/src/powercontext/__init__.py",
+    "module_sha256": "5b2c43dba4c1e80073886a4c996da29fcffbe826088200bafeee99b1a2c51d50",
+    "distribution_version": "1.2.1.dev2+gdab240063"
+  },
+  "models_configured": false,
+  "payload_sha256": "c1914754eb54e87f819961dcbec4f75345a4cd27ade42302ef324f86e0081719",
+  "scope_id": "scp_6xrd7ysc45kfjh3xse0m3bcbmg",
+  "citation": {
+    "memory_ref": {
+      "family": "memory",
+      "artifact_id": "memory",
+      "revision": 1
+    },
+    "entry_id": "mem_ent_30b7bc7e9e4a4c5db265dd2763f47de4",
+    "entry_version_id": "mem_ver_d1b662dace554d809b63cfa7907257fc"
+  },
+  "empty_before_save": true,
+  "_derivation": {
+    "classification": "DERIVED_REDACTED_HISTORICAL_EVIDENCE",
+    "original_sha256": "e1c69e3af678301095590a707804bb4de50a8f739249f1209d7d607da0a8795a",
+    "original_relative_path": "evidence/powercontext-real/save.stdout.log",
+    "original_delivered": false,
+    "note": "Original retained locally unchanged. Runtime results, dates, PIDs and source versions remain historical. Embedded pre-existing hashes identify historical original bytes, not the derived files delivered here; INDEX.json and HISTORY_DERIVATIONS.json identify delivered bytes."
+  }
+}

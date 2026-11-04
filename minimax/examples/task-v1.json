@@ -1,0 +1,27 @@
+{
+  "task_id": "taskboard-state-filter-v1",
+  "request": "Inspect list_tasks and its applicable current specification and fixed tests.",
+  "query_terms": [
+    "list_tasks"
+  ],
+  "required_sources": [
+    {
+      "logical_key": "taskboard/state-filter",
+      "kind": "spec",
+      "source_path": "specs/v1.md",
+      "revision": "1"
+    },
+    {
+      "logical_key": "taskboard/implementation",
+      "kind": "code",
+      "source_path": "business/before/taskboard.py",
+      "revision": "before"
+    },
+    {
+      "logical_key": "taskboard/tests",
+      "kind": "test",
+      "source_path": "tests/test_taskboard.py",
+      "revision": "fixed"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "derivedFrom": "resume.stdout",
+  "nextStepConsumed": "Verify this candidate's source import and restored-state context against a real seekdb instance.",
+  "restoredAfterSha256": "6ff48b87ddf11e44bd62a980c1b9c12f128f30b3c7299d3f2c20a7d1358772ac",
+  "actualSqlExecuted": false,
+  "actualModelCalled": false
+}

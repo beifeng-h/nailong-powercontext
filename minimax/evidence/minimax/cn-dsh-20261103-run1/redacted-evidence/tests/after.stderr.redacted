@@ -1,0 +1,14 @@
+test_casefold_state_filter (test_taskboard.TargetBehaviorTests.test_casefold_state_filter) ... ok
+test_trim_state_filter (test_taskboard.TargetBehaviorTests.test_trim_state_filter) ... ok
+test_unicode_casefold_state_filter (test_taskboard.TargetBehaviorTests.test_unicode_casefold_state_filter) ... ok
+test_canonical_exact_queries (test_taskboard.RegressionBehaviorTests.test_canonical_exact_queries) ... ok
+test_empty_input (test_taskboard.RegressionBehaviorTests.test_empty_input) ... ok
+test_matched_records_keep_source_order (test_taskboard.RegressionBehaviorTests.test_matched_records_keep_source_order) ... ok
+test_none_returns_all_in_source_order (test_taskboard.RegressionBehaviorTests.test_none_returns_all_in_source_order) ... ok
+test_returned_records_preserve_all_fields (test_taskboard.RegressionBehaviorTests.test_returned_records_preserve_all_fields) ... ok
+test_unmatched_empty_and_whitespace_queries (test_taskboard.RegressionBehaviorTests.test_unmatched_empty_and_whitespace_queries) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.004s
+
+OK

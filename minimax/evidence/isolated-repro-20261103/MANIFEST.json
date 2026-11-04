@@ -1,0 +1,84 @@
+{
+  "recordedUtc": "2026-11-03T12:00:07.807128+00:00",
+  "classification": "Derived local review manifest, not original bytes; relative filenames only.",
+  "originalFiles": [
+    {
+      "file": "RECEIPT.json",
+      "bytes": 4523,
+      "sha256": "c44069ec62176d69028e997dd23a6277c7b29594569e0bfde84536b7fc49c33b"
+    },
+    {
+      "file": "SDK_RECOVERY_RECEIPT.json",
+      "bytes": 1892,
+      "sha256": "bc747e3817126d5702747d22d58ff260ce50c18b054f4f0fca002833218fb653"
+    },
+    {
+      "file": "NORMAL_USER_STATE_RECEIPT.json",
+      "bytes": 2093,
+      "sha256": "738c645306ad5ff03a7c03e85b99392221fa088e2deb911f46e4f33b5385d923"
+    },
+    {
+      "file": "REVISION_BOUNDARY.json",
+      "bytes": 793,
+      "sha256": "4bdfa26d512f95a11894bc24956e1aa589fce7fa23f128748b03a3e593efefbb"
+    },
+    {
+      "file": "before.stdout",
+      "bytes": 417,
+      "sha256": "e0c5446c06a4b41073763d32673c433b7d54c6c45f72724eff7acdea0dbf8cd9"
+    },
+    {
+      "file": "before.stderr",
+      "bytes": 4271,
+      "sha256": "07419bc7dbe9a4892299f88ab50fd17df5e3bbaec7efdf2ef914db0d7171c08e"
+    },
+    {
+      "file": "after.stdout",
+      "bytes": 416,
+      "sha256": "ee6e2957cbaf61f5e3364a159b2480eb8538c35314b522c37b7939c8d98dc316"
+    },
+    {
+      "file": "after.stderr",
+      "bytes": 1120,
+      "sha256": "8dab867f46a5c857dde5bb67605214ee5125b416afaa7f7be39d2ff5635a5851"
+    },
+    {
+      "file": "normal-user-remember.stdout",
+      "bytes": 458,
+      "sha256": "254cfc749ea9d980fb5d806983c0650121d0077aecbd18c28837dafd963d95cc"
+    },
+    {
+      "file": "normal-user-remember.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "normal-user-resume.stdout",
+      "bytes": 1157,
+      "sha256": "839576db159206b3f33b0539be6bc7ae07aafd5db0c461bdcbc6037ac8d7954b"
+    },
+    {
+      "file": "normal-user-resume.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "state-input.json",
+      "bytes": 629,
+      "sha256": "52ffadabe87db2d8a0a390fa38d6bf1702d49d114a6637abb13da667adeafb12"
+    }
+  ],
+  "derivedFiles": [
+    {
+      "file": "SUMMARY.json",
+      "bytes": 1944,
+      "sha256": "60829f0cc394ffe3d6ed62be7165384ee1bdfc4a3b89a4f67ac52a58ec60e3e5"
+    },
+    {
+      "file": "SDK_SOURCE_419_SHA256.json",
+      "bytes": 79320,
+      "sha256": "8315a89c46dd1869d73de53bd7d6083fd8aaf5e3d9a7c97a3f1ac155850384e5"
+    }
+  ],
+  "sourceSdkManifestSha256": "fe6ad861bee8db65505977349708931ad82ba35b560e73350e7bf80d042dedb4"
+}

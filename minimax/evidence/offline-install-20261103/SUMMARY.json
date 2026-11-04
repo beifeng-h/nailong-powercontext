@@ -1,0 +1,13 @@
+{
+  "status": "OFFLINE_VENV_INSTALLED_AND_BUSINESS_TESTED",
+  "lockedPackages": 50,
+  "sdkVersion": "1.2.1.dev2+gdab240063",
+  "pipCheck": "PASS",
+  "beforeExit": 1,
+  "afterExit": 0,
+  "realSeekdbSql": "NOT_RUN",
+  "modelCalls": 0,
+  "networkCalls": 0,
+  "sdkStateRestore": "NOT_YET_RUN",
+  "logs": "local path-redacted"
+}

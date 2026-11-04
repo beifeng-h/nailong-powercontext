@@ -1,0 +1,29 @@
+{
+  "classification": "LOCAL_REVIEW_ONLY_DERIVED_NOT_PUBLICATION_APPROVAL",
+  "model": "MiniMax-M3.1-Flash",
+  "source_commit": "b99c2e0a470cb92ddb5f0cc0a3161218e077b293",
+  "after_sha256": "6ff48b87ddf11e44bd62a980c1b9c12f128f30b3c7299d3f2c20a7d1358772ac",
+  "fixed_tests_sha256": "90a2d6dcebdbf00e6359aea493f116aa06b2081c4fd4f6006324ee2fd17f8abc",
+  "request_sent_sha256": "55fa15ad831ec0ab9e76f099c4e61c252db95f5b6023280409c10e680c7d8e99",
+  "original_context_sha256": "be3a5cdca3a30d8c7e37b18d8d383e044312af2bd9cbe80b20f9076b849b1f6c",
+  "derived_context_sha256": "d0e5ae892e6310bdb95e4ab4603aab7cb00775a71ed6b5da7653aec7d8e53281",
+  "context_transformation": "Only command[0] and cwd replaced with <local-python> and <project-root>; semantically equals retrieved_context in exact request bytes, tested True. Original retained unchanged locally.",
+  "tests": "Same original suite all, before exit 1 (3 functional failures, 6 pass), after exit 0 (9 pass). Reproduced locally; clean environment still pending.",
+  "test_original_sha256": {
+    "before.stdout": "e5afde8bbe17aa302acd96e231846142963e8d4feb0cb3d93e77f9bea54dcf82",
+    "before.stderr": "0773e91ce5a9f152c774ec6a569590267578ca0947581e464507558c73952768",
+    "after.stdout": "9be265a9a8483720d0696827ff52f7af4e922860307a651780658799f35d9801",
+    "after.stderr": "b6df1a52919cf5854abd28617a3e7067eadcd2013ba3846c30e7bbfea9d11046",
+    "RECEIPT.json": "11b993517951dc32b0037f5f86bdd82530bdbe738699ed621460c7e7d09d35c0"
+  },
+  "derived_file_sha256": {
+    "context.redacted.json": "d0e5ae892e6310bdb95e4ab4603aab7cb00775a71ed6b5da7653aec7d8e53281",
+    "tests/before.stdout.redacted": "f6082ae918e7ddc1133b876b06df46adc780526e0fabeb2aa488f80b9566694a",
+    "tests/before.stderr.redacted": "aa1e0a3ae6b8fd6c45503efc454dadcc443477ca10b66909fb751c0e9a14a4ff",
+    "tests/after.stdout.redacted": "770681b04b4028254af62949f6c01a0b35b0a46fb01d89e4007b178c373bd3f4",
+    "tests/after.stderr.redacted": "b6df1a52919cf5854abd28617a3e7067eadcd2013ba3846c30e7bbfea9d11046",
+    "tests/RECEIPT.redacted.json": "25545bae9327182d23df3ba2ea0032ac0224560227bdd74fce6163f88bc1b3ff"
+  },
+  "sensitivity_check": "Heuristic path, credential-format and email patterns only; no guarantee of absence. Manual scope review required.",
+  "publication": "No publication; do not publish raw context, raw test logs or current full branch history before private target and scope resolved."
+}

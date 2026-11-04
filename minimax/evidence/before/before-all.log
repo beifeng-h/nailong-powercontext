@@ -1,0 +1,72 @@
+# DERIVED_REDACTED_HISTORICAL_EVIDENCE
+# Original SHA-256: dc8cae7e47664a9333e18df8ff5b2e242f4048bc556bb8ee4860bc68d7d2ff97
+# Local path text replaced; original retained locally unchanged.
+{"implementation": "<historical-local-path>", "implementation_sha256": "482b90add2d94cf22df14b24302c818ccc003bc9a9bec8bc0d71fc9b39115062", "tests_sha256": "90a2d6dcebdbf00e6359aea493f116aa06b2081c4fd4f6006324ee2fd17f8abc", "suite": "all", "scope": "local business fixture only; no MiniMax/DB/PowerContext claim"}
+test_casefold_state_filter (test_taskboard.TargetBehaviorTests.test_casefold_state_filter) ... FAIL
+test_trim_state_filter (test_taskboard.TargetBehaviorTests.test_trim_state_filter) ... FAIL
+test_unicode_casefold_state_filter (test_taskboard.TargetBehaviorTests.test_unicode_casefold_state_filter) ... FAIL
+test_canonical_exact_queries (test_taskboard.RegressionBehaviorTests.test_canonical_exact_queries) ... ok
+test_empty_input (test_taskboard.RegressionBehaviorTests.test_empty_input) ... ok
+test_matched_records_keep_source_order (test_taskboard.RegressionBehaviorTests.test_matched_records_keep_source_order) ... ok
+test_none_returns_all_in_source_order (test_taskboard.RegressionBehaviorTests.test_none_returns_all_in_source_order) ... ok
+test_returned_records_preserve_all_fields (test_taskboard.RegressionBehaviorTests.test_returned_records_preserve_all_fields) ... ok
+test_unmatched_empty_and_whitespace_queries (test_taskboard.RegressionBehaviorTests.test_unmatched_empty_and_whitespace_queries) ... ok
+
+======================================================================
+FAIL: test_casefold_state_filter (test_taskboard.TargetBehaviorTests.test_casefold_state_filter)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<historical-local-path>", line 36, in test_casefold_state_filter
+    self.assert_records("DoNe", [1])
+  File "<historical-local-path>", line 28, in assert_records
+    self.assertEqual(list_tasks(self.tasks, state), expected)
+AssertionError: Lists differ: [] != [{'id': '10', 'title': 'Publish release note', 'state': 'done'}]
+
+Second list contains 1 additional elements.
+First extra element 0:
+{'id': '10', 'title': 'Publish release note', 'state': 'done'}
+
+- []
++ [{'id': '10', 'state': 'done', 'title': 'Publish release note'}]
+
+======================================================================
+FAIL: test_trim_state_filter (test_taskboard.TargetBehaviorTests.test_trim_state_filter)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<historical-local-path>", line 33, in test_trim_state_filter
+    self.assert_records(" OPEN ", [0, 2])
+  File "<historical-local-path>", line 28, in assert_records
+    self.assertEqual(list_tasks(self.tasks, state), expected)
+AssertionError: Lists differ: [] != [{'id': '30', 'title': 'Ship inbox filter'[80 chars]en'}]
+
+Second list contains 2 additional elements.
+First extra element 0:
+{'id': '30', 'title': 'Ship inbox filter', 'state': 'open'}
+
+- []
++ [{'id': '30', 'state': 'open', 'title': 'Ship inbox filter'},
++  {'id': '20', 'state': 'open', 'title': 'Check duplicate report'}]
+
+======================================================================
+FAIL: test_unicode_casefold_state_filter (test_taskboard.TargetBehaviorTests.test_unicode_casefold_state_filter)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<historical-local-path>", line 39, in test_unicode_casefold_state_filter
+    self.assert_records("Stra\xdfe", [3])
+  File "<historical-local-path>", line 28, in assert_records
+    self.assertEqual(list_tasks(self.tasks, state), expected)
+AssertionError: Lists differ: [] != [{'id': '40', 'title': 'Custom internation[35 chars]se'}]
+
+Second list contains 1 additional elements.
+First extra element 0:
+{'id': '40', 'title': 'Custom international workflow label', 'state': 'strasse'}
+
+- []
++ [{'id': '40',
++   'state': 'strasse',
++   'title': 'Custom international workflow label'}]
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.004s
+
+FAILED (failures=3)

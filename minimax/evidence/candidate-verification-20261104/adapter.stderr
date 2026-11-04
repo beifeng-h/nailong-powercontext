@@ -1,0 +1,11 @@
+test_check_only_accepts_delivered_after_without_key_network_or_writes (test_develop_preflight.DeliveredAfterPreflightTests.test_check_only_accepts_delivered_after_without_key_network_or_writes) ... ok
+test_check_only_accepts_fresh_output_without_key_network_or_writes (test_develop_preflight.DeliveredAfterPreflightTests.test_check_only_accepts_fresh_output_without_key_network_or_writes) ... ok
+test_cli_actual_run_rejects_existing_after_before_key_or_network (test_develop_preflight.DeliveredAfterPreflightTests.test_cli_actual_run_rejects_existing_after_before_key_or_network) ... ok
+test_direct_actual_run_rejects_existing_after_before_key_or_network (test_develop_preflight.DeliveredAfterPreflightTests.test_direct_actual_run_rejects_existing_after_before_key_or_network) ... ok
+test_git_child_does_not_inherit_dedicated_key (test_develop_preflight.GitEnvironmentIsolationTests.test_git_child_does_not_inherit_dedicated_key) ... ok
+test_real_git_from_fresh_process_excludes_dummy_key (test_develop_preflight.GitEnvironmentIsolationTests.test_real_git_from_fresh_process_excludes_dummy_key) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.246s
+
+OK

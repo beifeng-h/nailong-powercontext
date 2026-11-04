@@ -1,0 +1,10 @@
+{
+  "documents": [
+    {
+      "logical_key": "taskboard/state-filter",
+      "kind": "spec",
+      "path": "specs/v2.md",
+      "revision": "2"
+    }
+  ]
+}

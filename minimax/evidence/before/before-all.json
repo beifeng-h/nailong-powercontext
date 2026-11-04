@@ -1,0 +1,37 @@
+{
+  "recorded_at_utc": "2026-10-31T21:03:45.194950+00:00",
+  "command": [
+    "<local-python>",
+    "-B",
+    "run_tests.py",
+    "--implementation",
+    "business/before",
+    "--suite",
+    "all"
+  ],
+  "cwd": "<project-root>",
+  "exit_code": 1,
+  "python_version": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "version_type": "Temp content snapshot, not a Git commit/formal version",
+  "snapshot_sha256": "7b0218831e038c915614f050b49e61cc431958aa44c5c406ee9da2d5537c17b2",
+  "tests_sha256": "90a2d6dcebdbf00e6359aea493f116aa06b2081c4fd4f6006324ee2fd17f8abc",
+  "implementation_sha256": "482b90add2d94cf22df14b24302c818ccc003bc9a9bec8bc0d71fc9b39115062",
+  "actual": {
+    "tests_run": 9,
+    "target_assertion_failures": 3,
+    "regression_passes": 6,
+    "environment_or_import_error": false
+  },
+  "expected_before_behavior_observed": true,
+  "scope": "stdlib before business fixture only; no MiniMax/SourceDB/PowerContext or formal pass claimed",
+  "after_implementation_exists": false,
+  "preparation_note": "Fixture directory creation error was corrected before this run; that preparation error is not test red evidence.",
+  "input_manifest": "evidence/before-input-manifest.json",
+  "_derivation": {
+    "classification": "DERIVED_REDACTED_HISTORICAL_EVIDENCE",
+    "original_sha256": "c32e01f5e283f57bb31de3b8fe9bc53d234b148f22125b6745d972e74791e1d0",
+    "original_relative_path": "evidence/before/before-all.json",
+    "original_delivered": false,
+    "note": "Original retained locally unchanged. Runtime results, dates, PIDs and source versions remain historical. Embedded pre-existing hashes identify historical original bytes, not the derived files delivered here; INDEX.json and HISTORY_DERIVATIONS.json identify delivered bytes."
+  }
+}

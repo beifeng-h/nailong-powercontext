@@ -1,0 +1,54 @@
+{
+  "started_utc": "2026-10-31T21:35:07.609097+00:00",
+  "commit": "63e098ef440d6af61e69b279428b6ec7e470fa55",
+  "scope": "actual SQL and PowerContext CLI composition; no MiniMax model call",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "pymysql": "1.2.3",
+  "powercontext": "1.2.1.dev2+gdab240063",
+  "powercontext_origin": "<fixed-sdk>/src/powercontext/__init__.py",
+  "runs": [
+    {
+      "command": [
+        "<local-python>",
+        "-m",
+        "minimax_sdd",
+        "remember",
+        "--task",
+        "examples/task-v2.json",
+        "--state-dir",
+        "<historical-state-dir>",
+        "--record",
+        "evidence/task-state-input.json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "<local-python>",
+        "-m",
+        "minimax_sdd",
+        "context",
+        "--project",
+        "taskboard-demo-utf8",
+        "--task",
+        "examples/task-v2.json",
+        "--state-dir",
+        "<historical-state-dir>"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "success": true,
+  "save_pid": 276492,
+  "context_pid": 288460,
+  "powercontext_state_reused_in_actual_SQL_context": true,
+  "context_sha256": "be3a5cdca3a30d8c7e37b18d8d383e044312af2bd9cbe80b20f9076b849b1f6c",
+  "finished_utc": "2026-10-31T21:35:10.171464+00:00",
+  "_derivation": {
+    "classification": "DERIVED_REDACTED_HISTORICAL_EVIDENCE",
+    "original_sha256": "01d5decb7b8a0fbb7ee109275801c6a46cf38f1bfd2792b1516cdcaab116234f",
+    "original_relative_path": "evidence/task-context-real/RECEIPT.json",
+    "original_delivered": false,
+    "note": "Original retained locally unchanged. Runtime results, dates, PIDs and source versions remain historical. Embedded pre-existing hashes identify historical original bytes, not the derived files delivered here; INDEX.json and HISTORY_DERIVATIONS.json identify delivered bytes."
+  }
+}

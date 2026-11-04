@@ -1,0 +1,116 @@
+{
+  "generatedUtc": "2026-11-04T01:42:32.750097+00:00",
+  "scope": "Final candidate tested with the previously installed offline venv; no fresh dependency installation, SourceDB SQL or model call in this verification",
+  "originalsRetainedUnchanged": true,
+  "records": [
+    {
+      "path": "adapter.stderr",
+      "originalSha256": "9ac441ddbc8d489128986aeae5bd49ad3b6ab2aab70d4c098b1498a58c4895fc",
+      "deliveredSha256": "9ac441ddbc8d489128986aeae5bd49ad3b6ab2aab70d4c098b1498a58c4895fc",
+      "classification": "UNCHANGED_COPY"
+    },
+    {
+      "path": "adapter.stdout",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "deliveredSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "UNCHANGED_COPY"
+    },
+    {
+      "path": "after.stderr",
+      "originalSha256": "43e1114b4c7ceba13d7ce41e7e2e2ed21b4be2e706f06d7b4ddf2721a1a90c7a",
+      "deliveredSha256": "43e1114b4c7ceba13d7ce41e7e2e2ed21b4be2e706f06d7b4ddf2721a1a90c7a",
+      "classification": "UNCHANGED_COPY"
+    },
+    {
+      "path": "after.stdout",
+      "originalSha256": "06cd11bd9f64838610544999776105fe9699c2ca063e0b77ba039963284b53e0",
+      "deliveredSha256": "dbdff919ced7d67e331626522b7232c37796c1a6b40cefcdb3bf54312b4c7c37",
+      "classification": "LOCAL_PATH_REDACTED_DERIVATIVE"
+    },
+    {
+      "path": "before.stderr",
+      "originalSha256": "7b2fa7d7a384aba7036da3a9cc946f2b4e341e3800e32bdbe13eab1d4fd0e346",
+      "deliveredSha256": "5d9907a64f7da1951f9c320c51cf12925d8744785316ef14442b42d624c414df",
+      "classification": "LOCAL_PATH_REDACTED_DERIVATIVE"
+    },
+    {
+      "path": "before.stdout",
+      "originalSha256": "b9f621ce4723e652a65e821451bd76f7c4ea43c26b68155399b6a047fded5d9a",
+      "deliveredSha256": "8a7c3ec442baee8efab739dcfed58e3df7fb14313c7d2e4827b0411ef5b09e49",
+      "classification": "LOCAL_PATH_REDACTED_DERIVATIVE"
+    },
+    {
+      "path": "NEXT_STEP_PLAN.json",
+      "originalSha256": "2860206f45b0ac8b5f6fbaea9006bf2f48c99985d4314e9b471e2d2f2584a221",
+      "deliveredSha256": "2860206f45b0ac8b5f6fbaea9006bf2f48c99985d4314e9b471e2d2f2584a221",
+      "classification": "UNCHANGED_COPY"
+    },
+    {
+      "path": "preflight.stderr",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "deliveredSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "UNCHANGED_COPY"
+    },
+    {
+      "path": "preflight.stdout",
+      "originalSha256": "f7d1cde8dd6f3e4820eac6c390d9b56d9ef9a714236e050f9bba664872c1eefc",
+      "deliveredSha256": "f7d1cde8dd6f3e4820eac6c390d9b56d9ef9a714236e050f9bba664872c1eefc",
+      "classification": "UNCHANGED_COPY"
+    },
+    {
+      "path": "RECEIPT.json",
+      "originalSha256": "0b511b8dab6aa7221edc4a6d883bff7800b211657b842cce0d7109bc58fae499",
+      "deliveredSha256": "580879bf0dad924c6afc62b8ce31a09f9e4b55e536b618c6eb6079e73119a461",
+      "classification": "LOCAL_PATH_REDACTED_DERIVATIVE"
+    },
+    {
+      "path": "remember.stderr",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "deliveredSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "UNCHANGED_COPY"
+    },
+    {
+      "path": "remember.stdout",
+      "originalSha256": "3d465a4c8003094f929da3f3abb98f7f95ac65d85654e922af03acba09f303ba",
+      "deliveredSha256": "3d465a4c8003094f929da3f3abb98f7f95ac65d85654e922af03acba09f303ba",
+      "classification": "UNCHANGED_COPY"
+    },
+    {
+      "path": "resume.stderr",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "deliveredSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "classification": "UNCHANGED_COPY"
+    },
+    {
+      "path": "resume.stdout",
+      "originalSha256": "413491cc95628dc16f26aa73f1f3df7d2c8508aa4baa4d4fe3ceab8067a2a588",
+      "deliveredSha256": "413491cc95628dc16f26aa73f1f3df7d2c8508aa4baa4d4fe3ceab8067a2a588",
+      "classification": "UNCHANGED_COPY"
+    },
+    {
+      "path": "state-input.json",
+      "originalSha256": "36f33879f816fd24ad3feca270fc36e16f626807e65df7353ae53a8dad4e7141",
+      "deliveredSha256": "36f33879f816fd24ad3feca270fc36e16f626807e65df7353ae53a8dad4e7141",
+      "classification": "UNCHANGED_COPY"
+    }
+  ],
+  "files": {
+    "adapter.stderr": "9ac441ddbc8d489128986aeae5bd49ad3b6ab2aab70d4c098b1498a58c4895fc",
+    "adapter.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "after.stderr": "43e1114b4c7ceba13d7ce41e7e2e2ed21b4be2e706f06d7b4ddf2721a1a90c7a",
+    "after.stdout": "dbdff919ced7d67e331626522b7232c37796c1a6b40cefcdb3bf54312b4c7c37",
+    "before.stderr": "5d9907a64f7da1951f9c320c51cf12925d8744785316ef14442b42d624c414df",
+    "before.stdout": "8a7c3ec442baee8efab739dcfed58e3df7fb14313c7d2e4827b0411ef5b09e49",
+    "NEXT_STEP_PLAN.json": "2860206f45b0ac8b5f6fbaea9006bf2f48c99985d4314e9b471e2d2f2584a221",
+    "preflight.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "preflight.stdout": "f7d1cde8dd6f3e4820eac6c390d9b56d9ef9a714236e050f9bba664872c1eefc",
+    "RECEIPT.json": "580879bf0dad924c6afc62b8ce31a09f9e4b55e536b618c6eb6079e73119a461",
+    "remember.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "remember.stdout": "3d465a4c8003094f929da3f3abb98f7f95ac65d85654e922af03acba09f303ba",
+    "resume.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "resume.stdout": "413491cc95628dc16f26aa73f1f3df7d2c8508aa4baa4d4fe3ceab8067a2a588",
+    "state-input.json": "36f33879f816fd24ad3feca270fc36e16f626807e65df7353ae53a8dad4e7141"
+  },
+  "sourceVersionNote": "candidateHeadDuringRun is the official base before the verified files were committed. sourceHashes bind the actual candidate Python bytes; the historical model run remains bound to b99c2e0a.",
+  "outputHashNote": "Hashes inside a derived receipt still identify original run outputs. Use this INDEX for the delivered copy bytes."
+}

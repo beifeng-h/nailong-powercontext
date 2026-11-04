@@ -1,0 +1,15 @@
+{
+  "path": "business/after/taskboard.py",
+  "code": "\"\"\"Taskboard v2: trim and Unicode-casefold state filters.\"\"\"\n\n\ndef list_tasks(tasks, state=None):\n    \"\"\"Select existing task records without changing their order or contents.\"\"\"\n    if state is None:\n        return list(tasks)\n\n    normalized_state = state.strip().casefold()\n    return [task for task in tasks if task[\"state\"] == normalized_state]\n",
+  "id": "0738f7a6ed1cf3b13c4e695767f1d57d",
+  "model": "MiniMax-M3.1-Flash",
+  "usage": {
+    "prompt_tokens": 2935,
+    "completion_tokens": 1814,
+    "total_tokens": 4749,
+    "prompt_tokens_details": {
+      "cached_tokens": 128
+    }
+  },
+  "finish_reason": "stop"
+}

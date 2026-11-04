@@ -1,0 +1,116 @@
+{
+  "task_id": "taskboard-state-filter-v2",
+  "request": "Update list_tasks state filtering to trim plus Unicode casefold; preserve None/all, unmatched/empty, ordering, fields and input values.",
+  "sources": [
+    {
+      "logical_key": "taskboard/implementation",
+      "kind": "code",
+      "source_path": "business/before/taskboard.py",
+      "revision": "before",
+      "content_sha256": "482b90add2d94cf22df14b24302c818ccc003bc9a9bec8bc0d71fc9b39115062",
+      "content": "\"\"\"Taskboard v1: exact state filtering; baseline for a real MiniMax change.\"\"\"\r\n\r\n\r\ndef list_tasks(tasks, state=None):\r\n    \"\"\"Select existing task records without changing their order or contents.\"\"\"\r\n    if state is None:\r\n        return list(tasks)\r\n    return [task for task in tasks if task[\"state\"] == state]\r\n"
+    },
+    {
+      "logical_key": "taskboard/state-filter",
+      "kind": "spec",
+      "source_path": "specs/v2.md",
+      "revision": "2",
+      "content_sha256": "dc41604d3e4d1da8c8fbf645db14bf1a46a36b5479912260b8c74c7437dbde58",
+      "content": "# Taskboard state filtering — version 2\r\n\r\nSpecification ID: TASKBOARD-STATE-FILTER. Logical source key: taskboard/state-filter. This version supersedes version 1 when re-imported as the active specification.\r\n\r\n`list_tasks(tasks, state=None)` accepts an ordered list of task mappings with string `id`, `title`, and `state`. State labels are extensible nonempty strings already in canonical form: no leading/trailing Python `str.strip` whitespace and equal to their own Python `str.casefold` value. The supplied fixture uses `open`, `done`, and the custom label `strasse`. State labels are not a closed enum.\r\n\r\nRequested change: for a string filter, remove leading and trailing whitespace using Python `str.strip` semantics, then apply Python `str.casefold` Unicode case folding before comparing it to the stored canonical state. Normalize only the filter; do not modify stored task values.\r\n\r\nDeclared target examples against fixtures/tasks.json:\r\n\r\n- ` OPEN ` matches task IDs `30`, `20` in that order.\r\n- `DoNe` matches task ID `10`.\r\n- `Straße` matches task ID `40` whose canonical state is `strasse`. This verifies Unicode case folding; ordinary lowercase alone is insufficient for this example.\r\n\r\nRequired unchanged behavior:\r\n\r\n- `state is None` is the sole no-filter sentinel and returns all records in their original order.\r\n- Canonical exact filters still match the same records.\r\n- Unknown filters return an empty list. Empty or whitespace-only filters also return empty because fixture states are nonempty canonical values.\r\n- Preserve record order, every field, and the input list/mapping contents.\r\n- An empty task list returns an empty list.\r\n\r\nNon-string filters other than None, missing record fields, invalid state storage, Unicode NFC/NFKC transformation, sorting, and deep-copy guarantees are outside this sample contract. Do not add unrelated validation or behavior.\r\n\r\nThe target and regression tests in tests/test_taskboard.py must remain unchanged for the before/after comparison. Only the taskboard business implementation is to be modified by the actual MiniMax development step.\r\n"
+    },
+    {
+      "logical_key": "taskboard/tests",
+      "kind": "test",
+      "source_path": "tests/test_taskboard.py",
+      "revision": "fixed",
+      "content_sha256": "90a2d6dcebdbf00e6359aea493f116aa06b2081c4fd4f6006324ee2fd17f8abc",
+      "content": "\"\"\"One fixed test file for both the baseline and actual MiniMax output.\r\n\r\nThe implementation directory is selected by run_tests.py. The test file and\r\nfixture are identical across before/after runs; no provider or database is faked.\r\n\"\"\"\r\n\r\nimport copy\r\nimport json\r\nfrom pathlib import Path\r\nimport unittest\r\n\r\nfrom taskboard import list_tasks\r\n\r\n\r\nFIXTURE = Path(__file__).resolve().parents[1] / \"fixtures\" / \"tasks.json\"\r\n\r\n\r\nclass FixtureCase(unittest.TestCase):\r\n    def setUp(self):\r\n        self.tasks = json.loads(FIXTURE.read_text(encoding=\"utf-8\"))\r\n        self.original = copy.deepcopy(self.tasks)\r\n\r\n    def tearDown(self):\r\n        self.assertEqual(self.tasks, self.original, \"input task values were changed\")\r\n\r\n    def assert_records(self, state, indexes):\r\n        expected = [self.original[index] for index in indexes]\r\n        self.assertEqual(list_tasks(self.tasks, state), expected)\r\n\r\n\r\nclass TargetBehaviorTests(FixtureCase):\r\n    def test_trim_state_filter(self):\r\n        self.assert_records(\" OPEN \", [0, 2])\r\n\r\n    def test_casefold_state_filter(self):\r\n        self.assert_records(\"DoNe\", [1])\r\n\r\n    def test_unicode_casefold_state_filter(self):\r\n        self.assert_records(\"Straße\", [3])\r\n\r\n\r\nclass RegressionBehaviorTests(FixtureCase):\r\n    def test_none_returns_all_in_source_order(self):\r\n        self.assert_records(None, [0, 1, 2, 3])\r\n\r\n    def test_canonical_exact_queries(self):\r\n        for state, indexes in [(\"open\", [0, 2]), (\"done\", [1]), (\"strasse\", [3])]:\r\n            with self.subTest(state=state):\r\n                self.assert_records(state, indexes)\r\n\r\n    def test_unmatched_empty_and_whitespace_queries(self):\r\n        for state in [\"queued\", \"\", \"   \"]:\r\n            with self.subTest(state=state):\r\n                self.assert_records(state, [])\r\n\r\n    def test_matched_records_keep_source_order(self):\r\n        self.assert_records(\"open\", [0, 2])\r\n\r\n    def test_returned_records_preserve_all_fields(self):\r\n        self.assert_records(\"done\", [1])\r\n        self.assertEqual(self.tasks[1], self.original[1])\r\n\r\n    def test_empty_input(self):\r\n        for state in [None, \"open\", \" OPEN \"]:\r\n            with self.subTest(state=state):\r\n                tasks = []\r\n                self.assertEqual(list_tasks(tasks, state), [])\r\n                self.assertEqual(tasks, [])\r\n\r\n\r\nif __name__ == \"__main__\":\r\n    unittest.main(verbosity=2)\r\n"
+    }
+  ],
+  "database_query": {
+    "sql": "SELECT logical_key, kind, source_path, revision, content_sha256, content FROM minimax_sdd_sources WHERE project_id=%s AND ((content LIKE %s ESCAPE '=' OR source_path LIKE %s ESCAPE '=' OR logical_key LIKE %s ESCAPE '=')) ORDER BY logical_key",
+    "params": [
+      "taskboard-demo-utf8",
+      "%list=_tasks%",
+      "%list=_tasks%",
+      "%list=_tasks%"
+    ],
+    "rows_returned": 3
+  },
+  "project_id": "taskboard-demo-utf8",
+  "previous_task_state": {
+    "state": {
+      "task_id": "taskboard-state-filter-v2",
+      "completed": [
+        "Loaded actual spec/code/test documents into seekdb and used the SQL results in task context.",
+        "Reimported specification v2 and verified the context uses its changed source and hash.",
+        "Ran the unchanged before business tests: three target functional assertions failed and six regression tests passed."
+      ],
+      "pending": [
+        "Have an actually authorized MiniMax coding call use the retrieved and restored context to change only the business implementation.",
+        "Run the same target and regression tests against the actual MiniMax output."
+      ],
+      "verification": {
+        "before_record": {
+          "recorded_at_utc": "2026-10-31T21:03:45.194950+00:00",
+          "command": [
+            "<local-python>",
+            "-B",
+            "run_tests.py",
+            "--implementation",
+            "business/before",
+            "--suite",
+            "all"
+          ],
+          "cwd": "<project-root>",
+          "exit_code": 1,
+          "python_version": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+          "version_type": "Temp content snapshot, not a Git commit/formal version",
+          "snapshot_sha256": "7b0218831e038c915614f050b49e61cc431958aa44c5c406ee9da2d5537c17b2",
+          "tests_sha256": "90a2d6dcebdbf00e6359aea493f116aa06b2081c4fd4f6006324ee2fd17f8abc",
+          "implementation_sha256": "482b90add2d94cf22df14b24302c818ccc003bc9a9bec8bc0d71fc9b39115062",
+          "actual": {
+            "tests_run": 9,
+            "target_assertion_failures": 3,
+            "regression_passes": 6,
+            "environment_or_import_error": false
+          },
+          "expected_before_behavior_observed": true,
+          "scope": "stdlib before business fixture only; no MiniMax/SourceDB/PowerContext or formal pass claimed",
+          "after_implementation_exists": false,
+          "preparation_note": "Fixture directory creation error was corrected before this run; that preparation error is not test red evidence.",
+          "input_manifest": "evidence/before-input-manifest.json"
+        },
+        "source_database": {
+          "receipt": "evidence/sourcedb-real/RECEIPT.json",
+          "commit": "ca7bd42d1d81575a939e0dabd5b89d1c7ea8e072",
+          "success": true,
+          "rows": 3,
+          "specification_reimport_used": true,
+          "stale_requirement_rejected": true
+        },
+        "actual_minimax_call_performed": false
+      }
+    },
+    "citation": {
+      "memory_ref": {
+        "family": "memory",
+        "artifact_id": "memory",
+        "revision": 1
+      },
+      "entry_id": "mem_ent_d81b18a022d84c3e8dc8d01f16d694ab",
+      "entry_version_id": "mem_ver_b6a1819b9f114030b44c06a765464120"
+    },
+    "scope_id": "scp_0zgyha5ey5yxjdhvrx9j62crx7",
+    "pid": 288460,
+    "next_step": "Have an actually authorized MiniMax coding call use the retrieved and restored context to change only the business implementation.",
+    "powercontext_version": "1.2.1.dev2+gdab240063"
+  },
+  "_derivation": {
+    "classification": "DERIVED_REDACTED_HISTORICAL_EVIDENCE",
+    "original_sha256": "be3a5cdca3a30d8c7e37b18d8d383e044312af2bd9cbe80b20f9076b849b1f6c",
+    "original_relative_path": "evidence/task-context-real/02-context-after-process-restart.stdout.json",
+    "original_delivered": false,
+    "note": "Original retained locally unchanged. Runtime results, dates, PIDs and source versions remain historical. Embedded pre-existing hashes identify historical original bytes, not the derived files delivered here; INDEX.json and HISTORY_DERIVATIONS.json identify delivered bytes."
+  }
+}

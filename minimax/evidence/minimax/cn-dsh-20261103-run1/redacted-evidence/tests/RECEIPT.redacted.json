@@ -1,0 +1,32 @@
+{
+  "status": "completed",
+  "sameInterpreter": "<local-python>",
+  "sameTestRunner": "run_tests.py --suite all",
+  "networkOrModelCalls": false,
+  "environment": "allowlist; no credential variables",
+  "sourceAndFixtureSha256": {
+    "before": "482b90add2d94cf22df14b24302c818ccc003bc9a9bec8bc0d71fc9b39115062",
+    "after": "6ff48b87ddf11e44bd62a980c1b9c12f128f30b3c7299d3f2c20a7d1358772ac",
+    "tests": "90a2d6dcebdbf00e6359aea493f116aa06b2081c4fd4f6006324ee2fd17f8abc",
+    "fixture": "8b9c2cbae9c6b098c0bc4ababfde53f86446b1ac8cf15d0964c40aab673fcec1"
+  },
+  "inputsUnchanged": true,
+  "runs": [
+    {
+      "implementation": "before",
+      "suite": "all",
+      "startedUtc": "2026-11-03T11:27:06.953868+00:00",
+      "exitCode": 1,
+      "stdoutSha256": "e5afde8bbe17aa302acd96e231846142963e8d4feb0cb3d93e77f9bea54dcf82",
+      "stderrSha256": "0773e91ce5a9f152c774ec6a569590267578ca0947581e464507558c73952768"
+    },
+    {
+      "implementation": "after",
+      "suite": "all",
+      "startedUtc": "2026-11-03T11:27:07.107756+00:00",
+      "exitCode": 0,
+      "stdoutSha256": "9be265a9a8483720d0696827ff52f7af4e922860307a651780658799f35d9801",
+      "stderrSha256": "b6df1a52919cf5854abd28617a3e7067eadcd2013ba3846c30e7bbfea9d11046"
+    }
+  ]
+}

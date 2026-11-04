@@ -1,0 +1,49 @@
+{
+  "classification": "Redacted, derived local review summary; not the original byte records and not a clean dependency installation.",
+  "tests": {
+    "suite": "same unchanged all",
+    "before": {
+      "tests": 9,
+      "targetFailures": 3,
+      "regressionsPassed": 6,
+      "exitCode": 1
+    },
+    "after": {
+      "tests": 9,
+      "passed": 9,
+      "exitCode": 0
+    },
+    "beforeSha256": "482b90add2d94cf22df14b24302c818ccc003bc9a9bec8bc0d71fc9b39115062",
+    "afterSha256": "6ff48b87ddf11e44bd62a980c1b9c12f128f30b3c7299d3f2c20a7d1358772ac",
+    "testsSha256": "90a2d6dcebdbf00e6359aea493f116aa06b2081c4fd4f6006324ee2fd17f8abc",
+    "fixtureSha256": "8b9c2cbae9c6b098c0bc4ababfde53f86446b1ac8cf15d0964c40aab673fcec1"
+  },
+  "state": {
+    "rememberStartedUtc": "2026-11-03T11:58:24.040360+00:00",
+    "rememberExitCode": 0,
+    "resumeStartedUtc": "2026-11-03T11:58:26.067080+00:00",
+    "resumeExitCode": 0,
+    "distinctOsProcesses": true,
+    "stateInitiallyEmpty": true,
+    "sameScope": true,
+    "restoredStateMatchesActualTestRecord": true,
+    "restoredNextStepUsedForDecision": "await_authorized_real_seekdb",
+    "powercontextVersion": "1.2.1.dev2+gdab240063"
+  },
+  "sdk": {
+    "sourceCommit": "dab240063bfcfa7917898dc44da4baadb3747bd0",
+    "verifiedSourceFileCount": 419,
+    "sourceFileHashes": "SDK_SOURCE_419_SHA256.json",
+    "existingRuntimeDependenciesReused": true,
+    "priorEditableSourceModified": false
+  },
+  "limits": {
+    "realSeekdbSqlAndCombinedContext": "NOT_RUN",
+    "cleanDependencyInstallation": "NOT_RUN",
+    "networkOrModelCalls": false,
+    "credentialsRead": false,
+    "originalEvidenceModified": false,
+    "copiedDevelopDiffersFromCurrent": true,
+    "note": "Original file absolute paths omitted; result only demonstrates new project/state with existing deps and isolated verified SDK; current develop.py changed after snapshot."
+  }
+}

@@ -1,0 +1,1 @@
+{"implementation": "<workspace>\\minimax-sdd-contest\\minimax\\business\\before\\taskboard.py", "implementation_sha256": "482b90add2d94cf22df14b24302c818ccc003bc9a9bec8bc0d71fc9b39115062", "tests_sha256": "90a2d6dcebdbf00e6359aea493f116aa06b2081c4fd4f6006324ee2fd17f8abc", "suite": "all", "scope": "local business fixture only; no MiniMax/DB/PowerContext claim"}

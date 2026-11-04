@@ -1,0 +1,14 @@
+{
+  "implementation": "<candidate-project>\\business\\after\\taskboard.py",
+  "implementation_sha256": "6ff48b87ddf11e44bd62a980c1b9c12f128f30b3c7299d3f2c20a7d1358772ac",
+  "tests_sha256": "90a2d6dcebdbf00e6359aea493f116aa06b2081c4fd4f6006324ee2fd17f8abc",
+  "suite": "all",
+  "scope": "local business fixture only; no MiniMax/DB/PowerContext claim",
+  "_derivation": {
+    "classification": "LOCAL_PATH_REDACTED_COPY",
+    "originalSha256": "06cd11bd9f64838610544999776105fe9699c2ca063e0b77ba039963284b53e0",
+    "originalsRetainedUnchanged": true,
+    "pathPlaceholdersAreNotRunnableCommands": true,
+    "embeddedOutputHashesIdentifyOriginalRunBytes": true
+  }
+}

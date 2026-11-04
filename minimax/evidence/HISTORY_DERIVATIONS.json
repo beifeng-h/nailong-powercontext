@@ -1,0 +1,301 @@
+{
+  "classification": "LOCAL_CANDIDATE_PROVENANCE_NOT_PUBLICATION_APPROVAL",
+  "generated_utc": "2026-11-04T01:31:57.780373+00:00",
+  "originals_retained_unchanged": true,
+  "historical_path_evidence_count": 13,
+  "derivations": [
+    {
+      "path": "evidence/before/before-all.json",
+      "original_sha256": "c32e01f5e283f57bb31de3b8fe9bc53d234b148f22125b6745d972e74791e1d0",
+      "derived_sha256": "0efb72002b542946261aeb4a498bb7e3299992cd931b77e90e77b9af6e38ee76",
+      "changes": [
+        {
+          "field": "$.command[0]",
+          "replacement": "<local-python>"
+        },
+        {
+          "field": "$.cwd",
+          "replacement": "<project-root>"
+        }
+      ],
+      "historical_original_hash_references_retained": true
+    },
+    {
+      "path": "evidence/before/before-all.log",
+      "original_sha256": "dc8cae7e47664a9333e18df8ff5b2e242f4048bc556bb8ee4860bc68d7d2ff97",
+      "derived_sha256": "82e2c445717b607776a1f9cd1c6157e91b373cd9b5aec92208dd0074412d0854",
+      "changes": [
+        {
+          "original_line": 1,
+          "replacement": "<historical-local-path>"
+        },
+        {
+          "original_line": 16,
+          "replacement": "<historical-local-path>"
+        },
+        {
+          "original_line": 18,
+          "replacement": "<historical-local-path>"
+        },
+        {
+          "original_line": 33,
+          "replacement": "<historical-local-path>"
+        },
+        {
+          "original_line": 35,
+          "replacement": "<historical-local-path>"
+        },
+        {
+          "original_line": 51,
+          "replacement": "<historical-local-path>"
+        },
+        {
+          "original_line": 53,
+          "replacement": "<historical-local-path>"
+        }
+      ],
+      "historical_original_hash_references_retained": true
+    },
+    {
+      "path": "evidence/develop-preflight/RECEIPT.json",
+      "original_sha256": "5b40213935840bff61d1d1ca029c8cba6bf6ad4282740b568adfe53784c2a68f",
+      "derived_sha256": "c8aa40a6b9653f6793e8f14d5f5eaf0ef07ab6136239ea16f30dd818461bef1e",
+      "changes": [
+        {
+          "field": "$.command[0]",
+          "replacement": "<local-python>"
+        }
+      ],
+      "historical_original_hash_references_retained": true
+    },
+    {
+      "path": "evidence/powercontext-real/context-from-restored-state.json",
+      "original_sha256": "1b3b7cb1fabb1f6d5857de97f779e91cd70a7c9f3c4e58727fa1b306ca3aa9d8",
+      "derived_sha256": "95f493737355c559621d98201c76ca911a5651d57baa5698d4a28e8720ef88d8",
+      "changes": [
+        {
+          "field": "$.prior_verification.before_record.command[0]",
+          "replacement": "<local-python>"
+        },
+        {
+          "field": "$.prior_verification.before_record.cwd",
+          "replacement": "<project-root>"
+        }
+      ],
+      "historical_original_hash_references_retained": true
+    },
+    {
+      "path": "evidence/powercontext-real/controller-summary.json",
+      "original_sha256": "154b3b9a8e2d666b62b2fe2ceb96fc0086073d1c144feab71176fdecaaa45417",
+      "derived_sha256": "fcce95c6e563be009ac21a4ea03b5b5d3f2d7bf4b681a1cfa2bb5e0a0293c8a7",
+      "changes": [
+        {
+          "field": "$.children[0].command[0]",
+          "replacement": "<local-python>"
+        },
+        {
+          "field": "$.children[0].command[2]",
+          "replacement": "<historical-probe>/verify_state_across_processes.py"
+        },
+        {
+          "field": "$.children[0].command[6]",
+          "replacement": "<fixed-sdk>"
+        },
+        {
+          "field": "$.children[0].command[8]",
+          "replacement": "<historical-run-dir>"
+        },
+        {
+          "field": "$.children[0].command[10]",
+          "replacement": "<project-root>/evidence/task-state-input.json"
+        },
+        {
+          "field": "$.children[1].command[0]",
+          "replacement": "<local-python>"
+        },
+        {
+          "field": "$.children[1].command[2]",
+          "replacement": "<historical-probe>/verify_state_across_processes.py"
+        },
+        {
+          "field": "$.children[1].command[6]",
+          "replacement": "<fixed-sdk>"
+        },
+        {
+          "field": "$.children[1].command[8]",
+          "replacement": "<historical-run-dir>"
+        },
+        {
+          "field": "$.children[1].command[10]",
+          "replacement": "<project-root>/evidence/task-state-input.json"
+        }
+      ],
+      "historical_original_hash_references_retained": true
+    },
+    {
+      "path": "evidence/powercontext-real/resume-receipt.json",
+      "original_sha256": "44fc8b16512b7a4ccefdfec779cbafb7bc9c0b70c74e8f24cb08c985132fa2eb",
+      "derived_sha256": "0a1973a8abf1ea27559e0c8b0f23e78465dc0d2eda46494facb54beaa15ccf0a",
+      "changes": [
+        {
+          "field": "$.sdk.module_origin",
+          "replacement": "<fixed-sdk>/src/powercontext/__init__.py"
+        }
+      ],
+      "historical_original_hash_references_retained": true
+    },
+    {
+      "path": "evidence/powercontext-real/resume.stdout.log",
+      "original_sha256": "3ae836c0e4f20dc525c030141f3581f2d56e169cc1c4421e653993d279441174",
+      "derived_sha256": "cadde4d889fae068c3c29fdd5e3a2297eb9ad2c00f9b16f31345fdee356178cd",
+      "changes": [
+        {
+          "field": "$.sdk.module_origin",
+          "replacement": "<fixed-sdk>/src/powercontext/__init__.py"
+        }
+      ],
+      "historical_original_hash_references_retained": true
+    },
+    {
+      "path": "evidence/powercontext-real/save-receipt.json",
+      "original_sha256": "6e7cb9cf9cd13da191b309009e8f95f7881234719e5681692644d8b666af0f24",
+      "derived_sha256": "7fb4ab8179a69cdc9d7abdec3916d21851db95760d481b71015c0386f4e29dc9",
+      "changes": [
+        {
+          "field": "$.sdk.module_origin",
+          "replacement": "<fixed-sdk>/src/powercontext/__init__.py"
+        }
+      ],
+      "historical_original_hash_references_retained": true
+    },
+    {
+      "path": "evidence/powercontext-real/save.stdout.log",
+      "original_sha256": "e1c69e3af678301095590a707804bb4de50a8f739249f1209d7d607da0a8795a",
+      "derived_sha256": "5ffcbaf792ca755c3748f47c4a9af3fbc370c0a2680079cd9d7cef7230d75086",
+      "changes": [
+        {
+          "field": "$.sdk.module_origin",
+          "replacement": "<fixed-sdk>/src/powercontext/__init__.py"
+        }
+      ],
+      "historical_original_hash_references_retained": true
+    },
+    {
+      "path": "evidence/sourcedb-real/RECEIPT.json",
+      "original_sha256": "405210cac725b17b7775994a487a5a7fa341def38a019994be9aaf2f3e2430a0",
+      "derived_sha256": "bcfb55dc8e86a8e1d8bdfe823ba7b38e32ee19e06ff20e9eeef4b1b4be5ab4ac",
+      "changes": [
+        {
+          "field": "$.runs[0].command[0]",
+          "replacement": "<local-python>"
+        },
+        {
+          "field": "$.runs[1].command[0]",
+          "replacement": "<local-python>"
+        },
+        {
+          "field": "$.runs[2].command[0]",
+          "replacement": "<local-python>"
+        },
+        {
+          "field": "$.runs[3].command[0]",
+          "replacement": "<local-python>"
+        },
+        {
+          "field": "$.runs[4].command[0]",
+          "replacement": "<local-python>"
+        },
+        {
+          "field": "$.runs[5].command[0]",
+          "replacement": "<local-python>"
+        }
+      ],
+      "historical_original_hash_references_retained": true
+    },
+    {
+      "path": "evidence/task-context-real/02-context-after-process-restart.stdout.json",
+      "original_sha256": "be3a5cdca3a30d8c7e37b18d8d383e044312af2bd9cbe80b20f9076b849b1f6c",
+      "derived_sha256": "9ddf3eda76cd770786a93eb7f997369c2a7322b8a0bf621508cd7f340666b2b8",
+      "changes": [
+        {
+          "field": "$.previous_task_state.state.verification.before_record.command[0]",
+          "replacement": "<local-python>"
+        },
+        {
+          "field": "$.previous_task_state.state.verification.before_record.cwd",
+          "replacement": "<project-root>"
+        }
+      ],
+      "historical_original_hash_references_retained": true
+    },
+    {
+      "path": "evidence/task-context-real/RECEIPT.json",
+      "original_sha256": "01d5decb7b8a0fbb7ee109275801c6a46cf38f1bfd2792b1516cdcaab116234f",
+      "derived_sha256": "c6f5507fb7591ac1d9926b2c467b8b3af25594b5f425c88a46ef58baa79a02d8",
+      "changes": [
+        {
+          "field": "$.powercontext_origin",
+          "replacement": "<fixed-sdk>/src/powercontext/__init__.py"
+        },
+        {
+          "field": "$.runs[0].command[0]",
+          "replacement": "<local-python>"
+        },
+        {
+          "field": "$.runs[0].command[7]",
+          "replacement": "<historical-state-dir>"
+        },
+        {
+          "field": "$.runs[1].command[0]",
+          "replacement": "<local-python>"
+        },
+        {
+          "field": "$.runs[1].command[9]",
+          "replacement": "<historical-state-dir>"
+        }
+      ],
+      "historical_original_hash_references_retained": true
+    },
+    {
+      "path": "evidence/task-state-input.json",
+      "original_sha256": "c1914754eb54e87f819961dcbec4f75345a4cd27ade42302ef324f86e0081719",
+      "derived_sha256": "7da8c516a89911e999cfe236e28419bf1f79b75836c305bdc22ed0c9e6f3a43c",
+      "changes": [
+        {
+          "field": "$.verification.before_record.command[0]",
+          "replacement": "<local-python>"
+        },
+        {
+          "field": "$.verification.before_record.cwd",
+          "replacement": "<project-root>"
+        }
+      ],
+      "historical_original_hash_references_retained": true
+    }
+  ],
+  "rebuilt_indexes": [
+    {
+      "path": "evidence/powercontext-real/INDEX.json",
+      "original_sha256": "e96444fe860ae888070e1f41eeaa14e36f9c702e73b93cdc8bffc5d0208fa6c0",
+      "derived_sha256": "187b95cdfd5eacbe124818516a79ec0618cace220e7f979b5978a4e4217e8a56"
+    },
+    {
+      "path": "evidence/sourcedb-real/INDEX.json",
+      "original_sha256": "84840576c9c9a555da694841186cd9fa99b5ccf29187eeb970719cee952d875d",
+      "derived_sha256": "f8c92fba2989e13f6373f1222fc8d2ace9a763eb1118c11af7ca1023a68b1d87"
+    },
+    {
+      "path": "evidence/task-context-real/INDEX.json",
+      "original_sha256": "26c283bcef6142c89f152fb7261076857deec01e1a81fdc88390199a83eb8167",
+      "derived_sha256": "0b626c8b862f45808d60b1d7412c020a7f2ef637666ded2126351a3c386cf0ee"
+    }
+  ],
+  "embedded_original_hash_semantics": "Hashes already present inside historical records are preserved as original-run identities. They must not be used to verify the different delivered redacted bytes. Use derived_sha256 and each rebuilt INDEX.files for delivered verification.",
+  "omitted_original_context": {
+    "path": "evidence/minimax/cn-dsh-20261103-run1/context.json",
+    "sha256": "be3a5cdca3a30d8c7e37b18d8d383e044312af2bd9cbe80b20f9076b849b1f6c",
+    "delivered": false,
+    "replacement": "evidence/minimax/cn-dsh-20261103-run1/redacted-evidence/context.redacted.json"
+  },
+  "historical_missing_source": "evidence/before/before-input-manifest.json describes an original temporary snapshot including DESIGN.md. That old DESIGN.md and original README snapshot are not delivered. The record is a historical input inventory, not a manifest of this candidate."
+}

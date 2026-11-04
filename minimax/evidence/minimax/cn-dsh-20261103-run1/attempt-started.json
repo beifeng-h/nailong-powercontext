@@ -1,0 +1,18 @@
+{
+  "status": "request_started",
+  "started_utc": "2026-11-03T11:25:26.317818+00:00",
+  "endpoint": "https://api.minimax.cn/v1/chat/completions",
+  "region": "cn",
+  "requested_model": "MiniMax-M3.1-Flash",
+  "key_environment_name": "MINIMAX_MPLAN_API_KEY",
+  "requests_allowed": 1,
+  "max_completion_tokens": 4096,
+  "source_version": "b99c2e0a470cb92ddb5f0cc0a3161218e077b293",
+  "input_sha256": {
+    "task.json": "2876b1dc2af0d70345bbcaad2b66926bf35f207a997644767e81176b50656b1f",
+    "context.json": "be3a5cdca3a30d8c7e37b18d8d383e044312af2bd9cbe80b20f9076b849b1f6c",
+    "before.py": "482b90add2d94cf22df14b24302c818ccc003bc9a9bec8bc0d71fc9b39115062",
+    "fixed-tests.py": "90a2d6dcebdbf00e6359aea493f116aa06b2081c4fd4f6006324ee2fd17f8abc",
+    "request.json": "55fa15ad831ec0ab9e76f099c4e61c252db95f5b6023280409c10e680c7d8e99"
+  }
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "id": "30",
+    "title": "Ship inbox filter",
+    "state": "open"
+  },
+  {
+    "id": "10",
+    "title": "Publish release note",
+    "state": "done"
+  },
+  {
+    "id": "20",
+    "title": "Check duplicate report",
+    "state": "open"
+  },
+  {
+    "id": "40",
+    "title": "Custom international workflow label",
+    "state": "strasse"
+  }
+]

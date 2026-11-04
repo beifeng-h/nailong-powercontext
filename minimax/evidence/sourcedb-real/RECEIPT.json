@@ -1,0 +1,113 @@
+{
+  "started_utc": "2026-10-31T21:25:05.194314+00:00",
+  "commit": "ca7bd42d1d81575a939e0dabd5b89d1c7ea8e072",
+  "server_version": "5.7.25-OceanBase seekdb-v1.3.0.0",
+  "database": "minimax_sdd_demo",
+  "scope": "actual seekdb SQL context only; no PowerContext or MiniMax participation claim",
+  "runs": [
+    {
+      "label": "01-init",
+      "command": [
+        "<local-python>",
+        "-m",
+        "minimax_sdd",
+        "init"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    {
+      "label": "02-import-v1",
+      "command": [
+        "<local-python>",
+        "-m",
+        "minimax_sdd",
+        "import",
+        "--project",
+        "taskboard-demo-utf8",
+        "--root",
+        ".",
+        "--manifest",
+        "examples/import-v1.json"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    {
+      "label": "03-context-v1",
+      "command": [
+        "<local-python>",
+        "-m",
+        "minimax_sdd",
+        "context",
+        "--project",
+        "taskboard-demo-utf8",
+        "--task",
+        "examples/task-v1.json"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    {
+      "label": "04-import-v2",
+      "command": [
+        "<local-python>",
+        "-m",
+        "minimax_sdd",
+        "import",
+        "--project",
+        "taskboard-demo-utf8",
+        "--root",
+        ".",
+        "--manifest",
+        "examples/import-v2.json"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    {
+      "label": "05-context-v2",
+      "command": [
+        "<local-python>",
+        "-m",
+        "minimax_sdd",
+        "context",
+        "--project",
+        "taskboard-demo-utf8",
+        "--task",
+        "examples/task-v2.json"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    {
+      "label": "06-stale-v1-rejected",
+      "command": [
+        "<local-python>",
+        "-m",
+        "minimax_sdd",
+        "context",
+        "--project",
+        "taskboard-demo-utf8",
+        "--task",
+        "examples/task-v1.json"
+      ],
+      "exit_code": 2,
+      "expected_exit_code": 2
+    }
+  ],
+  "success": true,
+  "actual_context_rows": 3,
+  "specification_reimport_used": true,
+  "stale_requirement_rejected": true,
+  "old_spec_sha256": "b142678a6902e0773fb51efa93517a3e4511ce2d1b28643ed72c670bdd65205e",
+  "new_spec_sha256": "dc41604d3e4d1da8c8fbf645db14bf1a46a36b5479912260b8c74c7437dbde58",
+  "finished_utc": "2026-10-31T21:25:06.210309+00:00",
+  "_derivation": {
+    "classification": "DERIVED_REDACTED_HISTORICAL_EVIDENCE",
+    "original_sha256": "405210cac725b17b7775994a487a5a7fa341def38a019994be9aaf2f3e2430a0",
+    "original_relative_path": "evidence/sourcedb-real/RECEIPT.json",
+    "original_delivered": false,
+    "note": "Original retained locally unchanged. Runtime results, dates, PIDs and source versions remain historical. Embedded pre-existing hashes identify historical original bytes, not the derived files delivered here; INDEX.json and HISTORY_DERIVATIONS.json identify delivered bytes."
+  }
+}

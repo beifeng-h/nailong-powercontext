@@ -1,0 +1,64 @@
+{
+  "started_at_utc": "2026-10-31T21:32:04.387388+00:00",
+  "controller_pid": 272236,
+  "fixed_commit": "dab240063bfcfa7917898dc44da4baadb3747bd0",
+  "probe_script_sha256": "25bd2f0e660543c501c508d968db13109cc235f2093af8fac483f5a369735eec",
+  "payload_sha256": "c1914754eb54e87f819961dcbec4f75345a4cd27ade42302ef324f86e0081719",
+  "scope": "SDK persistence/context integration only; not business tests or formal MiniMax points",
+  "children": [
+    {
+      "role": "save",
+      "command": [
+        "<local-python>",
+        "-I",
+        "<historical-probe>/verify_state_across_processes.py",
+        "--worker",
+        "save",
+        "--sdk-root",
+        "<fixed-sdk>",
+        "--run-dir",
+        "<historical-run-dir>",
+        "--payload",
+        "<project-root>/evidence/task-state-input.json",
+        "--expected-python",
+        "3.12.14"
+      ],
+      "exit_code": 0
+    },
+    {
+      "role": "resume",
+      "command": [
+        "<local-python>",
+        "-I",
+        "<historical-probe>/verify_state_across_processes.py",
+        "--worker",
+        "resume",
+        "--sdk-root",
+        "<fixed-sdk>",
+        "--run-dir",
+        "<historical-run-dir>",
+        "--payload",
+        "<project-root>/evidence/task-state-input.json",
+        "--expected-python",
+        "3.12.14"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "status": "passed",
+  "database_after_writer": {
+    "bytes": 610304,
+    "sha256": "8ef08e93c1a0a76e4ce076609847299f2f97a9ed869f0cd9003ee92746d07a3a"
+  },
+  "save_pid": 273820,
+  "resume_pid": 274724,
+  "context_sha256": "1b3b7cb1fabb1f6d5857de97f779e91cd70a7c9f3c4e58727fa1b306ca3aa9d8",
+  "finished_at_utc": "2026-10-31T21:32:06.919123+00:00",
+  "_derivation": {
+    "classification": "DERIVED_REDACTED_HISTORICAL_EVIDENCE",
+    "original_sha256": "154b3b9a8e2d666b62b2fe2ceb96fc0086073d1c144feab71176fdecaaa45417",
+    "original_relative_path": "evidence/powercontext-real/controller-summary.json",
+    "original_delivered": false,
+    "note": "Original retained locally unchanged. Runtime results, dates, PIDs and source versions remain historical. Embedded pre-existing hashes identify historical original bytes, not the derived files delivered here; INDEX.json and HISTORY_DERIVATIONS.json identify delivered bytes."
+  }
+}

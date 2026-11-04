@@ -1,0 +1,188 @@
+{
+  "startedUtc": "2026-11-04T01:39:21.610815+00:00",
+  "status": "PASS",
+  "scope": "Final candidate business tests, offline adapter preflight and actual cross-process PowerContext state; no SourceDB SQL or model request",
+  "sourceHashes": {
+    "business/after/taskboard.py": "6ff48b87ddf11e44bd62a980c1b9c12f128f30b3c7299d3f2c20a7d1358772ac",
+    "business/before/taskboard.py": "482b90add2d94cf22df14b24302c818ccc003bc9a9bec8bc0d71fc9b39115062",
+    "evidence/minimax/cn-dsh-20261103-run1/before.py": "482b90add2d94cf22df14b24302c818ccc003bc9a9bec8bc0d71fc9b39115062",
+    "evidence/minimax/cn-dsh-20261103-run1/fixed-tests.py": "90a2d6dcebdbf00e6359aea493f116aa06b2081c4fd4f6006324ee2fd17f8abc",
+    "minimax_sdd/__init__.py": "4901ecb68d85631fa2abf76f969f7e7c49b20f1d60b6d790a93251ba4105b096",
+    "minimax_sdd/__main__.py": "482b8693e2fe6dbd732e3d7961e03827d3efa187bad11d29da188be580ebbeea",
+    "minimax_sdd/cli.py": "94bb4339c0ff573b47f715c408bdf7438868c84529e326697ec5e4b4e66e6c67",
+    "minimax_sdd/develop.py": "139fa566616b1da792464ae2bd85e63fd3ddc21a89653c398d0f14588b368d85",
+    "minimax_sdd/source_db.py": "ea761d89ab8f72acf72a40bc8cf89911f150ba8294be23446b482268d799efb5",
+    "minimax_sdd/state.py": "d0e54c0635287e7091a94bb946f846e84a005722f75075b638a8e5516006d99b",
+    "run_tests.py": "ce65a978a850d841854cb856499dcd92c986701b94785da2e969cd94556c0673",
+    "tests/test_develop_preflight.py": "ae3134f6417b61554b3b4b736a152c4ca36ead2c503be977a658a65f6933a6a7",
+    "tests/test_taskboard.py": "90a2d6dcebdbf00e6359aea493f116aa06b2081c4fd4f6006324ee2fd17f8abc"
+  },
+  "runs": [
+    {
+      "label": "before",
+      "args": [
+        "run_tests.py",
+        "--implementation",
+        "business/before",
+        "--suite",
+        "all"
+      ],
+      "launcherPid": 277176,
+      "startedUtc": "2026-11-04T01:39:21.611873+00:00",
+      "endedUtc": "2026-11-04T01:39:21.749624+00:00",
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "timedOut": false,
+      "stdoutSha256": "b9f621ce4723e652a65e821451bd76f7c4ea43c26b68155399b6a047fded5d9a",
+      "stderrSha256": "7b2fa7d7a384aba7036da3a9cc946f2b4e341e3800e32bdbe13eab1d4fd0e346"
+    },
+    {
+      "label": "after",
+      "args": [
+        "run_tests.py",
+        "--implementation",
+        "business/after",
+        "--suite",
+        "all"
+      ],
+      "launcherPid": 283128,
+      "startedUtc": "2026-11-04T01:39:21.751788+00:00",
+      "endedUtc": "2026-11-04T01:39:21.841868+00:00",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "timedOut": false,
+      "stdoutSha256": "06cd11bd9f64838610544999776105fe9699c2ca063e0b77ba039963284b53e0",
+      "stderrSha256": "43e1114b4c7ceba13d7ce41e7e2e2ed21b4be2e706f06d7b4ddf2721a1a90c7a"
+    },
+    {
+      "label": "adapter",
+      "args": [
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_develop_preflight.py",
+        "-v"
+      ],
+      "launcherPid": 280792,
+      "startedUtc": "2026-11-04T01:39:21.842873+00:00",
+      "endedUtc": "2026-11-04T01:39:22.311233+00:00",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "timedOut": false,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "9ac441ddbc8d489128986aeae5bd49ad3b6ab2aab70d4c098b1498a58c4895fc"
+    },
+    {
+      "label": "preflight",
+      "args": [
+        "-m",
+        "minimax_sdd.develop",
+        "--root",
+        ".",
+        "--task",
+        "examples/task-v2.json",
+        "--context",
+        "evidence/minimax/cn-dsh-20261103-run1/redacted-evidence/context.redacted.json",
+        "--region",
+        "cn",
+        "--endpoint",
+        "https://api.minimax.cn/v1/chat/completions",
+        "--model",
+        "MiniMax-M3.1-Flash",
+        "--source-version",
+        "d647275c308e09b7b623f322a26f5c4e85734fb0",
+        "--expected-before-sha256",
+        "482b90add2d94cf22df14b24302c818ccc003bc9a9bec8bc0d71fc9b39115062",
+        "--expected-tests-sha256",
+        "90a2d6dcebdbf00e6359aea493f116aa06b2081c4fd4f6006324ee2fd17f8abc",
+        "--run-dir",
+        "evidence/minimax/new-run",
+        "--check-only"
+      ],
+      "launcherPid": 294776,
+      "startedUtc": "2026-11-04T01:39:22.352068+00:00",
+      "endedUtc": "2026-11-04T01:39:22.511008+00:00",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "timedOut": false,
+      "stdoutSha256": "f7d1cde8dd6f3e4820eac6c390d9b56d9ef9a714236e050f9bba664872c1eefc",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "remember",
+      "args": [
+        "-m",
+        "minimax_sdd",
+        "remember",
+        "--task",
+        "examples/task-v2.json",
+        "--state-dir",
+        "<verification-output>\\fresh-state",
+        "--record",
+        "<verification-output>\\state-input.json"
+      ],
+      "launcherPid": 288696,
+      "startedUtc": "2026-11-04T01:39:22.513006+00:00",
+      "endedUtc": "2026-11-04T01:39:24.822307+00:00",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "timedOut": false,
+      "stdoutSha256": "3d465a4c8003094f929da3f3abb98f7f95ac65d85654e922af03acba09f303ba",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "resume",
+      "args": [
+        "-m",
+        "minimax_sdd",
+        "resume",
+        "--task",
+        "examples/task-v2.json",
+        "--state-dir",
+        "<verification-output>\\fresh-state"
+      ],
+      "launcherPid": 296940,
+      "startedUtc": "2026-11-04T01:39:24.823336+00:00",
+      "endedUtc": "2026-11-04T01:39:26.415054+00:00",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "timedOut": false,
+      "stdoutSha256": "413491cc95628dc16f26aa73f1f3df7d2c8508aa4baa4d4fe3ceab8067a2a588",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "checks": {
+    "emptyBeforeSave": true,
+    "independentWorkerPids": true,
+    "scopePreserved": true,
+    "citationPreserved": true,
+    "fullStatePreserved": true,
+    "nextStepPreserved": true,
+    "sdkVersionMatches": true,
+    "sourceUnchanged": true
+  },
+  "candidateHeadDuringRun": "d647275c308e09b7b623f322a26f5c4e85734fb0",
+  "rememberWorkerPid": 296044,
+  "resumeWorkerPid": 285276,
+  "before": {
+    "targetFailures": 3,
+    "regressionPassed": 6
+  },
+  "after": {
+    "passed": 9
+  },
+  "adapterTestsPassed": 6,
+  "sourceDbSql": "NOT_RUN",
+  "modelCalls": 0,
+  "endedUtc": "2026-11-04T01:39:26.422366+00:00",
+  "_derivation": {
+    "classification": "LOCAL_PATH_REDACTED_COPY",
+    "originalSha256": "0b511b8dab6aa7221edc4a6d883bff7800b211657b842cce0d7109bc58fae499",
+    "originalsRetainedUnchanged": true,
+    "pathPlaceholdersAreNotRunnableCommands": true,
+    "embeddedOutputHashesIdentifyOriginalRunBytes": true
+  }
+}

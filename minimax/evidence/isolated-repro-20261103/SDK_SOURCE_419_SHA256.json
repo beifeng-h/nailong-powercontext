@@ -1,0 +1,2102 @@
+{
+  "classification": "Derived per-file hash listing from verified pinned source manifest; not original manifest bytes.",
+  "sdkCommit": "dab240063bfcfa7917898dc44da4baadb3747bd0",
+  "originalManifestSha256": "fe6ad861bee8db65505977349708931ad82ba35b560e73350e7bf80d042dedb4",
+  "files": [
+    {
+      "path": "src/powercontext/__init__.py",
+      "bytes": 3196,
+      "sha256": "5b2c43dba4c1e80073886a4c996da29fcffbe826088200bafeee99b1a2c51d50"
+    },
+    {
+      "path": "src/powercontext/_code_validation.py",
+      "bytes": 3028,
+      "sha256": "2877a88f8aab1215289e4698f05529142b00ebbcf7c4cb28797ff0718afbf4ea"
+    },
+    {
+      "path": "src/powercontext/_logging.py",
+      "bytes": 1196,
+      "sha256": "d520f8f65152c8e5e9baa8058f4b347bd3d0dd024e594401a337e03e0c19d110"
+    },
+    {
+      "path": "src/powercontext/artifacts/__init__.py",
+      "bytes": 1057,
+      "sha256": "9b4eb367674e8c0e3556a3076b065135c42d2ebc072c0ff11763cddc43cfc76b"
+    },
+    {
+      "path": "src/powercontext/artifacts/models.py",
+      "bytes": 5594,
+      "sha256": "f42ace8386ae8d9e8c6d8c195e3b9b240d0160d021220f241b1017811ab1ca87"
+    },
+    {
+      "path": "src/powercontext/artifacts/protocols.py",
+      "bytes": 2004,
+      "sha256": "ab1c4dfcc00277621f1f77022820e488d684289d7dd54665392c4b32d2debe25"
+    },
+    {
+      "path": "src/powercontext/builtin/__init__.py",
+      "bytes": 861,
+      "sha256": "9258e3d06823fc00267f3983bbac8c06e7b679998ccdeb49f10d897f086e4be4"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/__init__.py",
+      "bytes": 609,
+      "sha256": "5b4eef551774c1d956582e10fc0c0889c84726d50b4872c2e21a7ea755de63a6"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/experience/__init__.py",
+      "bytes": 3238,
+      "sha256": "25129406243440aaa587994f40f9caf4ede16ec2c6da457fdfc4d6e1182874ba"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/experience/generation.py",
+      "bytes": 2435,
+      "sha256": "844885a76dc54f1d2d6a83cb4c35b291dde66b1246864d963934892c5b451870"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/experience/incubation.py",
+      "bytes": 7237,
+      "sha256": "18cf309cdfd96d4a8b6b7495f4f0921958d31a8641b54473f4bf4b53c88e00df"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/experience/models.py",
+      "bytes": 3763,
+      "sha256": "15a9a0aadcf8e2e5456bed584f7ff406ab7eaa24d8aaebdb70571bd916d64c95"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/experience/prompts.py",
+      "bytes": 3857,
+      "sha256": "33fa0000344175e2d79a2356adb0c1b22324b6d4e22fc243d29f45e30ae19787"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/experience/recurrence.py",
+      "bytes": 24973,
+      "sha256": "65e855566b7aba479e64275a4c116aa1af4e571a526e5e2efe3eb84e08ff2905"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/experience/search.py",
+      "bytes": 3602,
+      "sha256": "32a35c1bbd933612cff713c97e3c3ab808a8222f5fe352d0611331670e17d35d"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/generation.py",
+      "bytes": 1660,
+      "sha256": "6ad2362bc447f530688773c6f8da52e3815be09a9af3967f3251fa961af451ac"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/handoff/__init__.py",
+      "bytes": 3971,
+      "sha256": "7be126fd90a30086a6a1bac49725a056840b782abab840361a9d5d7c69da188f"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/handoff/errors.py",
+      "bytes": 2890,
+      "sha256": "6ce86cd2569c7fc6b10893644b273a97e87218910a195d0512ef85b975fafe68"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/handoff/generation.py",
+      "bytes": 8932,
+      "sha256": "e958382ae4c39b269fdbd8838310abe4918e8079f4b8e38498e79a0677e867d6"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/handoff/generation_metadata.py",
+      "bytes": 6139,
+      "sha256": "1498b80af931403684beaa3d20f217fe7a29d10b2684b918b1abf683ac521b9b"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/handoff/models.py",
+      "bytes": 16902,
+      "sha256": "9f1ab2c1042f71e2919de7d4aa7800efc09501f507558d5b43c17370967f1dc1"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/handoff/prompts.py",
+      "bytes": 1878,
+      "sha256": "0e8e8a3787ffe5e787a0a660b9fa81f3acc83d6d426efb6c267c5df32145b442"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/handoff/protocols.py",
+      "bytes": 2506,
+      "sha256": "909e4b8f4d20ef2f7a05b987a45a46ea56873c7687b666dd6c4435034959f8f2"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/handoff/service.py",
+      "bytes": 17309,
+      "sha256": "715cca520c26f2cc19aed4134ea5ce1fa0e016fb17c821097b877419d880f1df"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/memory/__init__.py",
+      "bytes": 5502,
+      "sha256": "feaedaeb3a74fdb98b3b67bdc52977260642b62bcd1b3d04578c88e81200b677"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/memory/canonical.py",
+      "bytes": 11890,
+      "sha256": "abef9cb126bdf3ee4e8c7a226cd539307663e516e81b22e8d62f2d253ec23169"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/memory/errors.py",
+      "bytes": 5253,
+      "sha256": "1b416dfef10c94e756ad9a127ed6c7572819aa103487d50090aa6fdd674f8149"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/memory/extraction.py",
+      "bytes": 9800,
+      "sha256": "0f55a43183766546e90336af0362def1031b7265090e70b09631c9a276a54b81"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/memory/fusion.py",
+      "bytes": 3974,
+      "sha256": "2f35371e900f0447fbe8c458a6b835d19009a26c1935ed22cb52e4b5e552d1dc"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/memory/models.py",
+      "bytes": 8177,
+      "sha256": "f32dc5ea328da754c5504e29a1c72c5502cc00579735028f3138318ca963708c"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/memory/prompts.py",
+      "bytes": 5561,
+      "sha256": "8068713be754f5f8f40f88c37b560e886b0a69e42e5b6d44067aa63e23e062bf"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/memory/protocols.py",
+      "bytes": 7745,
+      "sha256": "080b6729a4e051684390929287422833ae128c78874d45cbc61d20c3814d8d9c"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/memory/reranking.py",
+      "bytes": 6320,
+      "sha256": "b0b1c7fd9013e60bf94bb853378ad417d89b56ef3bbf6aace47531a9a6018927"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/memory/service.py",
+      "bytes": 79975,
+      "sha256": "5d4c890022760c3ec1d384d4552cc9a465efc4f344c491125ffd925f5e72e94f"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/profile/__init__.py",
+      "bytes": 769,
+      "sha256": "d6af34875d61530a01076859ee15cb39e4290e509a96e874d68ba6d7e1877766"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/profile/generation.py",
+      "bytes": 2024,
+      "sha256": "e364659318120c647b42a4e3c49f39410a203d06388720f3de8875491b7d8215"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/profile/management.py",
+      "bytes": 3946,
+      "sha256": "a8eab758716274748c4f533514526ecffa3f62a9f28580d6cae899a4a173386b"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/profile/models.py",
+      "bytes": 5704,
+      "sha256": "21f1724f3377e4038b18c688ade17d4eede160ae56684fc76b8c16262d723c1d"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/profile/review.py",
+      "bytes": 5202,
+      "sha256": "009bd1573c949cde4f7ae0e67f733e770af44eb5fd569704154ab706bd1cb432"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/profile/service.py",
+      "bytes": 19718,
+      "sha256": "f98bb9f9b4af635225ab2588ef47a590524bdcfad69fc28ef3b584f45129f0cc"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/prompt/__init__.py",
+      "bytes": 1505,
+      "sha256": "895ec0f8e280a3be6e3113d9d737cb4c84775a31807d90d77a65a8985921ea63"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/prompt/builtin.py",
+      "bytes": 12888,
+      "sha256": "153de053cf8ee9462ff18f87cde587c274215b36900fb095148cf26f9bf321df"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/prompt/definitions.py",
+      "bytes": 8622,
+      "sha256": "d2dd06c4583bccbb017a6993b5a8b5c81fdfb39e916b9f57ce9f044e4397821d"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/prompt/errors.py",
+      "bytes": 1579,
+      "sha256": "3248b80e546538cd74076fda492b477c34e363da3a9a6ee32c5e8bd0f21a8a3a"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/prompt/models.py",
+      "bytes": 7258,
+      "sha256": "f5f43ae81d97a4b0f24784f6d710a91c869cae01ab7a52f51a71cfdab111b1a9"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/prompt/service.py",
+      "bytes": 7904,
+      "sha256": "813613dbf8630dcbec3ac3a41d2c526fb91bb5446245cdacdb83123867430ee2"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/prompt/validation.py",
+      "bytes": 13730,
+      "sha256": "56452209a051b3766f0157050fbbd91313c3c55498a8daf64d222e71594758b6"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/search.py",
+      "bytes": 10839,
+      "sha256": "28444d6e610e547f7fb099c476ea46ba8790b4534941b15e844e6b955e579c70"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/skill/__init__.py",
+      "bytes": 5118,
+      "sha256": "21e4ac28498ea958a4f71e87d46b8f0294508cc47d84679b8269938b8328d444"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/skill/compatibility.py",
+      "bytes": 14383,
+      "sha256": "5611534b0803ca144ec0113642028f0eb1474a462e34111e88932ae505c1f8e5"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/skill/distribution.py",
+      "bytes": 36921,
+      "sha256": "8e86ed41de8186670b550b5c515a7d835d94675681db700b48e80557c5931555"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/skill/external.py",
+      "bytes": 18503,
+      "sha256": "7f1677fa6c03e512d49708694b82864be3269ed8a7ee2b46484cad294fc96f57"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/skill/generation.py",
+      "bytes": 3022,
+      "sha256": "f60e7df79035d71826c4ee05160b5439bd88b2f8bd86a4379c9c71cac0f14e93"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/skill/models.py",
+      "bytes": 5707,
+      "sha256": "076ecccfb575e5f4fce04fa52341a6835eed5834aac77329db0b0a6db257ece0"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/skill/package.py",
+      "bytes": 23823,
+      "sha256": "f51ed547affa8f4ada082a6a942b852c8ff6e416866e573780951f07fed9a0bb"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/skill/projection.py",
+      "bytes": 14736,
+      "sha256": "3e39ab3fa24a89b0cdf6daaf33479dc07b636e7ddbe9369a71b870a50ae7c488"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/skill/prompts.py",
+      "bytes": 1899,
+      "sha256": "ceb8b38e254e2240fee13a450d411f8c73182152f26eec9c5cd2a3592259e7e3"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/skill/provenance.py",
+      "bytes": 1858,
+      "sha256": "4fc0f30a962092accb015b501e5a810c8c49ba6ab8ca5e2c2dd9a393691a50f1"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/skill/publication.py",
+      "bytes": 25550,
+      "sha256": "ddb7b877ac87438df5eb39e08ccb5fd3774cdfc845c6fa08b0e65369b4ae257d"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/skill/registry.py",
+      "bytes": 5066,
+      "sha256": "9dad995a589b4d0dea8924e24359ebcadd5afb351b74b3bf8161f7438a470fcf"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/skill/search.py",
+      "bytes": 2711,
+      "sha256": "0868d8b6c6e08a505051fa76285c00df08c757093ea2c148df28c6777d45ad10"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/topic_memory/__init__.py",
+      "bytes": 3422,
+      "sha256": "bef788e80a6c3ba12c89ffc6ee4fa592fef2906f4e920287e535d0eb2469d77e"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/topic_memory/chunking.py",
+      "bytes": 7249,
+      "sha256": "40544e808d092fa8fe2b5c6e66c79015893e2f1d0887b421de64834e418c0004"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/topic_memory/errors.py",
+      "bytes": 2625,
+      "sha256": "c6820b24fc5a9ebc1882dba044ba1a77abfeb2a158721fd73a49272883cbd06b"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/topic_memory/fusion.py",
+      "bytes": 11199,
+      "sha256": "8af77c503a7d9e1f357964989aa249d4e4c663e80ebca88331537b4b9cf8f9f5"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/topic_memory/generation.py",
+      "bytes": 17952,
+      "sha256": "f86e405b6597bb620024ae8e21848cd60bb93cc40b5985f14d43c3812a006592"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/topic_memory/models.py",
+      "bytes": 11434,
+      "sha256": "333e0a55bf33f5646a912429c385701ed515f2d046140a6e23a62396b671f513"
+    },
+    {
+      "path": "src/powercontext/builtin/artifacts/topic_memory/relatedness.py",
+      "bytes": 6845,
+      "sha256": "ae210050d820955d10eb713c334d1d5f7c13b8088c6adb3f084654e95acdbfa5"
+    },
+    {
+      "path": "src/powercontext/builtin/code/__init__.py",
+      "bytes": 1107,
+      "sha256": "9160ac8aad8c0c5a9a21862d4f164e4df88961973019314576ef85d38928ced9"
+    },
+    {
+      "path": "src/powercontext/builtin/code/application.py",
+      "bytes": 1928,
+      "sha256": "246a80f42867842a06eb9906fac96cc297b3cd781ca342175dc3f6d9c10b6920"
+    },
+    {
+      "path": "src/powercontext/builtin/code/cache.py",
+      "bytes": 12644,
+      "sha256": "09d6b4751cf96f8f3eb60e4fa08c718c0ab92ff937347e2050fed961f3dda26a"
+    },
+    {
+      "path": "src/powercontext/builtin/code/capture.py",
+      "bytes": 16073,
+      "sha256": "d0b17ef05d8aa3fc4341517a932af75beae40b2e0b8d23f2027da66258c29a61"
+    },
+    {
+      "path": "src/powercontext/builtin/code/cli.py",
+      "bytes": 4243,
+      "sha256": "fbc749b065e0196828be9e07bf2dfe5be00d92ae6d6655104224bb380bff35f9"
+    },
+    {
+      "path": "src/powercontext/builtin/code/configuration.py",
+      "bytes": 2220,
+      "sha256": "768475200ae07838908e06bd5d0803167e0a11ece118c9108a4e660df5b7f1b3"
+    },
+    {
+      "path": "src/powercontext/builtin/code/ecmascript.py",
+      "bytes": 12389,
+      "sha256": "a527992035202ca994dfb68ca230932c8aac42d5c8ba67cff7e0001b55258481"
+    },
+    {
+      "path": "src/powercontext/builtin/code/errors.py",
+      "bytes": 942,
+      "sha256": "7d7e791f1bf951874907d7ef51d3b53ca594bcbc571673af7787e3be0408df7a"
+    },
+    {
+      "path": "src/powercontext/builtin/code/extract.py",
+      "bytes": 18686,
+      "sha256": "b66dafdecd0a91527564a7bfae804780cc28473f5f1a7283806c1cd752ca4161"
+    },
+    {
+      "path": "src/powercontext/builtin/code/golang.py",
+      "bytes": 7338,
+      "sha256": "ce9bdc2cca94636aae58019cdf7ca9dc1cdc478238b937ebe914de98a75c3ccb"
+    },
+    {
+      "path": "src/powercontext/builtin/code/graph.py",
+      "bytes": 2022,
+      "sha256": "9b6eb3c7fbb47e513e4367cc643cd7a0ebf0bf4591d6b0ac926cf7a39b3de35e"
+    },
+    {
+      "path": "src/powercontext/builtin/code/languages.py",
+      "bytes": 3729,
+      "sha256": "b7a5eeb4b97f570808c9c5929209d0efaae6f4c054137937ef46b0b809c6b664"
+    },
+    {
+      "path": "src/powercontext/builtin/code/models.py",
+      "bytes": 6678,
+      "sha256": "07da7c968d00f038bd1f152e5e74288e5cf41c877bb33fc8776d6412b3c3e7dc"
+    },
+    {
+      "path": "src/powercontext/builtin/code/polyglot.py",
+      "bytes": 1916,
+      "sha256": "f6deec8415cfd1b8a5597e830a61a43580454d9ad89a34f5b98b6ab4c8318016"
+    },
+    {
+      "path": "src/powercontext/builtin/code/process.py",
+      "bytes": 4955,
+      "sha256": "36a51b44156065cb2d0b9e28eb2508cc457df31ab46cd3d145ca52f89cee1f43"
+    },
+    {
+      "path": "src/powercontext/builtin/code/query.py",
+      "bytes": 15964,
+      "sha256": "a39e7f39e2772fdb43df27835ecf4802c68dcaefaaea6bacdd33dccdf937a02e"
+    },
+    {
+      "path": "src/powercontext/builtin/code/resolve.py",
+      "bytes": 13398,
+      "sha256": "a85c41f6549d9120e15fcf82187767dec4adb317bf9e80bfa8e9baa13e499c9d"
+    },
+    {
+      "path": "src/powercontext/builtin/code/resolve_polyglot.py",
+      "bytes": 15769,
+      "sha256": "5b0bc642800331532170abb6f6892e7754e952ac9e00ec5c2b78636c84aadd52"
+    },
+    {
+      "path": "src/powercontext/builtin/code/seekdb.py",
+      "bytes": 21359,
+      "sha256": "05bdb88b93c6aa8038cf434a0acd9498eed4e748fd625f17badb78433d228bfc"
+    },
+    {
+      "path": "src/powercontext/builtin/code/service.py",
+      "bytes": 25022,
+      "sha256": "a1ecb116250ecf79b768cf8d456d0928dac8cf44bcbe0c6790ffd7bb9525f074"
+    },
+    {
+      "path": "src/powercontext/builtin/code/store.py",
+      "bytes": 10562,
+      "sha256": "461491fc248bf0b177a3b1f0a7a34fdcc146de6bdee446cc0d35ee53c3f6e1db"
+    },
+    {
+      "path": "src/powercontext/builtin/code/syntax.py",
+      "bytes": 7707,
+      "sha256": "5b0e8c3f780a0cb0319cffcf4fa7660632daa7412e1e68b173c5e940065b554b"
+    },
+    {
+      "path": "src/powercontext/builtin/code/telemetry.py",
+      "bytes": 3856,
+      "sha256": "7ad9bbadbf36f7df4e1a3aec49463ad717ca4cb25ecc54c349f5f8de27538766"
+    },
+    {
+      "path": "src/powercontext/builtin/code/worker.py",
+      "bytes": 2790,
+      "sha256": "ea38b4fa4305d76f5af88e765ce9d2541303bb3228693dd45d9ee811355ba47c"
+    },
+    {
+      "path": "src/powercontext/builtin/context.py",
+      "bytes": 2107,
+      "sha256": "e6de5ee2a7cbac2c01029d7accbe8819ca1424af69ec6c6339a852c04d2aa252"
+    },
+    {
+      "path": "src/powercontext/builtin/dream/__init__.py",
+      "bytes": 618,
+      "sha256": "8f4d98948c6d6fb9dfcb00c55b3b57148ffbaafd3fd759b5a60de3dc3473845c"
+    },
+    {
+      "path": "src/powercontext/builtin/dream/application.py",
+      "bytes": 2794,
+      "sha256": "3bb0d2c2bfd5de751d636832c6585b0d216f536893b856984a67143b34100819"
+    },
+    {
+      "path": "src/powercontext/builtin/dream/bindings.py",
+      "bytes": 995,
+      "sha256": "5bdf90fcbf0fa8ce2701a92a446d5c6bd0b465fc817780683faac18698750c9a"
+    },
+    {
+      "path": "src/powercontext/builtin/dream/generation.py",
+      "bytes": 4105,
+      "sha256": "5c1481a986d5e131b6c205aa5b9890bcaf9aea87b78b876e2d248da0464668ea"
+    },
+    {
+      "path": "src/powercontext/builtin/dream/models.py",
+      "bytes": 7203,
+      "sha256": "1c38f4a5932cfd5edddbd89aa2d6f58422bf4bbd4d709801a8168d2c537eb525"
+    },
+    {
+      "path": "src/powercontext/builtin/dream/service.py",
+      "bytes": 22010,
+      "sha256": "70e033c97b7b9fe9f91f3864b2d356dd28ee6f1cd8ba28b612098b515631a206"
+    },
+    {
+      "path": "src/powercontext/builtin/evidence/__init__.py",
+      "bytes": 649,
+      "sha256": "1918df3769dba1bab322a63085bf0291d17cfce484883496c85d0bdc029a557f"
+    },
+    {
+      "path": "src/powercontext/builtin/evidence/models.py",
+      "bytes": 4151,
+      "sha256": "3ec1a29194347f1a988eed096395e5e417ae1ad6f52173a38bc7d8f58ac59750"
+    },
+    {
+      "path": "src/powercontext/builtin/evidence/resolver.py",
+      "bytes": 21657,
+      "sha256": "8917d07e824860030cbe701ec20c4a2484b5d62c6478439a3f1a081a29bcd601"
+    },
+    {
+      "path": "src/powercontext/builtin/evidence/selection.py",
+      "bytes": 3481,
+      "sha256": "da9d7b31bbce9311ac48609932a7ddace7435fba6ff8b0ff23b9f1af87323de9"
+    },
+    {
+      "path": "src/powercontext/builtin/handoff_report/__init__.py",
+      "bytes": 1836,
+      "sha256": "c88784b67776fb9b0e54b16b4158b5c565c0f7e4abeffc161f0d38f13b4decb2"
+    },
+    {
+      "path": "src/powercontext/builtin/handoff_report/adapters.py",
+      "bytes": 1572,
+      "sha256": "7e2487d3a539a02374c09db7615bca5268c131dcf5f2b8ae1ba54b0b467a1fa7"
+    },
+    {
+      "path": "src/powercontext/builtin/handoff_report/application.py",
+      "bytes": 3417,
+      "sha256": "a6eb6c5d2ce8f4af6576b759e105f3fc887b8726c74cfc6958b0654641915e15"
+    },
+    {
+      "path": "src/powercontext/builtin/handoff_report/canonical.py",
+      "bytes": 3941,
+      "sha256": "6dfb6eb415bd1db88db7ad9076dafb21a87ac110b3ac93f041b27e4c3739d80d"
+    },
+    {
+      "path": "src/powercontext/builtin/handoff_report/errors.py",
+      "bytes": 1380,
+      "sha256": "a93a1da12d33443e60730a243c69cbaa190e445b382be43ab5122c134e77370d"
+    },
+    {
+      "path": "src/powercontext/builtin/handoff_report/protocols.py",
+      "bytes": 1273,
+      "sha256": "d2d679d4feed19fef09e7bcc10c4b85ab7741e5dc4855e2375fc679a2ff8fac5"
+    },
+    {
+      "path": "src/powercontext/builtin/handoff_report/rendering.py",
+      "bytes": 2653,
+      "sha256": "8d60b72900264a24de1f849b4789c2ae7248b4589a85697b04a10c1cfa8b2289"
+    },
+    {
+      "path": "src/powercontext/builtin/handoff_report/report.py",
+      "bytes": 3996,
+      "sha256": "b1be22cd7da4dde711540947a8ae498009ad59cadc4a255cac9e67efe5945f55"
+    },
+    {
+      "path": "src/powercontext/builtin/inference/__init__.py",
+      "bytes": 1767,
+      "sha256": "83277bcba1c967ce2e9829b6884ab3070f2ff2b79235eb9b4204a6645fd07094"
+    },
+    {
+      "path": "src/powercontext/builtin/inference/errors.py",
+      "bytes": 2184,
+      "sha256": "ae3445bb7a35abcfa85bd723349b641572e35ab07ea906bc690452ee2f64a3cf"
+    },
+    {
+      "path": "src/powercontext/builtin/inference/minimax.py",
+      "bytes": 8689,
+      "sha256": "f7d3ed9abd3a64005fdc76fd1b54b7b37875422f164202c744165e4c20998ff2"
+    },
+    {
+      "path": "src/powercontext/builtin/inference/models.py",
+      "bytes": 1517,
+      "sha256": "6141594f60ec2c91d1ff1ab6fcd377757977058913d197ba5cfebcdd83203d6f"
+    },
+    {
+      "path": "src/powercontext/builtin/inference/prompt_demonstrations.py",
+      "bytes": 4390,
+      "sha256": "651791ebbe4ce5b0199967b816a1584311aec8d9c9dedbf0d3de27b691ff0288"
+    },
+    {
+      "path": "src/powercontext/builtin/inference/protocols.py",
+      "bytes": 2254,
+      "sha256": "ae77d9fcc6594fc3c88ae5113fb77f8c288e618c590274d9d7e71feddb6ba343"
+    },
+    {
+      "path": "src/powercontext/builtin/inference/pydantic_ai.py",
+      "bytes": 16780,
+      "sha256": "88223993c34955ef96e21eb1d1b7b83086bc93b843527d61c8d67c897d1142c8"
+    },
+    {
+      "path": "src/powercontext/builtin/inference/tokens.py",
+      "bytes": 2474,
+      "sha256": "9cbf4ffcd4951bd91a495aabec4a4318f1e196bf74fd2d347e6972e347a6531b"
+    },
+    {
+      "path": "src/powercontext/builtin/inference/usage.py",
+      "bytes": 3970,
+      "sha256": "4627ef1a3059fc8fdca3b7a90acd1fac779825d2fb1028c0366ffe95ab768758"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/__init__.py",
+      "bytes": 3948,
+      "sha256": "e1ca38a45af7a1e3a8bed871d689e9b4c9c68430668938f87e08e9e522252fc1"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/agent_skill_targets.py",
+      "bytes": 10977,
+      "sha256": "0d500a4e402a8e9c90a9a70d83677f06ec221eaa996591db10c6535fef81695d"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/artifact_governance.py",
+      "bytes": 6377,
+      "sha256": "720a3238e9c6d2fc8bc9545b2d71e22afa9f0f54134719340eff56bb0d1199fd"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/artifact_readers.py",
+      "bytes": 5994,
+      "sha256": "b08f46477698daca9abf3dc185b817d6a17db98f69333a6a7c193dca76981aab"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/artifacts.py",
+      "bytes": 28970,
+      "sha256": "7aa38d4d9ccfe883823728e3b0cd3cff640f31f98d934e10a74c85a902385b71"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/candidates.py",
+      "bytes": 18019,
+      "sha256": "fa1bdfc8a44bb6d00600894d2287e533611efb2c755fc3a22e818e69cbd63616"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/citation_codec.py",
+      "bytes": 1327,
+      "sha256": "e68ba49cd50bcf7311431e5c75b831fb9dbf9f2f8c463f3d193f8acf8cfd77ee"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/codec.py",
+      "bytes": 2156,
+      "sha256": "346fe1843859c0d67f42b394811b1a0f64f0cbcd241a2168e460bffbf28ec2e5"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/connectors.py",
+      "bytes": 6321,
+      "sha256": "abfb8a7ca6f9c70c3b2b957928682c89faef940e934dc5f7c6da6861e6d609c8"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/cursor_codec.py",
+      "bytes": 4549,
+      "sha256": "8844b64934cf9b9a53a718a1c83ebb36a080d5e8fe77526e780b6eede73d29e5"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/cursors.py",
+      "bytes": 8407,
+      "sha256": "b2a7945d12c9edf7953d91cdf2140771fa2f5c1f420233427c2d511aa631ab34"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/database.py",
+      "bytes": 13970,
+      "sha256": "4b2cec8154f5c639dc32c37985c0ab872396f30c148ca76bb01d52e68bb23d2a"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/dream.py",
+      "bytes": 9892,
+      "sha256": "d81cfd7ab4aeabd435c9d1a0c830784440aa4abefcc6edf9c16c0b1e35134c3d"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/dream_schema.py",
+      "bytes": 1845,
+      "sha256": "6639308a0a6ee576e3ae6120fad4c68930e2f2629b954be01a3e5f9a2c966a6e"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/errors.py",
+      "bytes": 5043,
+      "sha256": "21936e25d8b102a4c08e65fc4a19d532a9993b18791a842d238deb42d075aa53"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/experience_index.py",
+      "bytes": 15023,
+      "sha256": "d880fc00993510c8cde7c5957bce3ad534a132251873235f9d7444830bc0351f"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/external_skills.py",
+      "bytes": 5329,
+      "sha256": "f82fafc82c129db9f6465dedb732dc2babcfb671fa34a94cc0c5439aca3f0dd4"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/family_management.py",
+      "bytes": 22097,
+      "sha256": "0be3e6d2501143280b8b38a66e52b47f52b2f9c1afb1ecbfe4cd45067ce16137"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/generation_sources.py",
+      "bytes": 2177,
+      "sha256": "ae78b0fa29e3a5839edaa38371c5f629b6bd169af988983e20056f9bfcef8f8c"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/handoff.py",
+      "bytes": 8473,
+      "sha256": "1d013918f1f1c692d28957f004b71dbd83cebd2fe5663e1b6260212feeca04c1"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/memory.py",
+      "bytes": 30545,
+      "sha256": "04735b231c1dafa951857785ee56807b0774d09a5496eaf51f5cd741c665904f"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/memory_index.py",
+      "bytes": 8460,
+      "sha256": "4eaa12dc2fc0f4b71ce4afe86b27342b2f517bb185a0ce52bca4760e8b1f5b5c"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/oceanbase/__init__.py",
+      "bytes": 1168,
+      "sha256": "cdd6c13a738273b6c70ad1598b9665e87ad2e08bd10424763aca7ef6a1470be2"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/oceanbase/experience_index.py",
+      "bytes": 6688,
+      "sha256": "99867108f0fd1a2c21f6caa5492cae1f26e4be6368f7d1f0d075ab5e1eb2299a"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/oceanbase/memory_index.py",
+      "bytes": 19343,
+      "sha256": "9ea1af189bb9a1dfaed52658febb9ccc7577931f2b0a9d107938f2901ed0fc37"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/oceanbase/profile.py",
+      "bytes": 9436,
+      "sha256": "16d2e3862df5b0cb5c5188166bb8ee75aa9b7013c1f5fc2939e3916141d5768d"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/oceanbase/topic_memory_index.py",
+      "bytes": 23158,
+      "sha256": "1283c624e05445e4a42fa20d61b1eb944ba2ee9dd93e4ce6a931cf1ca1be7f94"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/processing.py",
+      "bytes": 20011,
+      "sha256": "7b178f4c407cb0451b92ab653aa7fef2648975a42f4760b0c4322a891aab2c9d"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/processing_intents.py",
+      "bytes": 12713,
+      "sha256": "57c19ce514231dea6ac24727969a3ed242d15fc0636f48df74d4661ec60524ce"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/processing_migration.py",
+      "bytes": 32607,
+      "sha256": "56daca072acb48a88ca81d1eafa177483aa271164a56ad113e63b36d252f4280"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/profile.py",
+      "bytes": 2882,
+      "sha256": "eb54a56a32d4bd73cbfa469809d4c5321b15baabb7e1ce0fd9e2f99a2bcea316"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/receipt_migration.py",
+      "bytes": 5447,
+      "sha256": "0e29392ba077f09786f03597f5fa9023aa498c76f7e8bf3171c85451c3920b23"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/records.py",
+      "bytes": 32265,
+      "sha256": "9131c4d613c241c6675e975c443e6c24145402f574c4f648bae78cd9c9edc6cc"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/recurrence.py",
+      "bytes": 13452,
+      "sha256": "8ddc1854517fb7dd37f157f06ef9c816afc8f49f8ef6ab6abb539c09fad3e45c"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/schema.py",
+      "bytes": 1417,
+      "sha256": "e9678dfc2e2c6f32255de364ca17310b369d48da60d1044518d835c21d791303"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/scope_search_schema.py",
+      "bytes": 6001,
+      "sha256": "884e798f1ec6f4c28880de07330480e47ec36890ae9cbedbc428c45bc3950d66"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/seekdb/__init__.py",
+      "bytes": 839,
+      "sha256": "54851ae63cc231027e132cb6399313902861cd7d30607f5032adf7ec4d4066bc"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/seekdb/profile.py",
+      "bytes": 6946,
+      "sha256": "bd506bf60f226268ed4d292151296837147018ca3c06ca0cbd1ac865a77a77dd"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/skill_distribution_schema.py",
+      "bytes": 9368,
+      "sha256": "b603236db72ba9beabab12e392ec843b836bbfbca9e490ea85d5f717f0baff06"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/skill_packages.py",
+      "bytes": 6668,
+      "sha256": "ded06846a3732ac5fb3d5483a5271c3d2710aa0333a6f605eaa2ee3bde58b964"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/skill_publications.py",
+      "bytes": 9006,
+      "sha256": "a48f5c29465b1af607f76ab9a78afd6fffe7dcdc539fd6b8ed45820cde0c9328"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/source_definitions.py",
+      "bytes": 4370,
+      "sha256": "8722c127d80b8886d413824bfa382396a2c9cdc5ce721699ed19ab90a2293da2"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/sources.py",
+      "bytes": 20650,
+      "sha256": "846e1d1f7f847c7fab4fb42092d47d6599e994ae580d0ea46c52aa63acc1d1a4"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/sqlite/__init__.py",
+      "bytes": 968,
+      "sha256": "921715c15afc2084e92c37b1684141adfcdb82ac569b96690b5ea35da41bbaf7"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/sqlite/experience_index.py",
+      "bytes": 7784,
+      "sha256": "689ee4400c90dfe34f5544e03ee6dc89a547b64166230adf61f3448100f83c4f"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/sqlite/memory_index.py",
+      "bytes": 28400,
+      "sha256": "a11b8e7295828200d6f2ec20e9034f5eb831ceda6230bd9511068df30ca73b29"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/sqlite/profile.py",
+      "bytes": 6368,
+      "sha256": "cfcdd8ac4131d43edecc089a2107ef4fd233441163f6e11a0852ab99e9067b61"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/sqlite/topic_memory_index.py",
+      "bytes": 33186,
+      "sha256": "09bc96d6a1985feb3f2290c5288be8bc98309cefa72e8e6437797b38ea22b405"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/statistics.py",
+      "bytes": 16812,
+      "sha256": "50e749f9d5bf83a3d05ad701e246f957f7a4a51d139afde3f303ad48505e3602"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/supervision.py",
+      "bytes": 18588,
+      "sha256": "47f3f56933647f5f0334201dedfdb903a2c4cc05503666dabd3e39af26fa318b"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/tables.py",
+      "bytes": 54232,
+      "sha256": "4f150cff445ee1b1da9802166d5cceb7239c9363dd94faff3443d22ce587160d"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/tag_schema.py",
+      "bytes": 2684,
+      "sha256": "cabf9344a62751eee2862e3ba26150ae44d841d127967ee3f689ca12bbe3c645"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/tags.py",
+      "bytes": 15621,
+      "sha256": "9c6028ba06f7c81308cbbef3f983329e42bbaf1ec7e8870a028654766ffac0b4"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/topic_memory.py",
+      "bytes": 35676,
+      "sha256": "2eae86f3b2df3665ed8cc1c5483c3e14047f8cf5b4d9192c3b7104f118d331ff"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/topic_memory_budget.py",
+      "bytes": 8842,
+      "sha256": "99318becfaf482913ac8ce4408a8ebd643081b16187417ae36307347c0cc7064"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/topic_memory_index.py",
+      "bytes": 11106,
+      "sha256": "a8d08bb17ab78ef4b488abbb50700c44d98a3320aa137d9cb1e0c2b39a470143"
+    },
+    {
+      "path": "src/powercontext/builtin/persistence/topic_memory_management.py",
+      "bytes": 6658,
+      "sha256": "b81b9cef517ce8b418c074735201d1c12677a1569f7d6478ef57cac75783ec5a"
+    },
+    {
+      "path": "src/powercontext/builtin/publication.py",
+      "bytes": 11633,
+      "sha256": "2c7ee2a43b3de18e6145fcf6a7c118a4960a910d0a0a7cbae0b9ad54711068ac"
+    },
+    {
+      "path": "src/powercontext/builtin/records.py",
+      "bytes": 10114,
+      "sha256": "38aa3bccfd1e1db13e713dc78f3963dea24e16eb063d888bd22b539881a1b4cc"
+    },
+    {
+      "path": "src/powercontext/builtin/review/__init__.py",
+      "bytes": 1488,
+      "sha256": "0ac535ac4ede4e3020770c7f085ef4c570303b9eda27f5489233c415013442f8"
+    },
+    {
+      "path": "src/powercontext/builtin/review/errors.py",
+      "bytes": 2397,
+      "sha256": "38d62f03f4a31fb6d21ac6c0f52fe6d5b15ff753dd2271859d778fbc37b82881"
+    },
+    {
+      "path": "src/powercontext/builtin/review/generation.py",
+      "bytes": 9822,
+      "sha256": "80877f95e18d276ca6ef6c5044382b7cd2ee6613fb09ae51af948758fc9b3e82"
+    },
+    {
+      "path": "src/powercontext/builtin/review/models.py",
+      "bytes": 4972,
+      "sha256": "2a0e7c1950aef47e71bf3d451d78d1c268e33b0e9096368a68d9fb867810e682"
+    },
+    {
+      "path": "src/powercontext/builtin/review/service.py",
+      "bytes": 29712,
+      "sha256": "cf9f8ad9b29b37f0b34524df71aafecd9fe209a67db9634a0f31647c661f7d59"
+    },
+    {
+      "path": "src/powercontext/builtin/runtime/__init__.py",
+      "bytes": 11081,
+      "sha256": "b91b280f838534c37f6bb0fc281bfa3f6fa28a615d60fe2e9154752ce1f3f8ab"
+    },
+    {
+      "path": "src/powercontext/builtin/runtime/_model_usage.py",
+      "bytes": 10510,
+      "sha256": "dd62fa3c1b7994e71bc16bcd1f79bc1682842d3e6c27e62ad79f1c3a7d620c46"
+    },
+    {
+      "path": "src/powercontext/builtin/runtime/_scope_cache.py",
+      "bytes": 4983,
+      "sha256": "64b515e44d875c45cffe00259e7214a326a12a924d2c066476958459aa4c453e"
+    },
+    {
+      "path": "src/powercontext/builtin/runtime/application.py",
+      "bytes": 153166,
+      "sha256": "b62eb162904b3e15b16c7ae16721eac69962c4e8db4a1b663364bceed07f6494"
+    },
+    {
+      "path": "src/powercontext/builtin/runtime/artifact_processing.py",
+      "bytes": 56278,
+      "sha256": "26b43f6a6e4538750e418702be11f0160e18d26f592637610654ca63f421439c"
+    },
+    {
+      "path": "src/powercontext/builtin/runtime/composition.py",
+      "bytes": 84083,
+      "sha256": "4004c9a66b9b51ec33cf6e6418b1cfcfa0993bb6eb1c70e7c5ca5749427dc2dd"
+    },
+    {
+      "path": "src/powercontext/builtin/runtime/config.py",
+      "bytes": 22204,
+      "sha256": "c4702600fa3083849ca8768288fbd4416b0dbbc930b9d94591e35645fc39d155"
+    },
+    {
+      "path": "src/powercontext/builtin/runtime/decision_model.py",
+      "bytes": 12700,
+      "sha256": "00dc8ce713c5f6099a71f65edc22d910eacc4ee12438afe3404c3feb2637993f"
+    },
+    {
+      "path": "src/powercontext/builtin/runtime/dream_processing.py",
+      "bytes": 2133,
+      "sha256": "e1eb64c751fa5c4885044404262dcaa2336ed4742990377f618e07e6bedf06d5"
+    },
+    {
+      "path": "src/powercontext/builtin/runtime/errors.py",
+      "bytes": 1797,
+      "sha256": "663b8b1818e7ce88fea26054de7b9a1a42dd51d22a1b8f3ea8ef5d703cbba7d1"
+    },
+    {
+      "path": "src/powercontext/builtin/runtime/family_processing.py",
+      "bytes": 11065,
+      "sha256": "26bd317f63aeb07f207979541c0a1ddd02a23c92c94e304de576db0fe25b98ab"
+    },
+    {
+      "path": "src/powercontext/builtin/runtime/memory_write_gate.py",
+      "bytes": 7867,
+      "sha256": "9347969303f9ea7af904a9e36d301a95ab635e2d34e8c31a5eb8367a719ebfea"
+    },
+    {
+      "path": "src/powercontext/builtin/runtime/models.py",
+      "bytes": 14838,
+      "sha256": "c4150aeb83bf3c88299912912a3f5bf2f2ecc4cce276a7d029fded284430bdfa"
+    },
+    {
+      "path": "src/powercontext/builtin/runtime/prepared_code.py",
+      "bytes": 7384,
+      "sha256": "8ee40bc472a3d58af79ce49343892cc8f66b1de260d91ce9dd66c01663044b18"
+    },
+    {
+      "path": "src/powercontext/builtin/runtime/prepared_context.py",
+      "bytes": 30335,
+      "sha256": "fcd4d2ac34a73c425eb9d0387f3d5fb2e5c26a6348d3ea6718ca961b5f1d1ab7"
+    },
+    {
+      "path": "src/powercontext/builtin/runtime/prepared_text.py",
+      "bytes": 6295,
+      "sha256": "28f56bfb62203e365440557a70f6a728c6c616b6fa6e0e12374d39385d8cc659"
+    },
+    {
+      "path": "src/powercontext/builtin/runtime/processing_contracts.py",
+      "bytes": 2901,
+      "sha256": "a2b65e813570304e56f046b7f9c774cb639c9b4094bb502bb411a4511e52fd5f"
+    },
+    {
+      "path": "src/powercontext/builtin/runtime/processing_discovery.py",
+      "bytes": 3786,
+      "sha256": "861f5a38d5f77c09007aac43ae4599346b5019d88e5993251866583485846d24"
+    },
+    {
+      "path": "src/powercontext/builtin/runtime/processing_execution.py",
+      "bytes": 3511,
+      "sha256": "b9221148fefad1cf9775de4766ddd6d657de08144af6333ea1be8af93d3c03b9"
+    },
+    {
+      "path": "src/powercontext/builtin/runtime/processing_registry.py",
+      "bytes": 4499,
+      "sha256": "e12a7c253d238abe37852ae369b8d62637c0a444ca991f05774e993004c77c2e"
+    },
+    {
+      "path": "src/powercontext/builtin/runtime/protocols.py",
+      "bytes": 3331,
+      "sha256": "f807bfe80b4a2a91eca64d8577675eb6702d03e19a3789217c05f621fed95d9c"
+    },
+    {
+      "path": "src/powercontext/builtin/runtime/readiness.py",
+      "bytes": 6573,
+      "sha256": "463c8200a6751c9b71174598626edaffd5a9cb516a7841ed1491001a35592239"
+    },
+    {
+      "path": "src/powercontext/builtin/runtime/recall.py",
+      "bytes": 7703,
+      "sha256": "819dff10b1535697069123d64e159381a772f0045195d78b71b8dab830cca3ed"
+    },
+    {
+      "path": "src/powercontext/builtin/runtime/recall_sufficiency.py",
+      "bytes": 23619,
+      "sha256": "89868ff48337ab493f2953ce5e535e61f889be5abc63b23c491bf6740773b632"
+    },
+    {
+      "path": "src/powercontext/builtin/runtime/recurrence.py",
+      "bytes": 22665,
+      "sha256": "558b6d16b901af289b6fc39569725990b4c879ba02b9e2536c719d74ea36dd89"
+    },
+    {
+      "path": "src/powercontext/builtin/runtime/relational.py",
+      "bytes": 87861,
+      "sha256": "648de5feef814a0b00e0b2eb980d5449f2880f25227382a5f1ad2bdaf2df14f5"
+    },
+    {
+      "path": "src/powercontext/builtin/runtime/scheduler.py",
+      "bytes": 7506,
+      "sha256": "870bcea696969694a9ba1a800a16fa2eb6a0dcd0b13420cf0385348c730d5c07"
+    },
+    {
+      "path": "src/powercontext/builtin/runtime/statistics.py",
+      "bytes": 27300,
+      "sha256": "f393af047e6b3496f55004facc3d1d779676114b5f759368c068fcb292661f18"
+    },
+    {
+      "path": "src/powercontext/builtin/runtime/topic_memory_processing.py",
+      "bytes": 79592,
+      "sha256": "874560088022b9f993539c32915423fb0ff1e28d1dbb6a7280c5c21874688328"
+    },
+    {
+      "path": "src/powercontext/builtin/runtime/topic_memory_scope.py",
+      "bytes": 15435,
+      "sha256": "63d2e38354f4155fda86d98be0f88c676e34c9396052f7a0b666dae0505811c9"
+    },
+    {
+      "path": "src/powercontext/builtin/scope/__init__.py",
+      "bytes": 1961,
+      "sha256": "160a0705f0eec598b10f8e73db48042168604242d05d0c1691e5156912f24bec"
+    },
+    {
+      "path": "src/powercontext/builtin/scope/application.py",
+      "bytes": 15244,
+      "sha256": "fc1e26a00e010e08281d43547cb636d6dfd3496f5be494e6cf465c03ac05b39e"
+    },
+    {
+      "path": "src/powercontext/builtin/scope/errors.py",
+      "bytes": 2020,
+      "sha256": "c0724bd3a6aa76a2dc36749b637a5a6ec3e68362801c4c5aaeb924cdb2800590"
+    },
+    {
+      "path": "src/powercontext/builtin/scope/models.py",
+      "bytes": 10643,
+      "sha256": "084d7e2ec0d26d8574f2668f8b913e31fdc8f71529d0f6353568c00f7cbcc195"
+    },
+    {
+      "path": "src/powercontext/builtin/scope/repository.py",
+      "bytes": 15741,
+      "sha256": "24eae80977221502a1ae7e59e7fbc32d783a7ebc168eef2936b1f393a9c5c44b"
+    },
+    {
+      "path": "src/powercontext/builtin/scope/search.py",
+      "bytes": 1184,
+      "sha256": "116944cb7ccca1d24430cc78aa121e4337d42feaacacd819b21af730bf803514"
+    },
+    {
+      "path": "src/powercontext/builtin/scope/subject_sources.py",
+      "bytes": 6666,
+      "sha256": "e786bbf33990119cd1d6c24f7034f0b1d56abbc2895f70426e2577845242024b"
+    },
+    {
+      "path": "src/powercontext/builtin/source_eligibility.py",
+      "bytes": 2097,
+      "sha256": "9ea22b663d70991b17f5c9b0b016dceb60ca29311338abbb9e5d37e5339376d0"
+    },
+    {
+      "path": "src/powercontext/builtin/sources/__init__.py",
+      "bytes": 3476,
+      "sha256": "72b610951173f7d04454c7f3da720f6252332cf0b5eaa43c852fa80342468dd7"
+    },
+    {
+      "path": "src/powercontext/builtin/sources/content.py",
+      "bytes": 4391,
+      "sha256": "4a1bef4a7ecb5a50786f4bcf796c92516f053ec029d77f35c7fd751ec60c774f"
+    },
+    {
+      "path": "src/powercontext/builtin/sources/external_skill.py",
+      "bytes": 3310,
+      "sha256": "d9cb0592b42589eba8ad35815d17050aef63340a1947a6ebecc6c3af6240b320"
+    },
+    {
+      "path": "src/powercontext/builtin/sources/journal.py",
+      "bytes": 1864,
+      "sha256": "a39270f3ac509ea37062cd0af51883f0e90f89de9f4a8db0e3b3e0a1c631af2c"
+    },
+    {
+      "path": "src/powercontext/builtin/sources/skill_package.py",
+      "bytes": 2741,
+      "sha256": "780347651f946ebaa4a1db2e05feb69256559e3804a2d71c3e4f91f9db998d09"
+    },
+    {
+      "path": "src/powercontext/builtin/sources/skill_usage.py",
+      "bytes": 4447,
+      "sha256": "7162c85e28f077235944fa1ef6dff8f84a81dc100978d7ca60eef6deb9fe3b4c"
+    },
+    {
+      "path": "src/powercontext/builtin/statistics/__init__.py",
+      "bytes": 2101,
+      "sha256": "b8f9cff918a9543b6cbabe1334497fc4318492d6a68a2efde957c0c0d7c75822"
+    },
+    {
+      "path": "src/powercontext/builtin/statistics/aggregation.py",
+      "bytes": 10376,
+      "sha256": "ab9b71a57529d2184c15d577232ec446203e6dcf5359efd60b520fcef5dffc69"
+    },
+    {
+      "path": "src/powercontext/builtin/statistics/models.py",
+      "bytes": 9291,
+      "sha256": "ce6ca87841f61cdef6c014186abb3ddcca1491a9a67e398c725f98ce095af002"
+    },
+    {
+      "path": "src/powercontext/builtin/tags.py",
+      "bytes": 5605,
+      "sha256": "332b82fe037b464bda210c0325e08c335eb849d1129614c334658b9507838800"
+    },
+    {
+      "path": "src/powercontext/builtin/triggers/__init__.py",
+      "bytes": 1123,
+      "sha256": "4b38c9d49c8320c97e65403fec9708a2e6423f9d994f8a919af8e03b1a518b1e"
+    },
+    {
+      "path": "src/powercontext/builtin/triggers/handoff.py",
+      "bytes": 1960,
+      "sha256": "8cf5eabea7b97eab705e020e9aaefefd0b9d02b021ea20163ea337548633185c"
+    },
+    {
+      "path": "src/powercontext/builtin/triggers/source_window.py",
+      "bytes": 1906,
+      "sha256": "5b05a04ca213caea5db4098b52b49138e2dd156a62ecc0f19af22ba5001fc0fc"
+    },
+    {
+      "path": "src/powercontext/builtin/work/__init__.py",
+      "bytes": 2036,
+      "sha256": "4ff6447224def405b0a993474940701ee6cf21b85fb216f72e5d6fc6e8705e05"
+    },
+    {
+      "path": "src/powercontext/builtin/work/continuity.py",
+      "bytes": 6619,
+      "sha256": "3d4a56d8683020b71d202bd7b8b693817a9568138cd6d5a6e6aa3cfd7830df2d"
+    },
+    {
+      "path": "src/powercontext/builtin/work/models.py",
+      "bytes": 18964,
+      "sha256": "313ac06eed5e912aa7bf6370ce6df7aee8a4b3cd214c8e38414d1c03598ecef4"
+    },
+    {
+      "path": "src/powercontext/cli/__init__.py",
+      "bytes": 620,
+      "sha256": "cff457aa0cbe20cbc8be5a8ebf4ea0926adbab9234c46c26652545b2d5a744b3"
+    },
+    {
+      "path": "src/powercontext/cli/app.py",
+      "bytes": 4166,
+      "sha256": "6b29a2e5d8289c4236bd060bc38b84a1e44abc72389c17324f31d3220bcc59af"
+    },
+    {
+      "path": "src/powercontext/cli/authorization.py",
+      "bytes": 10343,
+      "sha256": "1e7570daa9baa89c9522731c8111684b9048f913c7b806a5ed1e781f3eff78c1"
+    },
+    {
+      "path": "src/powercontext/cli/config.py",
+      "bytes": 43525,
+      "sha256": "36b7f58fb6aa5f6923639a06846902610da4c0766a76cabddb4f50e3cb5cf6d2"
+    },
+    {
+      "path": "src/powercontext/cli/config_wizard.py",
+      "bytes": 75273,
+      "sha256": "6f35fa25ba836094ab4119a30a1e45f21dbc4af44c9c6e109a765d4d50d75f5a"
+    },
+    {
+      "path": "src/powercontext/cli/config_wizard_agents.py",
+      "bytes": 4444,
+      "sha256": "94435bbedd146417830e62feef4965e444de3299eabeeb6e15af5f995c8946f6"
+    },
+    {
+      "path": "src/powercontext/cli/config_wizard_document.py",
+      "bytes": 10671,
+      "sha256": "927f6e950fb1ced6b4d4f067c087480ca1c09f33a125bc12981d8612896fdd52"
+    },
+    {
+      "path": "src/powercontext/cli/config_wizard_installation.py",
+      "bytes": 2798,
+      "sha256": "bd998d21497304976c935461fed74f99313a310ca897c1d7a71f1d80a090f38c"
+    },
+    {
+      "path": "src/powercontext/cli/config_wizard_models.py",
+      "bytes": 12166,
+      "sha256": "19f6bfcc30fdfdf0e9adb36b754e29fcb3df663f467adb810787586f6b3f910a"
+    },
+    {
+      "path": "src/powercontext/cli/config_wizard_seekdb.py",
+      "bytes": 13707,
+      "sha256": "4a1e64182ad5104c871ef423bf5ba39cd37918769b3370d83a0770f480e9b495"
+    },
+    {
+      "path": "src/powercontext/cli/config_wizard_ui.py",
+      "bytes": 12287,
+      "sha256": "75436ce7bce89fa874f57a8fa0dfcd20a12e180edc8ab1d41ecf93e925dff8dd"
+    },
+    {
+      "path": "src/powercontext/cli/dsh.py",
+      "bytes": 10095,
+      "sha256": "c361a1ec655113d89520135f70c94cb7b2e67fec04312b99127a93112e085be5"
+    },
+    {
+      "path": "src/powercontext/cli/env_file.py",
+      "bytes": 8496,
+      "sha256": "256ebd0702e5979a6b2bf92f5844bee4156ef1c3ce592bc2b67d354f43646fac"
+    },
+    {
+      "path": "src/powercontext/cli/git_source.py",
+      "bytes": 2995,
+      "sha256": "90b7fd15717fd93cefa2b212e18275513fc99da29c8b2838fe2daddf7427b4f5"
+    },
+    {
+      "path": "src/powercontext/cli/hermes.py",
+      "bytes": 16212,
+      "sha256": "1e6c39a37a5432760f390d636b627eb1e1202ca059035890222243c49a09fb1c"
+    },
+    {
+      "path": "src/powercontext/cli/hosts.py",
+      "bytes": 18813,
+      "sha256": "41d76c072164dcab50619afa14f29df28f090285ad18c42a6b1268f470caac66"
+    },
+    {
+      "path": "src/powercontext/cli/inference_notice.py",
+      "bytes": 1497,
+      "sha256": "e0c2d3b0080657ba5d62dc8ea649716d65f6f374d64bce9a50c0e54c666f64b8"
+    },
+    {
+      "path": "src/powercontext/cli/native_transport.py",
+      "bytes": 10560,
+      "sha256": "96fd868c3b1cac1ffafb91a6cff328514babd91ad58b627006e4268fea508971"
+    },
+    {
+      "path": "src/powercontext/cli/openclaw.py",
+      "bytes": 15769,
+      "sha256": "82271c3123c9bd06f2a2c00479834bfe686f9e308ecaea89eb8e88189d4a0b28"
+    },
+    {
+      "path": "src/powercontext/cli/opencode.py",
+      "bytes": 30200,
+      "sha256": "8122e118801fda876b1d1870b18f44c288c41899f9ffad71882284f1752e9cf6"
+    },
+    {
+      "path": "src/powercontext/cli/pi.py",
+      "bytes": 11383,
+      "sha256": "718efdd628f46cce024c5efa10051b1bde9af8cd44b90ef4a6b62c367a2bd9af"
+    },
+    {
+      "path": "src/powercontext/cli/system.py",
+      "bytes": 92327,
+      "sha256": "dc768c69dd4c2ec97d74c80a512dd662827e55e6c00fdd782d03cb9e7a6fbc4c"
+    },
+    {
+      "path": "src/powercontext/cli/transport.py",
+      "bytes": 13433,
+      "sha256": "28399db230207e2ddb221840a6d47076c5cf8a03593d42d92729c4c9832d8e4d"
+    },
+    {
+      "path": "src/powercontext/cli/workbuddy.py",
+      "bytes": 23596,
+      "sha256": "f289708d18689159f98d4de3c00f58ba8275e2e60261cc21afdaf654cf974112"
+    },
+    {
+      "path": "src/powercontext/cli/zcode.py",
+      "bytes": 14546,
+      "sha256": "0a2f555c2b6919ea29d968639514d64fc706b4a3eaf6ac1801fb710a508fe951"
+    },
+    {
+      "path": "src/powercontext/client/__init__.py",
+      "bytes": 1854,
+      "sha256": "ad54ee88d1881e2693afed80a46b2e42e668c0cba3933559a0590f90d4e3c256"
+    },
+    {
+      "path": "src/powercontext/client/capture.py",
+      "bytes": 6849,
+      "sha256": "673e3823b0646711a7260c0ac279e46d0dec917a1c067d0e2ac7c0813e72059d"
+    },
+    {
+      "path": "src/powercontext/client/cli.py",
+      "bytes": 73159,
+      "sha256": "ead4360ce4910378529abdf8ab50f7502721244f4b37d8c3929eb66196958261"
+    },
+    {
+      "path": "src/powercontext/client/client.py",
+      "bytes": 50578,
+      "sha256": "a1d4a2449042b31e21fabe1ec19a7428bad8bf4c6bf28c7508965466ace3cc76"
+    },
+    {
+      "path": "src/powercontext/client/errors.py",
+      "bytes": 3297,
+      "sha256": "0f1570d3a869a4621665e83b484fb3b42ae50eb0aed2cd44faef4df384dc7ed6"
+    },
+    {
+      "path": "src/powercontext/client/ingestion.py",
+      "bytes": 6936,
+      "sha256": "7ea36e212655ff9edcdb81acf5baf8a399cb8f416a78dd7ab7fa0a586675858d"
+    },
+    {
+      "path": "src/powercontext/client/projections/__init__.py",
+      "bytes": 1782,
+      "sha256": "d35fc65bb79a001d5b0b641ea6615ef37b4ce9bbfc9145353337a6670c24384d"
+    },
+    {
+      "path": "src/powercontext/client/projections/claude_code.py",
+      "bytes": 3291,
+      "sha256": "4f8d3c08f89503360731778828552d2b5ea04e09d592cc1004ad5d4f874742f2"
+    },
+    {
+      "path": "src/powercontext/client/projections/codex.py",
+      "bytes": 3202,
+      "sha256": "29d21cf16fb39b736a8ef6af95da9b7e94a4299d37f7fdaf6e3f980b0efa8c38"
+    },
+    {
+      "path": "src/powercontext/client/receiver_service.py",
+      "bytes": 6915,
+      "sha256": "f97b96687537bf719cc5af92feabed3b1d354f12c74fe944635b275ced0aba81"
+    },
+    {
+      "path": "src/powercontext/client/settings.py",
+      "bytes": 2110,
+      "sha256": "2977c5bad2b51e587d2781260c67a7d3d9b88bc5714fc7ff264ec8846dd2973f"
+    },
+    {
+      "path": "src/powercontext/client/skill_receiver.py",
+      "bytes": 38564,
+      "sha256": "2db8269a9a0fedbf5622ba33e8dc93cb84c16104ac10aae15daea02be7219cbb"
+    },
+    {
+      "path": "src/powercontext/client/tags.py",
+      "bytes": 939,
+      "sha256": "75889de44ce2b2e8a2416067b8fd00f1190ce1a92dd114a1810c3c8a25abe146"
+    },
+    {
+      "path": "src/powercontext/client/tracing.py",
+      "bytes": 3040,
+      "sha256": "1a3932a5176935f5c798d368c914b779fbdc6065933651b55b818b5343601874"
+    },
+    {
+      "path": "src/powercontext/client/transport_policy.py",
+      "bytes": 9065,
+      "sha256": "46f7daea6b94fa47c12307e067a4919b9931f5d8a332ea327e4e6bd5c771fb42"
+    },
+    {
+      "path": "src/powercontext/context.py",
+      "bytes": 4016,
+      "sha256": "c230a7333b49078ffa55d391e6bd39695ffacc8589b14e8889265c98ed6a26b8"
+    },
+    {
+      "path": "src/powercontext/errors.py",
+      "bytes": 8463,
+      "sha256": "b5a4c047c1666e47e3ab62af440cbd9cd54d2a0eae0f7f80362d54e9fce3b879"
+    },
+    {
+      "path": "src/powercontext/http/__init__.py",
+      "bytes": 21737,
+      "sha256": "b6e65ee5d55a70d93860d2a5c8ccddc3049d70a8b7859338a39ccc37a9c784ee"
+    },
+    {
+      "path": "src/powercontext/http/_generated/__init__.py",
+      "bytes": 508,
+      "sha256": "2faee1b64d5ad6acf8cf6d3b23758fd685e9b76db11b2b4506b60c4ce1f1282f"
+    },
+    {
+      "path": "src/powercontext/http/_generated/models.py",
+      "bytes": 132952,
+      "sha256": "687827794fb640e1dae7c84663127bb3b2489adf5dd782f2f991a157ee5bd7b5"
+    },
+    {
+      "path": "src/powercontext/http/_generated/operations.py",
+      "bytes": 125420,
+      "sha256": "18822f0aab5c28a573bc2d04862a51eeaa9aecf6cad1381f2b296b695c9afb77"
+    },
+    {
+      "path": "src/powercontext/http/_generated/schema.py",
+      "bytes": 494435,
+      "sha256": "140c0d313487fedaf7f7b21ed92971e201bfbc62b9b2296237e15a8096eb5d28"
+    },
+    {
+      "path": "src/powercontext/limits.py",
+      "bytes": 1391,
+      "sha256": "12bd98dbc3575372268cc26645c41bb85cfb7b05dea84e6a77cff1b376dcb628"
+    },
+    {
+      "path": "src/powercontext/paths.py",
+      "bytes": 1934,
+      "sha256": "094a701d5c87d1ac0f25bee218e73b64dff98ab40615e486e998f2b9fb9fb38d"
+    },
+    {
+      "path": "src/powercontext/py.typed",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "src/powercontext/server/__init__.py",
+      "bytes": 614,
+      "sha256": "51bb699745a1ee820585b31b820cf23d27fbc98e0fc15eb961be433966aa02f2"
+    },
+    {
+      "path": "src/powercontext/server/access.py",
+      "bytes": 5435,
+      "sha256": "d946dbc05a47638c4541c33e5e66efbf75c6f835777f6eebcb474d5851edee41"
+    },
+    {
+      "path": "src/powercontext/server/app.py",
+      "bytes": 217921,
+      "sha256": "7ae86ee8f4a0ae882e3511f669bdd143c7a65360941c1f625d7219a069a1f121"
+    },
+    {
+      "path": "src/powercontext/server/authentication.py",
+      "bytes": 4734,
+      "sha256": "ce84feb1a9ebd90dba8e5a7adb3db8f9413701b042d981907b5e25f690f132c5"
+    },
+    {
+      "path": "src/powercontext/server/authz/__init__.py",
+      "bytes": 3475,
+      "sha256": "a9f5ea09106c2f6ec7a5c262a3fe06516efabeb161ba0b9530902ca0772d3ece"
+    },
+    {
+      "path": "src/powercontext/server/authz/authzen.py",
+      "bytes": 7598,
+      "sha256": "cfc261e3f8b31f80ed56cba9346658636c2ab8fbe5bb9143c68e087774d19ac4"
+    },
+    {
+      "path": "src/powercontext/server/authz/casbin.py",
+      "bytes": 8088,
+      "sha256": "99b7d534883bc1ddc324ce143933b2aa61941a8aa080160e894db2364ff1373c"
+    },
+    {
+      "path": "src/powercontext/server/authz/composition.py",
+      "bytes": 5807,
+      "sha256": "36c120fc0b6ce04c7acc3241f40ead9e7e45946e9f5b5759ac3db639bb3cf062"
+    },
+    {
+      "path": "src/powercontext/server/authz/errors.py",
+      "bytes": 5749,
+      "sha256": "fdc8666188715d7174f2be1d463ce193f8623761366654a1666c594ff6c0cea8"
+    },
+    {
+      "path": "src/powercontext/server/authz/models.py",
+      "bytes": 15941,
+      "sha256": "134f4c0c3e49a02c9dfabb110400c914551c47df469c158eddfd233295250d21"
+    },
+    {
+      "path": "src/powercontext/server/authz/profiles.py",
+      "bytes": 8491,
+      "sha256": "61766459a00204d42907692c6e638eac62fb6067e8b3b8c72f56ed83e4dc03e6"
+    },
+    {
+      "path": "src/powercontext/server/authz/repository.py",
+      "bytes": 55883,
+      "sha256": "a138d954a2b65a695dff2bd150d9f93a5eb82b7628e7d06423df8aed9d955f84"
+    },
+    {
+      "path": "src/powercontext/server/authz/service.py",
+      "bytes": 65756,
+      "sha256": "85c81be55e593c99c6a5452b24cbf25dfb87dfe1502f0180cff666efa620217b"
+    },
+    {
+      "path": "src/powercontext/server/cli.py",
+      "bytes": 13423,
+      "sha256": "5e8c6791fd9683a62110ff2a9d5d5387de4a1ca7402ac77774369589de02745a"
+    },
+    {
+      "path": "src/powercontext/server/configuration.py",
+      "bytes": 7426,
+      "sha256": "7d21628dfde1e1ff38ad7b2a34ced8864b2520b6541c1d95031986b527d9db7a"
+    },
+    {
+      "path": "src/powercontext/server/context.py",
+      "bytes": 2994,
+      "sha256": "f2af77873b6b350c7d20918f4baec644d95f80ec533ff9ae0b5f256e8c8da8dc"
+    },
+    {
+      "path": "src/powercontext/server/cursor_secret.py",
+      "bytes": 2685,
+      "sha256": "2d0f8e8eb240e905614b8860136e8aa6c7e52d26534e198bf237b25aa103f1fe"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/__init__.py",
+      "bytes": 1889,
+      "sha256": "1b831a17d7eae5668de1c3845929fa7c1cd14f8e189c14a4a9af8f995601dc3c"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/api.py",
+      "bytes": 10088,
+      "sha256": "65c870db9fcf32270d3b571f9b2b321993b5255e2c901e495e0633e10838616d"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/content.py",
+      "bytes": 11586,
+      "sha256": "c35c476e4541c737474641ee7d9332dd078cbed3ec2b9a1e21b6eccfa2e78234"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/errors.py",
+      "bytes": 860,
+      "sha256": "80c8655a34e71d46f3f1cb6ecec3ad69bfb6f0985570049a47516466d277fa92"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/labels.en.json",
+      "bytes": 11245,
+      "sha256": "0b45c374f763e97e11bd95d7e5c1124ac81ffdfe4528713872fb073704bbf6e0"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/labels.json",
+      "bytes": 10881,
+      "sha256": "b19efbba45f25cd96f51c4a840595bbafcc4b222ddee7014f9bf9cc9d8130ba1"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/markdown.py",
+      "bytes": 5910,
+      "sha256": "5a8dd4b7509df94851ed0fea1d0a929191ac06ea6c4e67dcfa2da52a9b6f7c92"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/navigation.py",
+      "bytes": 6776,
+      "sha256": "081075c36da9dfd5f16f49cf240f3fbc87eeef14a8427a8ca9a552f0337293ae"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/pagination.py",
+      "bytes": 3393,
+      "sha256": "ffe806abaf04b3dbae69628aaad45b714f429fe1611da56f0e5643537d84ba11"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/preferences.py",
+      "bytes": 2194,
+      "sha256": "fc74c77400a75d42fd27e37c06c3ff70160e3d736100eca404df6dfdfe6ebb83"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/presenters.py",
+      "bytes": 2705,
+      "sha256": "97c154bb331b8e9a9fb5d0ee992c7607b57ff55e80ca04c67dcba8bf2e4eef55"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/routes.py",
+      "bytes": 15501,
+      "sha256": "40c0d805795ca26439c0c2da9c057d4f557448d84308d1bdc10f6a0021299c0b"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/session.py",
+      "bytes": 3895,
+      "sha256": "f7c49f2beba65e1b36ef205b8ef59bf75687ee9ca0f7fd41a2048cdb748b524e"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/static/brand/favicon-color.svg",
+      "bytes": 40309,
+      "sha256": "6ab88ea05959193cf854fa38f4f22a520f8ce2aeec63dc61abd90671ec07a976"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/static/brand/favicon-reverse.svg",
+      "bytes": 31565,
+      "sha256": "f9add63e6c50fd509e9112cbfcab2fd822c2170a701beaffd0d8d02262e977aa"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/static/brand/powercontext-color.png",
+      "bytes": 30132,
+      "sha256": "3721f8cae4d4fabfc138c0fe73b2e957ee8cd21f65213c2aad300720e86779c5"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/static/brand/powercontext-reverse.png",
+      "bytes": 23574,
+      "sha256": "0d48e03cc73836ceac627bad0ec903fb410a38b2d182a25039189c98116d1eeb"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/static/layout.css",
+      "bytes": 760,
+      "sha256": "9dc863a073d1dbc06cefffbb030a11be4565588c16fd4371df3127e30a3fe26a"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/static/vendor/LICENSE.apexcharts",
+      "bytes": 1077,
+      "sha256": "5d4a7457e1e45c91cf486138eba9f226fa147e00c96f1d32c2596dd98d0f4c64"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/static/vendor/LICENSE.css-scope-inline",
+      "bytes": 1075,
+      "sha256": "bf0f31adf687afce8cef39bbb39a9222ae5e03e73a2defea6d6f6738101fabdf"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/static/vendor/LICENSE.htmx",
+      "bytes": 642,
+      "sha256": "d3d2456f76414f2456104660ebd65aff1c04cd7966b942bdabd63f3cdb316a38"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/static/vendor/LICENSE.icons",
+      "bytes": 1073,
+      "sha256": "d5a3f948ae5cb95bfc4d2f767ef2bf6a778815b0ddb2d1c48037744cf636518e"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/static/vendor/LICENSE.surreal",
+      "bytes": 1036,
+      "sha256": "508a77d2e7b51d98adeed32648ad124b7b30241a8e70b2e72c99f92d8e5874d1"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/static/vendor/LICENSE.tabler",
+      "bytes": 1090,
+      "sha256": "4f88a82d13be3c5c63a12c5631eae914aa4381b6dc17641bf1ab85f3f8f6c8a5"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/static/vendor/LICENSE.tom-select",
+      "bytes": 11350,
+      "sha256": "f15dc64ea1f373c8af0ee7c020064360497addf335c9c2bcf27c3a6f56a6f0bd"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/static/vendor/apexcharts.min.js",
+      "bytes": 539664,
+      "sha256": "56fb1229fe77c8cc66f31ea125bea9ed37a3840c97b66a23e44c851cff717b2b"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/static/vendor/css-scope-inline.js",
+      "bytes": 1514,
+      "sha256": "6284948097093c3c3df1630d64cc6e309c9386ebcad6e8039c5d09f82c5656a6"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/static/vendor/htmx.min.js",
+      "bytes": 50918,
+      "sha256": "69caefd0da92269066e725d7fe175e26b9d50c962e3056459c0c477154cdb9d3"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/static/vendor/icons/arrows-exchange.svg",
+      "bytes": 398,
+      "sha256": "c3f53bb08bb0d606bbb9ee20cba4523ad906c641b1299dce0f47ae69b3bc43f3"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/static/vendor/icons/book.svg",
+      "bytes": 501,
+      "sha256": "dae0a4be6f2ca99da1dafaa80bbe6eff38748ddee2df408b7ab4104dc17d739b"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/static/vendor/icons/chart-bar.svg",
+      "bytes": 624,
+      "sha256": "7a28e51684375f99d6955cb7d15f9bfe7925d6145b054fcc0d9c2ea132ede513"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/static/vendor/icons/chevron-down.svg",
+      "bytes": 364,
+      "sha256": "67cccfb310f603bf80c645e61e76444be16c5ab460c05cf910bda39362ac9c72"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/static/vendor/icons/home.svg",
+      "bytes": 482,
+      "sha256": "635a40bf82f7d076b964349d36bc0a6e4cda70be4248721e37f6e1b9b7f69b0f"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/static/vendor/icons/notes.svg",
+      "bytes": 497,
+      "sha256": "25277f1cfb538074596a6a5e1cdd070bbb8d1ec19ef13b1a378d3a170297b33c"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/static/vendor/surreal.js",
+      "bytes": 13679,
+      "sha256": "8cb3497315dd79cac05915357967e03bf93aa8fd938ba5d7626b90fbe2284656"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/static/vendor/tabler-theme.min.js",
+      "bytes": 789,
+      "sha256": "093335c11d4eafab062872d3224c520a91dda7acd5ca08582ab6d72ca414af57"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/static/vendor/tabler-vendors.min.css",
+      "bytes": 10653,
+      "sha256": "a61390c2735e804f2962a49111cb13bee41a21bd15295c96649264a72d43f9dc"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/static/vendor/tabler.min.css",
+      "bytes": 536142,
+      "sha256": "2300b4c5dd7d1ee865de2d8476a6f802767cc86d7b755e97f79bee81acfc7a6c"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/static/vendor/tabler.min.js",
+      "bytes": 83556,
+      "sha256": "b103601c1fc1f539d0bf1389dcefe104ab04c54b213c4d912bf77f20235f6d56"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/static/vendor/tom-select.bootstrap5.min.css",
+      "bytes": 15387,
+      "sha256": "3881c813db2640432c0535de355a706ae93559608928a9d4e772ae2b554977a3"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/static/vendor/tom-select.complete.min.js",
+      "bytes": 50310,
+      "sha256": "b797005cf23378fb38448b80dc57a33313a5c577b841765743bb1f289c4d53e6"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/base.html",
+      "bytes": 2163,
+      "sha256": "3d7945a1b1e884bf32591844ad32777efaf2bc25d52d1f63be809e2c39cc869d"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/compact_usage.html",
+      "bytes": 1726,
+      "sha256": "1f242bb06c5923f64116092b4e55c745767c4acafbbf42883814f2689e67edde"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/components/brand.html",
+      "bytes": 930,
+      "sha256": "bac1a177c042b8cdfbd86ccc971cec3758d598ab9850a9c695519353a96e5c5e"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/components/collection-style.html",
+      "bytes": 946,
+      "sha256": "ef3ec22a8f0d6c16912d6ce32a77acd0328873478884e1724f3a8f502ab500c2"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/components/comparison-chart.html",
+      "bytes": 3442,
+      "sha256": "64a44a843c1383009c3315bb00a8fd6a83a876da526f6fe2f07e9054516459a7"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/components/evidence-modal.html",
+      "bytes": 2193,
+      "sha256": "045e12aa1b6788da588c1599e56b8bc4c7f2c692e72438fe941afe845b179102"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/components/memory-accordion.html",
+      "bytes": 2352,
+      "sha256": "1cabafb11d299ea006ad34b77d7d4e6e7f9b91ec97a5d263ee7ba681d0f88698"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/components/navigation.html",
+      "bytes": 2804,
+      "sha256": "9240da6d7661b147ae512f3c155fa598b8d46a023287fc2a3955b189ac862a54"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/components/page-heading.html",
+      "bytes": 1081,
+      "sha256": "afe505ee0bc7aa1be5b8367116f403b8f73f0e835493d48795bca4238322f382"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/components/pagination.html",
+      "bytes": 1466,
+      "sha256": "9859ece780f132904652f949af795531323f572189fba093edfdef0905301797"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/components/preferences.html",
+      "bytes": 2210,
+      "sha256": "b58614b0c34ad3368bce9d1bb5e7c5095a13c79ca7d8e612e3198cd12cdc0f0b"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/components/read-error.html",
+      "bytes": 2118,
+      "sha256": "532e18865ce53a4bd43209acc47d13074bb9a586dbd486875293b2687d9e2e8a"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/components/reading-style.html",
+      "bytes": 999,
+      "sha256": "d0295fce26fb3ca7be457113c302b7187a73fa2d3be328bf7cab33f10a9a5a99"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/components/record-references.html",
+      "bytes": 2557,
+      "sha256": "6f465b2f78582f9b35fb0fc3934da45649cdd4444a1939bd73d858f69dd7229e"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/components/record-sources.html",
+      "bytes": 835,
+      "sha256": "0dbeec8a98e4f0aed31612ca3bbdd2986d86a4c0e8176568f2bafdb796276f09"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/components/scope-options.html",
+      "bytes": 2987,
+      "sha256": "400f13e513bdeabf617449798e067cb22d6641fb76951b0ad7289b0c2164264d"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/components/search.html",
+      "bytes": 1660,
+      "sha256": "c72c3b406ddde091a1942843acf77785cafe29a4423bf1100b6527085ce869cb"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/components/section-heading.html",
+      "bytes": 828,
+      "sha256": "70ee9fcc59c1ffb5ee883de9a25456c4fa3ef594de71b439b3ddb68e2e45629a"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/components/source-network-error.html",
+      "bytes": 874,
+      "sha256": "8e0f2f8a29c1d0f8595edd0fbf9e134ba6d8b12c277648acf01686fe806a04a6"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/empty.html",
+      "bytes": 710,
+      "sha256": "c46664d4701735a02ab4bab170a7cf78a7e6c79c35bc59a61a26b904430bf45f"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/entry.html",
+      "bytes": 1186,
+      "sha256": "97dd9b96b70fdcdf23cc6d2f9cf115128d23568f5981c40605e344cb90192a38"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/evidence.html",
+      "bytes": 3162,
+      "sha256": "c56aa60d3389981db69fff22eb608c67ff70f0a27eb23aba03f30d19c465afdc"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/experience.html",
+      "bytes": 1739,
+      "sha256": "8130fb1bd6b73101b38471ffe55c1d639e1c85156844c4f59b05517d942319fe"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/handoff-detail.html",
+      "bytes": 2496,
+      "sha256": "fe1cc10e70383b4f5fe43c1a554a6967347c3059a5453808c2006a6970c2549a"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/handoff.html",
+      "bytes": 2315,
+      "sha256": "95a87ffda929415ad30738efb32bdcbc583eb6a7fdfe96a5e4d4347df78d94c8"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/home.html",
+      "bytes": 4338,
+      "sha256": "094dc0450586ead538760d642f270c16faada7742e85ca58582eedb04fa35430"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/login.html",
+      "bytes": 2392,
+      "sha256": "3194b879bea32a315c628d1df0c49a178326dd48cf2915ec55d5960f77f33aef"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/macros.html",
+      "bytes": 4323,
+      "sha256": "c73427a622482e02f08364bcf2e34e2709af0fdebd8487476be0c770932202da"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/methods.html",
+      "bytes": 3431,
+      "sha256": "89ebf16f0e5fbc0d21ad2571ba4305640829cbecb611b9e077b2a6ff618d3575"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/notes.html",
+      "bytes": 3640,
+      "sha256": "2438d954fd84e53fe1bdc5ab73b1a157bf93790391b4b82e3aedc5c69c5328ac"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/profile.html",
+      "bytes": 4046,
+      "sha256": "273fd8515fd2cbbe07bcf48b1c95780d7e9b6506e2c137848d17bb3a20006f09"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/prompts.html",
+      "bytes": 2150,
+      "sha256": "1992cd378340bab4774732bc8ec78913681cc8c3a6aa8d34502e835315ad31c8"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/skill.html",
+      "bytes": 1912,
+      "sha256": "7c0008a9ef230125f5a50477c95d5b261507de0be25aab83502ab713835101c3"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/source.html",
+      "bytes": 2167,
+      "sha256": "9de764f653e6cb2c0b9c3477a9f981de6d75917acb6f084cf708ac17c4dc872c"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/topics.html",
+      "bytes": 3821,
+      "sha256": "12ad515cf2cad332fda3985d57a36c3f32e0ff1aa6925b402fc7a82d63ddf28e"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/usage.html",
+      "bytes": 6280,
+      "sha256": "11ed89c4267b2afb0c9292531c01c13aab49af1885f464802787e953f1cc4a70"
+    },
+    {
+      "path": "src/powercontext/server/dashboard/templates/workspace.html",
+      "bytes": 3534,
+      "sha256": "2c3fd434944e2346fb46e852de411c760a0546e9580774145020e174b318e198"
+    },
+    {
+      "path": "src/powercontext/server/dream_access.py",
+      "bytes": 5385,
+      "sha256": "dd07445d160b25732c896eacaed9a4239aee7fe9bfaacbe7b29eb6a4ffb373f6"
+    },
+    {
+      "path": "src/powercontext/server/factory.py",
+      "bytes": 27217,
+      "sha256": "43f30a39087eef6d8eee5d65767d6e5704987738b39e91f66802bd8f04d0c7b7"
+    },
+    {
+      "path": "src/powercontext/server/logging.py",
+      "bytes": 5353,
+      "sha256": "6b7557035c895d68496a4bdfd29384ca3f73cf22764a2ab4f79425baa4435081"
+    },
+    {
+      "path": "src/powercontext/server/mapping.py",
+      "bytes": 50268,
+      "sha256": "c84b97c7ebe15c78d557ebe36927deb0e800ba254c8a1029f09a4980dec65465"
+    },
+    {
+      "path": "src/powercontext/server/mcp.py",
+      "bytes": 18087,
+      "sha256": "0afd62a1f8115e02163b25b4d400550004391fb20b7dfdf49c27b06094be4110"
+    },
+    {
+      "path": "src/powercontext/server/metrics.py",
+      "bytes": 12204,
+      "sha256": "58b48d35bc11f2156ce611bfbcd53742d4ebd489d35c56e620c856ac5043253a"
+    },
+    {
+      "path": "src/powercontext/server/middleware.py",
+      "bytes": 5258,
+      "sha256": "d94ebfa7227971bc3bf5eb58a8849a3dc6180522a3a9a962fd599201c0bceef0"
+    },
+    {
+      "path": "src/powercontext/server/processing_security.py",
+      "bytes": 10168,
+      "sha256": "93e09cd409eed76a4449373e97226634036cbe48ed80a3c6bb82536a1f39d53b"
+    },
+    {
+      "path": "src/powercontext/server/settings.py",
+      "bytes": 14173,
+      "sha256": "6a340de5a0cdfef67b6ffcb37657de50d8e0c662edad60e37aaf4d9003db7425"
+    },
+    {
+      "path": "src/powercontext/server/tracing.py",
+      "bytes": 16539,
+      "sha256": "517f60ac57911f8caaf2f9d5c21920006c68e9084deb1dd64dcaf6b2b566adcb"
+    },
+    {
+      "path": "src/powercontext/service/__init__.py",
+      "bytes": 647,
+      "sha256": "04dd2fb87a59aba282a227a49277eba6a97336182e09ce8f0763f7aae64ea5dd"
+    },
+    {
+      "path": "src/powercontext/service/_windows_command.py",
+      "bytes": 2131,
+      "sha256": "737ba4d100824677cf7450c08cacc4218f655a07980da3962a990e78047cee43"
+    },
+    {
+      "path": "src/powercontext/service/adapters/__init__.py",
+      "bytes": 1431,
+      "sha256": "fc5762c12eda7c7c1b0611131648069677ef9b9194587f2f6114bc0ffa3f29ac"
+    },
+    {
+      "path": "src/powercontext/service/adapters/base.py",
+      "bytes": 7362,
+      "sha256": "5ba27862ef32a802e674be07578f67206d6c46411582618dde2d4d86ab70554f"
+    },
+    {
+      "path": "src/powercontext/service/adapters/launchd.py",
+      "bytes": 17134,
+      "sha256": "f503a6cfc3b00dd58e6b107b103bf26c068db7030fa054d7f851098059f2e916"
+    },
+    {
+      "path": "src/powercontext/service/adapters/systemd.py",
+      "bytes": 14011,
+      "sha256": "a55f74aa7f48e26c6d8808a6982d2d640379e11f83a2f17b0225b30980636900"
+    },
+    {
+      "path": "src/powercontext/service/adapters/windows.py",
+      "bytes": 28147,
+      "sha256": "897234fb538052ef64c2e66e0d0f6b01fcd5a7c92a7bff413e2b10397e7223e5"
+    },
+    {
+      "path": "src/powercontext/service/cli.py",
+      "bytes": 6874,
+      "sha256": "6bec347c139f4b95186ffca4e0d078507cad1e255d2de0e899ccfa82c001d9cd"
+    },
+    {
+      "path": "src/powercontext/service/controller.py",
+      "bytes": 21943,
+      "sha256": "535b75a7ab1dede154703f7b5c8286b6aab77ad01ac5e704703c6565756c026d"
+    },
+    {
+      "path": "src/powercontext/service/environment.py",
+      "bytes": 10857,
+      "sha256": "3ad15b123b2b87f08f9fd3561e453d9b937dbe9d670c3b21eb360dde83ba2fa5"
+    },
+    {
+      "path": "src/powercontext/service/launcher.py",
+      "bytes": 5941,
+      "sha256": "0a949a3d8cc6de35713415314b38e8c9b964191378777eab88fa6abe15f12df7"
+    },
+    {
+      "path": "src/powercontext/service/model.py",
+      "bytes": 10820,
+      "sha256": "269edae5d376b0899926ae49bf46235862248d1c620167d02b2218f57f5db822"
+    },
+    {
+      "path": "src/powercontext/service/probe.py",
+      "bytes": 3410,
+      "sha256": "d5b1713279ba780cf8582646586708d9b9946e571d9d8005a3fa637f2986f336"
+    },
+    {
+      "path": "src/powercontext/sources/__init__.py",
+      "bytes": 2325,
+      "sha256": "6e56bda3a14353eb904c8e4bbd19b4620340c13eccfda17fd0eb6839b45b1f6c"
+    },
+    {
+      "path": "src/powercontext/sources/adapters.py",
+      "bytes": 1501,
+      "sha256": "384b0eebe7a754091469ba143c6b243d8c5192bbad22af60d801a3c3de2cd1f1"
+    },
+    {
+      "path": "src/powercontext/sources/catalog.py",
+      "bytes": 3308,
+      "sha256": "78614d5bece99ab661d742bbea1702d81fc69a66ea03013588029a322eb5b8d0"
+    },
+    {
+      "path": "src/powercontext/sources/connectors.py",
+      "bytes": 11176,
+      "sha256": "ee858025a3fc1eda47d6a54a9c97c28f040a0f6abd427db0ad06e38635373d10"
+    },
+    {
+      "path": "src/powercontext/sources/definitions.py",
+      "bytes": 10903,
+      "sha256": "5f6fc79c70be5732103ada798c3b6be0360e02779a2bb90f89197c1f4ff43863"
+    },
+    {
+      "path": "src/powercontext/sources/models.py",
+      "bytes": 2693,
+      "sha256": "3577886073537b0a04d594916d9e33f9ecd9f0a1b76d90b8e1e92885280fcb43"
+    },
+    {
+      "path": "src/powercontext/sources/observations.py",
+      "bytes": 9828,
+      "sha256": "bd530eaa10eea999f1f564b6c43d11c69888950025fd9c65d460c8e451b3c2e6"
+    },
+    {
+      "path": "src/powercontext/sources/projections.py",
+      "bytes": 1152,
+      "sha256": "82d47b146ebbd722c74a7e5b9b1c81f495dc014e2719a9ada7afea11453b8efd"
+    },
+    {
+      "path": "src/powercontext/sources/protocols.py",
+      "bytes": 1268,
+      "sha256": "f7b83984ded8259e66e0cc78aa88ad8dae344aa22b3e76f3229d02176bf146fd"
+    },
+    {
+      "path": "src/powercontext/transport.py",
+      "bytes": 2999,
+      "sha256": "9bcee8df9f01985182b69a62b83c4f3e8297752185624654de4c3f2c33c96335"
+    },
+    {
+      "path": "src/powercontext/triggers/__init__.py",
+      "bytes": 801,
+      "sha256": "8b87fcdd8d272f82db5347a9bc9578f58687c4b16e529b037ee0f074bcbe89e8"
+    },
+    {
+      "path": "src/powercontext/triggers/models.py",
+      "bytes": 992,
+      "sha256": "5c72c5e19262125e98126c0e8b5753cc3346e103d73e22ea67797a765856054c"
+    },
+    {
+      "path": "src/powercontext/triggers/protocols.py",
+      "bytes": 1370,
+      "sha256": "35bdc5ea613a8435c644d35807e7f5518d1c67839fe30cb8f05057152bd7c0df"
+    }
+  ]
+}
